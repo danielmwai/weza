@@ -22,55 +22,54 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation;
+package com.tunaweza.core.business.model.student;
+import java.util.Date;
 
-import java.util.List;
-
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public interface CourseEvaluationTransactionDao {
+@Embeddable
+public class CompletedModule {
+	
+	@Column(name="module_id")
+	private long moduleId;
+	
+	@Column(name="start_date")
+	@Temporal(value = TemporalType.TIMESTAMP)
+	private Date startDate;
+	
+	@Column(name="complete_date")
+	@Temporal(value = TemporalType.TIMESTAMP)
+	private Date completedDate;
 
-	/** 
-	 *
-	 * @return List of <code>CourseEvaluationTransaction<code>
-	 */
-	public List<CourseEvaluationTransaction> getCourseEvaluationTransactions();
-	
-	/** 
-	 *
-	 * @param id
-	 * @return <code>CourseEvaluationTransaction<code>
-	 */
-	public CourseEvaluationTransaction getCourseEvaluationTransaction(Long id);
-	
-	/** 
-	 *
-	 * @param courseEvaluationTransaction
-	 * @return 
-	 */
-	public CourseEvaluationTransaction saveCourseEvaluationTransaction(CourseEvaluationTransaction courseEvaluationTransaction);
-	
-	
-	
-	/** 
-	 *
-	 * @param studentEvaluation
-	 * @return List of <code>CourseEvaluationTransaction<code>
-	 */
-	public List<CourseEvaluationTransaction> getCourseEvaluationTransactionByStudentEvaluation(
-			StudentEvaluation studentEvaluation);
-	
-	/** 
-	 *
-	 * @param studentEvaluation
-	 * @return <code>CourseEvaluationTransaction<code>
-	 */
-	public CourseEvaluationTransaction getLastUserCourseEvaluationTransaction(
-			StudentEvaluation studentEvaluation);
-	
-	
+	public long getModuleId() {
+		return moduleId;
+	}
+
+	public void setModuleId(long moduleId) {
+		this.moduleId = moduleId;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getCompletedDate() {
+		return completedDate;
+	}
+
+	public void setCompletedDate(Date completedDate) {
+		this.completedDate = completedDate;
+	}
+
 }
-

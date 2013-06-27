@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation;
+package com.tunaweza.core.business.dao.evaluation.student;
 
 import java.util.List;
 

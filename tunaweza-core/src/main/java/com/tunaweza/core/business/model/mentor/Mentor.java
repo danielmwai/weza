@@ -9,6 +9,7 @@ package com.tunaweza.core.business.model.mentor;
  *
  * @author Daniel Mwai
  */
+import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import java.util.List;
 
 import javax.persistence.CascadeType;

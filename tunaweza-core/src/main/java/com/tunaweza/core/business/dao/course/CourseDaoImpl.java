@@ -38,7 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Daniel mwai
  */
 
-@Repository(value = "courseTemplateDAO")
+@Repository(value = "courseTemplateDao")
 @Transactional
 public class CourseDaoImpl extends GenericDaoImpl<Course>
 		implements CourseDao {
