@@ -22,28 +22,29 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.exceptions.user;
+package com.tunaweza.core.business.dao.exceptions.topic;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class UserExistsException extends Exception {
+public class TopicExistsException extends Exception {
 
-    UserExistsException(String message) {
+
+	TopicExistsException(String message) {
         super(message);
     }
 
-    public UserExistsException(Throwable cause) {
+    public TopicExistsException(Throwable cause) {
         super(cause);
     }
 
-    public UserExistsException(String message, Throwable cause) {
+    public TopicExistsException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public UserExistsException() {
+    public TopicExistsException() {
         super();
     }
     

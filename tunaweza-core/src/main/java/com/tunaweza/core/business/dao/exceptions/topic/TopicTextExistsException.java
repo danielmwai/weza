@@ -22,39 +22,30 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.exceptions.user;
+package com.tunaweza.core.business.dao.exceptions.topic;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class UserNotFoundException extends Exception {
+public class TopicTextExistsException extends Exception {
 
-	/**
-	 * Comment for <code>serialVersionUID</code>
-	 */
-	private static final long serialVersionUID = 7864606722648949738L;
 
-	/**
-	 * Constructs a new
-	 * <code>UserNotFoundException<code> exception with <code>String</code>
-	 * message as its detail message
-	 * 
-	 * @param <code>String</code> message to display when the exception is
-	 *        thrown
-	 */
+	TopicTextExistsException(String message) {
+        super(message);
+    }
 
-	public UserNotFoundException(String message) {
-		super(message);
-	}
+    public TopicTextExistsException(Throwable cause) {
+        super(cause);
+    }
 
-	/**
-	 * Constructs a new
-	 * <code>JJTeachUserNotFoundException<code> exception with no detail message
-	 */
-	public UserNotFoundException() {
-		super();
-	}
+    public TopicTextExistsException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
+    public TopicTextExistsException() {
+        super();
+    }
+    
 }

@@ -29,22 +29,22 @@ package com.tunaweza.core.business.dao.exceptions.user;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class UserExistsException extends Exception {
-
-    UserExistsException(String message) {
-        super(message);
-    }
-
-    public UserExistsException(Throwable cause) {
-        super(cause);
-    }
-
-    public UserExistsException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public UserExistsException() {
+public class UserDoesNotExistException extends Exception {
+    
+    public UserDoesNotExistException(){
         super();
+    }
+    
+    public  UserDoesNotExistException(Exception e){
+        super("User matching the name doesnt exists." + e.getMessage());
+    }
+    
+    public UserDoesNotExistException(String message){
+        super("User matching \" "+message+" \" doesnt exists.");
+    }
+
+    public UserDoesNotExistException(Throwable cause) {
+        super(cause);
     }
     
 }

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.model.eveluation;
+package com.tunaweza.core.business.model.evaluation;
 
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import java.util.List;
