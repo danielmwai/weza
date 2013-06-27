@@ -7,7 +7,7 @@ package com.tunaweza.core.business.model.mentor;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 import java.util.List;
 

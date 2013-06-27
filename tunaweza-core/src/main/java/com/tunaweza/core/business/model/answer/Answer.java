@@ -7,7 +7,7 @@ package com.tunaweza.core.business.model.answer;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;

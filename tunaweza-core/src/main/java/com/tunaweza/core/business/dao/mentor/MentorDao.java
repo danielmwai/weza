@@ -7,7 +7,7 @@ package com.tunaweza.core.business.dao.mentor;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 public interface MentorDao extends GenericDao<Mentor> 
 {

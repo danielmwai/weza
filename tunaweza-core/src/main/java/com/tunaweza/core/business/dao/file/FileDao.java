@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 public interface FileDao 
 {

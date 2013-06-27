@@ -7,7 +7,7 @@ package com.tunaweza.core.business.dao.course;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 public interface CourseDao  extends GenericDao<Course> 
 {

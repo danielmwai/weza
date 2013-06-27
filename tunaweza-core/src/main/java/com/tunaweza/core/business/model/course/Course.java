@@ -7,7 +7,7 @@ package com.tunaweza.core.business.model.course;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 @Entity
 @Table(name = Course.TABLE_NAME)

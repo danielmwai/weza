@@ -7,7 +7,7 @@ package com.tunaweza.core.business.dao.mentor;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 
 import java.util.ArrayList;

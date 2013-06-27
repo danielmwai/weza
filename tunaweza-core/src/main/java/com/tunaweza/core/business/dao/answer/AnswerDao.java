@@ -6,10 +6,11 @@
 package com.tunaweza.core.business.dao.answer;
 
 import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.answer.Answer;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 public interface AnswerDao extends GenericDao<Answer> {
 

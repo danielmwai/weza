@@ -15,7 +15,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 @MappedSuperclass
 public class AbstractPersistentEntity implements PersistentEntity,

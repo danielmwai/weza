@@ -7,7 +7,7 @@ package com.tunaweza.core.business.model.persistence;
 
 /**
  *
- * @author naistech
+ * @author Daniel Mwai
  */
 public interface PersistentEntity {
   
