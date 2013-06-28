@@ -24,6 +24,8 @@
 
 package com.tunaweza.core.business.model.topic.lastaccessed;
 
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.user.User;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;

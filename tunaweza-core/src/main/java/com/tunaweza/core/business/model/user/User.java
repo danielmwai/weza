@@ -23,7 +23,10 @@
  */
 
 package com.tunaweza.core.business.model.user;
+import com.tunaweza.core.business.model.group.Group;
+import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.student.Student;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -90,10 +93,10 @@ public class User extends AbstractPersistentEntity implements Comparable<User>
 	
 	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private Student student;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_company")
-	private Company userCompany;
+//	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "id_company")
+//	private Company userCompany;
 	
 	@ManyToMany
 	@Embedded
@@ -269,20 +272,20 @@ public class User extends AbstractPersistentEntity implements Comparable<User>
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-
-	/**
-	 * @return the userCompany
-	 */
-	public Company getUserCompany() {
-		return userCompany;
-	}
-
-	/**
-	 * @param userCompany the userCompany to set
-	 */
-	public void setUserCompany(Company userCompany) {
-		this.userCompany = userCompany;
-	}
+//
+//	/**
+//	 * @return the userCompany
+//	 */
+//	public Company getUserCompany() {
+//		return userCompany;
+//	}
+//
+//	/**
+//	 * @param userCompany the userCompany to set
+//	 */
+//	public void setUserCompany(Company userCompany) {
+//		this.userCompany = userCompany;
+//	}
 
 	/**
 	 * @return the groups
