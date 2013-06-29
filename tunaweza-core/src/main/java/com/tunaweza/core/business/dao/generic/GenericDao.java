@@ -10,6 +10,7 @@ import java.util.List;
 /**
  *
  * @author Daniel Mwai
+ * @param <E>
  */
 public interface GenericDao< E extends PersistentEntity > {
 

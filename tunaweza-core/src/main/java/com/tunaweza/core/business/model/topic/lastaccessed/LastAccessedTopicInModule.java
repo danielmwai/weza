@@ -24,6 +24,7 @@
 
 package com.tunaweza.core.business.model.topic.lastaccessed;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
+import com.tunaweza.core.business.model.topic.Topic;
 import java.util.Date;
 
 import javax.persistence.Column;
