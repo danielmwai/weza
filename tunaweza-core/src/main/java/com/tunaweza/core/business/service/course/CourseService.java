@@ -27,6 +27,7 @@ package com.tunaweza.core.business.service.course;
 import com.tunaweza.core.business.dao.exceptions.course.CourseExistsException;
 import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
 import com.tunaweza.core.business.model.course.Course;
+import com.tunaweza.core.business.model.course.EmbeddableModule;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.user.User;
 import java.util.List;
@@ -51,7 +52,7 @@ public interface CourseService {
 	 * @param courseTemplate
 	 * 
 	 */	
-	public void editCourseTemplate(CourseTemplate courseTemplate);
+	public void editCourse(Course course);
 	
 	/**
 	 * 
@@ -95,15 +96,15 @@ public interface CourseService {
 	
 	/**
 	 * 
-	 * @param courseTemplate
+	 * @param course
 	 * @return <code>Module</code> list
 	 * 
 	 */
-	public List<Module> getModulesInCourseTemplate(Course course);
+	public List<Module> getModulesInCourse(Course course);
 	
 	/**
 	 * 
-	 * @param courseTemplate
+	 * @param course
 	 * @return <code>Module</code> list
 	 * 
 	 */

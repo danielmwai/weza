@@ -39,7 +39,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class CourseServiceImpl implements CourseService {
+                                                                                                                                                public class CourseServiceImpl implements CourseService {
 	@Autowired
 	CourseDao courseDao;
 
@@ -70,7 +70,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Course findCourseByName(String name)
 			throws CourseNotFoundException {
-		return courseDao.findCourseTemplateByName(name);
+		return courseDao.findCourseByName(name);
 	}
 
 	@Override
@@ -92,8 +92,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<Module> getModulesInCourse(CourseTemplate courseTemplate) {
-		return courseDao.getModulesInCourseTemplate(courseTemplate
+	public List<Module> getModulesInCourse(Course course) {
+		return courseDao.getModulesInCourse(course
 				.getId());
 	}
 
@@ -109,7 +109,7 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	public List<Module> getModulesInCourseNoSession(Course course, String companyDbName) {
-		return courseDao.getModulesInCourseTemplateNoSession(course
+		return courseDao.getModulesInCourseNoSession(course
 				.getId(), companyDbName);
 	}
 
