@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.exercise.impl;
+package com.tunaweza.core.business.service.exercise;
 
 /**
  * @version $Revision: 1.1.1.1 $
