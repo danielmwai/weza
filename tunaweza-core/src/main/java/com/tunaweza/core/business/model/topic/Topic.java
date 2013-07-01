@@ -289,7 +289,7 @@ public class Topic extends AbstractPersistentEntity implements
 	}
 
 	/**
-	 * @return the mentorTemplates
+	 * @return the Mentors
 	 */
 	public List<Mentor> getMentor() {
 		return mentor;

@@ -22,43 +22,30 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.image;
-
-import com.tunaweza.core.business.model.image.Image;
-import java.util.List;
+package com.tunaweza.core.business.service.user;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public interface ImageService {
+public class GrantedAuthorityImpl {
 
-	/**
-	 * 
-	 * @return list of <code>Image</code>
-	 */
-	public List<Image> getAllImages();
-	
-	/**
-	 * 
-	 * @param id
-	 * @return list of <code>Image</code>
-	 */
-	 public Image getImage(Long id);
-	   
-	/**
-	 * 
-	 * @param image
-	 * @return <code>Image</code>
-	 */
-	 public Image saveImage(Image image);
+	private String authority;
 
-	 /**
-	   * 
-	   * @param id
-	   */
-	 public void removeImage(Long id);
+	public GrantedAuthorityImpl(String authority)
+	{
+		this.authority = authority;
+	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.security.core.GrantedAuthority#getAuthority()
+	 */
+	public String getAuthority()
+	{
+		return authority;
+	}
+
 }

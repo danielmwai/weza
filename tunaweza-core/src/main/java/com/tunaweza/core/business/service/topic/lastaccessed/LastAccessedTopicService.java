@@ -22,43 +22,29 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.image;
+package com.tunaweza.core.business.service.topic.lastaccessed;
 
-import com.tunaweza.core.business.model.image.Image;
-import java.util.List;
+import com.tunaweza.core.business.Dao.exceptions.accessed.LastAccessedTopicException;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.user.User;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public interface ImageService {
+public interface LastAccessedTopicService {
 
-	/**
-	 * 
-	 * @return list of <code>Image</code>
-	 */
-	public List<Image> getAllImages();
-	
-	/**
-	 * 
-	 * @param id
-	 * @return list of <code>Image</code>
-	 */
-	 public Image getImage(Long id);
-	   
-	/**
-	 * 
-	 * @param image
-	 * @return <code>Image</code>
-	 */
-	 public Image saveImage(Image image);
+	public void saveOrUpdateLastAccessedTopicInModule(User user, Topic topic)
+			throws LastAccessedTopicException;
 
-	 /**
-	   * 
-	   * @param id
-	   */
-	 public void removeImage(Long id);
+	public void saveOrUpdateLastAccessedTopicInModule(long userId, long topicId)
+			throws LastAccessedTopicException;
 
-	
+	public Topic getLastAccessedTopicInModule(User user, Module module)
+			throws LastAccessedTopicException;
+
+	public Topic getLastAccessedTopicInModule(long userId, long moduleId)
+			throws LastAccessedTopicException;
 }

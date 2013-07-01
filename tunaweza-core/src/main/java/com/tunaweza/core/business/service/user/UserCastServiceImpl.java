@@ -22,43 +22,57 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.image;
-
-import com.tunaweza.core.business.model.image.Image;
-import java.util.List;
+package com.tunaweza.core.business.service.user;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public interface ImageService {
+@Service("userCastService")
+@Transactional
+public class UserCastServiceImpl implements UserCastService {
+	public static final Logger LOGGER = Logger
+			.getLogger(UserCastServiceImpl.class);
 
-	/**
-	 * 
-	 * @return list of <code>Image</code>
-	 */
-	public List<Image> getAllImages();
-	
-	/**
-	 * 
-	 * @param id
-	 * @return list of <code>Image</code>
-	 */
-	 public Image getImage(Long id);
-	   
-	/**
-	 * 
-	 * @param image
-	 * @return <code>Image</code>
-	 */
-	 public Image saveImage(Image image);
+	@Autowired
+	private UserService userService;
 
-	 /**
-	   * 
-	   * @param id
-	   */
-	 public void removeImage(Long id);
+	@Autowired
+	private UserDao userDao;
 
-	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jjpeople.jjteach.web.service.user.UserCastService#getUser()
+	 */
+	public User getUser() {
+
+		long userId = 0;
+		try {
+			userId = userService.getUserByUsername(
+					SecurityContextHolder.getContext().getAuthentication()
+							.getName()).getId();
+			LOGGER.info("USER ID >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+					+ userId);
+		} catch (UserDoesNotExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		User user = null;
+		if (userId == 0) {
+			user = userService.getSuperUser("rootAdmin", "Root", "Admin");
+			LOGGER.info("USER ID >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+					+ user.getId());
+		} else {
+			LOGGER.info("USER ID >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+					+ userId);
+
+			user = userDao.findById(userId);
+		}
+		return user;
+
+	}
+
 }

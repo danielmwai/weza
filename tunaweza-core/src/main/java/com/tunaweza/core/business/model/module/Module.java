@@ -77,7 +77,7 @@ public class Module extends AbstractPersistentEntity implements
 	List<Topic> topics;
 
 	@OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
-	List<MentorTemplate> mentorTemplates;
+	List<Mentor> Mentors;
 
 	@OneToOne(mappedBy = "module")
 	private EvaluationTemplate evaluationTemplate;
@@ -185,18 +185,18 @@ public class Module extends AbstractPersistentEntity implements
 	}
 
 	/**
-	 * @return the mentorTemplates
+	 * @return the Mentors
 	 */
-	public List<MentorTemplate> getMentorTemplates() {
-		return mentorTemplates;
+	public List<Mentor> getMentors() {
+		return Mentors;
 	}
 
 	/**
-	 * @param mentorTemplates
-	 *            the mentorTemplates to set
+	 * @param Mentors
+	 *            the Mentors to set
 	 */
-	public void setMentorTemplates(List<MentorTemplate> mentorTemplates) {
-		this.mentorTemplates = mentorTemplates;
+	public void setMentors(List<Mentor> Mentors) {
+		this.Mentors = Mentors;
 	}
 
 	public EvaluationTemplate getEvaluationTemplate() {

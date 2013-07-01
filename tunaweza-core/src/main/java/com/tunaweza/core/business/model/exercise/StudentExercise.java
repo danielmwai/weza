@@ -26,6 +26,7 @@ package com.tunaweza.core.business.model.exercise;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
 import java.util.Calendar;
 import java.util.List;
 

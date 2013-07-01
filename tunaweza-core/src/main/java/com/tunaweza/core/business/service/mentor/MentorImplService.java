@@ -22,30 +22,13 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.exceptions.topic;
+package com.tunaweza.core.business.service.mentor;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class TopicDoesNotExistException extends Exception{
+public class MentorImplService {
 
-
-    public TopicDoesNotExistException(){
-        super();
-    }
-    
-    public  TopicDoesNotExistException(Exception e){
-        super("Topic matching the name doesnt exists." + e.getMessage());
-    }
-    
-    public TopicDoesNotExistException(String message){
-        super("Topic matching \" "+message+" \" doesnt exists.");
-    }
-
-    public TopicDoesNotExistException(Throwable cause) {
-        super(cause);
-    }
-    
 }

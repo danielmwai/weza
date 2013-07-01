@@ -36,11 +36,11 @@ public class Mentor extends AbstractPersistentEntity implements
 	@Column(columnDefinition = "varchar(255) default 'Mentor Template Name'")
 	private String name;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "mentorTemplates")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "Mentors")
 	private List<Mentor> mentors;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "exercise_mentortemplate", joinColumns = @JoinColumn(name = "mentortemplate"), inverseJoinColumns = @JoinColumn(name = "exercise"))
+	@JoinTable(name = "exercise_Mentor", joinColumns = @JoinColumn(name = "Mentor"), inverseJoinColumns = @JoinColumn(name = "exercise"))
 	private List<Topic> exercises;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -147,11 +147,11 @@ public class Mentor extends AbstractPersistentEntity implements
 	}
 
 	@Override
-	public int compareTo(MentorTemplate mentorTemplate) {
-		if (mentorTemplate.getId() > getId()) {
+	public int compareTo(Mentor Mentor) {
+		if (Mentor.getId() > getId()) {
 			return -1;
 
-		} else if (mentorTemplate.getId() < getId()) {
+		} else if (Mentor.getId() < getId()) {
 			return 1;
 		}
 		return 0;

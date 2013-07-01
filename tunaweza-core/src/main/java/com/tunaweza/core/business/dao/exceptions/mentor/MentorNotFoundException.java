@@ -22,43 +22,29 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.image;
-
-import com.tunaweza.core.business.model.image.Image;
-import java.util.List;
+package com.tunaweza.core.business.Dao.exceptions.mentor;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public interface ImageService {
+public class MentorNotFoundException extends Exception {
 
-	/**
-	 * 
-	 * @return list of <code>Image</code>
-	 */
-	public List<Image> getAllImages();
-	
-	/**
-	 * 
-	 * @param id
-	 * @return list of <code>Image</code>
-	 */
-	 public Image getImage(Long id);
-	   
-	/**
-	 * 
-	 * @param image
-	 * @return <code>Image</code>
-	 */
-	 public Image saveImage(Image image);
+    public MentorNotFoundException(Throwable cause) {
+        super("MentorDoesNotExistException"+cause);
+    }
 
-	 /**
-	   * 
-	   * @param id
-	   */
-	 public void removeImage(Long id);
+    public MentorNotFoundException(String message, Throwable cause) {
+        super("MentorDoesNotExistException:"+message, cause);
+    }
 
-	
+    public MentorNotFoundException(String message) {
+        super("MentorDoesNotExistException:"+message);
+    }
+
+    public MentorNotFoundException() {
+        super();
+    }
+    
 }

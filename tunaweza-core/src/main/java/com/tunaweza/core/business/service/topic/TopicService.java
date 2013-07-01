@@ -24,6 +24,16 @@
 
 package com.tunaweza.core.business.service.topic;
 
+import com.tunaweza.core.business.Dao.exceptions.topic.TopicNotFoundExistException;
+import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.status.Status;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.user.User;
+import java.math.BigInteger;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -48,17 +58,17 @@ public interface TopicService {
 	 * 
 	 * @param name
 	 * @return
-	 * @throws TopicDoesNotExistException
+	 * @throws TopicNotFoundExistException
 	 */
-	public Topic getTopicByName(String name) throws TopicDoesNotExistException;
+	public Topic getTopicByName(String name) throws TopicNotFoundExistException;
 
 	/**
 	 * 
 	 * @param topicId
 	 * @return
-	 * @throws TopicDoesNotExistException
+	 * @throws TopicNotFoundExistException
 	 */
-	public Topic getTopicById(long topicId) throws TopicDoesNotExistException;
+	public Topic getTopicById(long topicId) throws TopicNotFoundExistException;
 
 	/**
 	 * Enables or disables a topic.
@@ -68,12 +78,12 @@ public interface TopicService {
 	 * @return <code>true</code> if the <code>Topic</code> has been enabled or
 	 *         was already enabled or <code>false</code> if the topic could not
 	 *         be enabled.
-	 * @throws TopicDoesNotExistException
+	 * @throws TopicNotFoundExistException
 	 *             Thrown if a <code>Topic</code> with the given id does not
 	 *             exist.
 	 */
 	public boolean changeStatusTopic(String topicId)
-			throws TopicDoesNotExistException;
+			throws TopicNotFoundExistException;
 
 	/**
 	 * 
@@ -84,16 +94,16 @@ public interface TopicService {
 	/**
 	 * 
 	 * @param topic
-	 * @throws TopicDoesNotExistException
+	 * @throws TopicNotFoundExistException
 	 */
-	public void deleteTopic(Topic topic) throws TopicDoesNotExistException;
+	public void deleteTopic(Topic topic) throws TopicNotFoundExistException;
 
 	/**
 	 * 
 	 * @param topicId
-	 * @throws TopicDoesNotExistException
+	 * @throws TopicNotFoundExistException
 	 */
-	public void deleteTopic(long topicId) throws TopicDoesNotExistException;
+	public void deleteTopic(long topicId) throws TopicNotFoundExistException;
 
 	/**
 	 * 

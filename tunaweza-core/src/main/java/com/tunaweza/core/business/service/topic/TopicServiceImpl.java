@@ -25,8 +25,10 @@
 package com.tunaweza.core.business.service.topic;
 
 import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.topic.TopicNotFoundExistException;
 import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.Dao.file.FileDao;
+import com.tunaweza.core.business.Dao.topic.TopicDao;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.file.File;
 import com.tunaweza.core.business.model.module.Module;
@@ -35,6 +37,7 @@ import com.tunaweza.core.business.model.status.Status;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.topic.TopicText;
 import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
 import java.math.BigInteger;
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -98,12 +101,12 @@ public class TopicServiceImpl implements TopicService {
 	}
 
 	@Override
-	public Topic getTopicByName(String name) throws TopicDoesNotExistException {
+	public Topic getTopicByName(String name) throws TopicNotFoundExistException {
 		return topicDao.findTopicByName(name);
 	}
 
 	@Override
-	public Topic getTopicById(long topicId) throws TopicDoesNotExistException {
+	public Topic getTopicById(long topicId) throws TopicNotFoundExistException {
 		return topicDao.findTopicById(topicId);
 	}
 
@@ -113,13 +116,13 @@ public class TopicServiceImpl implements TopicService {
 	}
 
 	@Override
-	public void deleteTopic(Topic topic) throws TopicDoesNotExistException {
+	public void deleteTopic(Topic topic) throws TopicNotFoundExistException {
 		topicDao.deleteTopic(topic);
 
 	}
 
 	@Override
-	public void deleteTopic(long topicId) throws TopicDoesNotExistException {
+	public void deleteTopic(long topicId) throws TopicNotFoundExistException {
 		topicDao.deleteTopic(topicId);
 	}
 
@@ -142,13 +145,13 @@ public class TopicServiceImpl implements TopicService {
 	 * .String)
 	 */
 	public boolean changeStatusTopic(String topicId)
-			throws TopicDoesNotExistException {
+			throws TopicNotFoundExistException {
 		long uId = -1;
 
 		try {
 			uId = Long.valueOf(topicId);
 		} catch (NumberFormatException nfe) {
-			throw new TopicDoesNotExistException("User does not exist.");
+			throw new TopicNotFoundExistException("User does not exist.");
 		}
 
 		Topic topic = topicDao.findById(uId);
@@ -709,7 +712,7 @@ public class TopicServiceImpl implements TopicService {
 						topicBean.setParentName(getTopicById(
 								topic.getParentId()).getName());
 					}
-				} catch (TopicDoesNotExistException e) {
+				} catch (TopicNotFoundExistException e) {
 					e.printStackTrace();
 				}
 				topicBean.setLevel(topic.getLevel() + "");

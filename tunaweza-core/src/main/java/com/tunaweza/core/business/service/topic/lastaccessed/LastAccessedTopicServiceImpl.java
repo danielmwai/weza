@@ -23,6 +23,15 @@
  */
 
 package com.tunaweza.core.business.service.topic.lastaccessed;
+import com.tunaweza.core.business.Dao.exceptions.accessed.LastAccessedTopicException;
+import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.Dao.lastaccessed.LastAccessedTopicDao;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
+import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.topic.TopicService;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -85,7 +94,7 @@ public class LastAccessedTopicServiceImpl implements LastAccessedTopicService
 		}
 		else
 		{
-			LastAccessedTopicPK lastAccessedTopicPK = new LastAccessedTopicPK();
+			LastAccessedTopic lastAccessedTopicPK = new LastAccessedTopic();
 			lastAccessedTopicPK.setModule(module);
 			lastAccessedTopicPK.setUser(user);
 
