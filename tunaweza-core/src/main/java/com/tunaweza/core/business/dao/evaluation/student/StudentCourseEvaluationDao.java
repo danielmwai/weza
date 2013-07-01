@@ -24,14 +24,18 @@
 
 package com.tunaweza.core.business.dao.evaluation.student;
 
+import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
+import com.tunaweza.core.business.model.student.Student;
 import java.util.List;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class StudentCourseEvaluationDao extends GenericDao<StudentCourseEvaluation> 
+public interface StudentCourseEvaluationDao extends GenericDao<StudentCourseEvaluation> 
 {
 	/**
 	 * 

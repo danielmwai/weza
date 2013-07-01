@@ -23,14 +23,13 @@
  */
 
 package com.tunaweza.core.business.dao.image;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jjpeople.jjteach.dao.hibernate.GenericDaoImpl;
-import com.jjpeople.jjteach.dao.image.ImageDAO;
-import com.jjpeople.jjteach.orm.entities.image.Image;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

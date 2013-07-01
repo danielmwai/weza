@@ -24,6 +24,9 @@
 
 package com.tunaweza.core.business.dao.course;
 
+import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
+import com.tunaweza.core.business.model.course.Course;
+import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +44,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "courseTemplateDao")
 @Transactional
 public class CourseDaoImpl extends GenericDaoImpl<Course>
-		implements CourseDao {
+		implements CourseDao, CourseDao {
 
 	@Override
 	public Course findCourseById(long uid)
@@ -254,4 +257,79 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		}
 		return modules;
 	}
+
+    @Override
+    public Course findCourse(Course course) throws CourseNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveCourse(Course course) throws CourseExistsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateCourse(Course course) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveModulesToCourse(Course course, <any> mdoule) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <any> courseListById(<any> ctIds, String companyDbName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean exists(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void flush() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object execute(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List executeFind(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

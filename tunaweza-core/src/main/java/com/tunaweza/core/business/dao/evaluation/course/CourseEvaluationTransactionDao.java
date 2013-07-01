@@ -24,6 +24,8 @@
 
 package com.tunaweza.core.business.dao.evaluation.course;
 
+import com.tunaweza.core.business.model.evaluation.CourseEvaluationTransaction;
+import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
 import java.util.List;
 
 /**

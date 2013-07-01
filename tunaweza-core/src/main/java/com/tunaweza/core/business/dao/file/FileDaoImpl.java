@@ -24,6 +24,12 @@
 
 package com.tunaweza.core.business.dao.file;
 
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.file.File;
+import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -52,5 +58,10 @@ public class FileDaoImpl extends GenericDaoImpl<File> implements FileDao {
 	public void removeFile(Long id) {
 		delete(findById(id));
 	}
+
+    @Override
+    public File saveFile(File file) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

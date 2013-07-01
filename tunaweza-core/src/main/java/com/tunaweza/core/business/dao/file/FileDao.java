@@ -5,6 +5,7 @@
  */
 package com.tunaweza.core.business.dao.file;
 
+import com.tunaweza.core.business.model.file.File;
 import java.util.List;
 
 /**

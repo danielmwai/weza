@@ -7,6 +7,7 @@ package com.tunaweza.core.business.dao.generic;
 
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import java.util.List;
+import org.springframework.orm.hibernate3.HibernateCallback;
 /**
  *
  * @author Daniel Mwai

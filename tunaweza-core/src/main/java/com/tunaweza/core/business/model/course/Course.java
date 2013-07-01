@@ -5,6 +5,17 @@
  */
 package com.tunaweza.core.business.model.course;
 
+import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.status.Status;
+import java.util.List;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 /**
  *
  * @author Daniel Mwai
@@ -123,5 +134,10 @@ public class Course extends AbstractPersistentEntity implements
 		}
 		return 0;
 	}
+
+    @Override
+    public int compareTo(Course t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

@@ -24,10 +24,16 @@
 
 package com.tunaweza.core.business.dao.evaluation.student;
 
+import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
+import com.tunaweza.core.business.model.student.Student;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -197,5 +203,25 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 		}
 		return studentCourseEvaluation;
 	}
+
+    @Override
+    public Object execute(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List executeFind(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<StudentCourseEvaluation> getAllStudentCourseEvaluationByStudent(Student student) throws StudentCourseEvaluationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<StudentCourseEvaluation> getAllStudentCourseEvaluationByStudent(Student student, int startIndex, int pagesize) throws StudentCourseEvaluationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }

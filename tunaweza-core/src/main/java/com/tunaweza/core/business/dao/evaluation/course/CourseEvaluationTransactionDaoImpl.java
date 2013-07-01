@@ -24,6 +24,15 @@
 
 package com.tunaweza.core.business.dao.evaluation.course;
 
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.evaluation.CourseEvaluationTransaction;
+import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -88,7 +97,22 @@ public class CourseEvaluationTransactionDaoImpl extends
 		}
 		return courseEvaluationTransaction;
 	}
-	
+
+/**    @Override
+    public CourseEvaluationTransaction saveCourseEvaluationTransaction(CourseEvaluationTransaction courseEvaluationTransaction) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<CourseEvaluationTransaction> getCourseEvaluationTransactionByStudentEvaluation(StudentEvaluation studentEvaluation) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CourseEvaluationTransaction getLastUserCourseEvaluationTransaction(StudentEvaluation studentEvaluation) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+	**/
 	
 	
 }

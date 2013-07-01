@@ -25,6 +25,7 @@
 package com.tunaweza.core.business.dao.generic;
 
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
+import com.tunaweza.core.business.model.user.EndOfConversation;
 
 import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;

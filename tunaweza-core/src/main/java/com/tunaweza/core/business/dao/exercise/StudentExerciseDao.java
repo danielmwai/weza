@@ -24,6 +24,15 @@
 
 package com.tunaweza.core.business.dao.exercise;
 
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseNotFoundException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.exercise.StudentExercise;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.user.User;
+import java.util.List;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

@@ -24,6 +24,12 @@
 
 package com.tunaweza.core.business.dao.location;
 
+import com.tunaweza.core.business.dao.exceptions.location.LocationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.location.LocationExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.user.Location;
+import java.util.List;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

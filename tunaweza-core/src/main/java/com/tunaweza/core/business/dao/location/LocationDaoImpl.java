@@ -24,7 +24,17 @@
 
 package com.tunaweza.core.business.dao.location;
 
+import com.tunaweza.core.business.dao.exceptions.location.LocationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.location.LocationExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.location.Location;
+import com.tunaweza.core.business.model.persistence.PersistentEntity;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -36,10 +46,10 @@ import com.tunaweza.core.business.model.location.Location;
 public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 		LocationDao {
 
-	@Override
+        @Override
 	public Location findLocationById(long lid)
 			throws LocationDoesNotExistException {
-		Location location = findById(lid);
+		Location location = (Location) findById(lid);
 		if (location == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -74,7 +84,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	public Location findLocation(Location location)
 			throws LocationDoesNotExistException {
 
-		Location location1 = findById(location.getId());
+		Location location1 = (Location) findById(location.getId());
 		if (location1 == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -105,7 +115,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	@Override
 	public LocationDAO addLocation(Location location)
 			throws LocationExistsException {
-		Location location1 = findById(location.getId());
+		Location location1 = (Location) findById(location.getId());
 
 		if (location1 != null) {
 			throw new LocationExistsException();
@@ -116,8 +126,8 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 		return this;
 	}
 
-	@Override
-	public List<Location> getAllLocations() {
+        @Override
+		public List<Location> getAllLocations() {
 		return findAll();
 	}
 
@@ -137,5 +147,85 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 
 		return i;
 	}
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocation(com.tunaweza.core.business.model.user.Location location) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteLocation(com.tunaweza.core.business.model.user.Location location) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public LocationDao addLocation(com.tunaweza.core.business.model.user.Location location) throws LocationExistsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveLocation(com.tunaweza.core.business.model.user.Location location) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean exists(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void flush() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object execute(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List executeFind(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

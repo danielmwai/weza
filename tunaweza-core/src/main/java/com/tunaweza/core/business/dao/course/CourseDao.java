@@ -5,6 +5,12 @@
  */
 package com.tunaweza.core.business.dao.course;
 
+import com.tunaweza.core.business.dao.exceptions.course.CourseExistsException;
+import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.module.Module;
+import java.util.List;
+
 /**
  *
  * @author Daniel Mwai

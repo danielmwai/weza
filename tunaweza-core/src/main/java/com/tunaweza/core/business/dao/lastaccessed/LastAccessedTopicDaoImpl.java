@@ -30,6 +30,8 @@ import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
 import com.tunaweza.core.business.model.user.User;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -107,6 +109,7 @@ public class LastAccessedTopicDaoImpl extends
 	 * com.jjpeople.jjteach.dao.LastAccessedTopicDAO#saveLastAccessedTopicInModule
 	 * (com.jjpeople.jjteach.orm.entities.topic.LastAccessedTopicInModule)
 	 */
+        @Override
 	public void saveLastAccessedTopicInModule(
 			LastAccessedTopicInModule lastAccessedTopicInModule)
 			throws LastAccessedTopicException
@@ -121,6 +124,7 @@ public class LastAccessedTopicDaoImpl extends
 	 * com.jjpeople.jjteach.dao.LastAccessedTopicDAO#updateLastAccessedTopicInModule
 	 * (com.jjpeople.jjteach.orm.entities.topic.LastAccessedTopicInModule)
 	 */
+        @Override
 	public void updateLastAccessedTopicInModule(
 			LastAccessedTopicInModule lastAccessedTopicInModule)
 			throws LastAccessedTopicException

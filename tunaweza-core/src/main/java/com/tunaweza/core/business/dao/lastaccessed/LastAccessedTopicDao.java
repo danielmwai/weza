@@ -24,15 +24,19 @@
 
 package com.tunaweza.core.business.dao.lastaccessed;
 
+import com.tunaweza.core.business.dao.exceptions.accessed.LastAccessedTopicException;
 import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
 import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.user.User;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class LastAccessedTopicDao extends
+public interface LastAccessedTopicDao extends
 		GenericDao<LastAccessedTopicInModule>
 {
 	public Topic getLastAccessedTopicByUserIdModuleId(User user, Module module)
