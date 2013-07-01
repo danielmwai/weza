@@ -23,8 +23,8 @@
  */
 package com.tunaweza.core.business.model.report;
 
-import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.Dao.report.ReportDao;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.dao.report.ReportDao;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 

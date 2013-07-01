@@ -22,12 +22,12 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.location;
+package com.tunaweza.core.business.dao.location;
 
-import com.tunaweza.core.business.dao.exceptions.location.LocationDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.location.LocationExistsException;
+import com.tunaweza.core.business.Dao.exceptions.location.LocationDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.location.LocationExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.location.Location;
+import com.tunaweza.core.business.model.location.Location2;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import java.util.List;
 import org.hibernate.Query;
@@ -43,13 +43,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository(value = "locationDao")
 @Transactional
-public class LocationDaoImpl extends GenericDaoImpl<Location> implements
+public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 		LocationDao {
 
-        @Override
-	public Location findLocationById(long lid)
+                @Override
+        	public Location2 findLocationById(long lid)
 			throws LocationDoesNotExistException {
-		Location location = (Location) findById(lid);
+		Location2 location = (Location2) findById(lid);
 		if (location == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -58,7 +58,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	}
 
 	@Override
-	public Location findLocationByName(String name)
+	public Location2 findLocationByName(String name)
 			throws LocationDoesNotExistException {
 
 		Session session = (Session) getEntityManager().getDelegate();
@@ -67,10 +67,10 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 				+ getDomainClass().getName() + " i WHERE i.locationName = '"
 				+ name + "'");
 
-		Location location = null;
+		Location2 location = null;
 
 		if (query.list().size() > 0) {
-			location = (Location) query.list().get(0);
+			location = (Location2) query.list().get(0);
 		} else {
 			throw new LocationDoesNotExistException("Location with name : "
 					+ name + " does not exist");
@@ -81,10 +81,10 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	}
 
 	@Override
-	public Location findLocation(Location location)
+	public Location2 findLocation(Location2 location)
 			throws LocationDoesNotExistException {
 
-		Location location1 = (Location) findById(location.getId());
+		Location2 location1 = (Location2) findById(location.getId());
 		if (location1 == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -93,7 +93,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 
 	@Override
 	public void deleteLocation(long lid) throws LocationDoesNotExistException {
-		Location location = (Location) findById(lid);
+		Location2 location = (Location2) findById(lid);
 		if (location == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -102,7 +102,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	}
 
 	@Override
-	public void deleteLocation(Location location)
+	public void deleteLocation(Location2 location)
 			throws LocationDoesNotExistException {
 		try {
 			delete(location);
@@ -113,9 +113,9 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	}
 
 	@Override
-	public LocationDao addLocation(Location location)
+	public LocationDao addLocation(Location2 location)
 			throws LocationExistsException {
-		Location location1 = (Location) findById(location.getId());
+		Location2 location1 = (Location2) findById(location.getId());
 
 		if (location1 != null) {
 			throw new LocationExistsException();
@@ -127,12 +127,12 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	}
 
         @Override
-		public List<Location> getAllLocations() {
+		public List<Location2> getAllLocations() {
 		return findAll();
 	}
 
 	@Override
-	public void saveLocation(Location location) {
+	public void saveLocation(Location2 location) {
 		saveOrUpdate(location);
 
 	}
@@ -225,6 +225,81 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 
     @Override
     public List executeFind(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -23,6 +23,10 @@
  */
 
 package com.tunaweza.core.business.service.group;
+import com.tunaweza.core.business.Dao.exceptions.group.GroupDoesNotExistsException;
+import com.tunaweza.core.business.Dao.exceptions.group.GroupExistsException;
+import com.tunaweza.core.business.model.group.Group;
+import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,6 +122,51 @@ public class GroupServiceImpl extends Constants implements GroupService{
 		return groupDao.getCoursesInGroup(group
 				.getId());
 	}
+
+    @Override
+    public Group addGroup(Group group) throws GroupExistsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveGroup(Group group) throws GroupExistsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveUserToGroup(Group group, List<EmbeddableUser> user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Group findGroup(Group group) throws GroupDoesNotExistsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteGroup(Group group) throws GroupDoesNotExistsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Group> getAllGroups() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<User> getUsersInGroup(Group group) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<CourseTemplate> getCoursesInGroup(Group group) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveCoursesToGroup(Group group, List<EmbeddableCourse> courses) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	
 	

@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.module;
+package com.tunaweza.core.business.dao.module;
+
 import com.tunaweza.core.business.Dao.exceptions.level.LevelInuseException;
 import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
 import com.tunaweza.core.business.Dao.exceptions.module.ModuleExistsException;
-import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.module.Module;
-import java.math.BigInteger;
 import java.util.List;
 
 import org.apache.commons.logging.Log;

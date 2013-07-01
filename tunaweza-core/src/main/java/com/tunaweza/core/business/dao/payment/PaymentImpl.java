@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.payment;
+package com.tunaweza.core.business.dao.payment;
 
-import java.util.List;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.payment.PaymentDetails;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -38,7 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository(value = "PaymentDao")
 @Transactional
-public class PaymentDaoImpl extends GenericDaoImpl<PaymentDetails> implements
+public class PaymentImpl extends GenericDaoImpl<PaymentDetails> implements
 		PaymentDao {
 
 	/*

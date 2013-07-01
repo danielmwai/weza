@@ -22,8 +22,12 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.message;
+package com.tunaweza.core.business.dao.message;
+
+import com.tunaweza.core.business.Dao.exceptions.message.MessageDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.message.MessageExistsException;
 import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.model.Message.Message;
 import java.util.List;
 /**
  * @version $Revision: 1.1.1.1 $

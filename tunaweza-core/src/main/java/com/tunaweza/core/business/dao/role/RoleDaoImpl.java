@@ -22,17 +22,24 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.role;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
-import com.tunaweza.core.business.model.role.Role;
-import java.util.List;
+package com.tunaweza.core.business.dao.role;
 
+import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.Dao.user.UserDao;
+import com.tunaweza.core.business.Dao.user.UserDaoImpl;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.role.Role;
+import com.tunaweza.core.business.model.user.User;
+import java.util.List;
 import org.apache.log4j.Logger;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.Dao.DataIntegrityViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -57,9 +64,7 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 				role.setDescription("Description was not set.");
 			saveOrUpdate(role);
 			return role;
-		} catch (ConstraintViolationException e) {
-			throw new RoleExistsException();
-		} catch (DataIntegrityViolationException e) {
+		} catch (    ConstraintViolationException | DataIntegrityViolationException e) {
 			
 			throw new RoleExistsException();
 		}
@@ -78,10 +83,7 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 			role.setNumber(getBiggestNumber()+1);
 			saveOrUpdate(role);
 			return role;
-		} catch (ConstraintViolationException e) {
-			
-			throw new RoleExistsException();
-		} catch (DataIntegrityViolationException e) {
+		} catch (    ConstraintViolationException | DataIntegrityViolationException e) {
 			
 			throw new RoleExistsException();
 		}

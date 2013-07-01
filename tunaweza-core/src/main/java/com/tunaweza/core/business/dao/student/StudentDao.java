@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.student;
+package com.tunaweza.core.business.dao.student;
 
 import com.tunaweza.core.business.Dao.exceptions.student.StudentDoesNotExistException;
 import com.tunaweza.core.business.Dao.generic.GenericDao;

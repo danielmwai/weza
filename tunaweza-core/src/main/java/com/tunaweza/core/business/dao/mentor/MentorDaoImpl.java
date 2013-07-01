@@ -3,23 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.Dao.mentor;
+package com.tunaweza.core.business.dao.mentor;
 
 /**
  *
  * @author Daniel Mwai
  */
 
+import com.tunaweza.core.business.Dao.exceptions.mentor.MentorExistsException;
+import com.tunaweza.core.business.Dao.exceptions.mentor.MentorNotFoundException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.mentor.Mentor;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.Dao.DataIntegrityViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +40,7 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 		Mentor savedMentor = null;
 		try {
 			savedMentor = saveOrUpdate(mentor);
-		} catch (ConstraintViolationException e) {
-			throw new MentorExistsException();
-		} catch (DataIntegrityViolationException e) {
+		} catch (    ConstraintViolationException | DataIntegrityViolationException e) {
 
 			throw new MentorExistsException();
 		}
@@ -322,5 +325,10 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 		return count.intValue();
 
 	}
+
+    @Override
+    public List<Mentor> getAllMentor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

@@ -23,6 +23,7 @@
  */
 
 package com.tunaweza.core.business.model.report;
+import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;

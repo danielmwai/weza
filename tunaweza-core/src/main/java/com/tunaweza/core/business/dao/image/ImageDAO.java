@@ -22,9 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.image;
+package com.tunaweza.core.business.dao.image;
 
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.model.image.Image;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ import java.util.List;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public interface ImageDao extends GenericDao<Image>{
+public interface ImageDAO extends GenericDao<Image>{
 	/**
 	 * 
 	 * @return list of <code>Image</code>

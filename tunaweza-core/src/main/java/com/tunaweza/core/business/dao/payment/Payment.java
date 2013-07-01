@@ -22,9 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.payment;
+package com.tunaweza.core.business.dao.payment;
 
 import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.model.payment.PaymentDetails;
 
 /**
  * @version $Revision: 1.1.1.1 $

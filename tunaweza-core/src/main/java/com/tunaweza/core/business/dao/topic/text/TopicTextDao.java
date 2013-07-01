@@ -22,11 +22,13 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.topic.text;
+package com.tunaweza.core.business.dao.topic.text;
 
 import com.tunaweza.core.business.Dao.exceptions.topic.TopicTextDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.topic.TopicTextExistsException;
 import com.tunaweza.core.business.Dao.generic.GenericDao;
 import com.tunaweza.core.business.model.topic.TopicText;
+import java.util.List;
 
 /**
  * @version $Revision: 1.1.1.1 $

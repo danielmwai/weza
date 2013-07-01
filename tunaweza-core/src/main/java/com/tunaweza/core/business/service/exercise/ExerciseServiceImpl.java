@@ -24,6 +24,24 @@
 
 package com.tunaweza.core.business.service.exercise;
 
+import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
+import com.tunaweza.core.business.Dao.exceptions.user.StudentExerciseDao;
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.module.ModuleDao;
+import com.tunaweza.core.business.dao.user.UserDao;
+import com.tunaweza.core.business.model.exercise.StudentExercise;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.topic.TopicService;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

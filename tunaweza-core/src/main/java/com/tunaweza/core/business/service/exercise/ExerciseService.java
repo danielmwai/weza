@@ -23,6 +23,9 @@
  */
 
 package com.tunaweza.core.business.service.exercise;
+import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
 import java.util.List;
 
 /**

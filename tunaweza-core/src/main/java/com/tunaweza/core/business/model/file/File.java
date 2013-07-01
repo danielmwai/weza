@@ -10,7 +10,10 @@ package com.tunaweza.core.business.model.file;
  * @author Daniel Mwai
  */
 
+import com.tunaweza.core.business.model.answer.GoodAnswer;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;

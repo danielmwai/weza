@@ -22,8 +22,9 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.generic;
+package com.tunaweza.core.business.dao.generic;
 
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.user.EndOfConversation;
 
@@ -44,8 +45,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 import org.hibernate.jdbc.Work;
-import org.springframework.Dao.DataAccessException;
-import org.springframework.Dao.InvalidDataAccessApiUsageException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.jdbc.support.SQLExceptionTranslator;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.SessionFactoryUtils;

@@ -9,7 +9,9 @@ package com.tunaweza.core.business.model.mentor;
  *
  * @author Daniel Mwai
  */
+import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.topic.Topic;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +22,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name = Mentor.TABLE_NAME)

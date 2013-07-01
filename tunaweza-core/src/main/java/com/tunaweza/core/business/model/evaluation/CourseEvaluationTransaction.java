@@ -24,7 +24,9 @@
 
 package com.tunaweza.core.business.model.evaluation;
 
+import com.tunaweza.core.business.model.answer.Answer;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.question.Question;
 import java.util.List;
 
 import javax.persistence.Entity;

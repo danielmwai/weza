@@ -23,6 +23,9 @@
  */
 
 package com.tunaweza.core.business.model.question;
+import com.tunaweza.core.business.model.answer.Answer;
+import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.topic.Topic;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,7 +35,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

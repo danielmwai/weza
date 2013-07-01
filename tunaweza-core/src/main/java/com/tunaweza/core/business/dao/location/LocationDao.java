@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.location;
+package com.tunaweza.core.business.dao.location;
 
-import com.tunaweza.core.business.dao.exceptions.location.LocationDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.location.LocationExistsException;
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.exceptions.location.LocationDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.location.LocationExistsException;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 import com.tunaweza.core.business.model.user.Location;
 import java.util.List;
 

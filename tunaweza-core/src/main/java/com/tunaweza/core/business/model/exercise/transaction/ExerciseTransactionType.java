@@ -25,6 +25,7 @@
 package com.tunaweza.core.business.model.exercise.transaction;
 
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
 import java.util.List;
 import javax.persistence.*;
 /**

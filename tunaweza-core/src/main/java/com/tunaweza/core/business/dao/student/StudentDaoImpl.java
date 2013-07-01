@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package com.tunaweza.core.business.dao.student;
 
-package com.tunaweza.core.business.Dao.student;
 import com.tunaweza.core.business.Dao.exceptions.student.StudentDoesNotExistException;
 import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.student.Student;
@@ -41,400 +41,397 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.Dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-
 @Repository(value = "studentDao")
 @Transactional
 public class StudentDaoImpl extends GenericDaoImpl<Student> implements
-		StudentDao {
+        StudentDao {
 
-	public Logger logger = Logger.getLogger(StudentDaoImpl.class);
+    public Logger logger = Logger.getLogger(StudentDaoImpl.class);
 
-	@Override
-	public Student saveStudent(Student student) {
-		try {
-			saveOrUpdate(student);
-		} catch (ConstraintViolationException e) {
-			logger.info("ConstraintViolationException occured :");
-			e.printStackTrace();
-		} catch (DataIntegrityViolationException e) {
-			logger.info("DataIntegrityViolationException occured :");
-			e.printStackTrace();
-		}
-		return student;
-	}
+    @Override
+    public Student saveStudent(Student student) {
+        try {
+            saveOrUpdate(student);
+        } catch (ConstraintViolationException e) {
+            logger.info("ConstraintViolationException occured :");
+            e.printStackTrace();
+        } catch (DataIntegrityViolationException e) {
+            logger.info("DataIntegrityViolationException occured :");
+            e.printStackTrace();
+        }
+        return student;
+    }
 
-	@Override
-	public List<Student> getAllStudents() {
-		return findAll();
-	}
+    @Override
+    public List<Student> getAllStudents() {
+        return findAll();
+    }
 
-	@Override
-	public Student getStudentById(Long studentId)
-			throws StudentDoesNotExistException {
+    @Override
+    public Student getStudentById(Long studentId)
+            throws StudentDoesNotExistException {
 
-		 Session session = (Session) getEntityManager().getDelegate();
-		
-		 Query query = session.createQuery("SELECT i FROM "
-		 + getDomainClass().getName() + " i WHERE i.id = " + studentId);
-		
-		 if (query.list().size() == 0) {
-		 throw new StudentDoesNotExistException("Student with id "
-		 + studentId + " does not exist");
-		 }
-		
-		 return (Student) query.list().get(0);
-	}
-	
-	@Override
-	public Student getStudentByIdNoSession(String studentId, String companyDbName)
-			throws StudentDoesNotExistException {
+        Session session = (Session) getEntityManager().getDelegate();
 
-		 Session session = (Session) getEntityManager().getDelegate();
-		 
-		 Query query = session.createSQLQuery("SELECT * FROM " + companyDbName + ".student"
-					+ " WHERE id = " + studentId).addEntity(Student.class);
-		
-		 if (query.list().size() == 0) {
-		 throw new StudentDoesNotExistException("Student with id "
-		 + studentId + " does not exist");
-		 }
-		
-		 return (Student) query.list().get(0);
-	}
+        Query query = session.createQuery("SELECT i FROM "
+                + getDomainClass().getName() + " i WHERE i.id = " + studentId);
 
-	@Override
-	public List<Student> getAllStudentModule(Long studentId)
-			throws StudentDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
+        if (query.list().size() == 0) {
+            throw new StudentDoesNotExistException("Student with id "
+                    + studentId + " does not exist");
+        }
 
-		Query query = session.createQuery("SELECT i FROM "
-				+ getDomainClass().getName() + " i WHERE i.id = " + studentId);
-		if (query.list().size() == 0) {
-			throw new StudentDoesNotExistException("Student with id "
-					+ studentId + " does not exist");
-		}
+        return (Student) query.list().get(0);
+    }
 
-		return (List<Student>) query.list();
-	}
+    @Override
+    public Student getStudentByIdNoSession(String studentId, String companyDbName)
+            throws StudentDoesNotExistException {
 
-	@Override
-	public Student getStudentByUser(User user)
-			throws StudentDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
-		
-		Query query = session.createQuery("SELECT i FROM "
-				+ getDomainClass().getName() + " i WHERE i.id.user = "
-				+ user.getId());
+        Session session = (Session) getEntityManager().getDelegate();
 
-		if (query.list().size() == 0) {
-			throw new StudentDoesNotExistException("Student does not exist");
-		}
+        Query query = session.createSQLQuery("SELECT * FROM " + companyDbName + ".student"
+                + " WHERE id = " + studentId).addEntity(Student.class);
 
-		return (Student) query.list().get(0);
+        if (query.list().size() == 0) {
+            throw new StudentDoesNotExistException("Student with id "
+                    + studentId + " does not exist");
+        }
 
-	}
-	
-	@Override
-	public Student getStudentByUserNoSession(User user, String dbName, String companyId )
-			throws StudentDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
-		
-		Query myQuery = session.createSQLQuery("SELECT * FROM " + dbName + ".users"
-				+ " WHERE username = '" + user.getUsername() + "'").addEntity(User.class);
-		
-		User myUser = (User) myQuery.list().get(0);
-		
-		Query query = session.createSQLQuery("SELECT * FROM " + dbName + ".student"
-				+ " WHERE id_user = " + myUser.getId()).addEntity(Student.class);
+        return (Student) query.list().get(0);
+    }
 
-		if (query.list().size() == 0) {
-			throw new StudentDoesNotExistException("Student does not exist");
-		}
+    @Override
+    public List<Student> getAllStudentModule(Long studentId)
+            throws StudentDoesNotExistException {
+        Session session = (Session) getEntityManager().getDelegate();
 
-		return (Student) query.list().get(0);
+        Query query = session.createQuery("SELECT i FROM "
+                + getDomainClass().getName() + " i WHERE i.id = " + studentId);
+        if (query.list().size() == 0) {
+            throw new StudentDoesNotExistException("Student with id "
+                    + studentId + " does not exist");
+        }
 
-	}
-	
-	@Override
-	public Long getStudentIdByUserId(Long userId)
-			throws StudentDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
+        return (List<Student>) query.list();
+    }
 
-		Query query = session.createQuery("SELECT id FROM student WHERE id_user = " + userId);
+    @Override
+    public Student getStudentByUser(User user)
+            throws StudentDoesNotExistException {
+        Session session = (Session) getEntityManager().getDelegate();
 
-		if (query.list().size() == 0) {
-			throw new StudentDoesNotExistException("Student does not exist");
-		}
+        Query query = session.createQuery("SELECT i FROM "
+                + getDomainClass().getName() + " i WHERE i.id.user = "
+                + user.getId());
 
-		return (Long) query.list().get(0);
+        if (query.list().size() == 0) {
+            throw new StudentDoesNotExistException("Student does not exist");
+        }
 
-	}
+        return (Student) query.list().get(0);
 
-	@Override
-	public int countStudentPendingExercises(long moduleId, long studentId) {
-		int count = 0;
-		Session session = (Session) getEntityManager().getDelegate();
+    }
 
-		Query query = session
-				.createSQLQuery("SELECT COUNT(*) FROM "
-						+ "(SELECT * FROM exercise_transaction WHERE id IN "
-						+ "(SELECT MAX(id) FROM exercise_transaction GROUP BY exercise_id)) et"
-						+ " JOIN exercise_transaction_type ett ON ett.id =et.exercise_transactiontype_id "
-						+ "JOIN student_exercise se ON se.id = et.exercise_id JOIN topics t ON  t.id=se.topic_id "
-						+ "WHERE t.is_exercise=1 and ett.name =? AND se.user_id=? "
-						+ "and t.id IN (SELECT id FROM topics t WHERE id_module=?)");
+    @Override
+    public Student getStudentByUserNoSession(User user, String dbName, String companyId)
+            throws StudentDoesNotExistException {
+        Session session = (Session) getEntityManager().getDelegate();
 
-		query.setString(0, "StudentToMentor");
-		query.setLong(1, studentId);
-		query.setLong(2, moduleId);
+        Query myQuery = session.createSQLQuery("SELECT * FROM " + dbName + ".users"
+                + " WHERE username = '" + user.getUsername() + "'").addEntity(User.class);
 
-		if (query.list().size() > 0) {
-			java.math.BigInteger countedEx = (java.math.BigInteger) query
-					.list().get(0);
-			count += countedEx.intValue();
-		}
-		return count;
+        User myUser = (User) myQuery.list().get(0);
 
-	}
+        Query query = session.createSQLQuery("SELECT * FROM " + dbName + ".student"
+                + " WHERE id_user = " + myUser.getId()).addEntity(Student.class);
 
-	@Override
-	public void enableStudentModule(Module module, User user)
-			throws StudentDoesNotExistException {
-		Student student = getStudentById(user.getStudent().getId());
-		Boolean moduleExists = false;
-		List<EnabledModule> enabledModules = student.getEnabledModules();
-		List<EnabledModule> newEnabledModules = new ArrayList<EnabledModule>();
-		for (EnabledModule enabledModule : enabledModules) {
-			if (enabledModule.getModuleId() == module.getId()) {
-				if (enabledModule.getEnabled() == true) {
-					enabledModule.setEnabled(false);
-				} else {
-					enabledModule.setEnabled(true);
-				}
-				newEnabledModules.add(enabledModule);
-				moduleExists = true;
-			} else {
-				newEnabledModules.add(enabledModule);
-			}
-		}
-		if (!moduleExists) {
-			EnabledModule enabledModule = new EnabledModule();
-			enabledModule.setModuleId(module.getId());
-			enabledModule.setEnabled(true);
-			enabledModule.setModuleStartDate(new java.util.Date());
-			newEnabledModules.add(enabledModule);
-		}
-		student.setEnabledModules(newEnabledModules);
-		saveStudent(student);
-	}
+        if (query.list().size() == 0) {
+            throw new StudentDoesNotExistException("Student does not exist");
+        }
 
-	@Override
-	public void disableStudentModule(Module module, User user)
-			throws StudentDoesNotExistException {
+        return (Student) query.list().get(0);
 
-		Student student = getStudentById(user.getStudent().getId());
-		Boolean moduleExists = false;
-		List<EnabledModule> enabledModules = student.getEnabledModules();
-		List<EnabledModule> newEnabledModules = new ArrayList<EnabledModule>();
-		for (EnabledModule enabledModule : enabledModules) {
-			if (enabledModule.getModuleId() == module.getId()) {
-				if (enabledModule.getEnabled() == true) {
-					enabledModule.setEnabled(false);
-				} else {
-					enabledModule.setEnabled(false);
-				}
-				newEnabledModules.add(enabledModule);
-				moduleExists = true;
-			} else {
-				newEnabledModules.add(enabledModule);
-			}
-		}
-		if (!moduleExists) {
-			EnabledModule enabledModule = new EnabledModule();
-			enabledModule.setModuleId(module.getId());
-			enabledModule.setEnabled(false);
-			enabledModule.setModuleStartDate(new java.util.Date());
-			newEnabledModules.add(enabledModule);
-		}
-		student.setEnabledModules(newEnabledModules);
-		saveStudent(student);
-	}
+    }
 
-	@Override
-	public void enableFirstStudentModule(Module module, User user)
-			throws StudentDoesNotExistException {
+    @Override
+    public Long getStudentIdByUserId(Long userId)
+            throws StudentDoesNotExistException {
+        Session session = (Session) getEntityManager().getDelegate();
 
-		Student student = getStudentById(user.getStudent().getId());
-		Boolean moduleExists = false;
-		List<EnabledModule> enabledModules = student.getEnabledModules();
-		List<EnabledModule> newEnabledModules = new ArrayList<EnabledModule>();
-		for (EnabledModule enabledModule : enabledModules) {
-			if (enabledModule.getModuleId() == module.getId()) {
-				if (enabledModule.getEnabled() == true
-						|| enabledModule.getEnabled() == false) {
-					enabledModule.setEnabled(true);
-				} else {
-					enabledModule.setEnabled(true);
-				}
-				newEnabledModules.add(enabledModule);
-				moduleExists = true;
-			} else {
-				newEnabledModules.add(enabledModule);
-			}
-		}
-		if (!moduleExists) {
-			EnabledModule enabledModule = new EnabledModule();
-			enabledModule.setModuleId(module.getId());
-			enabledModule.setEnabled(true);
-			enabledModule.setModuleStartDate(new java.util.Date());
-			newEnabledModules.add(enabledModule);
-		}
-		student.setEnabledModules(newEnabledModules);
-		saveStudent(student);
-	}
+        Query query = session.createQuery("SELECT id FROM student WHERE id_user = " + userId);
 
-	@Override
-	public void setCurrentModule(Module module, Student student) {
+        if (query.list().size() == 0) {
+            throw new StudentDoesNotExistException("Student does not exist");
+        }
 
-		List<EnabledModule> studentEnabledModuleList = student
-				.getEnabledModules();
-		EnabledModule enabledModule = new EnabledModule();
+        return (Long) query.list().get(0);
 
-		// set the new values
-		enabledModule.setModuleId(module.getId());
-		enabledModule.setEnabled(true);
-		Date moduleStartDate = new Date();
-		enabledModule.setModuleStartDate(moduleStartDate);
-		// add the new enabled module to the student's list
-		studentEnabledModuleList.add(enabledModule);
-		student.setEnabledModules(studentEnabledModuleList);
-		saveStudent(student);
-	}
+    }
 
-	@Override
-	public boolean getStudentModuleStatus(Module module, User user)
-			throws StudentDoesNotExistException {
-		boolean enabled = false;
-		Student student;
-		try {
-			student = getStudentById(user.getStudent().getId());
+    @Override
+    public int countStudentPendingExercises(long moduleId, long studentId) {
+        int count = 0;
+        Session session = (Session) getEntityManager().getDelegate();
 
-			List<EnabledModule> enabledModules = student.getEnabledModules();
-			for (EnabledModule enabledModule : enabledModules) {
-				if (enabledModule.getModuleId() == module.getId()) {
-					enabled = enabledModule.getEnabled();
-				}
-			}
-		} catch (Exception e) {
-			logger.info("Error Changing Student's Module Status");
-			e.printStackTrace();
-		}
-		return enabled;
-	}
+        Query query = session
+                .createSQLQuery("SELECT COUNT(*) FROM "
+                + "(SELECT * FROM exercise_transaction WHERE id IN "
+                + "(SELECT MAX(id) FROM exercise_transaction GROUP BY exercise_id)) et"
+                + " JOIN exercise_transaction_type ett ON ett.id =et.exercise_transactiontype_id "
+                + "JOIN student_exercise se ON se.id = et.exercise_id JOIN topics t ON  t.id=se.topic_id "
+                + "WHERE t.is_exercise=1 and ett.name =? AND se.user_id=? "
+                + "and t.id IN (SELECT id FROM topics t WHERE id_module=?)");
 
-	@Override
-	public BigInteger getCourseIdOfModule(Long moduleId, Long studentId) {
-		Session session = (Session) getEntityManager().getDelegate();
+        query.setString(0, "StudentToMentor");
+        query.setLong(1, studentId);
+        query.setLong(2, moduleId);
 
-		Query query = session
-				.createSQLQuery("SELECT course FROM course_modules cm"
-						+ " JOIN student_template st ON cm.course = st.courseTemplate"
-						+ " WHERE cm.module=? AND st.student=? ORDER BY cm.level ASC");
+        if (query.list().size() > 0) {
+            java.math.BigInteger countedEx = (java.math.BigInteger) query
+                    .list().get(0);
+            count += countedEx.intValue();
+        }
+        return count;
 
-		query.setLong(0, moduleId);
-		query.setLong(1, studentId);
+    }
 
-		if (query.list().size() == 0) {
-			return null;
-		}
-		return (BigInteger) query.list().get(0);
-	}
+    @Override
+    public void enableStudentModule(Module module, User user)
+            throws StudentDoesNotExistException {
+        Student student = getStudentById(user.getStudent().getId());
+        Boolean moduleExists = false;
+        List<EnabledModule> enabledModules = student.getEnabledModules();
+        List<EnabledModule> newEnabledModules = new ArrayList<EnabledModule>();
+        for (EnabledModule enabledModule : enabledModules) {
+            if (enabledModule.getModuleId() == module.getId()) {
+                if (enabledModule.getEnabled() == true) {
+                    enabledModule.setEnabled(false);
+                } else {
+                    enabledModule.setEnabled(true);
+                }
+                newEnabledModules.add(enabledModule);
+                moduleExists = true;
+            } else {
+                newEnabledModules.add(enabledModule);
+            }
+        }
+        if (!moduleExists) {
+            EnabledModule enabledModule = new EnabledModule();
+            enabledModule.setModuleId(module.getId());
+            enabledModule.setEnabled(true);
+            enabledModule.setModuleStartDate(new java.util.Date());
+            newEnabledModules.add(enabledModule);
+        }
+        student.setEnabledModules(newEnabledModules);
+        saveStudent(student);
+    }
 
-	@Override
-	public List<Double> getCompletedTopicsAndExercises(long moduleId,
-			long userId) {
-		Session session = (Session) getEntityManager().getDelegate();
+    @Override
+    public void disableStudentModule(Module module, User user)
+            throws StudentDoesNotExistException {
 
-		java.math.BigInteger countCompletedTopics = BigInteger.valueOf(0);
-		java.math.BigInteger countCompletedExercises = BigInteger.valueOf(0);
+        Student student = getStudentById(user.getStudent().getId());
+        Boolean moduleExists = false;
+        List<EnabledModule> enabledModules = student.getEnabledModules();
+        List<EnabledModule> newEnabledModules = new ArrayList<EnabledModule>();
+        for (EnabledModule enabledModule : enabledModules) {
+            if (enabledModule.getModuleId() == module.getId()) {
+                if (enabledModule.getEnabled() == true) {
+                    enabledModule.setEnabled(false);
+                } else {
+                    enabledModule.setEnabled(false);
+                }
+                newEnabledModules.add(enabledModule);
+                moduleExists = true;
+            } else {
+                newEnabledModules.add(enabledModule);
+            }
+        }
+        if (!moduleExists) {
+            EnabledModule enabledModule = new EnabledModule();
+            enabledModule.setModuleId(module.getId());
+            enabledModule.setEnabled(false);
+            enabledModule.setModuleStartDate(new java.util.Date());
+            newEnabledModules.add(enabledModule);
+        }
+        student.setEnabledModules(newEnabledModules);
+        saveStudent(student);
+    }
 
-		Query queryCompletedExercises = session
-				.createSQLQuery("SELECT COUNT(*) FROM student_exercise WHERE is_complete = 1 "
-						+ "AND user_id =? AND topic_id IN (SELECT id FROM topics WHERE id_module=?)");
-		queryCompletedExercises.setLong(0, userId);
-		queryCompletedExercises.setLong(1, moduleId);
-		countCompletedExercises = (java.math.BigInteger) queryCompletedExercises
-				.list().get(0);
+    @Override
+    public void enableFirstStudentModule(Module module, User user)
+            throws StudentDoesNotExistException {
 
-		Query queryCompletedTopics = session
-				.createSQLQuery("SELECT COUNT(*) FROM student_completed_topics "
-						+ "WHERE student = ? AND topic IN (SELECT id FROM topics WHERE id_module= ?)");
-		queryCompletedTopics.setLong(0, userId);
-		queryCompletedTopics.setLong(1, moduleId);
-		countCompletedTopics = (java.math.BigInteger) queryCompletedTopics
-				.list().get(0);
+        Student student = getStudentById(user.getStudent().getId());
+        Boolean moduleExists = false;
+        List<EnabledModule> enabledModules = student.getEnabledModules();
+        List<EnabledModule> newEnabledModules = new ArrayList<EnabledModule>();
+        for (EnabledModule enabledModule : enabledModules) {
+            if (enabledModule.getModuleId() == module.getId()) {
+                if (enabledModule.getEnabled() == true
+                        || enabledModule.getEnabled() == false) {
+                    enabledModule.setEnabled(true);
+                } else {
+                    enabledModule.setEnabled(true);
+                }
+                newEnabledModules.add(enabledModule);
+                moduleExists = true;
+            } else {
+                newEnabledModules.add(enabledModule);
+            }
+        }
+        if (!moduleExists) {
+            EnabledModule enabledModule = new EnabledModule();
+            enabledModule.setModuleId(module.getId());
+            enabledModule.setEnabled(true);
+            enabledModule.setModuleStartDate(new java.util.Date());
+            newEnabledModules.add(enabledModule);
+        }
+        student.setEnabledModules(newEnabledModules);
+        saveStudent(student);
+    }
 
-		List<Double> completedTopicsAndExercises = new ArrayList<Double>();
+    @Override
+    public void setCurrentModule(Module module, Student student) {
 
-		completedTopicsAndExercises.add(countCompletedTopics.doubleValue());
-		completedTopicsAndExercises.add(countCompletedExercises.doubleValue());
-		return completedTopicsAndExercises;
-	}
+        List<EnabledModule> studentEnabledModuleList = student
+                .getEnabledModules();
+        EnabledModule enabledModule = new EnabledModule();
 
-	@Override
-	public void setCompletedModule(Module module, Student student,
-			Date moduleStartDate) {
-		// TODO Auto-generated method stub
-		List<CompletedModule> studentCompletedModuleList = student
-				.getCompletedModules();
-		CompletedModule completedModule = new CompletedModule();
+        // set the new values
+        enabledModule.setModuleId(module.getId());
+        enabledModule.setEnabled(true);
+        Date moduleStartDate = new Date();
+        enabledModule.setModuleStartDate(moduleStartDate);
+        // add the new enabled module to the student's list
+        studentEnabledModuleList.add(enabledModule);
+        student.setEnabledModules(studentEnabledModuleList);
+        saveStudent(student);
+    }
 
-		Date moduleCompletionDate = new Date();
-		// set the new values
-		completedModule.setModuleId(module.getId());
-		completedModule.setStartDate(moduleStartDate);
-		completedModule.setCompletedDate(moduleCompletionDate);
-		// add the new enabled module to the student's list
-		studentCompletedModuleList.add(completedModule);
-		student.setCompletedModules(studentCompletedModuleList);
-		saveStudent(student);
-	}
+    @Override
+    public boolean getStudentModuleStatus(Module module, User user)
+            throws StudentDoesNotExistException {
+        boolean enabled = false;
+        Student student;
+        try {
+            student = getStudentById(user.getStudent().getId());
 
-	@Override
-	public void setLastLoginDate(Student student) {
+            List<EnabledModule> enabledModules = student.getEnabledModules();
+            for (EnabledModule enabledModule : enabledModules) {
+                if (enabledModule.getModuleId() == module.getId()) {
+                    enabled = enabledModule.getEnabled();
+                }
+            }
+        } catch (Exception e) {
+            logger.info("Error Changing Student's Module Status");
+            e.printStackTrace();
+        }
+        return enabled;
+    }
 
-		java.sql.Date sqlDate = new java.sql.Date(
-				new java.util.Date().getTime());
-		student.setLastLoggedIn(sqlDate);
-		saveStudent(student);
-	}
+    @Override
+    public BigInteger getCourseIdOfModule(Long moduleId, Long studentId) {
+        Session session = (Session) getEntityManager().getDelegate();
 
-	@Override
-	public Date getLastLoginDate(Student student) {
-		Session session = (Session) getEntityManager().getDelegate();
+        Query query = session
+                .createSQLQuery("SELECT course FROM course_modules cm"
+                + " JOIN student_template st ON cm.course = st.courseTemplate"
+                + " WHERE cm.module=? AND st.student=? ORDER BY cm.level ASC");
 
-		Query query = session.createQuery("SELECT i FROM "
-				+ getDomainClass().getName() + " i WHERE i.id = "
-				+ student.getId());
+        query.setLong(0, moduleId);
+        query.setLong(1, studentId);
 
-		return ((Student) query.list().get(0)).getLastLoggedIn();
-	}
-	
-	/////////////////////////
-	
-	public List<BigInteger> getStudentCourseTemplateList(Long studentId, String companyDbName) {
-		Session session = (Session) getEntityManager().getDelegate();
-		
-		Query query = session.createSQLQuery("SELECT courseTemplate FROM " + companyDbName + ".student_template"
-				+ " WHERE student = " + studentId);
+        if (query.list().size() == 0) {
+            return null;
+        }
+        return (BigInteger) query.list().get(0);
+    }
 
-		return (query.list().size() > 0) ? (List<BigInteger>) query.list() : null;
-	}
+    @Override
+    public List<Double> getCompletedTopicsAndExercises(long moduleId,
+            long userId) {
+        Session session = (Session) getEntityManager().getDelegate();
 
+        java.math.BigInteger countCompletedTopics = BigInteger.valueOf(0);
+        java.math.BigInteger countCompletedExercises = BigInteger.valueOf(0);
+
+        Query queryCompletedExercises = session
+                .createSQLQuery("SELECT COUNT(*) FROM student_exercise WHERE is_complete = 1 "
+                + "AND user_id =? AND topic_id IN (SELECT id FROM topics WHERE id_module=?)");
+        queryCompletedExercises.setLong(0, userId);
+        queryCompletedExercises.setLong(1, moduleId);
+        countCompletedExercises = (java.math.BigInteger) queryCompletedExercises
+                .list().get(0);
+
+        Query queryCompletedTopics = session
+                .createSQLQuery("SELECT COUNT(*) FROM student_completed_topics "
+                + "WHERE student = ? AND topic IN (SELECT id FROM topics WHERE id_module= ?)");
+        queryCompletedTopics.setLong(0, userId);
+        queryCompletedTopics.setLong(1, moduleId);
+        countCompletedTopics = (java.math.BigInteger) queryCompletedTopics
+                .list().get(0);
+
+        List<Double> completedTopicsAndExercises = new ArrayList<Double>();
+
+        completedTopicsAndExercises.add(countCompletedTopics.doubleValue());
+        completedTopicsAndExercises.add(countCompletedExercises.doubleValue());
+        return completedTopicsAndExercises;
+    }
+
+    @Override
+    public void setCompletedModule(Module module, Student student,
+            Date moduleStartDate) {
+        // TODO Auto-generated method stub
+        List<CompletedModule> studentCompletedModuleList = student
+                .getCompletedModules();
+        CompletedModule completedModule = new CompletedModule();
+
+        Date moduleCompletionDate = new Date();
+        // set the new values
+        completedModule.setModuleId(module.getId());
+        completedModule.setStartDate(moduleStartDate);
+        completedModule.setCompletedDate(moduleCompletionDate);
+        // add the new enabled module to the student's list
+        studentCompletedModuleList.add(completedModule);
+        student.setCompletedModules(studentCompletedModuleList);
+        saveStudent(student);
+    }
+
+    @Override
+    public void setLastLoginDate(Student student) {
+
+        java.sql.Date sqlDate = new java.sql.Date(
+                new java.util.Date().getTime());
+        student.setLastLoggedIn(sqlDate);
+        saveStudent(student);
+    }
+
+    @Override
+    public Date getLastLoginDate(Student student) {
+        Session session = (Session) getEntityManager().getDelegate();
+
+        Query query = session.createQuery("SELECT i FROM "
+                + getDomainClass().getName() + " i WHERE i.id = "
+                + student.getId());
+
+        return ((Student) query.list().get(0)).getLastLoggedIn();
+    }
+
+    /////////////////////////
+    public List<BigInteger> getStudentCourseTemplateList(Long studentId, String companyDbName) {
+        Session session = (Session) getEntityManager().getDelegate();
+
+        Query query = session.createSQLQuery("SELECT courseTemplate FROM " + companyDbName + ".student_template"
+                + " WHERE student = " + studentId);
+
+        return (query.list().size() > 0) ? (List<BigInteger>) query.list() : null;
+    }
 }
-

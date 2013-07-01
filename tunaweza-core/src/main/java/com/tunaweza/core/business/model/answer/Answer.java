@@ -10,7 +10,9 @@ package com.tunaweza.core.business.model.answer;
  * @author Daniel Mwai
  */
 
+import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.question.Question;
 import java.util.List;
 
 import javax.persistence.CascadeType;

@@ -24,6 +24,14 @@
 
 package com.tunaweza.core.business.model.topic;
 
+import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

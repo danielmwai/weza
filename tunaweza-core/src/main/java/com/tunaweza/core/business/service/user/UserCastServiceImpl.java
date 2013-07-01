@@ -24,6 +24,14 @@
 
 package com.tunaweza.core.business.service.user;
 
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.Dao.user.UserDao;
+import com.tunaweza.core.business.model.user.User;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

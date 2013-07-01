@@ -24,6 +24,7 @@
 
 package com.tunaweza.core.business.model.location;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,9 +39,9 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
-@Table(name = Location.TABLE_NAME)
-public class Location  extends AbstractPersistentEntity implements
-Comparable<Location>{
+@Table(name = Location2.TABLE_NAME)
+public class Location2  extends AbstractPersistentEntity implements
+Comparable<Location2>{
 	
 	public static final String TABLE_NAME="location";
 	private static final long serialVersionUID = 1L;
@@ -102,7 +103,7 @@ Comparable<Location>{
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	@Override
-	public int compareTo(Location location)
+	public int compareTo(Location2 location)
 	{
 		if (location.getId() > getId())
 		{

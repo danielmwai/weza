@@ -3,7 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.Dao.mentor;
+package com.tunaweza.core.business.dao.mentor;
+
+import com.tunaweza.core.business.Dao.exceptions.mentor.MentorExistsException;
+import com.tunaweza.core.business.Dao.exceptions.mentor.MentorNotFoundException;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.model.mentor.Mentor;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import java.util.List;
 
 /**
  *

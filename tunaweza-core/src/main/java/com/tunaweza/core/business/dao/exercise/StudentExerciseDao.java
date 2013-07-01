@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.exercise;
+package com.tunaweza.core.business.dao.exercise;
 
-import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
-import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseNotFoundException;
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseExistsException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;

@@ -22,7 +22,18 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.topic;
+package com.tunaweza.core.business.dao.topic;
+
+import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.persistence.PersistentEntity;
+import com.tunaweza.core.business.model.topic.Topic;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -66,7 +77,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@Override
 	public Topic findTopic(Topic topic) throws TopicDoesNotExistException {
 
-		Topic topic1 = findById(topic.getId());
+		Topic topic1 = (Topic) findById(topic.getId());
 		if (topic1 == null) {
 			throw new TopicDoesNotExistException();
 		}
@@ -598,4 +609,74 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 		}
 		return null;
 	}
+
+    @Override
+    public Topic findTopic(Topic topic) throws TopicDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteTopic(Topic topic) throws TopicDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Topic addTopic(Topic topic) throws TopicExistsException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveTopic(Topic topic) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean exists(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void flush() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object execute(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List executeFind(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

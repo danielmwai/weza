@@ -22,18 +22,14 @@
  * THE SOFTWARE.
  */
 
-<<<<<<< HEAD
 package com.tunaweza.core.business.dao.group;
-import com.tunaweza.core.business.dao.exceptions.group.GroupDoesNotExistsException;
-import com.tunaweza.core.business.dao.exceptions.group.GroupExistsException;
+import com.tunaweza.core.business.Dao.exceptions.group.GroupDoesNotExistsException;
+import com.tunaweza.core.business.Dao.exceptions.group.GroupExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.user.User;
-=======
-package com.tunaweza.core.business.Dao.group;
->>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;

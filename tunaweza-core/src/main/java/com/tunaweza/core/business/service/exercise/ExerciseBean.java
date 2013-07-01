@@ -24,6 +24,8 @@
 
 package com.tunaweza.core.business.service.exercise;
 
+import com.tunaweza.core.business.model.status.Status;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

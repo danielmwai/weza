@@ -22,13 +22,15 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.promotioncodes;
+package com.tunaweza.core.business.dao.promotioncodes;
 
 import com.tunaweza.core.business.Dao.exceptions.promocode.PromocodeDoesNotExistException;
-import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.promotioncodes.Promocode;
 
 import java.util.List;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,10 +49,11 @@ public class PromocodeDaoImpl extends GenericDaoImpl<Promocode> implements Promo
 	@Override
 	public Promocode findPromocodeById(long id) throws PromocodeDoesNotExistException{
 		
-		Promocode promocode = findById(id);
-		if(promocode==null){
-			throw new PromocodeDoesNotExistException();
-		}
+		Promocode promocode = (Promocode) findById(id);
+		if(promocode!=null){
+		} else {
+                throw new PromocodeDoesNotExistException();
+            }
 		return promocode;
 	}
 	
@@ -65,5 +68,55 @@ public class PromocodeDaoImpl extends GenericDaoImpl<Promocode> implements Promo
 	public List<Promocode> getallPromocodes() {
 		return findAll();
 	}
+
+    @Override
+    public PersistentEntity findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean exists(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void flush() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object execute(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List executeFind(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 

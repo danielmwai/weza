@@ -22,24 +22,14 @@
  * THE SOFTWARE.
  */
 
-<<<<<<< HEAD
 package com.tunaweza.core.business.dao.image;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-=======
-package com.tunaweza.core.business.Dao.image;
->>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
+import java.awt.Image;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
-
-=======
-import com.jjpeople.jjteach.Dao.hibernate.GenericDaoImpl;
-import com.jjpeople.jjteach.Dao.image.ImageDao;
-import com.jjpeople.jjteach.orm.entities.image.Image;
->>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -47,7 +37,7 @@ import com.jjpeople.jjteach.orm.entities.image.Image;
  */
 @Repository(value = "ImageDao")
 @Transactional
-public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDao {
+public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDAO {
 
 	@Override
 	public List<Image> getAllImages() {
@@ -68,5 +58,40 @@ public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDao {
 	public void removeImage(Long id) {
 		delete(findById(id));
 	}
+
+    @Override
+    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.image.Image saveImage(com.tunaweza.core.business.model.image.Image image) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

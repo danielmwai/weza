@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package com.tunaweza.core.business.dao.file;
 
-package com.tunaweza.core.business.Dao.file;
-
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.Dao.file.FileDao;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.file.File;
 import java.util.List;
 import org.springframework.stereotype.Repository;
@@ -39,29 +39,28 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class FileDaoImpl extends GenericDaoImpl<File> implements FileDao {
 
-	@Override
-	public List<File> getFiles() {
-		return findAll();
-	}
+    @Override
+    public List<File> getFiles() {
+        return findAll();
+    }
 
-	@Override
-	public File getFile(Long id) {
-		return findById(id);
-	}
+    @Override
+    public File getFile(Long id) {
+        return findById(id);
+    }
 
-	@Override
-	public File saveFile(File file) {
-		return saveOrUpdate(file);
-	}
+    @Override
+    public File saveFile(File file) {
+        return saveOrUpdate(file);
+    }
 
-	@Override
-	public void removeFile(Long id) {
-		delete(findById(id));
-	}
+    @Override
+    public void removeFile(Long id) {
+        delete(findById(id));
+    }
 
     @Override
     public File saveFile(File file) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

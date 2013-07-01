@@ -22,18 +22,14 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.lastaccessed;
+package com.tunaweza.core.business.dao.lastaccessed;
 
-import com.tunaweza.core.business.dao.exceptions.accessed.LastAccessedTopicException;
+import com.tunaweza.core.business.Dao.exceptions.accessed.LastAccessedTopicException;
 import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
-<<<<<<< HEAD
-import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.User;
-=======
 import com.tunaweza.core.business.Dao.generic.GenericDao;
->>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 
 /**
  * @version $Revision: 1.1.1.1 $

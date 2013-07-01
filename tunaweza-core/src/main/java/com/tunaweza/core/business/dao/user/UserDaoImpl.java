@@ -22,12 +22,22 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.user;
+package com.tunaweza.core.business.dao.user;
 
+import antlr.Utils;
+import com.tunaweza.core.business.Dao.exceptions.email.EmailExistsException;
+import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
 import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.user.UserExistsException;
 import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.group.Group;
+import com.tunaweza.core.business.model.mentor.Mentor;
+import com.tunaweza.core.business.model.persistence.PersistentEntity;
+import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.model.user.UserType;
 import com.tunaweza.core.business.settings.Settings;
 import java.security.NoSuchAlgorithmException;
 import java.sql.BatchUpdateException;
@@ -42,9 +52,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.Dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.hibernate3.HibernateCallback;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -57,7 +66,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	@Override
 	public User findUserById(long uid) throws UserDoesNotExistException {
-		User user = findById(uid);
+		User user = (User) findById(uid);
 		if (user == null) {
 			throw new UserDoesNotExistException("User with ID : " + uid
 					+ " does not exist");
@@ -875,4 +884,79 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	public void print(){
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>In the user Dao impl");
 	}
+
+    @Override
+    public List<Role> getUserRoles(long uid) throws UserDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public UserDao setUserRoles(User u, List<Role> roles) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<User> findUsersByRole(Role role) throws UserDoesNotExistException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<User> getUserByMentor(Mentor mentor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<User> getUserByUserType(UserType userType) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean exists(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(PersistentEntity entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void flush() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object execute(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List executeFind(HibernateCallback callback) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

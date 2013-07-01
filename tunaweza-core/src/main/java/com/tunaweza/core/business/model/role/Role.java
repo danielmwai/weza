@@ -23,6 +23,8 @@
  */
 
 package com.tunaweza.core.business.model.role;
+import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;

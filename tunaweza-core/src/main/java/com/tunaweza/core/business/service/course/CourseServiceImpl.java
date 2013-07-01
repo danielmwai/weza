@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.tunaweza.core.business.service.course;
 
 import com.tunaweza.core.business.Dao.course.CourseDao;
@@ -39,78 +38,81 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-                                                                                                                                                public class CourseServiceImpl implements CourseService {
-	@Autowired
-	CourseDao courseDao;
+public class CourseServiceImpl implements CourseService {
 
-	@Override
-	public Course addCourse(Course course)
-			throws CourseExistsException {
-		courseDao.saveCourse(course);
-		try {
-			return courseDao.findCourse(course);
-		} catch (CourseNotFoundException e) {
-			e.printStackTrace();
-		}
-		return course;
+    @Autowired
+    CourseDao courseDao;
 
-	}
+    @Override
+    public Course addCourse(Course course)
+            throws CourseExistsException {
+        courseDao.saveCourse(course);
+        try {
+            return courseDao.findCourse(course);
+        } catch (CourseNotFoundException e) {
+            e.printStackTrace();
+        }
+        return course;
 
-	@Override
-	public void editCourse(Course course) {
-		courseDao.updateCourse(course);
-	}
+    }
 
-	@Override
-	public Course findCourseeById(Long id)
-			throws CourseNotFoundException {
-		return courseDao.findById(id);
-	}
+    @Override
+    public void editCourse(Course course) {
+        courseDao.updateCourse(course);
+    }
 
-	@Override
-	public Course findCourseByName(String name)
-			throws CourseNotFoundException {
-		return courseDao.findCourseByName(name);
-	}
+        public Course findCourseeById(Long id)
+            throws CourseNotFoundException {
+        return courseDao.findById(id);
+    }
 
-	@Override
-	public List<Course> listAllCourse() {
-		return courseDao.findAll();
-	}
+    @Override
+    public Course findCourseByName(String name)
+            throws CourseNotFoundException {
+        return courseDao.findCourseByName(name);
+    }
 
-	@Override
-	public List<User> listUsersByCourse(Course course) {
-		return courseDao.getAllUsersByCourse(course
-				.getId());
-	}
+    @Override
+    public List<Course> listAllCourse() {
+        return courseDao.findAll();
+    }
 
-	@Override
-	public void saveModulesToCourse(Course course,
-			List<EmbeddableModule> module) {
-		courseDao.saveModulesToCourse(course, module);
+    @Override
+    public List<User> listUsersByCourse(Course course) {
+        return courseDao.getAllUsersByCourse(course
+                .getId());
+    }
 
-	}
+    @Override
+    public void saveModulesToCourse(Course course,
+            List<EmbeddableModule> module) {
+        courseDao.saveModulesToCourse(course, module);
 
-	@Override
-	public List<Module> getModulesInCourse(Course course) {
-		return courseDao.getModulesInCourse(course
-				.getId());
-	}
+    }
 
-	@Override
-	public List<Module> getActiveModulesInCourse(
-			Course course) {
-		return courseDao
-				.getActiveModulesInCourse(course.getId());
-	}
-	
-	
-	////////////////
-	
-	@Override
-	public List<Module> getModulesInCourseNoSession(Course course, String companyDbName) {
-		return courseDao.getModulesInCourseNoSession(course
-				.getId(), companyDbName);
-	}
+    @Override
+    public List<Module> getModulesInCourse(Course course) {
+        return courseDao.getModulesInCourse(course
+                .getId());
+    }
 
+    @Override
+    public List<Module> getActiveModulesInCourse(
+            Course course) {
+        return courseDao
+                .getActiveModulesInCourse(course.getId());
+    }
+
+    ////////////////
+    @Override
+    public List<Module> getModulesInCourseNoSession(Course course, String companyDbName) {
+        return courseDao.getModulesInCourseNoSession(course
+                .getId(), companyDbName);
+    }
+
+    @Override
+    public Course findCourseById(Long id) throws CourseNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}
 }

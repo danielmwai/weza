@@ -22,8 +22,11 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.topic;
+package com.tunaweza.core.business.dao.topic;
 
+import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.model.topic.Topic;
 import java.math.BigInteger;
 import java.util.List;
 /**

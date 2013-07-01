@@ -22,9 +22,21 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.user;
+package com.tunaweza.core.business.dao.user;
 
+import com.tunaweza.core.business.Dao.exceptions.email.EmailExistsException;
+import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.user.UserExistsException;
 import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.model.group.Group;
+import com.tunaweza.core.business.model.mentor.Mentor;
+import com.tunaweza.core.business.model.role.Role;
+import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.model.user.UserType;
+import java.sql.Connection;
+import java.util.List;
 
 /**
  * @version $Revision: 1.1.1.1 $
