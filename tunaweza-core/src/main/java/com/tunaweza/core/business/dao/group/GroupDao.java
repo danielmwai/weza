@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.group;
-import com.tunaweza.core.business.dao.generic.GenericDao;
+package com.tunaweza.core.business.Dao.group;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 import java.util.List;
 /**
  * @version $Revision: 1.1.1.1 $

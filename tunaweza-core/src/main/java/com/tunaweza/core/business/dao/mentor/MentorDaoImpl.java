@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.dao.mentor;
+package com.tunaweza.core.business.Dao.mentor;
 
 /**
  *
@@ -19,14 +19,14 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.Dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Repository(value = "mentorDAO")
+@Repository(value = "mentorDao")
 @Transactional
-public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDAO {
+public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 
 	public Logger logger = Logger.getLogger(MentorDaoImpl.class);
 

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.generic;
+package com.tunaweza.core.business.Dao.generic;
 
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 
@@ -43,8 +43,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 import org.hibernate.jdbc.Work;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.Dao.DataAccessException;
+import org.springframework.Dao.InvalidDataAccessApiUsageException;
 import org.springframework.jdbc.support.SQLExceptionTranslator;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.SessionFactoryUtils;
@@ -74,7 +74,7 @@ public class GenericDaoImpl<E extends PersistentEntity> implements
 	private EntityManager entityManager;
 
 	/**
-	 * This method should be called on initialization of the DAO to set the
+	 * This method should be called on initialization of the Dao to set the
 	 * persistent Class from the generic E parameter, if the class was not set
 	 * explicitly.
 	 */
@@ -293,7 +293,7 @@ public class GenericDaoImpl<E extends PersistentEntity> implements
 
 	/**
 	 * Convert the given SQLException to an appropriate exception from the
-	 * <code>org.springframework.dao</code> hierarchy. Can be overridden in
+	 * <code>org.springframework.Dao</code> hierarchy. Can be overridden in
 	 * subclasses.
 	 * <p>
 	 * Note that a direct SQLException can just occur when callback code

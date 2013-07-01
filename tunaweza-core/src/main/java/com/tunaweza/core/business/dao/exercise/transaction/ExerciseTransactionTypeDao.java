@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.exercise.transaction;
+package com.tunaweza.core.business.Dao.exercise.transaction;
 
 import com.tunaweza.core.business.model.exercise.transaction.ExerciseTransactionType;
 import java.util.List;

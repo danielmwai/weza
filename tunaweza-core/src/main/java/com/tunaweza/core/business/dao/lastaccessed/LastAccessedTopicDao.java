@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.lastaccessed;
+package com.tunaweza.core.business.Dao.lastaccessed;
 
 import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 
 /**
  * @version $Revision: 1.1.1.1 $

@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation.course;
+package com.tunaweza.core.business.Dao.evaluation.course;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-@Repository(value = "courseEvaluationTransactionDAO")
+@Repository(value = "courseEvaluationTransactionDao")
 @Transactional
 public class CourseEvaluationTransactionDaoImpl extends
 		GenericDaoImpl<CourseEvaluationTransaction> implements CourseEvaluationTransactionDao {

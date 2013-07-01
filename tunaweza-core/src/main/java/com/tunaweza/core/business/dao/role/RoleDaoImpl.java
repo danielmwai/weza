@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.role;
-import com.tunaweza.core.business.dao.exceptions.role.RoleExistsException;
+package com.tunaweza.core.business.Dao.role;
+import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
 import com.tunaweza.core.business.model.role.Role;
 import java.util.List;
 
@@ -32,7 +32,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.Dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -40,7 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-@Repository(value = "roleDAO")
+@Repository(value = "roleDao")
 @Transactional
 public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 
@@ -125,7 +125,7 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 
 	
 	@Override
-	public RoleDAO setUserRoles(long uid, List<Role> roles)
+	public RoleDao setUserRoles(long uid, List<Role> roles)
 			throws UserDoesNotExistException, RoleDoesNotExistException {
 
 		Session session = (Session) getEntityManager().getDelegate();
@@ -145,14 +145,14 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 		}catch(Exception e){
 			throw new RoleDoesNotExistException();
 		}
-		UserDAO userDAO = new UserDAOImpl();
+		UserDao userDao = new UserDaoImpl();
 
-		userDAO.saveOrUpdate(user);
+		userDao.saveOrUpdate(user);
 		return this;
 	}
 
 	@Override
-	public RoleDAO setUserRoles(String uname, List<Role> roles)
+	public RoleDao setUserRoles(String uname, List<Role> roles)
 			throws RoleDoesNotExistException, UserDoesNotExistException {
 
 		Session session = (Session) getEntityManager().getDelegate();
@@ -172,14 +172,14 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 		}catch(Exception e){
 			throw new RoleDoesNotExistException();
 		}
-		// UserDAO userDAO = new UserDAOImpl();
+		// UserDao userDao = new UserDaoImpl();
 
-		userDAO.saveOrUpdate(user);
+		userDao.saveOrUpdate(user);
 		return this;
 	}
 
 	@Override
-	public RoleDAO removeRole(Role role) throws RoleDoesNotExistException {
+	public RoleDao removeRole(Role role) throws RoleDoesNotExistException {
 		try {
 			delete(role);
 			
@@ -191,7 +191,7 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	}
 
 	@Override
-	public RoleDAO removeRole(int roleid) throws RoleDoesNotExistException {
+	public RoleDao removeRole(int roleid) throws RoleDoesNotExistException {
 
 		Session session = (Session) getEntityManager().getDelegate();
 
@@ -209,7 +209,7 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	}
 
 	@Override
-	public RoleDAO removeRole(String roleName) throws RoleDoesNotExistException {
+	public RoleDao removeRole(String roleName) throws RoleDoesNotExistException {
 		try {
 			Role role = this.getRole(roleName);
 			removeRole(role);

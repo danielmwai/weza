@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.dao.file;
+package com.tunaweza.core.business.Dao.file;
 
 import java.util.List;
 

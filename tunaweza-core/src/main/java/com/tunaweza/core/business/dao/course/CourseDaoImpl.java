@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.course;
+package com.tunaweza.core.business.Dao.course;
 
-import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.Dao.exceptions.course.CourseNotFoundException;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.course.Course;
 import java.math.BigInteger;
 import java.util.ArrayList;

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.location;
+package com.tunaweza.core.business.Dao.location;
 
 /**
  * @version $Revision: 1.1.1.1 $

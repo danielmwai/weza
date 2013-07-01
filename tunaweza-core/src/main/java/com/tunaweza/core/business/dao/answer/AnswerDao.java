@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.dao.answer;
+package com.tunaweza.core.business.Dao.answer;
 
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 import com.tunaweza.core.business.model.answer.Answer;
 
 /**

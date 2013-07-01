@@ -24,9 +24,9 @@
 
 package com.tunaweza.core.business.service.course;
 
-import com.tunaweza.core.business.dao.course.CourseDao;
-import com.tunaweza.core.business.dao.exceptions.course.CourseExistsException;
-import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
+import com.tunaweza.core.business.Dao.course.CourseDao;
+import com.tunaweza.core.business.Dao.exceptions.course.CourseExistsException;
+import com.tunaweza.core.business.Dao.exceptions.course.CourseNotFoundException;
 import com.tunaweza.core.business.model.course.Course;
 import com.tunaweza.core.business.model.course.EmbeddableModule;
 import com.tunaweza.core.business.model.module.Module;

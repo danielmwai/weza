@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.exceptions.accessed;
+package com.tunaweza.core.business.Dao.exceptions.accessed;
 
 /**
  * @version $Revision: 1.1.1.1 $

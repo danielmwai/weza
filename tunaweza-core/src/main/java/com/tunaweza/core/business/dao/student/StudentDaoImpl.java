@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.student;
-import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+package com.tunaweza.core.business.Dao.student;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentDoesNotExistException;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.student.Student;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.Dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -47,7 +47,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Daniel mwai
  */
 
-@Repository(value = "studentDAO")
+@Repository(value = "studentDao")
 @Transactional
 public class StudentDaoImpl extends GenericDaoImpl<Student> implements
 		StudentDao {

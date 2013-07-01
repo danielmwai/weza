@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.question;
+package com.tunaweza.core.business.Dao.question;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -300,7 +300,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jjpeople.jjteach.dao.QuestionDAO#getPaginatedQuestions(long,
+	 * @see com.jjpeople.jjteach.Dao.QuestionDao#getPaginatedQuestions(long,
 	 * int, int, java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")
@@ -329,7 +329,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.QuestionDAO#getQuestionsByTopicAndText(long,
+	 * com.jjpeople.jjteach.Dao.QuestionDao#getQuestionsByTopicAndText(long,
 	 * java.lang.String)
 	 */
 	@SuppressWarnings("unchecked")

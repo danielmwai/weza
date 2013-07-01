@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.user;
+package com.tunaweza.core.business.Dao.user;
 
-import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.settings.Settings;
@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.Dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -324,7 +324,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public UserDAO setUserRoles(User user, List<Role> roles) {
+	public UserDao setUserRoles(User user, List<Role> roles) {
 		user.setRoles(roles);
 		saveOrUpdate(user);
 		return this;
@@ -873,6 +873,6 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	}
 	
 	public void print(){
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>In the user dao impl");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>In the user Dao impl");
 	}
 }

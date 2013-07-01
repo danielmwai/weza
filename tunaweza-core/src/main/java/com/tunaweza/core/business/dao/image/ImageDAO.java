@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.image;
+package com.tunaweza.core.business.Dao.image;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public interface ImageDAO extends GenericDao<Image>{
+public interface ImageDao extends GenericDao<Image>{
 	/**
 	 * 
 	 * @return list of <code>Image</code>

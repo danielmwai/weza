@@ -24,7 +24,8 @@
 
 package com.tunaweza.core.business.service.evaluation;
 
-import com.tunaweza.core.business.dao.exceptions.evaluation.EvaluationDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.evaluation.EvaluationDoesNotExistException;
+import com.tunaweza.core.business.model.evaluation.Evaluation;
 import com.tunaweza.core.business.model.question.Question;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public interface EvaluationService {
 	 */
 	public Evaluation addEvaluation(
 			Evaluation evaluation)
-			throws EvaluationExistsException;
+			throws EvaluationDoesNotExistException;
 
 	/**
 	 * 

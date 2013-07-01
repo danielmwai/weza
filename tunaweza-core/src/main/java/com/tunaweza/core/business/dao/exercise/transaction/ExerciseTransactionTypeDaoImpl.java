@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.exercise.transaction;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+package com.tunaweza.core.business.Dao.exercise.transaction;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.exercise.transaction.ExerciseTransactionType;
 import java.util.List;
 

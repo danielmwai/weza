@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.exercise;
+package com.tunaweza.core.business.Dao.exercise;
 
 /**
  * @version $Revision: 1.1.1.1 $

@@ -24,8 +24,8 @@
 
 package com.tunaweza.core.business.service.question;
 
-import com.tunaweza.core.business.dao.exceptions.question.QuestionDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.question.QuestionExistsException;
+import com.tunaweza.core.business.Dao.exceptions.question.QuestionDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.question.QuestionExistsException;
 import com.tunaweza.core.business.model.answer.Answer;
 import com.tunaweza.core.business.model.question.Question;
 import java.util.ArrayList;

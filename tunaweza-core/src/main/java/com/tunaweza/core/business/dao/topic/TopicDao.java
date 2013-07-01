@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.topic;
+package com.tunaweza.core.business.Dao.topic;
 
 import java.math.BigInteger;
 import java.util.List;

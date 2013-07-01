@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.group;
+package com.tunaweza.core.business.Dao.group;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Daniel mwai
  */
 
-@Repository(value="groupDAO")
+@Repository(value="groupDao")
 @Transactional
 public class GroupDaoImpl extends GenericDaoImpl <Group> 
 implements GroupDao{

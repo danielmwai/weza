@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.db;
+package com.tunaweza.core.business.Dao.db;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;

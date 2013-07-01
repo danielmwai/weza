@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation.student;
+package com.tunaweza.core.business.Dao.evaluation.student;
 
 /**
  * @version $Revision: 1.1.1.1 $

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.location;
+package com.tunaweza.core.business.Dao.location;
 
 import com.tunaweza.core.business.model.location.Location;
 
@@ -103,7 +103,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	}
 
 	@Override
-	public LocationDAO addLocation(Location location)
+	public LocationDao addLocation(Location location)
 			throws LocationExistsException {
 		Location location1 = findById(location.getId());
 

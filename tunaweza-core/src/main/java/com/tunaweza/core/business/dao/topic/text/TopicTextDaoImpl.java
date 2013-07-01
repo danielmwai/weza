@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.topic.text;
+package com.tunaweza.core.business.Dao.topic.text;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-@Repository(value = "topicTextTextTextDAO")
+@Repository(value = "topicTextTextTextDao")
 @Transactional
 public class TopicTextDaoImpl extends GenericDaoImpl<TopicText> implements TopicTextDao{
 
@@ -95,7 +95,7 @@ public class TopicTextDaoImpl extends GenericDaoImpl<TopicText> implements Topic
 	}
 
 	@Override
-	public TopicTextDAO addTopicText(TopicText topicTextText) throws TopicTextExistsException {
+	public TopicTextDao addTopicText(TopicText topicTextText) throws TopicTextExistsException {
 		TopicText topicTextText1 = findById(topicTextText.getId());
 		
 		if(topicTextText1 != null){

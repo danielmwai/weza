@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.topic.text;
+package com.tunaweza.core.business.Dao.topic.text;
 
-import com.tunaweza.core.business.dao.exceptions.topic.TopicTextDoesNotExistException;
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.exceptions.topic.TopicTextDoesNotExistException;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 import com.tunaweza.core.business.model.topic.TopicText;
 
 /**
@@ -79,7 +79,7 @@ public interface TopicTextDao extends GenericDao<TopicText> {
 	 * @return
 	 * @throws TopicTextExistsException
 	 */
-	public TopicTextDAO addTopicText(TopicText topicText) throws TopicTextExistsException;
+	public TopicTextDao addTopicText(TopicText topicText) throws TopicTextExistsException;
 
 	/**
 	 * 

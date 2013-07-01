@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.role;
+package com.tunaweza.core.business.Dao.role;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -34,15 +34,15 @@ public interface RoleDao extends GenericDao<Role> {
 	public List<Role>    getUserRoles(long uid) throws UserDoesNotExistException;
     public List<Role>    getallRoles();
     public List<Role>    getUserRoles(String username) throws UserDoesNotExistException;
-    public RoleDAO setUserRoles(long l,List<Role> roles) throws UserDoesNotExistException, RoleDoesNotExistException;
-    public RoleDAO setUserRoles(String s,List<Role> roles) throws RoleDoesNotExistException, UserDoesNotExistException;
+    public RoleDao setUserRoles(long l,List<Role> roles) throws UserDoesNotExistException, RoleDoesNotExistException;
+    public RoleDao setUserRoles(String s,List<Role> roles) throws RoleDoesNotExistException, UserDoesNotExistException;
     public Role    addRole(Role role) throws RoleExistsException;
     public Role    getRole(int roleid) throws RoleDoesNotExistException;
     public Role    getRole(int roleid,boolean wired) throws RoleDoesNotExistException;
     public Role    getRole(String rname) throws RoleDoesNotExistException;
-    public RoleDAO removeRole(Role role)throws RoleDoesNotExistException;
-    public RoleDAO removeRole(int roleid)throws RoleDoesNotExistException;
-    public RoleDAO removeRole(String roleName)throws RoleDoesNotExistException;
+    public RoleDao removeRole(Role role)throws RoleDoesNotExistException;
+    public RoleDao removeRole(int roleid)throws RoleDoesNotExistException;
+    public RoleDao removeRole(String roleName)throws RoleDoesNotExistException;
     public int    getBiggestNumber();
     public List<Role> getRoleNotInCloudLevel() throws RoleDoesNotExistException;
 }

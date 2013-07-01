@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation.student;
+package com.tunaweza.core.business.Dao.evaluation.student;
 
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 import java.util.List;
 /**
  * @version $Revision: 1.1.1.1 $

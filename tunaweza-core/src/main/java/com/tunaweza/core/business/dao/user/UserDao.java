@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.user;
+package com.tunaweza.core.business.Dao.user;
 
-import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -74,7 +74,7 @@ public interface UserDao extends GenericDao<User> {
 	 * @param roles
 	 * @return
 	 */
-	public UserDAO setUserRoles(User u, List<Role> roles);
+	public UserDao setUserRoles(User u, List<Role> roles);
 
 	/**
 	 * 

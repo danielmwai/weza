@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation.student;
+package com.tunaweza.core.business.Dao.evaluation.student;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -32,7 +32,7 @@ package com.tunaweza.core.business.dao.evaluation.student;
 @Repository(value = "studentEvaluationDao")
 @Transactional
 public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
-		implements StudentEvaluationDAO {
+		implements StudentEvaluationDao {
 
 	@Override
 	public StudentEvaluation findStudentEvaluationById(Long id)

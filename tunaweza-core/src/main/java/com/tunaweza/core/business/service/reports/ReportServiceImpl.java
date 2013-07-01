@@ -25,9 +25,9 @@
 package com.tunaweza.core.business.service.reports;
 
 import static com.mysema.query.jpa.JPQLGrammar.type;
-import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.dao.report.ReportDao;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.Dao.report.ReportDao;
 import com.tunaweza.core.business.model.report.Report;
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.student.Student;
@@ -56,7 +56,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ReportServiceImpl implements ReportService {
 
 	@Autowired
-	private ReportDao reportDAO;
+	private ReportDao reportDao;
 
 	@Autowired
 	private UserService userService;
@@ -457,23 +457,23 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public List<Report> getAllReports() {
-		return reportDAO.findAll();
+		return reportDao.findAll();
 	}
 
 	@Override
 	public void deleteReport(Long report_id) {
-		Report report = reportDAO.findById(report_id);
-		reportDAO.delete(report);
+		Report report = reportDao.findById(report_id);
+		reportDao.delete(report);
 	}
 
 	@Override
 	public Report getReportById(Long report_id) {
-		return reportDAO.findById(report_id);
+		return reportDao.findById(report_id);
 	}
 
 	@Override
 	public void saveReport(Report report) {
-		reportDAO.saveOrUpdate(report);
+		reportDao.saveOrUpdate(report);
 	}
 
 }

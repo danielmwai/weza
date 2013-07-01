@@ -24,10 +24,10 @@
 
 package com.tunaweza.core.business.service.evaluation.student;
 
-import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationExistsException;
-import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationExistsException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentCourseEvaluationExistsException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentEvaluationDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentEvaluationExistsException;
 import com.tunaweza.core.business.model.evaluation.CourseEvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
@@ -122,7 +122,7 @@ public interface StudentCourseEvaluationService {
 
 	public StudentCourseEvaluation getFirstStudentCourseEvaluation(long evaluationId,long studentId);
 	
-	public StudentCourseEvaluation getLastStudentCourseEvaluation(long evaluationId,long studentId) throws StudentCourseEvaluationDoesNotExistException;
+//	public StudentCourseEvaluation getLastStudentCourseEvaluation(long evaluationId,long studentId) throws StudentCourseEvaluationDoesNotExistException;
 
 	public StudentCourseEvaluation getTemporaryStudentCourseEvaluation(long evaluationId,long studentId) throws StudentCourseEvaluationDoesNotExistException;
 	

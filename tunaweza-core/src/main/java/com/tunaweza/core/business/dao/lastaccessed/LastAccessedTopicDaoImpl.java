@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.lastaccessed;
+package com.tunaweza.core.business.Dao.lastaccessed;
 
-import com.tunaweza.core.business.dao.exceptions.accessed.LastAccessedTopicException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.Dao.exceptions.accessed.LastAccessedTopicException;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
@@ -48,7 +48,7 @@ public class LastAccessedTopicDaoImpl extends
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jjpeople.jjteach.dao.LastAccessedTopicDAO#
+	 * @see com.jjpeople.jjteach.Dao.LastAccessedTopicDao#
 	 * getLastAccessedTopicByUserIdModuleId
 	 * (com.jjpeople.jjteach.orm.entities.user.User,
 	 * com.jjpeople.jjteach.orm.entities.module.Module)
@@ -73,7 +73,7 @@ public class LastAccessedTopicDaoImpl extends
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.jjpeople.jjteach.dao.LastAccessedTopicDAO#
+	 * @see com.jjpeople.jjteach.Dao.LastAccessedTopicDao#
 	 * getLastAccessedTopicInModuleEntity
 	 * (com.jjpeople.jjteach.orm.entities.user.User,
 	 * com.jjpeople.jjteach.orm.entities.module.Module)
@@ -104,7 +104,7 @@ public class LastAccessedTopicDaoImpl extends
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.LastAccessedTopicDAO#saveLastAccessedTopicInModule
+	 * com.jjpeople.jjteach.Dao.LastAccessedTopicDao#saveLastAccessedTopicInModule
 	 * (com.jjpeople.jjteach.orm.entities.topic.LastAccessedTopicInModule)
 	 */
 	public void saveLastAccessedTopicInModule(
@@ -118,7 +118,7 @@ public class LastAccessedTopicDaoImpl extends
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.LastAccessedTopicDAO#updateLastAccessedTopicInModule
+	 * com.jjpeople.jjteach.Dao.LastAccessedTopicDao#updateLastAccessedTopicInModule
 	 * (com.jjpeople.jjteach.orm.entities.topic.LastAccessedTopicInModule)
 	 */
 	public void updateLastAccessedTopicInModule(

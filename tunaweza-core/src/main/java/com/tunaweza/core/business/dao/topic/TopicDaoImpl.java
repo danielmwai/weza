@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.topic;
+package com.tunaweza.core.business.Dao.topic;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -134,7 +134,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.TopicDAO#getAllTopicsByModule(java.lang.Long)
+	 * com.jjpeople.jjteach.Dao.TopicDao#getAllTopicsByModule(java.lang.Long)
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -214,7 +214,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.TopicDAO#getAllTopicsDirectChildOfModule(java
+	 * com.jjpeople.jjteach.Dao.TopicDao#getAllTopicsDirectChildOfModule(java
 	 * .lang.Long)
 	 */
 	@Override
@@ -244,7 +244,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.TopicDAO#getAllChildrenTopicsOfTopic(java.lang
+	 * com.jjpeople.jjteach.Dao.TopicDao#getAllChildrenTopicsOfTopic(java.lang
 	 * .Long)
 	 */
 	@Override
@@ -273,7 +273,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.TopicDAO#getAllChildrenTopicsOfTopic(java.lang
+	 * com.jjpeople.jjteach.Dao.TopicDao#getAllChildrenTopicsOfTopic(java.lang
 	 * .Long)
 	 */
 	@Override
@@ -504,7 +504,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.TopicDAO#findTopicByNameAndModuleId(java.lang
+	 * com.jjpeople.jjteach.Dao.TopicDao#findTopicByNameAndModuleId(java.lang
 	 * .String, java.lang.Long)
 	 */
 	@SuppressWarnings("unchecked")

@@ -35,16 +35,16 @@ package com.tunaweza.core.business.service.exercise;
 public class ExerciseServiceImpl implements ExerciseService {
 
 	@Autowired
-	private StudentExerciseDAO studentExerciseDao;
+	private StudentExerciseDao studentExerciseDao;
 	
 	@Autowired
-	private ExerciseTransactionDAO exerciseTransactionDAO;
+	private ExerciseTransactionDao exerciseTransactionDao;
 	
 	@Autowired
-	private UserDAO userDao;
+	private UserDao userDao;
 	
 	@Autowired
-	private ModuleDAO moduleDao;
+	private ModuleDao moduleDao;
 	
 	@Autowired
 	private TopicService topicService;
@@ -69,8 +69,8 @@ public class ExerciseServiceImpl implements ExerciseService {
 			exerciseBean.setExerciseTitle(
 					StringEscapeUtils.unescapeHtml(studentExercise.getExercise().getName()));
 			exerciseBean.setExerciseStatus(topicService.getStatusOfExercise(user, studentExercise.getExercise()));
-			exerciseBean.setLastSubmitDate(exerciseTransactionDAO.getLastUserExerciseTransactionByType(studentExercise,"StudentToMentor").getTransanctionDate().toString());
-			exerciseBean.setLastTransactionDate(exerciseTransactionDAO.getLastUserExerciseTransaction(studentExercise).getTransanctionDate().toString());
+			exerciseBean.setLastSubmitDate(exerciseTransactionDao.getLastUserExerciseTransactionByType(studentExercise,"StudentToMentor").getTransanctionDate().toString());
+			exerciseBean.setLastTransactionDate(exerciseTransactionDao.getLastUserExerciseTransaction(studentExercise).getTransanctionDate().toString());
 			exerciseBeanList.add(exerciseBean);
 			}
 		}

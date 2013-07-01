@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation;
+package com.tunaweza.core.business.Dao.evaluation;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

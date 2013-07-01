@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.promotioncodes;
+package com.tunaweza.core.business.Dao.promotioncodes;
 
-import com.tunaweza.core.business.dao.exceptions.promocode.PromocodeDoesNotExistException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.Dao.exceptions.promocode.PromocodeDoesNotExistException;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.promotioncodes.Promocode;
 
 import java.util.List;
