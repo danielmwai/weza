@@ -22,11 +22,15 @@
  * THE SOFTWARE.
  */
 
+<<<<<<< HEAD
 package com.tunaweza.core.business.dao.group;
 import com.tunaweza.core.business.dao.exceptions.group.GroupDoesNotExistsException;
 import com.tunaweza.core.business.dao.exceptions.group.GroupExistsException;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.user.User;
+=======
+package com.tunaweza.core.business.Dao.group;
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +44,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Daniel mwai
  */
 
-@Repository(value="groupDAO")
+@Repository(value="groupDao")
 @Transactional
 public class GroupDaoImpl extends GenericDaoImpl <Group> 
 implements GroupDao{

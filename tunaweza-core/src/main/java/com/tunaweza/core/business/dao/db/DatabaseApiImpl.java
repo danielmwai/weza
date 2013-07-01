@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.db;
+package com.tunaweza.core.business.Dao.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -64,7 +64,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#createDatabase(java.lang.String)
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#createDatabase(java.lang.String)
 	 */
 	public void createDatabase(String database) throws DatabaseException
 	{
@@ -108,7 +108,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#dropDatabase(java.lang.String)
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#dropDatabase(java.lang.String)
 	 */
 	public void dropDatabase(String database) throws DatabaseException
 	{
@@ -152,7 +152,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#databaseExists(java.lang.String)
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#databaseExists(java.lang.String)
 	 */
 	public boolean databaseExists(String database) throws DatabaseException
 	{
@@ -185,7 +185,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#renameDatabase(java.lang.String,
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#renameDatabase(java.lang.String,
 	 * java.lang.String)
 	 */
 	public void renameDatabase(String oldDatabase, String newDatabase)
@@ -200,7 +200,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#populateDatabase(java.lang.String
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#populateDatabase(java.lang.String
 	 * , java.lang.String, java.lang.String)
 	 */
 	public void populateDatabase(String databaseUrl, String user,
@@ -246,7 +246,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#createPopulateDatabase(java.lang
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#createPopulateDatabase(java.lang
 	 * .String, java.lang.String, java.lang.String)
 	 */
 	public void createPopulateDatabase(String database, String user,
@@ -265,7 +265,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#createDatabaseUser(java.lang.
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#createDatabaseUser(java.lang.
 	 * String, java.lang.String, java.lang.String)
 	 */
 	public void createDatabaseUser(String host, String user, String password)
@@ -308,7 +308,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#deleteDatabaseUser(java.lang.
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#deleteDatabaseUser(java.lang.
 	 * String, java.lang.String)
 	 */
 	public void deleteDatabaseUser(String user, String host)
@@ -345,7 +345,7 @@ public class DatabaseApiImpl implements DatabaseApi
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.db.DatabaseAPI#grantAllPermissionsToDBUser(java
+	 * com.jjpeople.jjteach.Dao.db.DatabaseAPI#grantAllPermissionsToDBUser(java
 	 * .lang.String, java.lang.String, java.lang.String)
 	 */
 	public void grantAllPermissionsToDBUser(String database, String user,

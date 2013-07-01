@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.dao.generic;
+package com.tunaweza.core.business.Dao.generic;
 
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 /**
  *
  * @author Daniel Mwai
+ * @param <E>
  */
 public interface GenericDao< E extends PersistentEntity > {
 

@@ -22,13 +22,17 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation.student;
+package com.tunaweza.core.business.Dao.evaluation.student;
 
+<<<<<<< HEAD
 import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
 import com.tunaweza.core.business.model.student.Student;
+=======
+import com.tunaweza.core.business.Dao.generic.GenericDao;
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 import java.util.List;
 /**
  * @version $Revision: 1.1.1.1 $

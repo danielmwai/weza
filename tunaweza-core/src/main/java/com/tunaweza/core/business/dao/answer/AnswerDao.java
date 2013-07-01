@@ -4,11 +4,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.dao.answer;
+package com.tunaweza.core.business.Dao.answer;
 
+<<<<<<< HEAD
 import com.tunaweza.core.business.dao.exceptions.answer.AnswerDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.answer.AnswerExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
+=======
+import com.tunaweza.core.business.Dao.generic.GenericDao;
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 import com.tunaweza.core.business.model.answer.Answer;
 import java.util.List;
 

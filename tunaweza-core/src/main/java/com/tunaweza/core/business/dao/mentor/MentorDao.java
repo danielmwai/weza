@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.dao.mentor;
+package com.tunaweza.core.business.Dao.mentor;
 
 /**
  *
@@ -31,7 +31,7 @@ public interface MentorDao extends GenericDao<Mentor>
 
 	/**
 	 * 
-	 * @param MentorTemplate
+	 * @param Mentor
 	 * @return <code>Mentor</code>
 	 * @throws MentorNotFoundException
 	 */
@@ -53,48 +53,48 @@ public interface MentorDao extends GenericDao<Mentor>
 	
 	/**
 	 * 
-	 * @param MentorTemplate, module
+	 * @param Mentor, module
 	 */
 	public void saveExercisesToMentor(Mentor mentor,List<Topic> exercises);
 	
 		
 	/**
 	 * 
-	 * @param MentorTemplateId
+	 * @param MentorId
 	 * @return 
 	 */
-	public List<Mentor> getAllMentorsByMentor(long mentorTemplateId);	
+	public List<Mentor> getAllMentorsByMentor(long MentorId);	
 	
 	/**
 	 * 
-	 * @param MentorTemplateId
+	 * @param MentorId
 	 * @return 
 	 */
-	public List<Topic> getExercisesInMentor(long mentorTemplateId);
+	public List<Topic> getExercisesInMentor(long MentorId);
 	
 	/**
 	 * 
-	 * @param MentorTemplateId
+	 * @param MentorId
 	 * @return 
 	 */
 	public List<Topic> getActiveExercisesInMentor(long mentorId);
 
 	/**
 	 * 
-	 * @param mentorTemplate
+	 * @param Mentor
 	 */
 	public void updateMentor(Mentor mentor);
 	
 	/**
 	 * 
-	 * @param mentorTemplateId
+	 * @param MentorId
 	 * @return
 	 */
 	public int countExerciseTransactions(long moduleId, long mentorId);
 	
 	/**
 	 * 
-	 * @param mentorTemplateId
+	 * @param MentorId
 	 * @return
 	 */
 	public List<ExerciseTransaction> getExerciseTransactions(

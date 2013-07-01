@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.question;
+package com.tunaweza.core.business.Dao.question;
 
 /**
  * @version $Revision: 1.1.1.1 $

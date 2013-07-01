@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.payment;
+package com.tunaweza.core.business.Dao.payment;
 
 import java.util.List;
 
@@ -36,16 +36,16 @@ import org.springframework.transaction.annotation.Transactional;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-@Repository(value = "ipnDAO")
+@Repository(value = "PaymentDao")
 @Transactional
-public class IPNDaoImpl extends GenericDaoImpl<PaymentDetails> implements
-		IPNDao {
+public class PaymentDaoImpl extends GenericDaoImpl<PaymentDetails> implements
+		PaymentDao {
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.ipn.IPNDao#savePaymentDetails(com.jjpeople.jjteach
+	 * com.jjpeople.jjteach.Dao.ipn.PaymentDao#savePaymentDetails(com.jjpeople.jjteach
 	 * .orm.entities.payment.PaymentDetails)
 	 */
 	@Override
@@ -58,7 +58,7 @@ public class IPNDaoImpl extends GenericDaoImpl<PaymentDetails> implements
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.jjpeople.jjteach.dao.ipn.IPNDao#getTransactionId(com.jjpeople.jjteach
+	 * com.jjpeople.jjteach.Dao.ipn.PaymentDao#getTransactionId(com.jjpeople.jjteach
 	 * .orm.entities.payment.PaymentDetails)
 	 */
 	@Override

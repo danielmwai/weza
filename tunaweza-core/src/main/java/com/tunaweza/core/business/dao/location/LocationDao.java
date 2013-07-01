@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.location;
+package com.tunaweza.core.business.Dao.location;
 
 import com.tunaweza.core.business.dao.exceptions.location.LocationDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.location.LocationExistsException;

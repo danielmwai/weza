@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation;
+package com.tunaweza.core.business.Dao.evaluation;
 
 import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;

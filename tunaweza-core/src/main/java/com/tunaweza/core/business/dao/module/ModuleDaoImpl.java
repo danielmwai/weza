@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.module;
-import com.tunaweza.core.business.dao.exceptions.level.LevelInuseException;
-import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.module.ModuleExistsException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+package com.tunaweza.core.business.Dao.module;
+import com.tunaweza.core.business.Dao.exceptions.level.LevelInuseException;
+import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.module.ModuleExistsException;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.module.Module;
 import java.math.BigInteger;
 import java.util.List;
@@ -47,7 +47,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#addModule(com.jjpeople.jjteach.orm.entities.module.Module)
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#addModule(com.jjpeople.jjteach.orm.entities.module.Module)
 	 */
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -72,7 +72,7 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#deleteModule(long)
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#deleteModule(long)
 	 */
 	@Override
 	public void deleteModule(long moduleId) throws ModuleDoesNotExistException {
@@ -86,7 +86,7 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#deleteModule(com.jjpeople.jjteach.orm.entities.module.Module)
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#deleteModule(com.jjpeople.jjteach.orm.entities.module.Module)
 	 */
 	@Override
 	public void deleteModule(Module module) throws ModuleDoesNotExistException {
@@ -99,7 +99,7 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#findModule(com.jjpeople.jjteach.orm.entities.module.Module)
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#findModule(com.jjpeople.jjteach.orm.entities.module.Module)
 	 */
 	@Override
 	public Module findModule(Module module) throws ModuleDoesNotExistException {
@@ -111,7 +111,7 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#findModuleById(long)
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#findModuleById(long)
 	 */
 	@Override
 	public Module findModuleById(long moduleId)
@@ -125,7 +125,7 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#findModuleByName(java.lang.String)
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#findModuleByName(java.lang.String)
 	 */
 	@Override
 	public Module findModuleByName(String name)
@@ -149,7 +149,7 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#getAllModules()
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#getAllModules()
 	 */
 	@Override
 	public List<Module> getAllModules() {
@@ -157,7 +157,7 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	}
 
 	/* (non-Javadoc)
-	 * @see com.jjpeople.jjteach.dao.module.ModuleDAO#saveModule(com.jjpeople.jjteach.orm.entities.module.Module)
+	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#saveModule(com.jjpeople.jjteach.orm.entities.module.Module)
 	 */
 	@Override
 	public void saveModule(Module module){

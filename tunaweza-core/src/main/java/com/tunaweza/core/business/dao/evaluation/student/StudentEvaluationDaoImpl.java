@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.evaluation.student;
+package com.tunaweza.core.business.Dao.evaluation.student;
 
 import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationDoesNotExistException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
@@ -41,7 +41,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "studentEvaluationDao")
 @Transactional
 public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
+<<<<<<< HEAD
 		implements  StudentEvaluationDao {
+=======
+		implements StudentEvaluationDao {
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 
 	@Override
 	public StudentEvaluation findStudentEvaluationById(Long id)

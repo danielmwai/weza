@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.module;
+package com.tunaweza.core.business.Dao.module;
 
-import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
 import java.util.List;
 /**
  * @version $Revision: 1.1.1.1 $

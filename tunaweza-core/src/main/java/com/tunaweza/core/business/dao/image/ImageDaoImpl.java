@@ -22,22 +22,32 @@
  * THE SOFTWARE.
  */
 
+<<<<<<< HEAD
 package com.tunaweza.core.business.dao.image;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+=======
+package com.tunaweza.core.business.Dao.image;
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 
+=======
+import com.jjpeople.jjteach.Dao.hibernate.GenericDaoImpl;
+import com.jjpeople.jjteach.Dao.image.ImageDao;
+import com.jjpeople.jjteach.orm.entities.image.Image;
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-@Repository(value = "imageDAO")
+@Repository(value = "ImageDao")
 @Transactional
-public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDAO {
+public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDao {
 
 	@Override
 	public List<Image> getAllImages() {

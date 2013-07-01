@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.message;
+package com.tunaweza.core.business.Dao.message;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -33,7 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Daniel mwai
  */
 
-@Repository(value = "messageBoardDAO")
+@Repository(value = "messageBoardDao")
 @Transactional
 public class MessageBoardDaoImpl extends GenericDaoImpl<Message> implements
 		MessageBoardDao {

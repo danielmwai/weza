@@ -22,11 +22,17 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.course;
+package com.tunaweza.core.business.Dao.course;
 
+<<<<<<< HEAD
 import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
 import com.tunaweza.core.business.model.course.Course;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
+=======
+import com.tunaweza.core.business.Dao.exceptions.course.CourseNotFoundException;
+import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.course.Course;
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +59,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		Course course=findById(uid);
 		if(course==null)
 			throw new CourseNotFoundException();
-		return courseTemplate;
+		return course;
 	}
 
 	@Override
@@ -66,7 +72,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		
 		Course course = null;
 		if(query.list().size() > 0){
-			courseTemplate = (CourseT)query.list().get(0);
+			course = (Course)query.list().get(0);
 		}
 		else{
 			throw new CourseNotFoundException("CourseTemplate with " +

@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+<<<<<<< HEAD
 package com.tunaweza.core.business.dao.group;
 import com.tunaweza.core.business.dao.exceptions.group.GroupDoesNotExistsException;
 import com.tunaweza.core.business.dao.exceptions.group.GroupExistsException;
@@ -29,6 +30,10 @@ import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.course.Course;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.user.User;
+=======
+package com.tunaweza.core.business.Dao.group;
+import com.tunaweza.core.business.Dao.generic.GenericDao;
+>>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 import java.util.List;
 /**
  * @version $Revision: 1.1.1.1 $

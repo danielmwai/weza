@@ -24,7 +24,30 @@
 
 package com.tunaweza.core.business.model.student;
 
+import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
+import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
+import com.tunaweza.core.business.model.exercise.OverrideStudentExercise;
+import com.tunaweza.core.business.model.exercise.StudentExercise;
+import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.user.User;
+import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -69,7 +92,7 @@ public class Student extends AbstractPersistentEntity {
 
 	@ElementCollection
 	@CollectionTable(name = "student_template", joinColumns = @JoinColumn(name = "student"))
-	private List<EmbeddableCourseTemplate> courseTemplateList;
+	private List<EmbeddableCourse> courseList;
 
 	@Column(name = "module_startdate", nullable = true)
 	@Temporal(value = TemporalType.TIMESTAMP)
