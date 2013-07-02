@@ -142,7 +142,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-asm</artifactId>
-            <version>${tunaweza-core.org.springframework.version}</version>
+            <version>3.2.0.BUILD-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -187,7 +187,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${tunaweza-core.org.springframework.version}</version>
+            <version>3.1.4.RELEASE</version>
         </dependency>
 		
         <!-- JSR 303 with Hibernate Validator -->
@@ -205,17 +205,29 @@
             
 
         <!-- AspectJ -->
-        <dependency>
+<!--        <dependency>
             <groupId>aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>${tunaweza-core.aspectj.version}</version>
-        </dependency>
+            
+        </dependency>-->
         <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.7.3</version>
+        </dependency>
+            
+        <!--        <dependency>
             <groupId>aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${tunaweza-core.aspectj.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.7.3</version>
         </dependency>
-
+            
         <!-- Mysql Connector -->
         <dependency>
             <groupId>mysql</groupId>

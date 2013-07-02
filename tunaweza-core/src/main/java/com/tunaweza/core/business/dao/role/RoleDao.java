@@ -24,10 +24,11 @@
 
 package com.tunaweza.core.business.dao.role;
 
-import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.Dao.generic.GenericDao;
+
+import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleExistsException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.role.Role;
 import java.util.List;
 

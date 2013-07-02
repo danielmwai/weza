@@ -22,15 +22,12 @@
  * THE SOFTWARE.
  */
 
-<<<<<<< HEAD
 package com.tunaweza.core.business.dao.answer;
 import com.tunaweza.core.business.dao.exceptions.answer.AnswerDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.answer.AnswerExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.answer.Answer;
-=======
-package com.tunaweza.core.business.Dao.answer;
->>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;

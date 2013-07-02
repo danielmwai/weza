@@ -24,6 +24,17 @@
 
 package com.tunaweza.core.business.service.user;
 
+import com.tunaweza.core.business.dao.exceptions.email.EmailExistsException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
+import com.tunaweza.core.business.model.course.EmbeddableCourse;
+import com.tunaweza.core.business.model.exercise.StudentExercise;
+import com.tunaweza.core.business.model.group.Group;
+import com.tunaweza.core.business.model.user.User;
+import java.util.Date;
+import java.util.List;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -642,31 +653,31 @@ public interface UserService {
 	
 	
 	
-	public List<EmbeddableCourseTemplate> getUserCourseTemplate(long userId);
+	public List<EmbeddableCourse> getUserCourse(long userId);
 	
 	public int getNextRegistrationNumber();
 
 	User setUserCourseTemplate(long userId,
-			List<EmbeddableCourseTemplate> courseTemplateList);
+			List<EmbeddableCourse> courseTemplateList);
 	
 	public void deletePreviousUsername(String oldUsername, String role);
 	
 	public User getSuperUser(String username, String firstName, String lastName);
 	
 	
-	/**
-	 * 
-	 * @param companyId
-	 * @throws CompanyDoesNotExistException
-	 */
-	public List<User> getUsersByCompanyId(long companyId) throws CompanyDoesNotExistException;
-	
-	/**
-	 * 
-	 * @param companyName
-	 * @throws CompanyDoesNotExistException
-	 */
-	public List<User> getUsersByCompanyName(String companyName) throws CompanyDoesNotExistException;
+//	/**
+//	 * 
+//	 * @param companyId
+//	 * @throws CompanyDoesNotExistException
+//	 */
+//	public List<User> getUsersByCompanyId(long companyId) throws CompanyDoesNotExistException;
+//	
+//	/**
+//	 * 
+//	 * @param companyName
+//	 * @throws CompanyDoesNotExistException
+//	 */
+//	public List<User> getUsersByCompanyName(String companyName) throws CompanyDoesNotExistException;
 
 	/**
 	 * 

@@ -24,7 +24,7 @@
 
 package com.tunaweza.core.business.dao.report;
 
-import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.report.Report;
 import java.util.List;
 

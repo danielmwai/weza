@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.Dao.generic;
+package com.tunaweza.core.business.dao.generic;
 
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import java.util.List;

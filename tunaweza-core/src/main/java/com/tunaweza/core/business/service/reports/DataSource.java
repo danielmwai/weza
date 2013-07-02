@@ -29,6 +29,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRField;
+import net.sf.jasperreports.engine.JRRewindableDataSource;
 
 /**
  * @version $Revision: 1.1.1.1 $

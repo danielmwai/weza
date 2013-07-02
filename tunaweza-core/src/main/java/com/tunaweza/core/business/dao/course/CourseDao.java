@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.Dao.course;
+package com.tunaweza.core.business.dao.course;
 
-import com.tunaweza.core.business.Dao.exceptions.course.CourseNotFoundException;
-import com.tunaweza.core.business.Dao.generic.GenericDao;
+
 import com.tunaweza.core.business.model.course.Course;
 
 import com.tunaweza.core.business.dao.exceptions.course.CourseExistsException;
 import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.course.EmbeddableModule;
 import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.user.User;
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -25,6 +27,7 @@ public interface CourseDao  extends GenericDao<Course>
 	 * 
 	 * @param uid
 	 * @return <code>Course</code>
+     * @throws com.tunaweza.core.business.Dao.exceptions.course.CourseNotFoundException
 	 * @throws CourseNotFoundException
 	 */
 	public Course findCourseById(long uid) 

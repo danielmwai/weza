@@ -23,13 +23,19 @@
  */
 
 package com.tunaweza.core.business.service.group;
-import com.tunaweza.core.business.Dao.exceptions.group.GroupDoesNotExistsException;
-import com.tunaweza.core.business.Dao.exceptions.group.GroupExistsException;
+
+import com.tunaweza.core.business.dao.exceptions.group.GroupDoesNotExistsException;
+import com.tunaweza.core.business.dao.exceptions.group.GroupExistsException;
+import com.tunaweza.core.business.dao.group.GroupDao;
+import com.tunaweza.core.business.model.course.Course;
+import com.tunaweza.core.business.model.course.EmbeddableCourse;
+import com.tunaweza.core.business.model.group.EmbeddableUser;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Constants;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -41,47 +47,50 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("groupService")
 @Transactional
 public class GroupServiceImpl extends Constants implements GroupService{
+@Autowired
+	private GroupDao groupDAO;
 
-	@Autowired
-	private GroupDao groupDao;
+    public GroupServiceImpl(Class<?> clazz) {
+        super(clazz);
+    }
 	
 	@Override
 	public Group addGroup(Group group) throws GroupExistsException {
-		return groupDao.addGroup(group);
+		return groupDAO.addGroup(group);
 	}
 
 	@Override
 	public void saveGroup(Group group) throws GroupExistsException {
-		groupDao.saveOrUpdateGroup(group);
+		groupDAO.saveOrUpdateGroup(group);
 
 	}
 
 	@Override
 	public Group findGroupById(long id) throws GroupDoesNotExistsException {
-		return groupDao.findGroupById(id);
+		return groupDAO.findGroupById(id);
 	}
 	
 	@Override
 	public Group findGroupByName(String name) throws GroupDoesNotExistsException {
-		return groupDao.findGroupByName(name);
+		return groupDAO.findGroupByName(name);
 	}
 
 	@Override
 	public Group findGroup(Group group)
 			throws GroupDoesNotExistsException {
-		return groupDao.findGroup(group);
+		return groupDAO.findGroup(group);
 	}
 
 	@Override
 	public void deleteGroup(long id) throws GroupDoesNotExistsException {
-		groupDao.deleteGroup(id);
+		groupDAO.deleteGroup(id);
 
 	}
 
 	@Override
 	public void deleteGroup(Group group)
 			throws GroupDoesNotExistsException {
-		groupDao.deleteGroup(group);
+		groupDAO.deleteGroup(group);
 
 	}
 	
@@ -89,84 +98,39 @@ public class GroupServiceImpl extends Constants implements GroupService{
 
 	@Override
 	public List<Group> getAllGroups() {
-		return groupDao.getAllGoups();
+		return groupDAO.getAllGoups();
 	}
 	
 	@Override
 	public Integer getCount() {
-		return groupDao.getCount();
+		return groupDAO.getCount();
 	}
 	@Override
 	public void saveUserToGroup(Group group,
 			List<EmbeddableUser> user) {
-		groupDao.saveUserToGroup(group, user);
+		groupDAO.saveUserToGroup(group, user);
 
 	}
 	
 	@Override
 	public void saveCoursesToGroup(Group group,
 			List<EmbeddableCourse> courses) {
-		groupDao.saveCoursesToGroup(group, courses);
+		groupDAO.saveCoursesToGroup(group, courses);
 
 	}
 	
 
 	@Override
 	public List<User> getUsersInGroup(Group group) {
-		return groupDao.getUsersInGroup(group
+		return groupDAO.getUsersInGroup(group
 				.getId());
 	}
 	
 	@Override
-	public List<CourseTemplate> getCoursesInGroup(Group group) {
-		return groupDao.getCoursesInGroup(group
+	public List<Course> getCoursesInGroup(Group group) {
+		return groupDAO.getCoursesInGroup(group
 				.getId());
 	}
-
-    @Override
-    public Group addGroup(Group group) throws GroupExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveGroup(Group group) throws GroupExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveUserToGroup(Group group, List<EmbeddableUser> user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Group findGroup(Group group) throws GroupDoesNotExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteGroup(Group group) throws GroupDoesNotExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Group> getAllGroups() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<User> getUsersInGroup(Group group) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<CourseTemplate> getCoursesInGroup(Group group) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveCoursesToGroup(Group group, List<EmbeddableCourse> courses) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 	
 	
 	

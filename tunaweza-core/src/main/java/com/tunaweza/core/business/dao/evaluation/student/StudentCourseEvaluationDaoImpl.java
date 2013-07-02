@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.evaluation.student;
+package com.tunaweza.core.business.dao.evaluation.student;
 
 import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationExistsException;
@@ -204,24 +204,8 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 		return studentCourseEvaluation;
 	}
 
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<StudentCourseEvaluation> getAllStudentCourseEvaluationByStudent(Student student) throws StudentCourseEvaluationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<StudentCourseEvaluation> getAllStudentCourseEvaluationByStudent(Student student, int startIndex, int pagesize) throws StudentCourseEvaluationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 	
 }

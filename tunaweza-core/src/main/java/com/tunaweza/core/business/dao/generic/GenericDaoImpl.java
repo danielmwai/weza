@@ -24,7 +24,6 @@
 
 package com.tunaweza.core.business.dao.generic;
 
-import com.tunaweza.core.business.Dao.generic.GenericDao;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.user.EndOfConversation;
 

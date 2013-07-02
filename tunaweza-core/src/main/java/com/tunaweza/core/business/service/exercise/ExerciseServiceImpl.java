@@ -24,12 +24,15 @@
 
 package com.tunaweza.core.business.service.exercise;
 
-import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
+
+
 import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
-import com.tunaweza.core.business.Dao.exceptions.user.StudentExerciseDao;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.exercise.StudentExerciseDao;
 import com.tunaweza.core.business.dao.module.ModuleDao;
 import com.tunaweza.core.business.dao.user.UserDao;
+import com.tunaweza.core.business.model.exercise.ExerciseTransactionDao;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;

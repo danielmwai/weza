@@ -24,8 +24,10 @@
 
 package com.tunaweza.core.business.dao.topic;
 
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
-import com.tunaweza.core.business.Dao.generic.GenericDao;
+
+import com.tunaweza.core.business.dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicNotFoundExistException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.topic.Topic;
 import java.math.BigInteger;
 import java.util.List;
@@ -41,33 +43,33 @@ public interface TopicDao extends GenericDao<Topic> {
 	 * @return
 	 * @throws TopicDoesNotExistException
 	 */
-	public Topic findTopicById(long uid) throws TopicDoesNotExistException;
+	public Topic findTopicById(long uid) throws TopicNotFoundExistException;
 
 	/**
 	 * @param name
 	 * @return
 	 * @throws TopicDoesNotExistException
 	 */
-	public Topic findTopicByName(String name) throws TopicDoesNotExistException;
+	public Topic findTopicByName(String name) throws TopicNotFoundExistException;
 
 	/**
 	 * @param topic
 	 * @return
 	 * @throws TopicDoesNotExistException
 	 */
-	public Topic findTopic(Topic topic) throws TopicDoesNotExistException;
+	public Topic findTopic(Topic topic) throws TopicNotFoundExistException;
 
 	/**
 	 * @param uid
 	 * @throws TopicDoesNotExistException
 	 */
-	public void deleteTopic(long uid) throws TopicDoesNotExistException;
+	public void deleteTopic(long uid) throws TopicNotFoundExistException;
 
 	/**
 	 * @param topic
 	 * @throws TopicDoesNotExistException
 	 */
-	public void deleteTopic(Topic topic) throws TopicDoesNotExistException;
+	public void deleteTopic(Topic topic) throws TopicNotFoundExistException;
 
 	/**
 	 * @param topic

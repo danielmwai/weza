@@ -24,8 +24,9 @@
 
 package com.tunaweza.core.business.dao.message;
 
-import com.tunaweza.core.business.Dao.exceptions.message.MessageDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.message.MessageExistsException;
+
+import com.tunaweza.core.business.dao.exceptions.message.MessageDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.message.MessageExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.Message.Message;
 import java.util.List;

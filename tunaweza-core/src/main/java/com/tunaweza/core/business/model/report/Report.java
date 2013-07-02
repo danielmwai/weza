@@ -39,10 +39,10 @@ public class Report extends AbstractPersistentEntity {
 	public static final String TABLE_NAME = "report";
 	
 	@Column(name = "report_title", nullable = false)
-	public String reportTitle;
+	private String reportTitle;
 
 	@Column(length = 1000000000, name = "report_query", nullable = false)
-	public String reportQuery;
+	private String reportQuery;
 
 	public String getReportTitle() {
 		return reportTitle;

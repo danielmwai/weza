@@ -24,6 +24,7 @@
 
 package com.tunaweza.core.business.service.image;
 
+import com.tunaweza.core.business.dao.image.ImageDao;
 import java.awt.Image;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,8 @@ public class ImageServiceImpl implements ImageService{
 	@Autowired
 	ImageDao ImageDao;
 	
-	@Override
-	public List<Image> getAllImages(){
+        @Override
+		public List<Image> getAllImages(){
 		return ImageDao.getAllImages();
 	}
 	
@@ -63,30 +64,6 @@ public class ImageServiceImpl implements ImageService{
 		ImageDao.removeImage(id);
 	}
 
-    @Override
-    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.image.Image saveImage(com.tunaweza.core.business.model.image.Image image) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 		
 }

@@ -23,6 +23,7 @@
  */
 
 package com.tunaweza.core.business.model.module;
+import com.tunaweza.core.business.model.evaluation.Evaluation;
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.status.Status;
@@ -80,7 +81,7 @@ public class Module extends AbstractPersistentEntity implements
 	List<Mentor> Mentors;
 
 	@OneToOne(mappedBy = "module")
-	private EvaluationTemplate evaluationTemplate;
+	private Evaluation evaluationTemplate;
 
 	//Store the IDs for the prerequisite modules
 	@ElementCollection
@@ -199,11 +200,11 @@ public class Module extends AbstractPersistentEntity implements
 		this.Mentors = Mentors;
 	}
 
-	public EvaluationTemplate getEvaluationTemplate() {
+	public Evaluation getEvaluationTemplate() {
 		return evaluationTemplate;
 	}
 
-	public void setEvaluationTemplate(EvaluationTemplate evaluationTemplate) {
+	public void setEvaluationTemplate(Evaluation evaluationTemplate) {
 		this.evaluationTemplate = evaluationTemplate;
 	}
 

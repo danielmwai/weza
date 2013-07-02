@@ -37,7 +37,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository(value = "ImageDao")
 @Transactional
-public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDAO {
+public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDao {
 
 	@Override
 	public List<Image> getAllImages() {
@@ -58,40 +58,5 @@ public class ImageDaoImpl extends GenericDaoImpl<Image> implements ImageDAO {
 	public void removeImage(Long id) {
 		delete(findById(id));
 	}
-
-    @Override
-    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.image.Image saveImage(com.tunaweza.core.business.model.image.Image image) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.image.Image> getAllImages() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.image.Image getImage(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

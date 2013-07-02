@@ -23,9 +23,9 @@
  */
 package com.tunaweza.core.business.service.course;
 
-import com.tunaweza.core.business.Dao.course.CourseDao;
-import com.tunaweza.core.business.Dao.exceptions.course.CourseExistsException;
-import com.tunaweza.core.business.Dao.exceptions.course.CourseNotFoundException;
+import com.tunaweza.core.business.dao.course.CourseDao;
+import com.tunaweza.core.business.dao.exceptions.course.CourseExistsException;
+import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
 import com.tunaweza.core.business.model.course.Course;
 import com.tunaweza.core.business.model.course.EmbeddableModule;
 import com.tunaweza.core.business.model.module.Module;
@@ -43,6 +43,7 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseDao courseDao;
 
+    
     @Override
     public Course addCourse(Course course)
             throws CourseExistsException {
@@ -115,4 +116,4 @@ public class CourseServiceImpl implements CourseService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-}
+

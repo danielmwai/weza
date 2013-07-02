@@ -23,6 +23,7 @@
  */
 
 package com.tunaweza.core.business.model.group;
+import com.tunaweza.core.business.model.course.EmbeddableCourse;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import java.util.List;
 

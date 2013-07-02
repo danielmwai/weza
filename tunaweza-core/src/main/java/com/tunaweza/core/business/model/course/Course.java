@@ -125,19 +125,15 @@ public class Course extends AbstractPersistentEntity implements
 	}
 
 	@Override
-	public int compareTo(CourseTemplate courseTemplate) {
-		if (courseTemplate.getId() > getId()) {
+	public int compareTo(Course course) {
+		if (course.getId() > getId()) {
 			return -1;
 
-		} else if (courseTemplate.getId() < getId()) {
+		} else if (course.getId() < getId()) {
 			return 1;
 		}
 		return 0;
 	}
 
-    @Override
-    public int compareTo(Course t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

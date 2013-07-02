@@ -58,7 +58,7 @@ public class StudentEvaluation extends AbstractPersistentEntity{
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "evaluationTemplate_id")
-	private EvaluationTemplate evaluationTemplate;
+	private Evaluation evaluationTemplate;
 	
 	@Column(name = "date_taken")
 	@Temporal(value = TemporalType.TIMESTAMP)
@@ -95,11 +95,11 @@ public class StudentEvaluation extends AbstractPersistentEntity{
 		this.student = student;
 	}
 
-	public EvaluationTemplate getEvaluationTemplate() {
+	public Evaluation getEvaluationTemplate() {
 		return evaluationTemplate;
 	}
 
-	public void setEvaluationTemplate(EvaluationTemplate evaluationTemplate) {
+	public void setEvaluationTemplate(Evaluation evaluationTemplate) {
 		this.evaluationTemplate = evaluationTemplate;
 	}
 

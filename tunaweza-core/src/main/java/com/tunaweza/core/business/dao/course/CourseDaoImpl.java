@@ -22,17 +22,16 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.course;
+package com.tunaweza.core.business.dao.course;
 
-<<<<<<< HEAD
+import com.tunaweza.core.business.dao.exceptions.course.CourseExistsException;
 import com.tunaweza.core.business.dao.exceptions.course.CourseNotFoundException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+
 import com.tunaweza.core.business.model.course.Course;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
-=======
-import com.tunaweza.core.business.Dao.exceptions.course.CourseNotFoundException;
-import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.course.Course;
->>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
+import com.tunaweza.core.business.model.course.EmbeddableModule;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.user.User;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,13 +49,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "courseTemplateDao")
 @Transactional
 public class CourseDaoImpl extends GenericDaoImpl<Course>
-		implements CourseDao, CourseDao {
+		implements  CourseDao {
 
 	@Override
 	public Course findCourseById(long uid)
 			throws CourseNotFoundException 
 	{
-		Course course=findById(uid);
+		Course course=(Course) findById(uid);
 		if(course==null)
 			throw new CourseNotFoundException();
 		return course;
@@ -85,7 +84,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 	public Course findCourse(Course course)
 			throws CourseNotFoundException 
 	{
-		Course dbCourse=findById(course.getId());
+		Course dbCourse=(Course) findById(course.getId());
 		if(dbCourse==null){
 			throw new CourseNotFoundException();			
 		}
@@ -99,7 +98,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 	}
 
 	@Override
-	public void saveCourse(Course courseTemplate) 
+	public void saveCourse(Course course) 
 	throws CourseExistsException
 	{
 		Course duplicate=null;
@@ -153,7 +152,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 				" i WHERE i.id = "+ courseId);
 		
 		if(query.list().size()>0){
-			courseTemplate = (Course)query.list().get(0);
+			course = (Course)query.list().get(0);
 		}
 		List<Module> modules=new ArrayList<Module>();
 		List<EmbeddableModule> embeddedModuleList = course.getModules();
@@ -174,7 +173,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		Course course = null;
 		Session session = (Session) getEntityManager().getDelegate();
 		Query query = session.createQuery("SELECT i FROM " +getDomainClass().getName()+
-				" i WHERE i.id = "+ courseTemplateId);
+				" i WHERE i.id = "+ courseId);
 		
 		if(query.list().size()>0){
 			course = (Course)query.list().get(0);
@@ -221,8 +220,8 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		return modules;
 	}
 	
-	@Override
-	public List<Course> courseTemplateListById(List<BigInteger> ctIds, String companyDbName) {
+	
+	public List<Course> courseListById(List<BigInteger> ctIds, String companyDbName) {
 		
 		List<Course> cts=new ArrayList<Course>();
 		
@@ -233,7 +232,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 			Query query = session.createSQLQuery("SELECT * FROM " + companyDbName +
 					".course_template i WHERE i.id = " + ctId).addEntity(Course.class);
 			System.out.println(">>>>>>>>>>>>03");
-			CourseTemplate ct = (CourseTemplate)query.list().get(0);
+			Course ct = (Course)query.list().get(0);
 			System.out.println(">>>>>>>>>>>>04");
 			cts.add(ct);
 			System.out.println(">>>>>>>>>>>>05");
@@ -264,78 +263,4 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		return modules;
 	}
 
-    @Override
-    public Course findCourse(Course course) throws CourseNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveCourse(Course course) throws CourseExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateCourse(Course course) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveModulesToCourse(Course course, <any> mdoule) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public <any> courseListById(<any> ctIds, String companyDbName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -24,6 +24,7 @@
 
 package com.tunaweza.core.business.model.student;
 
+import com.tunaweza.core.business.model.course.EmbeddableCourse;
 import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
 import com.tunaweza.core.business.model.exercise.OverrideStudentExercise;
@@ -210,13 +211,13 @@ public class Student extends AbstractPersistentEntity {
 		this.regNo = regNo;
 	}
 
-	public List<EmbeddableCourseTemplate> getCourseTemplateList() {
-		return courseTemplateList;
+	public List<EmbeddableCourse> getCourseList() {
+		return courseList;
 	}
 
 	public void setCourseTemplateList(
-			List<EmbeddableCourseTemplate> courseTemplateList) {
-		this.courseTemplateList = courseTemplateList;
+			List<EmbeddableCourse> courseList) {
+		this.courseList = courseList;
 	}
 
 	/**

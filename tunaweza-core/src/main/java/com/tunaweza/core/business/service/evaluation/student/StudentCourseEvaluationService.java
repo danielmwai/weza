@@ -24,14 +24,15 @@
 
 package com.tunaweza.core.business.service.evaluation.student;
 
-import com.tunaweza.core.business.Dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentCourseEvaluationExistsException;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentEvaluationDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentEvaluationExistsException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentCourseEvaluationExistsException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationExistsException;
 import com.tunaweza.core.business.model.evaluation.CourseEvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
+import com.tunaweza.core.business.service.student.StudentEvaluationTransactionBean;
 import java.util.List;
 
 /**
@@ -144,7 +145,7 @@ public interface StudentCourseEvaluationService {
 			throws StudentCourseEvaluationDoesNotExistException;
 
 
-	public int countStudentCourseEvaluations(long studentId);
+//	public int countStudentCourseEvaluations(long studentId);
 
 
 	public int countStudentEvaluations(long studentId);

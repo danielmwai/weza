@@ -22,11 +22,17 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.evaluation.student;
+package com.tunaweza.core.business.dao.evaluation.student;
+
+
+
 
 import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
+import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
+import com.tunaweza.core.business.model.student.Student;
+import java.math.BigInteger;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -41,16 +47,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "studentEvaluationDao")
 @Transactional
 public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
-<<<<<<< HEAD
 		implements  StudentEvaluationDao {
-=======
-		implements StudentEvaluationDao {
->>>>>>> b96906ca9fbfa7acaa718f3782e6069e07baf027
 
 	@Override
 	public StudentEvaluation findStudentEvaluationById(Long id)
 			throws StudentEvaluationDoesNotExistException {
-		StudentEvaluation exercise = findById(id);
+		StudentEvaluation exercise = (StudentEvaluation) findById(id);
 		if (exercise == null)
 			throw new StudentEvaluationDoesNotExistException(
 					"StudentEvaluation with id " + id + " does not exist");
@@ -208,54 +210,5 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
 		return studentEvaluation;
 	}
 
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

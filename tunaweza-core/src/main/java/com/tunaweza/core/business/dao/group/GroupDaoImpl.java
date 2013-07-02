@@ -23,9 +23,13 @@
  */
 
 package com.tunaweza.core.business.dao.group;
-import com.tunaweza.core.business.Dao.exceptions.group.GroupDoesNotExistsException;
-import com.tunaweza.core.business.Dao.exceptions.group.GroupExistsException;
+
+import com.tunaweza.core.business.dao.exceptions.group.GroupDoesNotExistsException;
+import com.tunaweza.core.business.dao.exceptions.group.GroupExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.course.Course;
+import com.tunaweza.core.business.model.course.EmbeddableCourse;
+import com.tunaweza.core.business.model.group.EmbeddableUser;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.user.User;
 import java.util.ArrayList;
@@ -194,7 +198,7 @@ implements GroupDao{
 		 * @return
 		 */
 		@Override
-		public List<CourseTemplate> getCoursesInGroup(Long groupId) 
+		public List<Course> getCoursesInGroup(Long groupId) 
 		{
 			Group group = null;
 			Session session = (Session) getEntityManager().getDelegate();
@@ -204,7 +208,7 @@ implements GroupDao{
 			if(query.list().size()>0){
 				group = (Group)query.list().get(0);
 			}
-			List<CourseTemplate> courses=new ArrayList<CourseTemplate>();
+			List<Course> courses=new ArrayList<Course>();
 			try{
 			
 			List<EmbeddableCourse> embeddedCoursesList = group.getCourses();
@@ -213,8 +217,8 @@ implements GroupDao{
 			for(EmbeddableCourse embeddCourses : embeddedCoursesList )
 			{
 				Query courseQuery=session.createSQLQuery("SELECT * FROM course_template " +
-						"WHERE id ="+embeddCourses.getCoursetemplateId()).addEntity(CourseTemplate.class);
-				CourseTemplate courseTemplates = (CourseTemplate)courseQuery.list().get(0);
+						"WHERE id ="+embeddCourses.getCourseId()).addEntity(Course.class);
+				Course courseTemplates = (Course)courseQuery.list().get(0);
 				courses.add(courseTemplates);
 			}
 			}catch (NullPointerException e){

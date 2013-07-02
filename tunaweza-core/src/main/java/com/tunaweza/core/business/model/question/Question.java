@@ -24,6 +24,7 @@
 
 package com.tunaweza.core.business.model.question;
 import com.tunaweza.core.business.model.answer.Answer;
+import com.tunaweza.core.business.model.evaluation.Evaluation;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.topic.Topic;
 import java.util.List;
@@ -64,7 +65,7 @@ public class Question extends AbstractPersistentEntity implements
 
 	@ManyToOne()
 	@JoinColumn(name = "evaluationTemplate_id")
-	private EvaluationTemplate evaluationTemplate;
+	private Evaluation evaluation;
 
 	// Getters and Setters
 
@@ -92,12 +93,12 @@ public class Question extends AbstractPersistentEntity implements
 		this.answers = answers;
 	}
 
-	public EvaluationTemplate getEvaluationTemplate() {
-		return evaluationTemplate;
+	public Evaluation getEvaluation() {
+		return evaluation;
 	}
 
-	public void setEvaluationTemplate(EvaluationTemplate evaluationTemplate) {
-		this.evaluationTemplate = evaluationTemplate;
+	public void setEvaluationTemplate(Evaluation evaluation) {
+		this.evaluation = evaluation;
 	}
 
 	public Topic getTopic() {

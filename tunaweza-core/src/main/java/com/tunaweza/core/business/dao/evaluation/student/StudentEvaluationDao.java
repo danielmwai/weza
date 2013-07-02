@@ -22,12 +22,15 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.evaluation.student;
+package com.tunaweza.core.business.dao.evaluation.student;
+
 
 import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentEvaluationExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
+import com.tunaweza.core.business.model.student.Student;
 import java.util.List;
-import org.springframework.orm.hibernate3.HibernateCallback;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -110,54 +113,5 @@ public interface StudentEvaluationDao extends GenericDao<StudentEvaluation>
 	public StudentEvaluation getLastStudentEvaluationNoSession(long evaluationId,
 			long studentId, String companyDbName) throws StudentEvaluationDoesNotExistException;
 
-    @Override
-    public StudentEvaluation findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<StudentEvaluation> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<StudentEvaluation> findByExample(StudentEvaluation exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public StudentEvaluation saveOrUpdate(StudentEvaluation entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(StudentEvaluation entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 	
 }

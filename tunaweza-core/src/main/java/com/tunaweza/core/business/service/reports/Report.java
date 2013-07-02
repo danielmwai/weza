@@ -25,8 +25,14 @@
 package com.tunaweza.core.business.service.reports;
 import java.awt.Color;
 import java.util.Locale;
+import javax.xml.transform.Templates;
 
 import net.sf.dynamicreports.report.base.expression.AbstractValueFormatter;
+import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
+import static net.sf.dynamicreports.report.builder.DynamicReports.hyperLink;
+import static net.sf.dynamicreports.report.builder.DynamicReports.stl;
+import static net.sf.dynamicreports.report.builder.DynamicReports.tableOfContentsCustomizer;
+import static net.sf.dynamicreports.report.builder.DynamicReports.template;
 import net.sf.dynamicreports.report.builder.HyperLinkBuilder;
 import net.sf.dynamicreports.report.builder.ReportTemplateBuilder;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;

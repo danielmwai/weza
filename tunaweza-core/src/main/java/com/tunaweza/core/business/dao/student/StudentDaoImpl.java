@@ -23,9 +23,14 @@
  */
 package com.tunaweza.core.business.dao.student;
 
-import com.tunaweza.core.business.Dao.exceptions.student.StudentDoesNotExistException;
-import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
+
+import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.model.module.Module;
+import com.tunaweza.core.business.model.student.CompletedModule;
+import com.tunaweza.core.business.model.student.EnabledModule;
 import com.tunaweza.core.business.model.student.Student;
+import com.tunaweza.core.business.model.user.User;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,12 +38,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.Dao.DataIntegrityViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

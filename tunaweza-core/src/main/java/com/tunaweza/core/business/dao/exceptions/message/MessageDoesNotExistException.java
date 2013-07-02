@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.exceptions.message;
+package com.tunaweza.core.business.dao.exceptions.message;
 
 /**
  * Signals that an attempt to find a non existent <code>Message</code>

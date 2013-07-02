@@ -24,11 +24,16 @@
 
 package com.tunaweza.core.business.service.topic;
 
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicNotFoundExistException;
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
+
+import com.tunaweza.core.business.dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicNotFoundExistException;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.status.Status;
+import com.tunaweza.core.business.model.topic.AddTopicBean;
+import com.tunaweza.core.business.model.topic.ListOfTopicBean;
+import com.tunaweza.core.business.model.topic.ListTopicBean;
 import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.topic.TopicBean;
 import com.tunaweza.core.business.model.user.User;
 import java.math.BigInteger;
 import java.util.List;

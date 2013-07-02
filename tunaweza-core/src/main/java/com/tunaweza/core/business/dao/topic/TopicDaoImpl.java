@@ -24,16 +24,14 @@
 
 package com.tunaweza.core.business.dao.topic;
 
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.topic.Topic;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -42,18 +40,19 @@ import org.springframework.orm.hibernate3.HibernateCallback;
  */
 public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
-	@Override
-	public Topic findTopicById(long tid) throws TopicDoesNotExistException {
-		Topic topic = findById(tid);
+	
+        @Override
+	public Topic findTopicById(long tid) throws TopicExistsException {
+		Topic topic = (Topic) findById(tid);
 		if (topic == null) {
-			throw new TopicDoesNotExistException();
+			throw new TopicExistsException();
 		}
 
 		return topic;
 	}
 
 	@Override
-	public Topic findTopicByName(String name) throws TopicDoesNotExistException {
+	public Topic findTopicByName(String name) throws TopicExistsException {
 
 		Session session = (Session) getEntityManager().getDelegate();
 
@@ -66,8 +65,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 		if (query.list().size() > 0) {
 			topic = (Topic) query.list().get(0);
 		} else {
-			throw new TopicDoesNotExistException("Topic with name : " + name
-					+ " does not exist");
+//			throw new TopicExistsException("Topic with name : " + name
+//					+ " does not exist");
 		}
 
 		return topic;
@@ -75,31 +74,31 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	}
 
 	@Override
-	public Topic findTopic(Topic topic) throws TopicDoesNotExistException {
+	public Topic findTopic(Topic topic) throws TopicExistsException {
 
 		Topic topic1 = (Topic) findById(topic.getId());
 		if (topic1 == null) {
-			throw new TopicDoesNotExistException();
+			throw new TopicExistsException();
 		}
 		return topic1;
 	}
 
 	@Override
-	public void deleteTopic(long uid) throws TopicDoesNotExistException {
+	public void deleteTopic(long uid) throws TopicExistsException {
 		Topic topic = (Topic) findById(uid);
 		if (topic == null) {
-			throw new TopicDoesNotExistException();
+			throw new TopicExistsException();
 		}
 		deleteTopic(topic);
 
 	}
 
 	@Override
-	public void deleteTopic(Topic topic) throws TopicDoesNotExistException {
+	public void deleteTopic(Topic topic) throws TopicExistsException {
 		try {
 			delete(topic);
 		} catch (IllegalArgumentException e) {
-			throw new TopicDoesNotExistException();
+			throw new TopicExistsException();
 		}
 
 	}
@@ -610,73 +609,4 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 		return null;
 	}
 
-    @Override
-    public Topic findTopic(Topic topic) throws TopicDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteTopic(Topic topic) throws TopicDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Topic addTopic(Topic topic) throws TopicExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveTopic(Topic topic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

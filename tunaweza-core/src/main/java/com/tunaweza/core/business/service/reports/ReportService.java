@@ -24,6 +24,13 @@
 
 package com.tunaweza.core.business.service.reports;
 
+import java.io.ByteArrayOutputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import net.sf.dynamicreports.report.exception.DRException;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

@@ -5,9 +5,9 @@
  */
 package com.tunaweza.core.business.dao.mentor;
 
-import com.tunaweza.core.business.Dao.exceptions.mentor.MentorExistsException;
-import com.tunaweza.core.business.Dao.exceptions.mentor.MentorNotFoundException;
-import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.dao.exceptions.mentor.MentorExistsException;
+import com.tunaweza.core.business.dao.exceptions.mentor.MentorNotFoundException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.service.exercise.ExerciseTransaction;

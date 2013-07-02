@@ -24,8 +24,9 @@
 
 package com.tunaweza.core.business.dao.location;
 
-import com.tunaweza.core.business.Dao.exceptions.location.LocationDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.location.LocationExistsException;
+
+import com.tunaweza.core.business.dao.exceptions.location.LocationDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.location.LocationExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.location.Location2;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
@@ -46,6 +47,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 		LocationDao {
 
+                
                 @Override
         	public Location2 findLocationById(long lid)
 			throws LocationDoesNotExistException {
@@ -148,159 +150,6 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 		return i;
 	}
 
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocation(com.tunaweza.core.business.model.user.Location location) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteLocation(com.tunaweza.core.business.model.user.Location location) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public LocationDao addLocation(com.tunaweza.core.business.model.user.Location location) throws LocationExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveLocation(com.tunaweza.core.business.model.user.Location location) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationById(long lid) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public com.tunaweza.core.business.model.user.Location findLocationByName(String name) throws LocationDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<com.tunaweza.core.business.model.user.Location> getAllLocations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

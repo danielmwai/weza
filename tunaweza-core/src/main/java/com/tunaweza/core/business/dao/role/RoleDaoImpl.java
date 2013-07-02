@@ -24,12 +24,13 @@
 
 package com.tunaweza.core.business.dao.role;
 
-import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.Dao.user.UserDao;
-import com.tunaweza.core.business.Dao.user.UserDaoImpl;
+
+import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleExistsException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.dao.user.UserDao;
+import com.tunaweza.core.business.dao.user.UserDaoImpl;
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.user.User;
 import java.util.List;
@@ -91,7 +92,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Role> getUserRoles(long uid) throws UserDoesNotExistException {
+        //public List<Role> getUserRoles(long uid)
+	public List<com.tunaweza.core.business.model.user.Role> getUserRoles(long uid) throws UserDoesNotExistException {
 		Session session = (Session) getEntityManager().getDelegate();
 
 		Query query = session.createQuery("SELECT i FROM User i "

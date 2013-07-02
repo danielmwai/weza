@@ -25,13 +25,18 @@
 package com.tunaweza.core.business.service.reports;
 
 import static com.mysema.query.jpa.JPQLGrammar.type;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.Dao.report.ReportDao;
+import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.report.ReportDao;
+import com.tunaweza.core.business.model.module.MonitorModuleBean;
+
 import com.tunaweza.core.business.model.report.Report;
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.course.CourseService;
+import com.tunaweza.core.business.service.student.StudentService;
+import com.tunaweza.core.business.service.user.UserService;
 import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -43,6 +48,18 @@ import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
 import javax.xml.transform.Templates;
+import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
+import net.sf.dynamicreports.report.builder.DynamicReports;
+import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
+import static net.sf.dynamicreports.report.builder.DynamicReports.col;
+import static net.sf.dynamicreports.report.builder.DynamicReports.grp;
+import static net.sf.dynamicreports.report.builder.DynamicReports.report;
+import net.sf.dynamicreports.report.builder.column.TextColumnBuilder;
+import net.sf.dynamicreports.report.builder.datatype.DataTypes;
+import net.sf.dynamicreports.report.builder.group.ColumnGroupBuilder;
+import net.sf.dynamicreports.report.constant.GroupHeaderLayout;
+import net.sf.dynamicreports.report.exception.DRException;
+import net.sf.jasperreports.engine.JRDataSource;
 import org.apache.log4j.Logger;
 import org.hibernate.annotations.Columns;
 import org.hibernate.type.ImageType;
@@ -65,7 +82,7 @@ public class ReportServiceImpl implements ReportService {
 	private StudentService studentService;
 
 	@Autowired
-	private CourseTemplateService courseTemplateService;
+	private CourseService courseService;
 
 	Logger log = Logger.getLogger(getClass());
 
@@ -85,7 +102,7 @@ public class ReportServiceImpl implements ReportService {
 		JasperReportBuilder report = DynamicReports.report();
 		// Create the columns
 		addReportColumns(reportType, reportColumns, report);
-		report.setTemplate(Templates.reportTemplate).setShowColumnTitle(false);
+		report.setTemplate(Templates.report).setShowColumnTitle(false);
 		// Prevent printing of page numbers in csv files
 		if (!reportType.equalsIgnoreCase("csv")) {
 			report.title(cmp.text(reportTitle)).pageFooter(cmp.pageXofY())
@@ -112,7 +129,7 @@ public class ReportServiceImpl implements ReportService {
 					.setTitleWidth(30).setHeaderLayout(GroupHeaderLayout.VALUE)
 					.showColumnHeaderAndFooter();
 
-			report.setTemplate(Templates.reportTemplate)
+			report.setTemplate(Templates.report)
 					.setShowColumnTitle(false)
 					.columns(
 							itemColumn,

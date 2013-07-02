@@ -22,15 +22,15 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.exercise.transaction;
-import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
+package com.tunaweza.core.business.dao.exercise.transaction;
+import com.tunaweza.core.business.Dao.exercise.transaction.ExerciseTransactionTypeDao;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.exercise.transaction.ExerciseTransactionType;
 import java.util.List;
+import static org.h2.util.IOUtils.delete;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

@@ -10,8 +10,9 @@ package com.tunaweza.core.business.dao.mentor;
  * @author Daniel Mwai
  */
 
-import com.tunaweza.core.business.Dao.exceptions.mentor.MentorExistsException;
-import com.tunaweza.core.business.Dao.exceptions.mentor.MentorNotFoundException;
+
+import com.tunaweza.core.business.dao.exceptions.mentor.MentorExistsException;
+import com.tunaweza.core.business.dao.exceptions.mentor.MentorNotFoundException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.topic.Topic;
@@ -54,14 +55,14 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 
 	@Override
 	public Mentor getMentorById(Long mentorId)
-			throws MentorDoesNotExistException {
+			throws MentorNotFoundException {
 		Session session = (Session) getEntityManager().getDelegate();
 
 		Query query = session.createQuery("SELECT i FROM " 
 				+ getDomainClass().getName() + " i WHERE i.id = " + mentorId);
 
 		if (query.list().size() == 0) {
-			throw new MentorDoesNotExistException("Mentor with id " + mentorId
+			throw new MentorNotFoundException("Mentor with id " + mentorId
 					+ " does not exist");
 		}
 
@@ -69,7 +70,7 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 	}
 
 	@Override
-	public Mentor getMentorByUser(User user) throws MentorDoesNotExistException {
+	public Mentor getMentorByUser(User user) throws MentorNotFoundException {
 		Session session = (Session) getEntityManager().getDelegate();
 
 		Query query = session.createQuery("SELECT i FROM "
@@ -77,7 +78,7 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 				+ user.getId());
 
 		if (query.list().size() == 0) {
-			throw new MentorDoesNotExistException("Mentor does not exist");
+			throw new MentorNotFoundException("Mentor does not exist");
 		}
 
 		return (Mentor) query.list().get(0);
@@ -89,7 +90,7 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 		Mentor mentor = null;
 		try {
 			mentor = getMentorById(mentorId);
-		} catch (MentorDoesNotExistException e) {
+		} catch (MentorNotFoundException e) {
 			return new ArrayList<Mentor>();
 		}
 

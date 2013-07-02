@@ -39,5 +39,4 @@ public interface UserCastService {
 	 */
 	
 	public User getUser();
-
 }

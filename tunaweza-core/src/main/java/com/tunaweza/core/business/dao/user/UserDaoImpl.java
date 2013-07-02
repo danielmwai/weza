@@ -25,12 +25,12 @@
 package com.tunaweza.core.business.dao.user;
 
 import antlr.Utils;
-import com.tunaweza.core.business.Dao.exceptions.email.EmailExistsException;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserExistsException;
-import com.tunaweza.core.business.Dao.generic.GenericDaoImpl;
+import com.tunaweza.core.business.dao.exceptions.email.EmailExistsException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleExistsException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
+
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.mentor.Mentor;
@@ -51,7 +51,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.Dao.DataIntegrityViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 /**
@@ -259,45 +258,45 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	}
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<User> findUsersByCompanyId(long companyid)
-			throws CompanyDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
+//	@Override
+//	@SuppressWarnings("unchecked")
+//	public List<User> findUsersByCompanyId(long companyid)
+//			throws CompanyDoesNotExistException {
+//		Session session = (Session) getEntityManager().getDelegate();
+//
+//		Query query = session
+//				.createQuery("SELECT i FROM Company i WHERE i.id = "
+//						+ companyid);
+//
+//		if (query.list().size() == 0) {
+//			throw new CompanyDoesNotExistException("No Company with id "
+//					+ companyid);
+//		}
+//
+//		Company company = (Company) query.list().get(0);
+//		return company.getUsers();
+//
+//	}
 
-		Query query = session
-				.createQuery("SELECT i FROM Company i WHERE i.id = "
-						+ companyid);
-
-		if (query.list().size() == 0) {
-			throw new CompanyDoesNotExistException("No Company with id "
-					+ companyid);
-		}
-
-		Company company = (Company) query.list().get(0);
-		return company.getUsers();
-
-	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<User> findUsersByCompanyName(String companyName)
-			throws CompanyDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
-
-		Query query = session
-				.createQuery("SELECT i FROM Company i WHERE i.name = "
-						+ companyName);
-
-		if (query.list().size() == 0) {
-			throw new CompanyDoesNotExistException("No Company with name "
-					+ companyName);
-		}
-
-		Company company = (Company) query.list().get(0);
-		return company.getUsers();
-
-	}
+//	@Override
+//	@SuppressWarnings("unchecked")
+//	public List<User> findUsersByCompanyName(String companyName)
+//			throws CompanyDoesNotExistException {
+//		Session session = (Session) getEntityManager().getDelegate();
+//
+//		Query query = session
+//				.createQuery("SELECT i FROM Company i WHERE i.name = "
+//						+ companyName);
+//
+//		if (query.list().size() == 0) {
+//			throw new CompanyDoesNotExistException("No Company with name "
+//					+ companyName);
+//		}
+//
+//		Company company = (Company) query.list().get(0);
+//		return company.getUsers();
+//
+//	}
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -885,78 +884,4 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>In the user Dao impl");
 	}
 
-    @Override
-    public List<Role> getUserRoles(long uid) throws UserDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public UserDao setUserRoles(User u, List<Role> roles) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<User> findUsersByRole(Role role) throws UserDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<User> getUserByMentor(Mentor mentor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<User> getUserByUserType(UserType userType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

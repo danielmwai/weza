@@ -24,12 +24,13 @@
 
 package com.tunaweza.core.business.dao.user;
 
-import com.tunaweza.core.business.Dao.exceptions.email.EmailExistsException;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleExistsException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserExistsException;
-import com.tunaweza.core.business.Dao.generic.GenericDao;
+
+import com.tunaweza.core.business.dao.exceptions.email.EmailExistsException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleExistsException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.role.Role;
@@ -413,8 +414,8 @@ public interface UserDao extends GenericDao<User> {
 	 * @param companyid
 	 * @throws CompanyDoesNotExistException
 	 */
-	List<User> findUsersByCompanyId(long companyid)
-			throws CompanyDoesNotExistException;
+//	List<User> findUsersByCompanyId(long companyid)
+//			throws CompanyDoesNotExistException;
 
 	/**
 	 * 
@@ -422,9 +423,9 @@ public interface UserDao extends GenericDao<User> {
 	 * @throws CompanyDoesNotExistException
 	 */
 	
-	List<User> findUsersByCompanyName(String companyName)
-			throws CompanyDoesNotExistException;
-	
+//	List<User> findUsersByCompanyName(String companyName)
+//			throws CompanyDoesNotExistException;
+//	
 	/**
 	 * 
 	 * @param locationId
@@ -443,5 +444,6 @@ public interface UserDao extends GenericDao<User> {
 			throws UserDoesNotExistException;
 	
 	public void print();
+
 
 }

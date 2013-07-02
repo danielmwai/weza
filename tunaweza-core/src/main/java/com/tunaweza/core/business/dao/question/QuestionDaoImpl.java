@@ -23,8 +23,9 @@
  */
 package com.tunaweza.core.business.dao.question;
 
-import com.tunaweza.core.business.Dao.exceptions.question.QuestionDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.question.QuestionExistsException;
+import com.tunaweza.core.business.dao.exceptions.question.QuestionDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.question.QuestionExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.question.Question;
 import java.util.ArrayList;
@@ -33,8 +34,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -83,7 +82,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     public Question findQuestion(Question question)
             throws QuestionDoesNotExistException {
 
-        Question question1 = findById(question.getId());
+        Question question1 = (Question) findById(question.getId());
         if (question1 == null) {
             throw new QuestionDoesNotExistException();
         }
@@ -97,7 +96,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
         Question question1 = null;
         try {
             question1 = findQuestionByTextAndEvaluation(question.getText(),
-                    question.getEvaluationTemplate().getId().toString());
+                    question.getEvaluation().getId().toString());
         } catch (QuestionDoesNotExistException e) {
             // e.printStackTrace();
         }
@@ -123,7 +122,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
 
     }
 
-    @Override
+    
     public List<Question> getAllQuestionsBy(Long evaluationTemplateId) {
         Session session = (Session) getEntityManager().getDelegate();
 
@@ -310,7 +309,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
      * int, int, java.lang.String)
      */
     @SuppressWarnings("unchecked")
-    @Override
+    
     public List<Question> getPaginatedQuestionsByAndText(
             long evaluationTemplateId, int startIndex, int pageSize,
             String searchString) {
@@ -356,7 +355,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
         return (List<Question>) query.list();
     }
 
-    @Override
+    
     public int getNumberOfQuestionsByAndText(long evaluationTemplateId,
             String text) {
         Session session = (Session) getEntityManager().getDelegate();
@@ -395,37 +394,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     }
 
     @Override
-    public Question findQuestion(Question question) throws QuestionDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Question addQuestion(Question question) throws QuestionExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Question> getAllQuestions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateQuestion(Question question) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Question> getAllQuestionsByTemplate(Long evaluationTemplateId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Question> getQuestionsByTopic(long topicId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Question> getPaginatedQuestionsByTopic(int startIndex, int pageSize, long topicId, String text) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -440,77 +409,12 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     }
 
     @Override
-    public List<Question> getPaginatedQuestionsInNotAssociatedWithTopic(int startIndex, int pageSize, Long Id, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Question> getQuestionsByAndText(long evaluationId, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Question> getPaginatedQuestionsByTemplateAndText(long evaluationTemplateId, int startIndex, int pageSize, String searchString) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public int getNumberOfQuestionsByTemplateAndText(long evaluationTemplateId, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Question> getQuestionsByTopicAndText(long topicId, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

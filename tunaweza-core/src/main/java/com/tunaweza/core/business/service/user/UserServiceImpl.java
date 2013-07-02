@@ -24,16 +24,20 @@
 
 package com.tunaweza.core.business.service.user;
 
-import com.tunaweza.core.business.Dao.exceptions.email.EmailExistsException;
-import com.tunaweza.core.business.Dao.exceptions.role.RoleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserExistsException;
-import com.tunaweza.core.business.Dao.group.GroupDao;
+
+import com.tunaweza.core.business.dao.exceptions.email.EmailExistsException;
+import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
+import com.tunaweza.core.business.dao.group.GroupDao;
+import com.tunaweza.core.business.dao.user.UserDao;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.dbswitcher.DbSwitcherHelper;
+import com.tunaweza.core.business.service.mail.MailService;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;

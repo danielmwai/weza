@@ -64,7 +64,7 @@ public class Promocode extends AbstractPersistentEntity {
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="License_id")
-	private License license;
+	
 	
 	@Column(name="dissociate_id",nullable=false)
 	private long dissociatedid;
