@@ -22,52 +22,33 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.promotioncodes;
+package com.tunaweza.core.business.utils;
 
-import com.tunaweza.core.business.dao.exceptions.promocode.PromocodeDoesNotExistException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
-import com.tunaweza.core.business.model.promotioncodes.Promocode;
-
-import java.util.List;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import static com.tunaweza.core.business.utils.Constants.DBConfig;
+import static com.tunaweza.core.business.utils.Constants.EVAL_CURRENTLY_LOGGED_IN;
+import static com.tunaweza.core.business.utils.Constants.EVAL_CURRENTLY_TESTING;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-
-@Repository("promocodeDao")
-@Transactional
-public class PromocodeDaoImpl extends GenericDaoImpl<Promocode> implements PromocodeDao{
-	
-	
-	
-	@Override
-	public Promocode findPromocodeById(long id) throws PromocodeDoesNotExistException{
-		
-		Promocode promocode = (Promocode) findById(id);
-		if(promocode!=null){
-		} else {
-                throw new PromocodeDoesNotExistException();
-            }
-		return promocode;
-	}
-	
-	@Override
-	public Promocode savePromocode(Promocode promocode) {
-		Promocode prcode = null;
-		prcode = saveOrUpdate(promocode);
-		return prcode;
-	}
-	
-	@Override
-	public List<Promocode> getallPromocodes() {
-		return findAll();
-	}
-
+public class SessionHelper {
+ public static void evalSessionAttribRole(HttpServletRequest request, String role){
+	  request.getSession(true).setAttribute(EVAL_CURRENTLY_TESTING,role);
+  }
+  
+  public static void evalCurrLoggedInAttribRole(HttpServletRequest request, String flag){
+	  request.getSession(true).setAttribute(EVAL_CURRENTLY_LOGGED_IN, flag);
+  }
+  
+  public static String getSessionAttribRole(HttpServletRequest request){
+	 return (String)request.getSession(true).getAttribute(EVAL_CURRENTLY_TESTING);
+	 
+  } 
+  public static void setSessionAttribDbConfig(HttpServletRequest request,Object dbConfig){
+		 request.getSession(true).setAttribute(DBConfig,dbConfig);
+		 
+	  } 
 }
-

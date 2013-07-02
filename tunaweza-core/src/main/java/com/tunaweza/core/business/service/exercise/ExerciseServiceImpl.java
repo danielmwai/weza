@@ -26,8 +26,8 @@ package com.tunaweza.core.business.service.exercise;
 
 
 
-import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
 import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
 import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.exercise.StudentExerciseDao;
 import com.tunaweza.core.business.dao.module.ModuleDao;
@@ -72,7 +72,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 	
 	@Override
 	public List<ExerciseBean> getStudentExerciseByModule(String userId,
-			String moduleId) throws StudentExerciseNotFoundException, NumberFormatException, UserDoesNotExistException, ModuleDoesNotExistException {
+			String moduleId) throws StudentExerciseExistsException, NumberFormatException, UserDoesNotExistException, ModuleDoesNotExistException {
 		
 		User user = userDao.findUserById(Long.valueOf(userId));
 		Module module = moduleDao.findModuleById(Long.valueOf(moduleId));

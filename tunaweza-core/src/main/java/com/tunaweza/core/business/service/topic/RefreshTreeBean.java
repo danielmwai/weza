@@ -22,52 +22,37 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.promotioncodes;
+package com.tunaweza.core.business.service.topic;
 
-import com.tunaweza.core.business.dao.exceptions.promocode.PromocodeDoesNotExistException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
-import com.tunaweza.core.business.model.promotioncodes.Promocode;
-
-import java.util.List;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import com.tunaweza.core.business.model.status.Status;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+class RefreshTreeBean {
 
-@Repository("promocodeDao")
-@Transactional
-public class PromocodeDaoImpl extends GenericDaoImpl<Promocode> implements PromocodeDao{
+	private long topicId;
 	
-	
-	
-	@Override
-	public Promocode findPromocodeById(long id) throws PromocodeDoesNotExistException{
-		
-		Promocode promocode = (Promocode) findById(id);
-		if(promocode!=null){
-		} else {
-                throw new PromocodeDoesNotExistException();
-            }
-		return promocode;
-	}
-	
-	@Override
-	public Promocode savePromocode(Promocode promocode) {
-		Promocode prcode = null;
-		prcode = saveOrUpdate(promocode);
-		return prcode;
-	}
-	
-	@Override
-	public List<Promocode> getallPromocodes() {
-		return findAll();
+	private Status status;
+
+	public long getTopicId() {
+		return topicId;
 	}
 
+	public void setTopicId(long topicId) {
+		this.topicId = topicId;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	
+	
 }
-

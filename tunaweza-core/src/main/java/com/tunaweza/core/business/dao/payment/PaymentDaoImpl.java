@@ -38,7 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository(value = "PaymentDao")
 @Transactional
-public class PaymentImpl extends GenericDaoImpl<PaymentDetails> implements
+public class PaymentDaoImpl extends GenericDaoImpl<PaymentDetails> implements
 		PaymentDao {
 
 	/*

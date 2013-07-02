@@ -215,7 +215,7 @@ public class Student extends AbstractPersistentEntity {
 		return courseList;
 	}
 
-	public void setCourseTemplateList(
+	public void setCourseList(
 			List<EmbeddableCourse> courseList) {
 		this.courseList = courseList;
 	}

@@ -184,5 +184,5 @@ public interface StudentDao extends GenericDao<Student> {
 			throws StudentDoesNotExistException;
 	
 	//////////////////
-	public List<BigInteger> getStudentCourseTemplateList(Long studentId, String companyDbName);
+	public List<BigInteger> getStudentCourseList(Long studentId, String companyDbName);
 }

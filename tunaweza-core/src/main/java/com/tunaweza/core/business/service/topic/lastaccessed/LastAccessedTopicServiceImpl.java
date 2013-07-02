@@ -23,17 +23,24 @@
  */
 
 package com.tunaweza.core.business.service.topic.lastaccessed;
-import com.tunaweza.core.business.Dao.exceptions.accessed.LastAccessedTopicException;
-import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
-import com.tunaweza.core.business.Dao.lastaccessed.LastAccessedTopicDao;
+
+import com.tunaweza.core.business.dao.exceptions.accessed.LastAccessedTopicException;
+import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicNotFoundExistException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.lastaccessed.LastAccessedTopicDao;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
+import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicPK;
 import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.module.ModuleService;
 import com.tunaweza.core.business.service.topic.TopicService;
+import com.tunaweza.core.business.service.user.UserService;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -94,7 +101,7 @@ public class LastAccessedTopicServiceImpl implements LastAccessedTopicService
 		}
 		else
 		{
-			LastAccessedTopic lastAccessedTopicPK = new LastAccessedTopic();
+			LastAccessedTopicPK lastAccessedTopicPK = new LastAccessedTopicPK();
 			lastAccessedTopicPK.setModule(module);
 			lastAccessedTopicPK.setUser(user);
 
@@ -133,12 +140,15 @@ public class LastAccessedTopicServiceImpl implements LastAccessedTopicService
 					"Could not save last accessed topic as User with id "
 							+ userId + " does not exist.");
 		}
-		catch (TopicDoesNotExistException e)
+		catch (TopicNotFoundExistException e)
 		{
+                      Logger.getLogger(LastAccessedTopicServiceImpl.class.getName()).log(Level.SEVERE, null, e);
 			throw new LastAccessedTopicException(
 					"Could not save last accessed topic as Topic with id "
-							+ topicId + " does not exist.");
-		}
+							+ topicId + " does not exist."); }
+//		} catch (TopicNotFoundExistException ex) {
+//                Logger.getLogger(LastAccessedTopicServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+//            }
 	}
 
 	/*

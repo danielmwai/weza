@@ -32,12 +32,15 @@ import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
 import com.tunaweza.core.business.dao.group.GroupDao;
 import com.tunaweza.core.business.dao.user.UserDao;
+import com.tunaweza.core.business.model.course.EmbeddableCourse;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.course.CourseService;
 import com.tunaweza.core.business.service.dbswitcher.DbSwitcherHelper;
 import com.tunaweza.core.business.service.mail.MailService;
+import com.tunaweza.core.business.service.student.StudentService;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,13 +76,13 @@ public class UserServiceImpl implements UserService {
 	StudentService studentService;
 
 	@Autowired
-	CourseTemplateService courseTemplateService;
+	CourseService courseTemplateService;
 	
 	@Autowired
 	private DbSwitcherHelper dbSwitcherHelper;
 	
-	@Autowired
-	private CompanyService companyService;
+//	@Autowired
+//	private CompanyService companyService;
 
 	private Random rgen = new Random();
 	private byte decision, numValue;
@@ -106,6 +109,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#addUser(com.jjpeople
 	 * .jjteach.orm.entities.user.User)
 	 */
+        @Override
 	public User addUser(User user) throws UserExistsException,
 			EmailExistsException, RoleDoesNotExistException {
 		return userDao.addUser(user);
@@ -127,6 +131,7 @@ public class UserServiceImpl implements UserService {
 	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
 	 * java.lang.String, java.lang.String, java.lang.String)
 	 */
+        @Override
 	public User updateUser(long id, String firstName, String lastName,
 			String email, String password, String modStartDate,
 			String locationId, String currentModId)
@@ -141,6 +146,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#updateUser(com.jjpeople
 	 * . jjteach.orm.entities.user.User)
 	 */
+        @Override
 	public User updateUser(User user) throws UserDoesNotExistException {
 		return userDao.saveOrUpdate(user);
 	}
@@ -158,6 +164,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#enableUser(java.lang
 	 * .String)
 	 */
+        @Override
 	public boolean enableUser(String userId) throws UserDoesNotExistException {
 		long uId = -1;
 
@@ -189,6 +196,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#disableUser(java.
 	 * lang.String )
 	 */
+        @Override
 	public boolean disableUser(String userId) throws UserDoesNotExistException {
 		long uId = -1;
 
@@ -220,6 +228,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#getUserByUsername
 	 * (java.lang .String)
 	 */
+        @Override
 	public User getUserByUsername(String username)
 			throws UserDoesNotExistException {
 		return userDao.findUser(username);
@@ -231,6 +240,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#getUserByEmail(java
 	 * .lang .String)
 	 */
+        @Override
 	public User getUserByEmail(String email) throws UserDoesNotExistException {
 		User user = userDao.findUserByEmail(email);
 
@@ -722,20 +732,20 @@ public class UserServiceImpl implements UserService {
 	 * (companyId)
 	 */
 	
-	public List<User> getUsersByCompanyId(long companyId) throws CompanyDoesNotExistException {
-		return userDao.findUsersByCompanyId(companyId);
-	}
-	
+//	public List<User> getUsersByCompanyId(long companyId) throws CompanyDoesNotExistException {
+//		return userDao.findUsersByCompanyId(companyId);
+//	}
+//	
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see com.jjpeople.jjteach.web.service.UserService#getUsersByCompanyName
 	 * (companyName)
 	 */
-	
-	public List<User> getUsersByCompanyName(String companyName) throws CompanyDoesNotExistException {
-		return userDao.findUsersByCompanyName(companyName);
-	}
+//	
+//	public List<User> getUsersByCompanyName(String companyName) throws CompanyDoesNotExistException {
+//		return userDao.findUsersByCompanyName(companyName);
+//	}
 
 	/*
 	 * (non-Javadoc)
@@ -744,7 +754,7 @@ public class UserServiceImpl implements UserService {
 	 * isEnabledAndHasCourseTemplate
 	 * (com.jjpeople.jjteach.orm.entities.user.User)
 	 */
-	public boolean isEnabledAndHasCourseTemplate(User user) {
+	public boolean isEnabledAndHasCourse(User user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -869,36 +879,36 @@ public class UserServiceImpl implements UserService {
 	public void enableDisable(String userId)throws UserDoesNotExistException, Exception {
 		long uId = Long.valueOf(userId);
 		User user = userDao.findById(uId);
-		Company instanceUserCompany = companyService.findCompanyById(user.getUserCompany().getId());
-		
-		int enabled = 0;
-		Connection con = dbSwitcherHelper.dbSwitcher(instanceUserCompany.getDbaseName(), 
-				instanceUserCompany.getDbUserName(), instanceUserCompany.getDbPassword());
-		
-		
-		if (user.getEnabled() == 1){
-			enabled =0;
-		}
-		else{
-			enabled =1;
-		}
-		userDao.jdbcUpdateUser(con,"enabled",enabled, userId);
-		
+//		Company instanceUserCompany = companyService.findCompanyById(user.getUserCompany().getId());
+//		
+//		int enabled = 0;
+//		Connection con = dbSwitcherHelper.dbSwitcher(instanceUserCompany.getDbaseName(), 
+//				instanceUserCompany.getDbUserName(), instanceUserCompany.getDbPassword());
+//		
+//		
+//		if (user.getEnabled() == 1){
+//			enabled =0;
+//		}
+//		else{
+//			enabled =1;
+//		}
+//		userDao.jdbcUpdateUser(con,"enabled",enabled, userId);
+//		
 			
 		
 	}
 	
 
 	@Override
-	public List<EmbeddableCourseTemplate> getUserCourseTemplate(long userId) {
+	public List<EmbeddableCourse> getUserCourse(long userId) {
 		User user = userDao.findById(userId);
-		List<EmbeddableCourseTemplate> courseTemplateList = user.getStudent()
-				.getCourseTemplateList();
-		return courseTemplateList;
+		List<EmbeddableCourse> courseList = user.getStudent()
+				.getCourseList();
+		return courseList;
 	}
 
-	@Override
-	public User setUserCourseTemplate(long userId, List<EmbeddableCourseTemplate> courseTemplateList) {
+	
+	public User setUserCourse(long userId, List<EmbeddableCourse> courseList) {
 		User user = userDao.findById(userId);
 		
 		System.out.print(user.getStudent());
@@ -906,7 +916,7 @@ public class UserServiceImpl implements UserService {
 		Student student = null;
 		try{
 		student = studentService.getStudentByUser(user);
-		student.setCourseTemplateList(courseTemplateList);
+		student.setCourseList(courseList);
 		}catch(StudentDoesNotExistException se){
 			se.printStackTrace();
 		}

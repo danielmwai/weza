@@ -24,20 +24,29 @@
 
 package com.tunaweza.core.business.service.topic;
 
-import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicNotFoundExistException;
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicExistsException;
-import com.tunaweza.core.business.Dao.file.FileDao;
-import com.tunaweza.core.business.Dao.topic.TopicDao;
+
+import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicExistsException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicNotFoundExistException;
+import com.tunaweza.core.business.dao.file.FileDao;
+import com.tunaweza.core.business.dao.topic.TopicDao;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.file.File;
 import com.tunaweza.core.business.model.module.Module;
-import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.status.Status;
+import com.tunaweza.core.business.model.topic.AddTopicBean;
+import com.tunaweza.core.business.model.topic.EditTopicBean;
+import com.tunaweza.core.business.model.topic.ListOfTopicBean;
+import com.tunaweza.core.business.model.topic.ListTopicBean;
 import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.topic.TopicBean;
 import com.tunaweza.core.business.model.topic.TopicText;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.service.module.ModuleService;
+import com.tunaweza.core.business.service.solution.SolutionService;
+import com.tunaweza.core.business.service.user.UserCastService;
+import static com.tunaweza.core.business.utils.SessionHelper.getSessionAttribRole;
 import java.math.BigInteger;
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -78,9 +87,9 @@ public class TopicServiceImpl implements TopicService {
 
 	@Autowired
 	UserCastService userCastService;
-
-	@Autowired
-	CompanyService companyService;
+//
+//	@Autowired
+//	CompanyService companyService;
 
 	@Autowired
 	ModuleService moduleService;
@@ -265,9 +274,9 @@ public class TopicServiceImpl implements TopicService {
 		List<Topic> topLeveltopics = topicDao
 				.getAllTopicsDirectChildOfModule(moduleId);
 		if (topLeveltopics != null) {
-			List<Role> roles = user.getRoles();
+			List<com.tunaweza.core.business.model.user.Role> roles = user.getRoles();
 			List<TopicBean> topics = new ArrayList<TopicBean>();
-			for (Role role : roles) {
+			for (com.tunaweza.core.business.model.user.Role role : roles) {
 				if (role.getRoleName().equals("ROLE_STUDENT")) {
 					topics = this.populate(topLeveltopics, user.getStudent()
 							.getCompletedTopics(), user);
@@ -670,22 +679,22 @@ public class TopicServiceImpl implements TopicService {
 		int maxLevel = topicDao.getMaxLevelByModule(moduleId);
 		List<ListTopicBean> list = new ArrayList<ListTopicBean>();
 
-		CompanySettings companySettings = null;
+		//CompanySettings companySettings = null;
 		boolean mentoring_c = true;
 		boolean mentoring_m = true;
 		try {
-			Company company = companyService.findCompanyByEmail(userCastService
-					.getUser().getEmail());
+//			Company company = companyService.findCompanyByEmail(userCastService
+//					.getUser().getEmail());
 
-			companySettings = company.getCompanySettings();
-			if (companySettings != null) {
-				mentoring_c = companySettings.getMentoring();
-			}
+//			companySettings = company.getCompanySettings();
+//			if (companySettings != null) {
+//				mentoring_c = companySettings.getMentoring();
+			//}
 			Module module = moduleService.getModuleById(moduleId);
 			mentoring_m = module.isMentoring();
 
-		} catch (CompanyDoesNotExistException e1) {
-			e1.printStackTrace();
+//		} catch (CompanyDoesNotExistException e1) {
+//			e1.printStackTrace();
 		} catch (ModuleDoesNotExistException e1) {
 			e1.printStackTrace();
 		}

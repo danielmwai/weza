@@ -24,9 +24,8 @@
 
 package com.tunaweza.core.business.dao.exercise;
 
-import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseExistsException;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
-import com.tunaweza.core.business.Dao.generic.GenericDao;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
+import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
@@ -44,36 +43,36 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 	 * 
 	 * @param id
 	 * @return <code>StudentExercise</code>
-	 * @throws StudentExerciseNotFoundException
+	 * @throws StudentExerciseExistsException
 	 */
 	public StudentExercise findStudentExerciseById(Long id) 
-			throws StudentExerciseNotFoundException;
+			throws StudentExerciseExistsException;
 	
 	/**
 	 * 
 	 * @param user
 	 * @return List of <code>StudentExercise</code>
-	 * @throws StudentExerciseNotFoundException
+	 * @throws StudentExerciseExistsException
 	 */
 	public List<StudentExercise> getAllStudentExerciseByStudent(User user) 
-			throws StudentExerciseNotFoundException;
+			throws StudentExerciseExistsException;
 	
 	/**
 	 * 
 	 * @return List of <code>StudentExercise</code>
-	 * @throws StudentExerciseNotFoundException
+	 * @throws StudentExerciseExistsException
 	 */
 	public List<StudentExercise> getAllStudentExercise() 
-			throws StudentExerciseNotFoundException;
+			throws StudentExerciseExistsException;
 	
 	/**
 	 * 
 	 * @param topic
 	 * @return List of <code>StudentExercise</code>
-	 * @throws StudentExerciseNotFoundException
+	 * @throws StudentExerciseExistsException
 	 */
 	public List<StudentExercise> findStudentExerciseByTopic(Topic topic) 
-			throws StudentExerciseNotFoundException;
+			throws StudentExerciseExistsException;
 	
 	/**
 	 * 
@@ -87,11 +86,11 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 	/**
 	 * 
 	 * @param studentExercise
-	 * @throws StudentExerciseNotFoundException
+	 * @throws StudentExerciseExistsException
 	 * 
 	 */
 	public void updateStudentExercise(StudentExercise studentExercise) 
-			throws StudentExerciseNotFoundException;
+			throws StudentExerciseExistsException;
 	
 	/**
 	 * 
@@ -113,6 +112,6 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 				Topic exercise);
 	
 	public List<List> getAllStudentExerciseByModule(User user, Module module)
-			throws StudentExerciseNotFoundException;
+			throws StudentExerciseExistsException;
 	
 }

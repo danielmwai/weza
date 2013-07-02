@@ -22,52 +22,30 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.promotioncodes;
+package com.tunaweza.core.business.dao.payment;
 
-import com.tunaweza.core.business.dao.exceptions.promocode.PromocodeDoesNotExistException;
-import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
-import com.tunaweza.core.business.model.promotioncodes.Promocode;
-
-import java.util.List;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import com.tunaweza.core.business.dao.generic.GenericDao;
+import com.tunaweza.core.business.model.payment.PaymentDetails;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-
-@Repository("promocodeDao")
-@Transactional
-public class PromocodeDaoImpl extends GenericDaoImpl<Promocode> implements PromocodeDao{
+public interface PaymentDao extends GenericDao <PaymentDetails> {
 	
+	/**
+	 * 
+	 * @param paymentDetails
+	 * @return
+	 */
+	public void savePaymentDetails(PaymentDetails paymentDetails);
 	
-	
-	@Override
-	public Promocode findPromocodeById(long id) throws PromocodeDoesNotExistException{
-		
-		Promocode promocode = (Promocode) findById(id);
-		if(promocode!=null){
-		} else {
-                throw new PromocodeDoesNotExistException();
-            }
-		return promocode;
-	}
-	
-	@Override
-	public Promocode savePromocode(Promocode promocode) {
-		Promocode prcode = null;
-		prcode = saveOrUpdate(promocode);
-		return prcode;
-	}
-	
-	@Override
-	public List<Promocode> getallPromocodes() {
-		return findAll();
-	}
+	/**
+	 * 
+	 * @param paymentDetails
+	 * @return
+	 */
+	public String getTransactionId(PaymentDetails paymentDetails);
 
 }
-

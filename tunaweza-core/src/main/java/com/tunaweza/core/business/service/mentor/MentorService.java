@@ -24,8 +24,9 @@
 
 package com.tunaweza.core.business.service.mentor;
 
-import com.tunaweza.core.business.Dao.exceptions.mentor.MentorNotFoundException;
-import com.tunaweza.core.business.Dao.exceptions.mentor.MentorExistsException;
+
+import com.tunaweza.core.business.dao.exceptions.mentor.MentorExistsException;
+import com.tunaweza.core.business.dao.exceptions.mentor.MentorNotFoundException;
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.User;

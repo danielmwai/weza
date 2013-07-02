@@ -618,7 +618,7 @@ public interface UserService {
 	 * @return <code>true</code> if the <code>User</code> is enabled and has a
 	 *         course template. Otherwise returns <code>false</code>.
 	 */
-	public boolean isEnabledAndHasCourseTemplate(User user);
+	public boolean isEnabledAndHasCourse(User user);
 
 	/**
 	 * Checks if the email exists in the user database
@@ -657,7 +657,7 @@ public interface UserService {
 	
 	public int getNextRegistrationNumber();
 
-	User setUserCourseTemplate(long userId,
+	User setUserCourse(long userId,
 			List<EmbeddableCourse> courseTemplateList);
 	
 	public void deletePreviousUsername(String oldUsername, String role);

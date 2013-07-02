@@ -24,6 +24,16 @@
 
 package com.tunaweza.core.business.service.payment;
 
+import com.tunaweza.core.business.dao.payment.PaymentDao;
+import com.tunaweza.core.business.model.payment.PaymentDetails;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Map;
+import javax.mail.internet.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -68,12 +78,12 @@ public class PaymentImplService  implements PaymentService {
 			paymentDetails.setPayerFirstName(params.get("first_name"));
 			paymentDetails.setPayerLastName(params.get("last_name"));
 			paymentDetails.setPayerId(params.get("payer_id"));
-			try {
-				paymentDetails.setPaymentDate(formatter.parse(params.get("payment_date")));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				paymentDetails.setPaymentDate(formatter.parse(params.get("payment_date")));
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 			String txnId = PaymentDao.getTransactionId(paymentDetails);
 			
@@ -83,27 +93,28 @@ public class PaymentImplService  implements PaymentService {
 				PaymentDao.savePaymentDetails(paymentDetails);
 			}
 			
-//			License license = new License();
-			try {
-				license = licenseDao.findLicenseById(Long.parseLong(paymentDetails.getLicenseId()));
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (LicenseDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			if (license.getCost().toString() == paymentDetails.getAmount() && params.get("business") == BUSINESS_EMAIL) {
-				return "SUCCESS";
-			}
-			else {
-				return "FAILED";
-			}
-		}
-		else {
+////			License license = new License();
+//			try {
+//				license = licenseDao.findLicenseById(Long.parseLong(paymentDetails.getLicenseId()));
+//			} catch (NumberFormatException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (LicenseDoesNotExistException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//			if (license.getCost().toString() == paymentDetails.getAmount() && params.get("business") == BUSINESS_EMAIL) {
+//				return "SUCCESS";
+//			}
+//			else {
+//				return "FAILED";
+//			}
+		//}
+		//else {
 			return "NOT_COMPLETED";
 		}
+            return "NOT_COMPLETED";
 
 	}
 

@@ -30,6 +30,7 @@ import com.tunaweza.core.business.dao.exceptions.topic.TopicNotFoundExistExcepti
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.status.Status;
 import com.tunaweza.core.business.model.topic.AddTopicBean;
+import com.tunaweza.core.business.model.topic.EditTopicBean;
 import com.tunaweza.core.business.model.topic.ListOfTopicBean;
 import com.tunaweza.core.business.model.topic.ListTopicBean;
 import com.tunaweza.core.business.model.topic.Topic;

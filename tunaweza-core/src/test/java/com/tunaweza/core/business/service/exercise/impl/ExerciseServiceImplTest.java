@@ -24,7 +24,7 @@
 package com.tunaweza.core.business.service.exercise.impl;
 
 import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
+import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseExistsException;
 import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.service.exercise.ExerciseBean;
 import com.tunaweza.core.business.service.exercise.ExerciseService;
@@ -87,8 +87,8 @@ public class ExerciseServiceImplTest {
 
         } catch (NumberFormatException e) {
             fail("getStudentExerciseByModule failed: NumberFormatException");
-        } catch (StudentExerciseNotFoundException e) {
-            fail("getStudentExerciseByModule failed: StudentExerciseNotFoundException");
+        } catch (StudentExerciseExistsException e) {
+            fail("getStudentExerciseByModule failed: StudentExerciseExistsException");
         } catch (UserDoesNotExistException e) {
             fail("getStudentExerciseByModule failed :UserDoesNotExistException");
         } catch (ModuleDoesNotExistException e) {

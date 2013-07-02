@@ -200,11 +200,11 @@ public class Module extends AbstractPersistentEntity implements
 		this.Mentors = Mentors;
 	}
 
-	public Evaluation getEvaluationTemplate() {
+	public Evaluation getEvaluation() {
 		return evaluationTemplate;
 	}
 
-	public void setEvaluationTemplate(Evaluation evaluationTemplate) {
+	public void setEvaluation(Evaluation evaluationTemplate) {
 		this.evaluationTemplate = evaluationTemplate;
 	}
 

@@ -96,7 +96,7 @@ public interface EvaluationDao extends GenericDao<Evaluation> {
 	public Evaluation getEvaluationByModule(long moduleId)
 			throws EvaluationDoesNotExistException;
 	
-	public Evaluation getEvaluationTemplateByModuleNoSession(long moduleId, String companyDBName) throws EvaluationDoesNotExistException;
+	public Evaluation getEvaluationByModuleNoSession(long moduleId, String companyDBName) throws EvaluationDoesNotExistException;
 
 	
 }

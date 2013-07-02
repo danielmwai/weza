@@ -24,7 +24,7 @@
 
 package com.tunaweza.core.business.service.topic.lastaccessed;
 
-import com.tunaweza.core.business.Dao.exceptions.accessed.LastAccessedTopicException;
+import com.tunaweza.core.business.dao.exceptions.accessed.LastAccessedTopicException;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.User;

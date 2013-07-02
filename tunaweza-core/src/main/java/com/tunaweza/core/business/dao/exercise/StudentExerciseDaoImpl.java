@@ -25,7 +25,6 @@
 package com.tunaweza.core.business.dao.exercise;
 
 import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
-import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseNotFoundException;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
@@ -37,22 +36,22 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 public class StudentExerciseDaoImpl implements StudentExerciseDao {
 
     @Override
-    public StudentExercise findStudentExerciseById(Long id) throws StudentExerciseNotFoundException {
+    public StudentExercise findStudentExerciseById(Long id) throws StudentExerciseExistsException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<StudentExercise> getAllStudentExerciseByStudent(User user) throws StudentExerciseNotFoundException {
+    public List<StudentExercise> getAllStudentExerciseByStudent(User user) throws StudentExerciseExistsException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<StudentExercise> getAllStudentExercise() throws StudentExerciseNotFoundException {
+    public List<StudentExercise> getAllStudentExercise() throws StudentExerciseExistsException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<StudentExercise> findStudentExerciseByTopic(Topic topic) throws StudentExerciseNotFoundException {
+    public List<StudentExercise> findStudentExerciseByTopic(Topic topic) throws StudentExerciseExistsException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -62,7 +61,7 @@ public class StudentExerciseDaoImpl implements StudentExerciseDao {
     }
 
     @Override
-    public void updateStudentExercise(StudentExercise studentExercise) throws StudentExerciseNotFoundException {
+    public void updateStudentExercise(StudentExercise studentExercise) throws StudentExerciseExistsException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -77,7 +76,7 @@ public class StudentExerciseDaoImpl implements StudentExerciseDao {
     }
 
     @Override
-    public List<List> getAllStudentExerciseByModule(User user, Module module) throws StudentExerciseNotFoundException {
+    public List<List> getAllStudentExerciseByModule(User user, Module module) throws StudentExerciseExistsException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

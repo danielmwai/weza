@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.exceptions.student;
+package com.tunaweza.core.business.dao.exceptions.student;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -35,7 +35,7 @@ public class StudentExerciseNotFoundException extends Exception
 	
 	/**
 	 * Constructs a new
-	 * <code>StudentExerciseNotFoundException<code> exception with <code>String</code>
+	 * <code>StudentExerciseExistsException<code> exception with <code>String</code>
 	 * message as its detail message
 	 * 
 	 * @param <code>String</code> message to display when the exception is
@@ -49,7 +49,7 @@ public class StudentExerciseNotFoundException extends Exception
 	
 	/**
 	 * Constructs a new
-	 * <code>StudentExerciseNotFoundException<code> exception with no detail message
+	 * <code>StudentExerciseExistsException<code> exception with no detail message
 	 */
 	public StudentExerciseNotFoundException()
 	{

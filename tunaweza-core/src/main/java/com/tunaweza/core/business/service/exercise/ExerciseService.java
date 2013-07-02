@@ -24,8 +24,8 @@
 
 package com.tunaweza.core.business.service.exercise;
 
-import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseNotFoundException;
 import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
 import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import java.util.List;
 
@@ -41,12 +41,12 @@ public interface ExerciseService {
 	 * @param user The student
 	 * @param module The module
 	 * @return StudentExercise List
-	 * @throws StudentExerciseNotFoundException 
+	 * @throws StudentExerciseExistsException 
 	 * @throws UserDoesNotExistException 
 	 * @throws NumberFormatException 
 	 * @throws ModuleDoesNotExistException 
 	 */
 	
-	public List<ExerciseBean> getStudentExerciseByModule(String userId,String moduleId) throws StudentExerciseNotFoundException, NumberFormatException, UserDoesNotExistException, ModuleDoesNotExistException;
+	public List<ExerciseBean> getStudentExerciseByModule(String userId,String moduleId) throws StudentExerciseExistsException, NumberFormatException, UserDoesNotExistException, ModuleDoesNotExistException;
 	
 }

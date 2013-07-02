@@ -87,13 +87,13 @@ public class StudentServiceImpl implements StudentService {
 	ModuleService moduleService;
 
 	@Autowired
-	CourseService courseTemplateService;
+	CourseService courseService;
 	
 	@Autowired
 	CourseDao courseTemplateDao;
 
 	@Autowired
-	EvaluationService evaluationTemplateService;
+	EvaluationService evaluationService;
 	
 	@Autowired
 	EvaluationDao evaluationTemplateDAO;
@@ -151,15 +151,15 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Map<MonitorCourseTemplateBean, List<MonitorModuleBean>> getStudentModuleStatistics(
-			Student student, List<CourseTemplate> courseTemplateList)
+	public Map<MonitorCourseBean, List<MonitorModuleBean>> getStudentModuleStatistics(
+			Student student, List<Course> courseList)
 			throws Exception {
 		User user = student.getUser();
 		/*
 		 * Map to be returned to the view having a CourseTemplate name as the
 		 * key and a list of modules in that CourseTemplate as the value.
 		 */
-		Map<MonitorCourseTemplateBean, List<MonitorModuleBean>> moduleMap = new LinkedHashMap<MonitorCourseTemplateBean, List<MonitorModuleBean>>();
+		Map<MonitorCourseBean, List<MonitorModuleBean>> moduleMap = new LinkedHashMap<MonitorCourseBean, List<MonitorModuleBean>>();
 
 		/*
 		 * *********************************************************************
@@ -238,22 +238,22 @@ public class StudentServiceImpl implements StudentService {
 		 * avoid duplication of modules across course templates.
 		 */
 		List<Module> addedModules = new ArrayList<Module>();
-		if (courseTemplateList.size() == 0) {
+		if (courseList.size() == 0) {
 			return null;
 		} else {
 
-			for (CourseTemplate courseTemplate : courseTemplateList) {
-				logger.info("COURSE TEMPLATE: " + courseTemplate.getName());
+			for (Course course : courseList) {
+				logger.info("COURSE TEMPLATE: " + course.getName());
 
 				// List of Beans for our data
 				List<MonitorModuleBean> modules = new ArrayList<MonitorModuleBean>();
 				List<Module> repeatedModules = new ArrayList<Module>();
 
-				List<Module> courseTemplateModules = courseTemplateService
-						.getModulesInCourseTemplate(courseTemplate);
+				List<Module> courseModules = courseService
+						.getModulesInCourse(course);
 
-				if (courseTemplateModules.size() > 0) {
-					for (Module module : courseTemplateModules) {
+				if (courseModules.size() > 0) {
+					for (Module module : courseModules) {
 						if (addedModules.contains(module)) {
 							repeatedModules.add(module);
 						} else {
@@ -537,7 +537,7 @@ public class StudentServiceImpl implements StudentService {
 
 			// set enabled modules for the students according to prerequisites.
 			// enable modules for only the courses that have been enabled
-			enableStudentModules(student, courseTemplateList);
+			enableStudentModules(student, courseList);
 			/*
 			 * Get the student's enabled module(s)
 			 */
@@ -663,7 +663,7 @@ public class StudentServiceImpl implements StudentService {
 							logger.error("STUDENTSERVICE: ", e);
 						}
 						if (attempt == null || !attempt.isCompleted())
-							courseTemplate
+							course
 									.setStatus(Status.COURSE_AWAITING_EVALUATION);
 					}
 					courseModules.removeAll(repeatedModules);
@@ -704,10 +704,10 @@ public class StudentServiceImpl implements StudentService {
 			 * Get the EmbeddableModule List of that course template
 			 */
 
-			Course course = courseTemplateService
-					.findCourseTemplateById(courseTemplateId.longValue());
+			Course course = courseService
+					.findCourseById(courseTemplateId.longValue());
 
-			List<EmbeddableModule> embeddableModules = courseTemplate
+			List<EmbeddableModule> embeddableModules = course
 					.getModules();
 
 			Long newModuleLevel = 0L;
@@ -862,21 +862,21 @@ public class StudentServiceImpl implements StudentService {
 		for (EmbeddableCourse embeddableCourse : embeddableCourseList) {
 
 			try {
-				Course ct = courseTemplateService
-						.findCourseTemplateById(embeddableCourse
+				Course ct = courseService
+						.findCourseById(embeddableCourse
 								.getCourseId());
 
 				List<CoursePreRequisite> coursePrerequisites = new ArrayList<CoursePreRequisite>();
 				coursePrerequisites = ct.getCoursePreReQuisites();
 				if (completedCoursePrereq(student, coursePrerequisites)) {
-					courseTemplateList.add(ct);
+					courseList.add(ct);
 				}
 			} catch (CourseNotFoundException e) {
 				logger.info("Course template does not exist");
 				e.printStackTrace();
 			}
 		}
-		return courseTemplateList;
+		return courseList;
 	}
 
 	/**
@@ -897,10 +897,10 @@ public class StudentServiceImpl implements StudentService {
 		List<Long> studentCoursesIds = new ArrayList<Long>();
 
 		for (EmbeddableCourse em : studentCourses) {
-			long id = em.getCourseTemplateId();
+			long id = em.getCourseId();
 			studentCoursesIds.add(id);
 			if (em.isComplete()) {
-				completedIds.add(em.getCourseTemplateId());
+				completedIds.add(em.getCourseId());
 			}
 		}
 
@@ -1131,7 +1131,7 @@ public class StudentServiceImpl implements StudentService {
 		Long studentId = student.getId();
 		Map<Map<String, String>, List<Map<String, String>>> studentCoursesandModules = new LinkedHashMap<Map<String, String>, List<Map<String, String>>>();
 		List<BigInteger> studentCTIds = studentDao.getStudentCourseList(studentId, companyDbName);
-		List<Course> studentCTs = courseTemplateDao.courseTemplateListById(studentCTIds, companyDbName);
+		List<Course> studentCTs = courseTemplateDao.courseListById(studentCTIds, companyDbName);
 		
 		for(Course studentCT : studentCTs) {
 			List<Module> modulesInCT = new ArrayList<Module>();

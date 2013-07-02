@@ -42,11 +42,11 @@ public class MonitorCourseBean {
         this.id = id;
     }
 
-    public String getCourseTemplateName() {
+    public String getCourseName() {
         return courseTemplateName;
     }
 
-    public void setCourseTemplateName(String courseTemplateName) {
+    public void setCourseName(String courseTemplateName) {
         this.courseTemplateName = courseTemplateName;
     }
 
