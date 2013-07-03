@@ -427,7 +427,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     }
 
     /////////////////////////
-    public List<BigInteger> getStudentCourseTemplateList(Long studentId, String companyDbName) {
+    public List<BigInteger> getStudentCourseList(Long studentId, String companyDbName) {
         Session session = (Session) getEntityManager().getDelegate();
 
         Query query = session.createSQLQuery("SELECT courseTemplate FROM " + companyDbName + ".student_template"

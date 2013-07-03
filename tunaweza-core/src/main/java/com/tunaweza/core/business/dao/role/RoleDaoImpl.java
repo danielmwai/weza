@@ -93,7 +93,7 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	@Override
 	@SuppressWarnings("unchecked")
         //public List<Role> getUserRoles(long uid)
-	public List<com.tunaweza.core.business.model.user.Role> getUserRoles(long uid) throws UserDoesNotExistException {
+	public List<com.tunaweza.core.business.model.role.Role> getUserRoles(long uid) throws UserDoesNotExistException {
 		Session session = (Session) getEntityManager().getDelegate();
 
 		Query query = session.createQuery("SELECT i FROM User i "

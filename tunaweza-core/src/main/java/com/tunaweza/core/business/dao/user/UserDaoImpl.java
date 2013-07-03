@@ -24,7 +24,6 @@
 
 package com.tunaweza.core.business.dao.user;
 
-import antlr.Utils;
 import com.tunaweza.core.business.dao.exceptions.email.EmailExistsException;
 import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.role.RoleExistsException;
@@ -34,11 +33,11 @@ import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.mentor.Mentor;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.model.user.UserType;
 import com.tunaweza.core.business.settings.Settings;
+import com.tunaweza.core.business.utils.Utils;
 import java.security.NoSuchAlgorithmException;
 import java.sql.BatchUpdateException;
 import java.sql.Connection;
@@ -52,7 +51,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.orm.hibernate3.HibernateCallback;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)

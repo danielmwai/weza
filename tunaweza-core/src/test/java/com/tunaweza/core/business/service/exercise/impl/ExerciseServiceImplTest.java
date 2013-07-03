@@ -23,13 +23,12 @@
  */
 package com.tunaweza.core.business.service.exercise.impl;
 
-import com.tunaweza.core.business.Dao.exceptions.module.ModuleDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.student.StudentExerciseExistsException;
-import com.tunaweza.core.business.Dao.exceptions.user.UserDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
+import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.service.exercise.ExerciseBean;
 import com.tunaweza.core.business.service.exercise.ExerciseService;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,6 +40,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *

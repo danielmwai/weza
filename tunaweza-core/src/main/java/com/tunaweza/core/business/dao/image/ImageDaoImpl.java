@@ -24,7 +24,7 @@
 
 package com.tunaweza.core.business.dao.image;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import java.awt.Image;
+import com.tunaweza.core.business.model.image.Image;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;

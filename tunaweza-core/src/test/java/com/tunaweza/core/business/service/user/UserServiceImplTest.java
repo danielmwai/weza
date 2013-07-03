@@ -23,9 +23,9 @@
  */
 package com.tunaweza.core.business.service.user;
 
+import com.tunaweza.core.business.model.course.EmbeddableCourse;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.group.Group;
-import com.tunaweza.core.business.model.student.EmbeddableCourse;
 import com.tunaweza.core.business.model.user.User;
 import java.util.Date;
 import java.util.List;
@@ -846,8 +846,8 @@ public class UserServiceImplTest {
         long companyId = 0L;
         UserServiceImpl instance = new UserServiceImpl();
         List<User> expResult = null;
-        List<User> result = instance.getUsersByCompanyId(companyId);
-        assertEquals(expResult, result);
+//        List<User> result = instance.getUsersByCompanyId(companyId);
+//        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -861,8 +861,8 @@ public class UserServiceImplTest {
         String companyName = "";
         UserServiceImpl instance = new UserServiceImpl();
         List<User> expResult = null;
-        List<User> result = instance.getUsersByCompanyName(companyName);
-        assertEquals(expResult, result);
+//        List<User> result = instance.getUsersByCompanyName(companyName);
+//        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -876,7 +876,7 @@ public class UserServiceImplTest {
         User user = null;
         UserServiceImpl instance = new UserServiceImpl();
         boolean expResult = false;
-        boolean result = instance.isEnabledAndHasCourseTemplate(user);
+        boolean result = instance.isEnabledAndHasCourse(user);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -998,12 +998,12 @@ public class UserServiceImplTest {
      * Test of getUserCourseTemplate method, of class UserServiceImpl.
      */
     @Test
-    public void testGetUserCourseTemplate() {
+    public void testGetUserCourse() {
         System.out.println("getUserCourseTemplate");
         long userId = 0L;
         UserServiceImpl instance = new UserServiceImpl();
-        List<EmbeddableCourseTemplate> expResult = null;
-        List<EmbeddableCourseTemplate> result = instance.getUserCourseTemplate(userId);
+        List<EmbeddableCourse> expResult = null;
+        List<EmbeddableCourse> result = instance.getUserCourse(userId);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -1013,7 +1013,7 @@ public class UserServiceImplTest {
      * Test of setUserCourseTemplate method, of class UserServiceImpl.
      */
     @Test
-    public void testSetUserCourseTemplate() {
+    public void testSetUserCourse() {
         System.out.println("setUserCourseTemplate");
         long userId = 0L;
         List<EmbeddableCourse> courseList = null;

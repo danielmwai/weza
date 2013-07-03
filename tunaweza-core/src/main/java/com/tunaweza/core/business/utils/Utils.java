@@ -22,30 +22,34 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.dao.exceptions.topic;
+package com.tunaweza.core.business.utils;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class TopicTextExistsException extends Exception {
-
-
-	TopicTextExistsException(String message) {
-        super(message);
-    }
-
-    public TopicTextExistsException(Throwable cause) {
-        super(cause);
-    }
-
-    public TopicTextExistsException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public TopicTextExistsException() {
-        super();
-    }
-    
+public class Utils {
+public static String generateMD5StringNumber(String password) throws NoSuchAlgorithmException{
+   MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+        byte[] array = digest.digest(password.getBytes());
+        String hash = "";
+        for(byte b : array){
+            hash+= ((int)b)+"";
+        }
+        return hash;
+  }
+   public static String generateMD5StringNumberNoMinuses(String password) throws NoSuchAlgorithmException{
+   MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+        byte[] array = digest.digest(password.getBytes());
+        String hash = "";
+        for(byte b : array){
+            hash+= Math.abs(((int)b))+"";
+        }
+        return hash;
+  }
 }
+

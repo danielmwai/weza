@@ -274,9 +274,9 @@ public class TopicServiceImpl implements TopicService {
 		List<Topic> topLeveltopics = topicDao
 				.getAllTopicsDirectChildOfModule(moduleId);
 		if (topLeveltopics != null) {
-			List<com.tunaweza.core.business.model.user.Role> roles = user.getRoles();
+			List<com.tunaweza.core.business.model.role.Role> roles = user.getRoles();
 			List<TopicBean> topics = new ArrayList<TopicBean>();
-			for (com.tunaweza.core.business.model.user.Role role : roles) {
+			for (com.tunaweza.core.business.model.role.Role role : roles) {
 				if (role.getRoleName().equals("ROLE_STUDENT")) {
 					topics = this.populate(topLeveltopics, user.getStudent()
 							.getCompletedTopics(), user);

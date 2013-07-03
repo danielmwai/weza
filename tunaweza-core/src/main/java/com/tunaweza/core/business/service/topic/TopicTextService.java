@@ -24,8 +24,8 @@
 
 package com.tunaweza.core.business.service.topic;
 
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicTextDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicTextExistsException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicTextDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicTextExistsException;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.topic.TopicText;
 import java.util.List;

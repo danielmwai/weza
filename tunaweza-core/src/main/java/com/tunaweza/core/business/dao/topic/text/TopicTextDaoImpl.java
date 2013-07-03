@@ -24,8 +24,8 @@
 
 package com.tunaweza.core.business.dao.topic.text;
 
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicTextDoesNotExistException;
-import com.tunaweza.core.business.Dao.exceptions.topic.TopicTextExistsException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicTextDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.topic.TopicTextExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.topic.TopicText;
@@ -79,7 +79,7 @@ public class TopicTextDaoImpl extends GenericDaoImpl<TopicText> implements Topic
 	@Override
 	public TopicText findTopicText(TopicText topicTextText) throws TopicTextDoesNotExistException {
 		
-		TopicText topicTextText1 = findById(topicTextText.getId());
+		TopicText topicTextText1 = (TopicText) findById(topicTextText.getId());
 		if(topicTextText1 == null){
 			throw new TopicTextDoesNotExistException();
 		}
@@ -108,7 +108,7 @@ public class TopicTextDaoImpl extends GenericDaoImpl<TopicText> implements Topic
 
 	@Override
 	public TopicTextDao addTopicText(TopicText topicTextText) throws TopicTextExistsException {
-		TopicText topicTextText1 = findById(topicTextText.getId());
+		TopicText topicTextText1 = (TopicText) findById(topicTextText.getId());
 		
 		if(topicTextText1 != null){
 			throw new TopicTextExistsException();
@@ -129,74 +129,4 @@ public class TopicTextDaoImpl extends GenericDaoImpl<TopicText> implements Topic
 		
 	}
 
-    @Override
-    public TopicText findTopicText(TopicText topicText) throws TopicTextDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteTopicText(TopicText topicText) throws TopicTextDoesNotExistException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public TopicTextDao addTopicText(TopicText topicText) throws TopicTextExistsException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void saveTopicText(TopicText topicText) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean exists(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List findByExample(PersistentEntity exampleInstance, String[] excludeProperty) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PersistentEntity saveOrUpdate(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(PersistentEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void flush() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object execute(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List executeFind(HibernateCallback callback) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-	
 }

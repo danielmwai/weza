@@ -30,6 +30,8 @@ import com.tunaweza.core.business.model.topic.Topic;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -42,17 +44,21 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	
         @Override
-	public Topic findTopicById(long tid) throws TopicExistsException {
+	public Topic findTopicById(long tid)  {
 		Topic topic = (Topic) findById(tid);
 		if (topic == null) {
-			throw new TopicExistsException();
+                    try {
+                        throw new TopicExistsException();
+                    } catch (TopicExistsException ex) {
+                        Logger.getLogger(TopicDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 		}
 
 		return topic;
 	}
 
 	@Override
-	public Topic findTopicByName(String name) throws TopicExistsException {
+	public Topic findTopicByName(String name)  {
 
 		Session session = (Session) getEntityManager().getDelegate();
 
@@ -74,31 +80,47 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	}
 
 	@Override
-	public Topic findTopic(Topic topic) throws TopicExistsException {
+	public Topic findTopic(Topic topic)  {
 
 		Topic topic1 = (Topic) findById(topic.getId());
 		if (topic1 == null) {
-			throw new TopicExistsException();
+                    try {
+                        throw new TopicExistsException();
+                    } catch (TopicExistsException ex) {
+                        Logger.getLogger(TopicDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 		}
 		return topic1;
 	}
 
 	@Override
-	public void deleteTopic(long uid) throws TopicExistsException {
+	public void deleteTopic(long uid)  {
 		Topic topic = (Topic) findById(uid);
 		if (topic == null) {
-			throw new TopicExistsException();
+                    try {
+                        throw new TopicExistsException();
+                    } catch (TopicExistsException ex) {
+                        Logger.getLogger(TopicDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 		}
-		deleteTopic(topic);
+            try {
+                deleteTopic(topic);
+            } catch (/**TopicExists**/Exception ex) {
+                Logger.getLogger(TopicDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
 	}
 
 	@Override
-	public void deleteTopic(Topic topic) throws TopicExistsException {
+	public void deleteTopic(Topic topic)  {
 		try {
 			delete(topic);
 		} catch (IllegalArgumentException e) {
-			throw new TopicExistsException();
+                    try {
+                        throw new TopicExistsException();
+                    } catch (TopicExistsException ex) {
+                        Logger.getLogger(TopicDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 		}
 
 	}

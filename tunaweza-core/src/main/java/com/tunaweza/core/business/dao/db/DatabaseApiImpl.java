@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.db;
+package com.tunaweza.core.business.dao.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -441,7 +441,7 @@ public class DatabaseApiImpl implements DatabaseApi
 		annotationConfiguration.setProperty("hibernate.dialect",
 				"org.hibernate.dialect.MySQL5InnoDBDialect");
 
-		return annotationConfiguration;
+		return (Configuration) annotationConfiguration;
 	}
 
 	/*
@@ -504,7 +504,7 @@ public class DatabaseApiImpl implements DatabaseApi
 
 		try
 		{
-			SchemaExport schemaExport = new SchemaExport(configuration,
+			SchemaExport schemaExport = new SchemaExport((org.hibernate.cfg.Configuration) configuration,
 					connection);
 			schemaExport.create(true, true);
 			/*saveDatabaseSuperUser();*/

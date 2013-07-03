@@ -25,8 +25,7 @@ package com.tunaweza.web.rest;
 
 
 import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApi;
-import com.tunaweza.core.business.dao.db.DataSourceSwitcherApiImpl;
-import com.tunaweza.core.business.dao.evaluation.student.StudentNotFoundException;
+import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApiImpl;
 import com.tunaweza.core.business.dao.exceptions.evaluation.EvaluationDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.user.UserDao;
@@ -34,6 +33,7 @@ import com.tunaweza.core.business.model.answer.Answer;
 import com.tunaweza.core.business.model.evaluation.Evaluation;
 import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
+import static com.tunaweza.core.business.model.evaluation.StudentEvaluation_.evaluationTemplate;
 import com.tunaweza.core.business.model.question.Question;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
@@ -43,6 +43,7 @@ import com.tunaweza.core.business.service.question.QuestionService;
 import com.tunaweza.core.business.service.student.StudentService;
 import com.tunaweza.core.business.service.topic.TopicService;
 import com.tunaweza.core.business.service.user.UserService;
+import static com.tunaweza.core.business.utils.SessionHelper.setSessionAttribDbConfig;
 import com.tunaweza.web.evaluation.student.StudentEvaluationService;
 import com.tunaweza.web.user.DbConfigBean;
 import com.tunaweza.web.views.Views;

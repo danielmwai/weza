@@ -28,12 +28,10 @@ package com.tunaweza.core.business.dao.location;
 import com.tunaweza.core.business.dao.exceptions.location.LocationDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.location.LocationExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.location.Location2;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
+import com.tunaweza.core.business.model.user.Location;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,14 +42,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository(value = "locationDao")
 @Transactional
-public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
+public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 		LocationDao {
 
-                
-                @Override
-        	public Location2 findLocationById(long lid)
+	@Override
+	public Location findLocationById(long lid)
 			throws LocationDoesNotExistException {
-		Location2 location = (Location2) findById(lid);
+		Location location = findById(lid);
 		if (location == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -60,7 +57,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 	}
 
 	@Override
-	public Location2 findLocationByName(String name)
+	public Location findLocationByName(String name)
 			throws LocationDoesNotExistException {
 
 		Session session = (Session) getEntityManager().getDelegate();
@@ -69,10 +66,10 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 				+ getDomainClass().getName() + " i WHERE i.locationName = '"
 				+ name + "'");
 
-		Location2 location = null;
+		Location location = null;
 
 		if (query.list().size() > 0) {
-			location = (Location2) query.list().get(0);
+			location = (Location) query.list().get(0);
 		} else {
 			throw new LocationDoesNotExistException("Location with name : "
 					+ name + " does not exist");
@@ -83,10 +80,10 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 	}
 
 	@Override
-	public Location2 findLocation(Location2 location)
+	public Location findLocation(Location location)
 			throws LocationDoesNotExistException {
 
-		Location2 location1 = (Location2) findById(location.getId());
+		Location location1 = findById(location.getId());
 		if (location1 == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -95,7 +92,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 
 	@Override
 	public void deleteLocation(long lid) throws LocationDoesNotExistException {
-		Location2 location = (Location2) findById(lid);
+		Location location = (Location) findById(lid);
 		if (location == null) {
 			throw new LocationDoesNotExistException();
 		}
@@ -104,7 +101,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 	}
 
 	@Override
-	public void deleteLocation(Location2 location)
+	public void deleteLocation(Location location)
 			throws LocationDoesNotExistException {
 		try {
 			delete(location);
@@ -115,9 +112,9 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 	}
 
 	@Override
-	public LocationDao addLocation(Location2 location)
+	public LocationDao addLocation(Location location)
 			throws LocationExistsException {
-		Location2 location1 = (Location2) findById(location.getId());
+		Location location1 = findById(location.getId());
 
 		if (location1 != null) {
 			throw new LocationExistsException();
@@ -128,13 +125,13 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 		return this;
 	}
 
-        @Override
-		public List<Location2> getAllLocations() {
+	@Override
+	public List<Location> getAllLocations() {
 		return findAll();
 	}
 
 	@Override
-	public void saveLocation(Location2 location) {
+	public void saveLocation(Location location) {
 		saveOrUpdate(location);
 
 	}
@@ -149,7 +146,5 @@ public class LocationDaoImpl extends GenericDaoImpl<Location2> implements
 
 		return i;
 	}
-
-
 
 }

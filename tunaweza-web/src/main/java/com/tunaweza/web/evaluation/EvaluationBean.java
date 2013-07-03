@@ -251,7 +251,7 @@ public class EvaluationBean implements Views {
 		try {
 			model.addAttribute("MODULEID", id.toString());
 
-			EvaluationTemplate evaluationTemplate = evaluationTemplateService
+			EvaluationTemplate evaluationTemplate = evaluationService
 					.getEvaluationTemplateByModule(id);
 
 			if (evaluationTemplate != null) {

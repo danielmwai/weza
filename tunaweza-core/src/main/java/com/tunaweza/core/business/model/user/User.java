@@ -23,6 +23,7 @@
  */
 
 package com.tunaweza.core.business.model.user;
+import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;

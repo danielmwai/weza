@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.tunaweza.core.business.model.group;
+package com.tunaweza.core.business.model.role;
 
-import com.tunaweza.core.business.model.course.EmbeddableCourse;
+import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,9 +36,9 @@ import static org.junit.Assert.*;
  *
  * @author Daniel Mwai <naistech.gmail.com>
  */
-public class GroupTest {
+public class RoleTest {
     
-    public GroupTest() {
+    public RoleTest() {
     }
     
     @BeforeClass
@@ -58,12 +58,93 @@ public class GroupTest {
     }
 
     /**
-     * Test of getDescription method, of class Group.
+     * Test of getNumber method, of class Role.
+     */
+    @Test
+    public void testGetNumber() {
+        System.out.println("getNumber");
+        Role instance = new Role();
+        int expResult = 0;
+        int result = instance.getNumber();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setNumber method, of class Role.
+     */
+    @Test
+    public void testSetNumber() {
+        System.out.println("setNumber");
+        int number = 0;
+        Role instance = new Role();
+        instance.setNumber(number);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRoleName method, of class Role.
+     */
+    @Test
+    public void testGetRoleName() {
+        System.out.println("getRoleName");
+        Role instance = new Role();
+        String expResult = "";
+        String result = instance.getRoleName();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRoleName method, of class Role.
+     */
+    @Test
+    public void testSetRoleName() {
+        System.out.println("setRoleName");
+        String roleName = "";
+        Role instance = new Role();
+        instance.setRoleName(roleName);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getUsers method, of class Role.
+     */
+    @Test
+    public void testGetUsers() {
+        System.out.println("getUsers");
+        Role instance = new Role();
+        List<User> expResult = null;
+        List<User> result = instance.getUsers();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setUsers method, of class Role.
+     */
+    @Test
+    public void testSetUsers() {
+        System.out.println("setUsers");
+        List<User> users = null;
+        Role instance = new Role();
+        instance.setUsers(users);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getDescription method, of class Role.
      */
     @Test
     public void testGetDescription() {
         System.out.println("getDescription");
-        Group instance = new Group();
+        Role instance = new Role();
         String expResult = "";
         String result = instance.getDescription();
         assertEquals(expResult, result);
@@ -72,110 +153,29 @@ public class GroupTest {
     }
 
     /**
-     * Test of setDescription method, of class Group.
+     * Test of setDescription method, of class Role.
      */
     @Test
     public void testSetDescription() {
         System.out.println("setDescription");
         String description = "";
-        Group instance = new Group();
+        Role instance = new Role();
         instance.setDescription(description);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getName method, of class Group.
-     */
-    @Test
-    public void testGetName() {
-        System.out.println("getName");
-        Group instance = new Group();
-        String expResult = "";
-        String result = instance.getName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setName method, of class Group.
-     */
-    @Test
-    public void testSetName() {
-        System.out.println("setName");
-        String name = "";
-        Group instance = new Group();
-        instance.setName(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getCourses method, of class Group.
-     */
-    @Test
-    public void testGetCourses() {
-        System.out.println("getCourses");
-        Group instance = new Group();
-        List<EmbeddableCourse> expResult = null;
-        List<EmbeddableCourse> result = instance.getCourses();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setCourses method, of class Group.
-     */
-    @Test
-    public void testSetCourses() {
-        System.out.println("setCourses");
-        List<EmbeddableCourse> courses = null;
-        Group instance = new Group();
-        instance.setCourses(courses);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of compareTo method, of class Group.
+     * Test of compareTo method, of class Role.
      */
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        Group group = null;
-        Group instance = new Group();
+        Role role = null;
+        Role instance = new Role();
         int expResult = 0;
-        int result = instance.compareTo(group);
+        int result = instance.compareTo(role);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getUser method, of class Group.
-     */
-    @Test
-    public void testGetUser() {
-        System.out.println("getUser");
-        Group instance = new Group();
-        List<EmbeddableUser> expResult = null;
-        List<EmbeddableUser> result = instance.getUser();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setUser method, of class Group.
-     */
-    @Test
-    public void testSetUser() {
-        System.out.println("setUser");
-        List<EmbeddableUser> user = null;
-        Group instance = new Group();
-        instance.setUser(user);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

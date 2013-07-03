@@ -70,6 +70,9 @@ Comparable<Location2>{
 	public String getLocationCode() {
 		return locationCode;
 	}
+        public String findLocationByName (String name){
+            return name;
+        }
 
 	public void setLocationCode(String locationCode) {
 		this.locationCode = locationCode;
@@ -83,7 +86,7 @@ Comparable<Location2>{
 	}
 
 	/**
-	 * @param jjTeachUsers the jjTeachUsers to set
+	 * @param  the  to set
 	 */
 	public void setUsers(List<User> users) {
 		this.users = users;

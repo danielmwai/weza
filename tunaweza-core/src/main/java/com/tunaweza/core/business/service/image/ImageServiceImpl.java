@@ -25,7 +25,7 @@
 package com.tunaweza.core.business.service.image;
 
 import com.tunaweza.core.business.dao.image.ImageDao;
-import java.awt.Image;
+import com.tunaweza.core.business.model.image.Image;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

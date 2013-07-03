@@ -16,7 +16,6 @@ import com.tunaweza.core.business.dao.exceptions.mentor.MentorNotFoundException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.topic.Topic;
-import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,77 +33,8 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 
 	public Logger logger = Logger.getLogger(MentorDaoImpl.class);
 
+        
 	@Override
-	public Mentor saveMentor(Mentor mentor) throws MentorExistsException {
-		Mentor savedMentor = null;
-		try {
-			savedMentor = saveOrUpdate(mentor);
-		} catch (    ConstraintViolationException | DataIntegrityViolationException e) {
-
-			throw new MentorExistsException();
-		}
-		return savedMentor;
-	}
-
-	@Override
-	public List<Mentor> getAllMentors() {
-		return findAll();
-	}
-
-	@Override
-	public Mentor getMentorById(Long mentorId)
-			throws MentorNotFoundException {
-		Session session = (Session) getEntityManager().getDelegate();
-
-		Query query = session.createQuery("SELECT i FROM " 
-				+ getDomainClass().getName() + " i WHERE i.id = " + mentorId);
-
-		if (query.list().size() == 0) {
-			throw new MentorNotFoundException("Mentor with id " + mentorId
-					+ " does not exist");
-		}
-
-		return (Mentor) query.list().get(0);
-	}
-
-	@Override
-	public Mentor getMentorByUser(User user) throws MentorNotFoundException {
-		Session session = (Session) getEntityManager().getDelegate();
-
-		Query query = session.createQuery("SELECT i FROM "
-				+ getDomainClass().getName() + " i WHERE i.user.id = "
-				+ user.getId());
-
-		if (query.list().size() == 0) {
-			throw new MentorNotFoundException("Mentor does not exist");
-		}
-
-		return (Mentor) query.list().get(0);
-
-	}
-
-	@Override
-	public List<Mentor> getMentorByMentor(long mentorId) {
-		Mentor mentor = null;
-		try {
-			mentor = getMentorById(mentorId);
-		} catch (MentorNotFoundException e) {
-			return new ArrayList<Mentor>();
-		}
-
-		List<Mentor> mentor = mentor.getMentor();
-		return mentor;
-	}
-
-	@Override
-	public void saveMentorToMentor(Mentor mentor,
-			List<Mentor> mentor) {
-		mentor.setMentor(mentor);
-		saveOrUpdate(mentor);
-
-	}
-        ///refactor this code as it was duplicated on jjteach
-        @Override
 	public Mentor findMentorById(long id)
 			throws MentorNotFoundException {
 		Mentor mentor = findById(id);
@@ -123,14 +51,14 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 				.createQuery("SELECT i FROM " + getDomainClass().getName()
 						+ " i WHERE i.name='" + name + "'");
 
-		Mentor mentor = null;
+		Mentor mentorTemplate = null;
 		if (query.list().size() > 0) {
-			mentor = (Mentor) query.list().get(0);
+			mentorTemplate = (Mentor) query.list().get(0);
 		} else {
 			throw new MentorNotFoundException("Mentor with "
 					+ "name : " + name + " was not found");
 		}
-		return mentor;
+		return mentorTemplate;
 	}
 
 	@Override
@@ -144,7 +72,7 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 	}
 
 	@Override
-	public List<Mentor> getAllMentors() {
+	public List<Mentor> getAllMentor() {
 		return findAll();
 	}
 
@@ -160,7 +88,7 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 		if (duplicate != null) {
 			throw new MentorExistsException();
 		}
-		savedMentor= saveOrUpdate(mentor);
+		savedMentor = saveOrUpdate(mentor);
 		return savedMentor;
 	}
 
@@ -185,28 +113,28 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 	}
 
 	@Override
-	public List<Topic> getExercisesInMentor(long MentorId) {
-		Mentor mentor = null;
+	public List<Topic> getExercisesInMentor(long mentorId) {
+		Mentor mentorTemplate = null;
 		Session session = (Session) getEntityManager().getDelegate();
 		Query query = session.createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.id = "
-				+ MentorId);
+				+ mentorId);
 
 		if (query.list().size() > 0) {
-			mentor = (Mentor) query.list().get(0);
+			mentorTemplate = (Mentor) query.list().get(0);
 		}
 		List<Topic> exercises = new ArrayList<Topic>();
-		exercises = mentor.getExercises();
+		exercises = mentorTemplate.getExercises();
 		return exercises;
 	}
 
 	@Override
-	public List<Topic> getActiveExercisesInMentor(long MentorId) {
+	public List<Topic> getActiveExercisesInMentor(long mentorId) {
 		Mentor mentor = null;
 		Session session = (Session) getEntityManager().getDelegate();
 		Query query = session.createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.id = "
-				+ MentorId);
+				+ mentorId);
 
 		if (query.list().size() > 0) {
 			mentor = (Mentor) query.list().get(0);
@@ -239,9 +167,9 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 						+ " exercise_transaction_type ett ON ett.id = et.exercise_transactiontype_id JOIN"
 						+ " student_exercise se ON se.id = et.exercise_id JOIN topics t ON t.id = se.topic_id"
 						+ " WHERE t.is_exercise=1 AND ett.name =? AND t.id IN (SELECT DISTINCT(em.exercise)"
-						+ " FROM exercise_Mentor em JOIN mentor_template mt ON mt.id = em.Mentor"
-						+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.Mentor FROM "
-						+ " Mentor_mentor mtm WHERE mtm.mentor=?))");
+						+ " FROM exercise_mentortemplate em JOIN mentor_template mt ON mt.id = em.mentortemplate"
+						+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.mentortemplate FROM "
+						+ " mentortemplate_mentor mtm WHERE mtm.mentor=?))");
 
 		query.setString(0, "StudentToMentor");
 		query.setLong(1, moduleId);
@@ -268,9 +196,9 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 								+ " exercise_transaction_type ett ON ett.id = et.exercise_transactiontype_id JOIN"
 								+ " student_exercise se ON se.id = et.exercise_id JOIN topics t ON t.id = se.topic_id"
 								+ " WHERE t.is_exercise=1 AND ett.name =? AND t.id IN (SELECT DISTINCT(em.exercise)"
-								+ " FROM exercise_Mentor em JOIN mentor_template mt ON mt.id = em.Mentor"
-								+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.Mentor FROM "
-								+ " Mentor_mentor mtm WHERE mtm.mentor=?))")
+								+ " FROM exercise_mentortemplate em JOIN mentor_template mt ON mt.id = em.mentortemplate"
+								+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.mentortemplate FROM "
+								+ " mentortemplate_mentor mtm WHERE mtm.mentor=?))")
 				.addEntity(ExerciseTransaction.class);
 
 		query.setString(0, "StudentToMentor");
@@ -290,9 +218,9 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 						+ " exercise_transaction_type ett ON ett.id = et.exercise_transactiontype_id JOIN"
 						+ " student_exercise se ON se.id = et.exercise_id JOIN topics t ON t.id = se.topic_id"
 						+ " WHERE t.is_exercise=1 AND ett.name =? AND t.id IN (SELECT DISTINCT(em.exercise)"
-						+ " FROM exercise_Mentor em JOIN mentor_template mt ON mt.id = em.Mentor"
-						+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.Mentor FROM "
-						+ " Mentor_mentor mtm WHERE mtm.mentor=?))")
+						+ " FROM exercise_mentortemplate em JOIN mentor_template mt ON mt.id = em.mentortemplate"
+						+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.mentortemplate FROM "
+						+ " mentortemplate_mentor mtm WHERE mtm.mentor=?))")
 				.addEntity(ExerciseTransaction.class);
 		
 		query.setString(0, "StudentToMentor");
@@ -314,9 +242,9 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 								+ " exercise_transaction_type ett ON ett.id = et.exercise_transactiontype_id JOIN"
 								+ " student_exercise se ON se.id = et.exercise_id JOIN topics t ON t.id = se.topic_id"
 								+ " WHERE t.is_exercise=1 AND ett.name =? AND t.id IN (SELECT DISTINCT(em.exercise)"
-								+ " FROM exercise_Mentor em JOIN mentor_template mt ON mt.id = em.Mentor"
-								+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.Mentor FROM "
-								+ " Mentor_mentor mtm WHERE mtm.mentor=?))")
+								+ " FROM exercise_mentortemplate em JOIN mentor_template mt ON mt.id = em.mentortemplate"
+								+ " WHERE mt.id_module=? AND mt.id IN (SELECT mtm.mentortemplate FROM "
+								+ " mentortemplate_mentor mtm WHERE mtm.mentor=?))")
 				.addEntity(ExerciseTransaction.class);
 
 		query.setString(0, "StudentToMentor");
@@ -326,10 +254,5 @@ public class MentorDaoImpl extends GenericDaoImpl<Mentor> implements MentorDao {
 		return count.intValue();
 
 	}
-
-    @Override
-    public List<Mentor> getAllMentor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
