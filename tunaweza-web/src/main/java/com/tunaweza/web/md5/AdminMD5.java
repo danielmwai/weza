@@ -22,60 +22,30 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.solution;
+package com.tunaweza.web.md5;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import com.tunaweza.core.business.utils.FileUtils;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class PostSolutionBean {
-
-	@NotEmpty(message = "Message must be entered")
-	private String message;
+public class AdminMD5 {
+public static String generateMD5(String password) {
+		String newPassword = "";
+		try {
+			MessageDigest digest = MessageDigest.getInstance("MD5");
+			newPassword = new String(digest.digest(password.getBytes()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		String newStr = newPassword.replaceAll("\n", "");
+		return FileUtils.itrim(newStr);
+	}
 	
-	@NotEmpty (message = "Subject must be entered")
-	private String subject;
-	
-	private CommonsMultipartFile solution;
-	
-	@NotEmpty
-	private String topicId;
-
-	public String getMessage() {
-		return message;
+	public static void main(String [] args){
+		System.out.println(generateMD5("123456"));
 	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public CommonsMultipartFile getSolution() {
-		return solution;
-	}
-
-	public void setSolution(CommonsMultipartFile solution) {
-		this.solution = solution;
-	}
-
-	public String getTopicId() {
-		return topicId;
-	}
-
-	public void setTopicId(String topicId) {
-		this.topicId = topicId;
-	}
-
-		
 }

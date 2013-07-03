@@ -44,7 +44,7 @@ public interface MentorService {
 	 * returns a list of all mentors
 	 * @return all the mentors
 	 */
-	public List<Mentor> getAllMentors();
+	//public List<Mentor> getAllMentors();
 	
 	/**
 	 * returns a single Mentor
@@ -115,7 +115,12 @@ public interface MentorService {
 	 * @return List of the total transactions of the last three months
 	 */
 	public String getAvergeofList(List<Long> listofDiff);
-	
+	/**
+	 * 
+	 * @return <code>MentorTemplate</code> list
+	 * 
+	 */
+	public List<Mentor> listAllMentor();
  public Mentor addMentor(Mentor Mentor) 
 			throws MentorExistsException;
 	

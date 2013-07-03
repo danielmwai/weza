@@ -31,8 +31,7 @@ import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.service.evaluation.EvaluationService;
 import com.tunaweza.core.business.service.module.ModuleService;
 import com.tunaweza.web.views.Views;
-import static com.tunaweza.web.views.Views.NEW_EVALUATIONTEMPLATE;
-import static com.tunaweza.web.views.Views.NEW_EVALUATIONTEMPLATE_FORM;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,22 +40,25 @@ import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import org.infinispan.util.logging.Log;
 import org.infinispan.util.logging.LogFactory;
-import org.jboss.marshalling.river.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.webflow.engine.model.Model;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+@Controller
+@RequestMapping(Views.EVALUATION)
 public class EvaluationBean implements Views {
 
 	@Autowired
@@ -72,20 +74,20 @@ public class EvaluationBean implements Views {
 
 	protected final Log LOGGER = LogFactory.getLog(getClass());
 
-	@RequestMapping(method = RequestMethod.GET, value = NEW_EVALUATIONTEMPLATE)
-	public String newEvaluationTemplateForm(
+	@RequestMapping(method = RequestMethod.GET, value = NEW_EVALUATION)
+	public String newEvaluationForm(
 			@RequestParam("moduleId") String id, Model model,
 			HttpServletResponse response) {
-		AddEvaluationBean addEvaluationTemplateBean = new AddEvaluationBean();
+		AddEvaluationBean addEvaluationBean = new AddEvaluationBean();
 
 		// set default values for addEvaluationTemplate
 		double duration = 15;
 		double numberOfQuestions = 10;
 		int passMark = 70;
 		moduleId = id;
-		addEvaluationTemplateBean.setDuration(duration);
-		addEvaluationTemplateBean.setNumberOfQuestions(numberOfQuestions);
-		addEvaluationTemplateBean.setPassMark(passMark);
+		addEvaluationBean.setDuration(duration);
+		addEvaluationBean.setNumberOfQuestions(numberOfQuestions);
+		addEvaluationBean.setPassMark(passMark);
 
 		List<Module> moduleList = moduleService.getAllModules();
 
@@ -119,13 +121,13 @@ public class EvaluationBean implements Views {
 		model.addAttribute("MODULELIST", moduleList);
 		model.addAttribute("MODULEID", id);
 		// model.addAttribute("LOCATIONLIST", locationList);
-		model.addAttribute("addEvaluationTemplateBean",
+		model.addAttribute("addEvaluationBean",
 				addEvaluationBean);
 
-		return NEW_EVALUATIONTEMPLATE;
+		return NEW_EVALUATION;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = NEW_EVALUATIONTEMPLATE_FORM)
+	@RequestMapping(method = RequestMethod.POST, value = NEW_EVALUATION_FORM)
 	public @ResponseBody
 	Map<String, ? extends Object> addEvaluationPost(
 			@RequestBody AddEvaluationBean addEvaluationBean)
@@ -158,7 +160,7 @@ public class EvaluationBean implements Views {
 			evaluation.setModule(moduleService.getModuleById(Long
 					.valueOf(moduleId)));
 
-			evaluationTemplateService.addEvaluation(evaluation);
+			evaluationService.addEvaluation(evaluation);
 
 			return Collections.singletonMap("m", "Saved");
 		}
@@ -169,7 +171,7 @@ public class EvaluationBean implements Views {
 			@RequestParam("evaluationId") String id, Model model)
 			throws Exception {
 
-		Evaluation evaluation = evaluationTemplateService
+		Evaluation evaluation = evaluationService
 				.findEvaluationById(Long.valueOf(id));
 		String moduleId = evaluation.getModule().getId().toString();
 		EditEvaluationBean editEvaluationBean = new EditEvaluationBean();
@@ -206,10 +208,10 @@ public class EvaluationBean implements Views {
 	@RequestMapping(method = RequestMethod.POST, value = EDIT_EVALUATION_FORM)
 	public @ResponseBody
 	Map<String, ? extends Object> editCoursePost(
-			@RequestBody EditEvaluationBean editEvaluationTemplateBean)
+			@RequestBody EditEvaluationBean editEvaluationBean)
 			throws Exception {
 		Set<ConstraintViolation<EditEvaluationBean>> failures = validator
-				.validate(editEvaluationTemplateBean);
+				.validate(editEvaluationBean);
 		if (!failures.isEmpty()) {
 			editEvaluationValidationMessages(failures);
 			return Collections.singletonMap("m", "Fill in required fields");
@@ -237,7 +239,7 @@ public class EvaluationBean implements Views {
 			evaluation.setPassmark(editEvaluationBean
 					.getPassMark());
 			System.out.println(evaluation.getNumberOfQuestions());
-			evaluationTemplateService
+			evaluationService
 					.updateEvaluation(evaluation);
 
 			return Collections.singletonMap("m", "Saved");
@@ -251,10 +253,10 @@ public class EvaluationBean implements Views {
 		try {
 			model.addAttribute("MODULEID", id.toString());
 
-			EvaluationTemplate evaluationTemplate = evaluationService
-					.getEvaluationTemplateByModule(id);
+			Evaluation evaluation = evaluationService
+					.getEvaluationByModule(id);
 
-			if (evaluationTemplate != null) {
+			if (evaluation != null) {
 				model.addAttribute("EVALUATION", evaluation);
 			}
 		} catch (EvaluationDoesNotExistException e) {
@@ -271,9 +273,9 @@ public class EvaluationBean implements Views {
 	}
 
 	private Map<String, String> editEvaluationValidationMessages(
-			Set<ConstraintViolation<EditEvaluationTemplateBean>> failures) {
+			Set<ConstraintViolation<EditEvaluationBean>> failures) {
 		Map<String, String> failureMessages = new HashMap<String, String>();
-		for (ConstraintViolation<EditEvaluationTemplateBean> failure : failures) {
+		for (ConstraintViolation<EditEvaluationBean> failure : failures) {
 			failureMessages.put(failure.getPropertyPath().toString(),
 					failure.getMessage());
 		}

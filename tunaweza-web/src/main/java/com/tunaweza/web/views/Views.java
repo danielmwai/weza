@@ -175,20 +175,20 @@ public interface Views {
     /**
      * -----------------CourseTemplates--------------- *
      */
-    public static String COURSETEMPLATE = "coursetemplate";
+    public static String COURSE = "coursetemplate";
     public static String CT_INFO = "ctinfo";
-    public static String COURSETEMPLATE_LIST = "listcoursetemplates";
-    public static String NEW_COURSETEMPLATE = "addcoursetemplate";
-    public static String NEW_COURESTEMPLATE_FORM = "addcoursetemplate";
-    public static String EDIT_COURSETEMPLATE = "editcoursetemplate";
-    public static String EDIT_COURSETEMPLATE_FORM = "editcoursetemplateform";
-    public static String LIST_COURSETEMPLATE = "listcoursetemplates";
-    public static String ASSIGN_COURSETEMPLATE_MODULES = "assignctmodules";
-    public static String ASSIGN_COURSETEMPLATE_MODULES_FORM = "assignctmoduleform";
-    public static String COURSETEMPLATE_MODULES_FORM = "ctlistboxes";
-    public static String STUDENT_COURSETEMPLATE_FORM = "studentcoursetemplateform";
+    public static String COURSET_LIST = "listcoursetemplates";
+    public static String NEW_COURSE = "addcoursetemplate";
+    public static String NEW_COURES_FORM = "addcoursetemplate";
+    public static String EDIT_COURSE = "editcoursetemplate";
+    public static String EDIT_COURSE_FORM = "editcoursetemplateform";
+    public static String LIST_COURSE = "listcoursetemplates";
+    public static String ASSIGN_COURSE_MODULES = "assignctmodules";
+    public static String ASSIGN_COURSE_MODULES_FORM = "assignctmoduleform";
+    public static String COURSE_MODULES_FORM = "ctlistboxes";
+    public static String STUDENT_COURSE_FORM = "studentcoursetemplateform";
     // public static String STUDENT_COURSETEMPLATE="studentcoursetemplate";
-    public static String ASSIGN_STUDENT_COURSETEMPLATE = "assignstudentct";
+    public static String ASSIGN_STUDENT_COURSE = "assignstudentct";
 
     /**
      * * -------solutions-----------------------
@@ -215,26 +215,26 @@ public interface Views {
     /**
      * -----------------MentorTemplates--------------- *
      */
-    public static String MENTORTEMPLATE = "mentor";
-    public static String MENTORTEMPLATE_LIST = "listmentortemplates";
-    public static String NEW_MENTORTEMPLATE = "addmentortemplate";
-    public static String NEW_MENTORTEMPLATE_FORM = "addmentortemplate";
-    public static String EDIT_MENTORTEMPLATE = "editmentortemplate";
-    public static String EDIT_MENTORTEMPLATE_FORM = "editmentortemplateform";
-    public static String LIST_MENTORTEMPLATE = "listmentortemplates";
-    public static String ASSIGN_MENTORTEMPLATE_EXERCISE = "assignmtexercise";
-    public static String ASSIGN_MENTORTEMPLATE_EXERCISE_FORM = "assignmtexerciseform";
-    public static String MENTORTEMPLATE_EXERCISE_FORM = "mtlistboxes";
+    public static String MENTOR = "mentor";
+    public static String MENTOR_LIST = "listmentortemplates";
+    public static String NEW_MENTOR = "addmentortemplate";
+    public static String NEW_MENTOR_FORM = "addmentortemplate";
+    public static String EDIT_MENTOR = "editmentortemplate";
+    public static String EDIT_MENTOR_FORM = "editmentortemplateform";
+    public static String LIST_MENTOR = "listmentortemplates";
+    public static String ASSIGN_MENTOR_EXERCISE = "assignmtexercise";
+    public static String ASSIGN_MENTOR_EXERCISE_FORM = "assignmtexerciseform";
+    public static String MENTOR_EXERCISE_FORM = "mtlistboxes";
     // public static String STUDENT_COURSETEMPLATE_FORM
     // ="studentcoursetemplateform";
     // public static String STUDENT_COURSETEMPLATE="studentcoursetemplate";
-    public static String ASSIGN_MENTOR_COURSETEMPLATE = "assignstudentct";
+    public static String ASSIGN_MENTOR_COURSE = "assignstudentct";
     public static String LIST_MENTOR_MODULES = "listmentormodules";
-    public static String ASSIGN_MENTOR_MENTORTEMPLATES = "assignmentormt";
-    public static String MENTOR_MENTORTEMPLATE_FORM = "mentorlistboxes";
-    public static String MENTORTEMPLATE_PROFILE = "mentortemplateprofile";
-    public static String MENTORTEMPLATE_TABBED_EXFORM = "mttabbedlistboxes";
-    public static String MENTOR_MENTORTEMPLATE_TABBED = "mtabbedlistboxes";
+    public static String ASSIGN_MENTOR_MENTOR = "assignmentormt";
+    public static String MENTOR_MENTOR_FORM = "mentorlistboxes";
+    public static String MENTOR_PROFILE = "mentortemplateprofile";
+    public static String MENTOR_TABBED_EXFORM = "mttabbedlistboxes";
+    public static String MENTOR_MENTOR_TABBED = "mtabbedlistboxes";
     public static String LIST_TRANSACTIONS = "listtransactions";
 
     // tinyMce image
@@ -256,22 +256,22 @@ public interface Views {
     /**
      * -----------------EvaluationTemplates--------------- *
      */
-    public static String EVALUATIONTEMPLATE = "evaluation";
+    public static String EVALUATION = "evaluation";
     public static String ET_INFO = "etinfo";
     // public static String EVALUATIONTEMPLATE_LIST = "listevaluationtemplates";
-    public static String NEW_EVALUATIONTEMPLATE = "addevaluationtemplate";
-    public static String NEW_EVALUATIONTEMPLATE_FORM = "addevaluationtemplate";
+    public static String NEW_EVALUATION = "addevaluationtemplate";
+    public static String NEW_EVALUATION_FORM = "addevaluationtemplate";
 
-    public static String EDIT_EVALUATIONTEMPLATE = "editevaluationtemplate";
-    public static String EDIT_EVALUATIONTEMPLATE_FORM = "editevaluationtemplateform";
-    public static String LIST_EVALUATIONTEMPLATE = "listevaluationtemplates";
+    public static String EDIT_EVALUATION = "editevaluationtemplate";
+    public static String EDIT_EVALUATION_FORM = "editevaluationtemplateform";
+    public static String LIST_EVALUATION = "listevaluationtemplates";
 
     /**
      * --------------------Student Test-------------------------- *
      */
     public static String STUDENT_TEST = "studenttest";
     public static String STUDENT_TEST_MODULE_NEW = "module/new";
-    public static String STUDENT_TEST_TEMPLATE = "course/new";
+    public static String STUDENT_TEST_ = "course/new";
     public static String TEST_MODULE_START = "module/start";
     public static String TEST_COURSE_START = "course/start";
     public static String STUDENT_TEST_MODULE = "module/administer/test";
@@ -288,9 +288,9 @@ public interface Views {
     public static String QUESTION = "question";
     public static String ASSOCIATE_QUESTION_WITH_TOPIC = "associatequestionwithtopic";
     public static String DISSOCIATE_QUESTION_FROM_TOPIC = "dissociatequestionfromtopic";
-    public static String TEST_TEMPLATE_QUESTION_FORM = "addevaluationquestion";
+    public static String TEST_QUESTION_FORM = "addevaluationquestion";
     public static String QUESTION_LIST = "listquestions";
-    public static String EDIT_TEST_TEMPLATE_QUESTION_FORM = "editquestionform";
+    public static String EDIT_TEST_QUESTION_FORM = "editquestionform";
     public static String STUDENT_COURSE_TEST_STATISTICS = "course_evaluation_stats";
     public static String STUDENT_MODULE_TEST_STATISTICS = "module_evaluation_stats";
     public static String QUESTIONS_BY_TOPIC = QUESTION_LIST + "/bytopic";
@@ -396,8 +396,8 @@ public interface Views {
     public static String WS_AUTHENTICATE = "authenticate";
     public static String WS_GET_COURSES_AND_MODULES = "/getcoursesandmodules/{companyDbName}/{studentId}";
     public static String WS_GET_MODULE_TOPICS = "/getmoduletopics/{companyDbName}/{moduleId}";
-    public static String WS_GET_MODULE_EVALUATION_TEMPLATE = "/getmoduleevaluationtemplate/{username}/{moduleId}";
-    public static String WS_GET_EVALUATION_TEMPLATE_QUESTIONS = "/getevaluationtemplatequestions/{username}/{testId}";
+    public static String WS_GET_MODULE_EVALUATION_ = "/getmoduleevaluationtemplate/{username}/{moduleId}";
+    public static String WS_GET_EVALUATION__QUESTIONS = "/getevaluationtemplatequestions/{username}/{testId}";
     public static String WS_STUDENT_TEST_MODULE_NEW = "get/module/new";
     public static String WS_STUDENT_TEST_MODULE_RESULTS = "get/module/results";
     public static String WS_STUDENT_TEST_MODULE = "get/module/administer/test";

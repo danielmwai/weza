@@ -23,6 +23,9 @@
  */
 package com.tunaweza.web.admin;
 
+import com.tunaweza.core.business.utils.FileUtils;
+import com.tunaweza.web.md5.AdminMD5;
+import com.tunaweza.web.system.SystemFolder;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +34,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.io.FileUtils;
 
 /**
  * @version $Revision: 1.1.1.1 $

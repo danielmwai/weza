@@ -24,7 +24,9 @@
 
 package com.tunaweza.web.datasource;
 
-import com.tunaweza.core.business.dao.db.DataSourceSwitcherApiImpl;
+import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApi;
+import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApiImpl;
+import static com.tunaweza.core.business.utils.SessionHelper.setSessionAttribDbConfig;
 import com.tunaweza.web.user.DbConfigBean;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

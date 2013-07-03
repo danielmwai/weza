@@ -126,4 +126,5 @@ public interface MentorDao extends GenericDao<Mentor>
 	 */
 	public int numberOfExercisesByMentor(long mentorId, long moduleId);
 
+
 }

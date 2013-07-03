@@ -22,60 +22,46 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.solution;
+package com.tunaweza.web.directories;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import com.tunaweza.core.business.utils.DateUtils;
+import java.io.File;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class PostSolutionBean {
+public interface Directories {
+public static String fileSeparator = File.separator;
 
-	@NotEmpty(message = "Message must be entered")
-	private String message;
+	// System directory from context
+	public static String SYSTEMDIRECTORY = "SYSTEMDIRECTORY";
+
+	public static String HOMEDIRECTORY = "SYSTEM";
+
+	// Admin directory
+	public static String ADMINDIRECTORY = "ADMINDIRECTORY";
+	public static String JJTEACHDIRECTORY = "JJTEACH";
+	public static String PASSWORDDIRECTORY = "p";
+
+	// Password file
+	public static String PASSWORDFILE = "jjteach.password";
+
+	// Log Directory
+	public static String LOGSDIRECTORY = "LOGS";
+
+	// Log files
+	public static String AUTHORIZELOGFILE = DateUtils.getTodayDate()
+			+ "_jjteach_authorize.log";
+
+	public static String JJETSACTIONLOGFILE = DateUtils.getTodayDate()
+			+ "_jjteach_actions.log";
+
+	public static String JJETSDATABASELOGFILE = DateUtils.getTodayDate()
+			+ "_jjteach_db_actions.log";
+
+	public static String MAILLOGFILE = DateUtils.getTodayDate()
+			+ "_jjteach_mail.log";
 	
-	@NotEmpty (message = "Subject must be entered")
-	private String subject;
-	
-	private CommonsMultipartFile solution;
-	
-	@NotEmpty
-	private String topicId;
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public CommonsMultipartFile getSolution() {
-		return solution;
-	}
-
-	public void setSolution(CommonsMultipartFile solution) {
-		this.solution = solution;
-	}
-
-	public String getTopicId() {
-		return topicId;
-	}
-
-	public void setTopicId(String topicId) {
-		this.topicId = topicId;
-	}
-
-		
 }

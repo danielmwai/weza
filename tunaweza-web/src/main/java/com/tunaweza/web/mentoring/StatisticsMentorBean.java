@@ -22,60 +22,45 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.service.solution;
-
+package com.tunaweza.web.mentoring;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-public class PostSolutionBean {
+public class StatisticsMentorBean {
 
-	@NotEmpty(message = "Message must be entered")
-	private String message;
+	String month;
+	String totalTransactions;
+	String averageTimeToResponse;
+	String averageTimeToRead;
 	
-	@NotEmpty (message = "Subject must be entered")
-	private String subject;
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public String getTotalTransactions() {
+		return totalTransactions;
+	}
+	public void setTotalTransactions(String totalTransactions) {
+		this.totalTransactions = totalTransactions;
+	}
+	public String getAverageTimeToResponse() {
+		return averageTimeToResponse;
+	}
+	public void setAverageTimeToResponse(String averageTimeToResponse) {
+		this.averageTimeToResponse = averageTimeToResponse;
+	}
+	public String getAverageTimeToRead() {
+		return averageTimeToRead;
+	}
+	public void setAverageTimeToRead(String averageTimeToRead) {
+		this.averageTimeToRead = averageTimeToRead;
+	}
 	
-	private CommonsMultipartFile solution;
 	
-	@NotEmpty
-	private String topicId;
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public CommonsMultipartFile getSolution() {
-		return solution;
-	}
-
-	public void setSolution(CommonsMultipartFile solution) {
-		this.solution = solution;
-	}
-
-	public String getTopicId() {
-		return topicId;
-	}
-
-	public void setTopicId(String topicId) {
-		this.topicId = topicId;
-	}
-
-		
 }

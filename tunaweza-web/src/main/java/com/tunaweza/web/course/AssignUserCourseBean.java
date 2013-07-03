@@ -41,11 +41,11 @@ public class AssignUserCourseBean {
         this.userId = userId;
     }
 
-    public String getTemplateList() {
+    public String getList() {
         return templateList;
     }
 
-    public void setTemplateList(String templateList) {
+    public void setList(String templateList) {
         this.templateList = templateList;
     }
 

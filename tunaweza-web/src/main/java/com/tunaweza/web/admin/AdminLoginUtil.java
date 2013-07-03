@@ -23,7 +23,9 @@
  */
 package com.tunaweza.web.admin;
 
-import org.apache.commons.io.FileUtils;
+import com.tunaweza.core.business.utils.FileUtils;
+import com.tunaweza.web.md5.AdminMD5;
+import com.tunaweza.web.system.SystemFolder;
 
 /**
  * @version $Revision: 1.1.1.1 $
