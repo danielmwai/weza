@@ -24,18 +24,8 @@
 package com.tunaweza.web.rest;
 
 
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApi;
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApiImpl;
-import com.tunaweza.core.business.dao.exceptions.evaluation.EvaluationDoesNotExistException;
-import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.user.UserDao;
-import com.tunaweza.core.business.model.answer.Answer;
-import com.tunaweza.core.business.model.evaluation.Evaluation;
-import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
-import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
-import static com.tunaweza.core.business.model.evaluation.StudentEvaluation_.evaluationTemplate;
-import com.tunaweza.core.business.model.question.Question;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.answer.AnswerService;
@@ -44,49 +34,23 @@ import com.tunaweza.core.business.service.question.QuestionService;
 import com.tunaweza.core.business.service.student.StudentService;
 import com.tunaweza.core.business.service.topic.TopicService;
 import com.tunaweza.core.business.service.user.UserService;
-import static com.tunaweza.core.business.utils.SessionHelper.setSessionAttribDbConfig;
 import com.tunaweza.web.evaluation.student.StudentEvaluationService;
 import com.tunaweza.web.md5.CredentialsEncoder;
-import com.tunaweza.web.user.DbConfigBean;
 import com.tunaweza.web.views.Views;
 import static com.tunaweza.web.views.Views.WS_AUTHENTICATE;
-import static com.tunaweza.web.views.Views.WS_GET_COURSES_AND_MODULES;
-
-import static com.tunaweza.web.views.Views.WS_GET_MODULE_TOPICS;
-import static com.tunaweza.web.views.Views.WS_STUDENT_TEST_MODULE;
-import static com.tunaweza.web.views.Views.WS_STUDENT_TEST_MODULE_NEW;
-import static com.tunaweza.web.views.Views.WS_STUDENT_TEST_MODULE_RESULTS;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.ConstraintViolation;
 import javax.xml.validation.Validator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jettison.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
-import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * @version $Revision: 1.1.1.1 $

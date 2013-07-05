@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<persistence-unit name="jjteach_db_manager"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/jjteachDS</jta-data-source>
+		<class>com.jjpeople.jjteach.orm.entities.user.User</class>
+		<class>com.jjpeople.jjteach.orm.entities.user.Role</class>
+		<class>com.jjpeople.jjteach.orm.entities.user.Location</class>
+		<class>com.jjpeople.jjteach.orm.entities.user.UserType</class>
+		<class>com.jjpeople.jjteach.orm.entities.user.UserWaitingAuthorisation</class>
+		<class>com.jjpeople.jjteach.orm.entities.topic.Topic</class>
+		<class>com.jjpeople.jjteach.orm.entities.topic.TopicText</class>
+		<class>com.jjpeople.jjteach.orm.entities.status.Status</class>
+		<class>com.jjpeople.jjteach.orm.entities.persistence.AbstractPersistentEntity</class>
+		<class>com.jjpeople.jjteach.orm.entities.persistence.PersistentEntity</class>
+		<class>com.jjpeople.jjteach.orm.entities.mentor.Mentor</class>
+		<class>com.jjpeople.jjteach.orm.entities.mentor.MentorTemplate</class>
+		<class>com.jjpeople.jjteach.orm.entities.file.File</class>
+		<class>com.jjpeople.jjteach.orm.entities.feature.FeatureArea</class>
+		<class>com.jjpeople.jjteach.orm.entities.exercise.ExerciseTransaction</class>
+		<class>com.jjpeople.jjteach.orm.entities.module.Module</class>
+		<class>com.jjpeople.jjteach.orm.entities.student.Student</class>
+		<class>com.jjpeople.jjteach.orm.entities.exercise.StudentExercise</class>
+		<class>com.jjpeople.jjteach.orm.entities.course.CourseTemplate</class>
+		<class>com.jjpeople.jjteach.orm.entities.answer.GoodAnswer</class>
+		<class>com.jjpeople.jjteach.orm.entities.exercise.OverrideType</class>
+		<class>com.jjpeople.jjteach.orm.entities.exercise.OverrideStudentExercise</class>
+		<class>com.jjpeople.jjteach.orm.entities.exercise.ExerciseTransactionType</class>
+		<class>com.jjpeople.jjteach.orm.entities.exercise.OverrideTypes</class>
+		<class>com.jjpeople.jjteach.orm.entities.exercise.ExerciseType</class>
+		<class>com.jjpeople.jjteach.orm.entities.topic.LastAccessedTopicInModule</class>
+		<class>com.jjpeople.jjteach.orm.entities.image.Image</class>
+		<class>com.jjpeople.jjteach.orm.entities.evaluation.Question</class>
+		<class>com.jjpeople.jjteach.orm.entities.evaluation.Answer</class>
+		<class>com.jjpeople.jjteach.orm.entities.evaluation.EvaluationTemplate</class>
+		<class>com.jjpeople.jjteach.orm.entities.evaluation.EvaluationTransaction</class>
+		<class>com.jjpeople.jjteach.orm.entities.evaluation.StudentEvaluation</class>
+		<class>com.jjpeople.jjteach.orm.entities.evaluation.StudentCourseEvaluation</class>
+		<class>com.jjpeople.jjteach.orm.entities.evaluation.CourseEvaluationTransaction</class>
+		<class>com.jjpeople.jjteach.orm.entities.companysettings.CompanySettings</class>
+		<class>com.jjpeople.jjteach.orm.entities.company.Company</class>
+		<class>com.jjpeople.jjteach.jjcloud.orm.entities.JJCloudInstance</class>
+		<class>com.jjpeople.jjteach.orm.entities.license.CompanyLicense</class>
+		<class>com.jjpeople.jjteach.orm.entities.license.License</class>
+		<class>com.jjpeople.jjteach.orm.entities.promocodes.Promocode</class>
+		<class>com.jjpeople.jjteach.orm.entities.group.Group</class>
+		<class>net.jforum.entities.Attachment</class>
+		<class>net.jforum.entities.AttachmentExtension</class>
+		<class>net.jforum.entities.AttachmentExtensionGroup</class>
+		<class>net.jforum.entities.AttachmentInfo</class>
+		<class>net.jforum.entities.Banlist</class>
+		<class>net.jforum.entities.Banner</class>
+		<class>net.jforum.entities.Bookmark</class>
+		<class>net.jforum.entities.BookmarkType</class>
+		<class>net.jforum.entities.Category</class>
+		<class>net.jforum.entities.Config</class>
+		<class>net.jforum.entities.Forum</class>
+		<class>net.jforum.entities.ForumModerationInfo</class>
+		<class>net.jforum.entities.ForumStats</class>
+		<class>net.jforum.entities.Group</class>
+		<class>net.jforum.entities.Karma</class>
+		<class>net.jforum.entities.KarmaStatus</class>
+		<class>net.jforum.entities.LastPostInfo</class>
+		<class>net.jforum.entities.MailIntegration</class>
+		<class>net.jforum.entities.ModerationLog</class>
+		<class>net.jforum.entities.ModerationLogType</class>
+		<class>net.jforum.entities.ModerationPendingInfo</class>
+		<class>net.jforum.entities.ModeratorInfo</class>
+		<class>net.jforum.entities.MostUsersEverOnline</class>
+		<class>net.jforum.entities.Poll</class>
+		<class>net.jforum.entities.PollChanges</class>
+		<class>net.jforum.entities.PollOption</class>
+		<class>net.jforum.entities.Post</class>
+		<class>net.jforum.entities.PrivateMessage</class>
+		<class>net.jforum.entities.PrivateMessageType</class>
+		<class>net.jforum.entities.QuotaLimit</class>
+		<class>net.jforum.entities.Ranking</class>
+		<class>net.jforum.entities.Smilie</class>
+		<class>net.jforum.entities.Topic</class>
+		<class>net.jforum.entities.TopicModerationInfo</class>
+		<class>net.jforum.entities.User</class>
+		<class>net.jforum.entities.UserSession</class>
+		<class>com.jjpeople.jjteach.orm.entities.report.Report</class>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.user" value="jjteach_"/>
+			<property name="javax.persistence.jdbc.password" value="nais"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jjteach_" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.query.substitutions" value="true 'T', false 'F'" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.c3p0.minPoolSize" value="5" />
+			<property name="hibernate.c3p0.maxPoolSize" value="70" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_statement" value="50" />
+			<property name="hibernate.c3p0.testConnectionOnCheckout"
+				value="false" />
+			<!-- <property name="hibernate.current_session_context_class" value="managed" /> -->
+		</properties>
+	</persistence-unit>
+</persistence>
