@@ -26,7 +26,7 @@ package com.tunaweza.core.business.model.exercise;
 
 import com.tunaweza.core.business.model.exercise.transaction.ExerciseTransactionType;
 import com.tunaweza.core.business.model.mentor.Mentor;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import java.util.List;
 
 /**

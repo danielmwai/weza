@@ -24,10 +24,11 @@
 
 package com.tunaweza.core.business.model.answer;
 import com.tunaweza.core.business.model.file.File;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.topic.Topic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -40,8 +41,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = GoodAnswer.TABLE_NAME)
-public class GoodAnswer extends AbstractPersistentEntity {
-	
+public class GoodAnswer  {
+	 @Id
+    @GeneratedValue
+    private Long id;
 	public static final String TABLE_NAME="good_answer";
 
 	private static final long serialVersionUID = 1L;

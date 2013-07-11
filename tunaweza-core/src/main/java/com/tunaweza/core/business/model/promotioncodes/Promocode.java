@@ -24,11 +24,12 @@
 
 package com.tunaweza.core.business.model.promotioncodes;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,8 +42,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name=Promocode.TABLE_NAME)
-public class Promocode extends AbstractPersistentEntity {
+public class Promocode  {
+ @Id
+    @GeneratedValue
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
 	
 	public static final String TABLE_NAME="promo_codes";
@@ -62,10 +73,8 @@ public class Promocode extends AbstractPersistentEntity {
 	@Column(name="Extra_users",nullable=false)
 	private long extrausers;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="License_id")
-	
-	
+	//@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	//@JoinColumn(name="License_id")
 	@Column(name="dissociate_id",nullable=false)
 	private long dissociatedid;
 	

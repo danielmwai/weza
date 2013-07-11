@@ -28,7 +28,7 @@ package com.tunaweza.core.business.dao.message;
 import com.tunaweza.core.business.dao.exceptions.message.MessageDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.message.MessageExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.Message.Message;
+import com.tunaweza.core.business.model.message.Message;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

@@ -28,12 +28,12 @@ import com.tunaweza.core.business.dao.exceptions.answer.AnswerExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.answer.Answer;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -45,7 +45,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "answerDao")
 @Transactional
 public class AnswerDaoImpl extends GenericDaoImpl<Answer> implements AnswerDao {
-
+@Autowired
+SessionFactory sessionFactory;
 	@Override
 	public Answer findAnswerById(long uid) throws AnswerDoesNotExistException {
 		Answer answer = findById(uid);
@@ -59,9 +60,8 @@ public class AnswerDaoImpl extends GenericDaoImpl<Answer> implements AnswerDao {
 	@Override
 	public Answer findAnswerByText(String text) throws AnswerDoesNotExistException{
 	
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.text = ?");// + text	+ "'");
 		
 		query.setString(0, text);
@@ -122,9 +122,8 @@ public class AnswerDaoImpl extends GenericDaoImpl<Answer> implements AnswerDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Answer> getAllAnswersByQuestion(long questionId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.question.id = '"
 				+ questionId + "' ORDER BY i.id ASC");
 

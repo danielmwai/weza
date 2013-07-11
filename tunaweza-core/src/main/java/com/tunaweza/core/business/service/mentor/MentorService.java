@@ -28,9 +28,8 @@ package com.tunaweza.core.business.service.mentor;
 import com.tunaweza.core.business.dao.exceptions.mentor.MentorExistsException;
 import com.tunaweza.core.business.dao.exceptions.mentor.MentorNotFoundException;
 import com.tunaweza.core.business.model.mentor.Mentor;
-import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.mentor.MentorTemplate;
 import com.tunaweza.core.business.model.user.User;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
 import java.util.List;
 
 /**
@@ -44,13 +43,13 @@ public interface MentorService {
 	 * returns a list of all mentors
 	 * @return all the mentors
 	 */
-	//public List<Mentor> getAllMentors();
+	public List<Mentor> getAllMentors();
 	
 	/**
 	 * returns a single Mentor
 	 * @param mentorId
 	 * @return a mentor
-	 * @throws MentorNotFoundException
+	 * @throws MentorDoesNotExistException
 	 */
 	public Mentor getMentorById(Long mentorId) throws MentorNotFoundException;
 	
@@ -73,14 +72,14 @@ public interface MentorService {
 	 * @param mentorId
 	 * @return
 	 */
-	public List<Mentor> getMentorsByMentor(long mentorId);
+	public List<MentorTemplate> getMentorTemplatesByMentor(long mentorId);
 	
 	/**
 	 * 
 	 * @param mentor
-	 * @param Mentors
+	 * @param mentorTemplates
 	 */
-	public void saveMentorsToMentor(Mentor mentor, List<Mentor> Mentors);
+	public void saveMentorTemplatesToMentor(Mentor mentor, List<MentorTemplate> mentorTemplates);
 	
 	/**
 	 * 
@@ -115,114 +114,5 @@ public interface MentorService {
 	 * @return List of the total transactions of the last three months
 	 */
 	public String getAvergeofList(List<Long> listofDiff);
-	/**
-	 * 
-	 * @return <code>MentorTemplate</code> list
-	 * 
-	 */
-	public List<Mentor> listAllMentor();
- public Mentor addMentor(Mentor Mentor) 
-			throws MentorExistsException;
 	
-	/**
-	 * 
-	 * @param Mentor
-	 * @throws MentorNotFoundException
-	 */
-	public Mentor findMentorById(long id) 
-			throws MentorNotFoundException;
-	
-	/**
-	 * 
-	 * @param Mentor
-	 * @throws MentorNotFoundException
-	 */
-	public Mentor findMentorByName(String name)
-			throws MentorNotFoundException;
-	
-	/**
-	 * 
-	 * @return <code>Mentor</code> list
-	 * 
-	 */
-	public List<Mentor> listAllMentors();
-	
-	
-	/**
-	 * 
-	 * @param Mentor
-	 * @return <code>User</code> list
-	 * 
-	 */
-	public List<Mentor> listMentorsByMentor(long MentorId);
-	
-	/**
-	 * 
-	 * @param Mentor
-	 * @param module
-	 * 
-	 */
-	public void saveExercisesToMentor(Mentor Mentor, List<Topic> exercises);
-	
-	/**
-	 * 
-	 * @param Mentor
-	 * @return <code>Module</code> list
-	 * 
-	 */
-	public List<Topic> getExercisesInMentor(long MentorId);
-	
-	/**
-	 * 
-	 * @param Mentor
-	 * @return <code>Module</code> list
-	 * 
-	 */
-	public List<Topic> getActiveExercisesInMentor(long MentorId);
-
-	/**
-	 * 
-	 * @param Mentor
-	 * @throws MentorExistsException
-	 */
-	public void editMentor(Mentor Mentor) throws MentorExistsException;
-
-	/**
-	 * 
-	 * @param MentorId
-	 * @return
-	 */
-	public int countExerciseTransactions(long moduleId, long mentorId);
-	
-	/**
-	 * 
-	 * @param MentorId
-	 * @return
-	 */
-	public List<ExerciseTransaction> getExerciseTransactions(long moduleId, long mentorId);
-
-	
-	/**
-	 * 
-	 * @param startIndex
-	 *            The start index
-	 * @param pageSize
-	 *            The number of <code>ExerciseTransaction</code>s to return.
-	 * @param moduleId
-	 * 			  The module id of <code>ExerciseTransaction</code>s to return
-	 * @param mentorId
-	 * 			  The mentor id
-	 * @return A <code>List</code> with <code>ExerciseTransaction Object</code>s.
-	 */
-	public List<ExerciseTransaction> getPaginatedExerciseTransactions(int startIndex, int pageSize, long moduleId, long mentorId);
-	
-	/**
-	 * 
-	 * @param mentorId
-	 * @param moduleId
-	 * @return
-	 */
-	public int numberOfExercisesByMentor(long mentorId,long moduleId);
-
 }
-

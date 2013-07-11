@@ -24,7 +24,6 @@
 
 package com.tunaweza.core.business.model.user;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import javax.persistence.*;
 /**
  * @version $Revision: 1.1.1.1 $
@@ -33,9 +32,20 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name=UserWaitingAuthorisation.TABLE_NAME)
-public class UserWaitingAuthorisation extends AbstractPersistentEntity
+@Table(name="ser_waiting_authorisation")
+public class UserWaitingAuthorisation
 {
+    @Id
+    @GeneratedValue
+    private  Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
     public final static String TABLE_NAME="unconfirmed_users";
    

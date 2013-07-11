@@ -67,16 +67,15 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-@Transactional
-@Repository("studentService")
+
+@Service
 public class StudentServiceImpl implements StudentService {
 
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -90,13 +89,13 @@ public class StudentServiceImpl implements StudentService {
 	CourseService courseService;
 	
 	@Autowired
-	CourseDao courseTemplateDao;
+	CourseDao courseDao;
 
 	@Autowired
 	EvaluationService evaluationService;
 	
 	@Autowired
-	EvaluationDao evaluationTemplateDAO;
+	EvaluationDao evaluationDao;
 
 	@Autowired
 	StudentEvaluationService studentEvaluationService;
@@ -243,7 +242,7 @@ public class StudentServiceImpl implements StudentService {
 		} else {
 
 			for (Course course : courseList) {
-				logger.info("COURSE TEMPLATE: " + course.getName());
+				logger.info("COURSE : " + course.getName());
 
 				// List of Beans for our data
 				List<MonitorModuleBean> modules = new ArrayList<MonitorModuleBean>();
@@ -851,7 +850,7 @@ public class StudentServiceImpl implements StudentService {
 	 * on the prerequisites
 	 * 
 	 * @param student
-	 * @param embeddableCourseTemplateList
+	 * @param embeddableCourseList
 	 * @return
 	 */
 	private List<Course> enabledCourse(Student student,
@@ -1131,17 +1130,17 @@ public class StudentServiceImpl implements StudentService {
 		Long studentId = student.getId();
 		Map<Map<String, String>, List<Map<String, String>>> studentCoursesandModules = new LinkedHashMap<Map<String, String>, List<Map<String, String>>>();
 		List<BigInteger> studentCTIds = studentDao.getStudentCourseList(studentId, companyDbName);
-		List<Course> studentCTs = courseTemplateDao.courseListById(studentCTIds, companyDbName);
+		List<Course> studentCTs = courseDao.courseListById(studentCTIds, companyDbName);
 		
 		for(Course studentCT : studentCTs) {
 			List<Module> modulesInCT = new ArrayList<Module>();
-			modulesInCT = courseTemplateDao.getActiveModulesInCourseNoSession(studentCT.getId(), companyDbName);
+			modulesInCT = courseDao.getActiveModulesInCourseNoSession(studentCT.getId(), companyDbName);
 			List<Map<String, String>> moduleInfoList = new ArrayList<Map<String, String>>();
 			for (Module module: modulesInCT) {
 				Map<String, String> moduleInfo = new LinkedHashMap<String, String>();
 				Evaluation evaluation = null;
 				try {
-					evaluation = evaluationTemplateDAO.getEvaluationByModuleNoSession(module.getId(), companyDbName);
+					evaluation = evaluationDao.getEvaluationByModuleNoSession(module.getId(), companyDbName);
 				} catch (EvaluationDoesNotExistException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

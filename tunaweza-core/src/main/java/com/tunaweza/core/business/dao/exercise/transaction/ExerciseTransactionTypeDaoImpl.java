@@ -23,51 +23,54 @@
  */
 
 package com.tunaweza.core.business.dao.exercise.transaction;
-import com.tunaweza.core.business.Dao.exercise.transaction.ExerciseTransactionTypeDao;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.exercise.transaction.ExerciseTransactionType;
 import java.util.List;
-import static org.h2.util.IOUtils.delete;
 
 import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+
+@Repository(value = "exerciseTransactionTypeDao")
+@Transactional
 public class ExerciseTransactionTypeDaoImpl extends GenericDaoImpl<ExerciseTransactionType> 
 				implements ExerciseTransactionTypeDao 
 {
+    @Autowired
+    SessionFactory sessionFactory;
 
-	@Override
-	public List<ExerciseTransactionType> getExerciseTransactionTypes() {
+		public List<ExerciseTransactionType> getExerciseTransactionTypes() {
 		return findAll();
 	}
 
-	@Override
+	
 	public ExerciseTransactionType getExerciseTransactionType(Long id) {
 		return findById(id);
 	}
 
-	@Override
 	public void saveExerciseTransactionType(
 			ExerciseTransactionType exerciseTransactionType) {
 		saveOrUpdate(exerciseTransactionType);
 
 	}
 
-	@Override
+	
 	public void removeExerciseTransactionType(Long id) {
 		delete(findById(id));
 	}
 
-	@Override
+	
 	public ExerciseTransactionType getExerciseTransactionTypeByName(String name) 
 	{
 		ExerciseTransactionType exerciseTransactionType = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query =sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE i.name='"+name+"'");
 		if(query.list().size() > 0)
 		{

@@ -38,10 +38,8 @@ import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.course.CourseService;
-import com.tunaweza.core.business.service.dbswitcher.DbSwitcherHelper;
 import com.tunaweza.core.business.service.mail.MailService;
 import com.tunaweza.core.business.service.student.StudentService;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -61,7 +59,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
-	private Logger logger = Logger.getLogger(this.getClass());
+	private final Logger logger = Logger.getLogger(this.getClass());
 
 	@Autowired
 	private UserDao userDao;
@@ -78,13 +76,16 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	CourseService courseTemplateService;
 	
-	@Autowired
-	private DbSwitcherHelper dbSwitcherHelper;
+	
 	
 //	@Autowired
 //	private CompanyService companyService;
 
-	private Random rgen = new Random();
+    /**
+     *
+     */
+    
+	public Random rgen = new Random();
 	private byte decision, numValue;
 	private char charValue;
 
@@ -176,14 +177,14 @@ public class UserServiceImpl implements UserService {
 
 		User user = userDao.findById(uId);
 
-		if (user.getEnabled() == 1)
+		if (user.getIs_enabled() == 1)
 			return true;
 		else {
-			user.setEnabled(1);
+			user.setIs_enabled(1);
 
 			user = userDao.saveOrUpdate(user);
 
-			if (user.getEnabled() == 1)
+			if (user.getIs_enabled() == 1)
 				return true;
 			else
 				return false;
@@ -208,14 +209,14 @@ public class UserServiceImpl implements UserService {
 
 		User user = userDao.findById(uId);
 
-		if (user.getEnabled() == 0)
+		if (user.getIs_enabled() == 0)
 			return true;
 		else {
-			user.setEnabled(0);
+			user.setIs_enabled(0);
 
 			user = userDao.saveOrUpdate(user);
 
-			if (user.getEnabled() == 0)
+			if (user.getIs_enabled() == 0)
 				return true;
 			else
 				return false;
@@ -589,6 +590,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#isStudent(com.jjpeople
 	 * .jjteach .orm.entities.user.User)
 	 */
+        @Override
 	public boolean isStudent(User user) throws UserDoesNotExistException {
 
 		try {
@@ -598,7 +600,7 @@ public class UserServiceImpl implements UserService {
 			if(userDao.findUserAuthority(user.getUsername()).equals("ROLE_STUDENT")) {
 				return true;
 			}
-		} catch (Exception e) {
+		} catch (UserDoesNotExistException e) {
 
 		}
 
@@ -611,10 +613,11 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#isEnabled(java.lang
 	 * .String)
 	 */
+        @Override
 	public boolean isEnabled(String username) throws UserDoesNotExistException {
 		User user = userDao.findUser(username);
 
-		return user.getEnabled() == 1 ? true : false;
+		return user.getIs_enabled() == 1 ? true : false;
 	}
 
 	/*
@@ -634,6 +637,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.jjpeople.jjteach.web.service.UserService#getModuleStartDate
 	 * (java. lang.String)
 	 */
+        @Override
 	public Date getModuleStartDate(String username) {
 		// TODO Auto-generated method stub
 		return null;
@@ -822,10 +826,10 @@ public class UserServiceImpl implements UserService {
 		long uId = Long.valueOf(userId);
 		User user = userDao.findById(uId);
 
-		if (user.getEnabled() == 1)
-			user.setEnabled(0);
+		if (user.getIs_enabled() == 1)
+			user.setIs_enabled(0);
 		else
-			user.setEnabled(1);
+			user.setIs_enabled(1);
 
 	userDao.saveOrUpdate(user);
 		/*int enabled = 0;
@@ -856,23 +860,23 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public void enableDisableCloudUser(String userId)throws UserDoesNotExistException, Exception {
-		long uId = Long.valueOf(userId);
-		User user = userDao.findById(uId);
-
-		
-		int enabled = 0;
-		Connection con = dbSwitcherHelper.dbSwitcher("jjteach_", "jjteach_", "jjteach_");
-		
-		
-		if (user.getEnabled() == 1){
-			enabled =0;
-		}
-		else{
-			enabled =1;
-		}
-		userDao.jdbcUpdateUser(con,"enabled",enabled, userId);
-		
-			
+//		long uId = Long.valueOf(userId);
+//		User user = userDao.findById(uId);
+//
+//		
+//		int enabled = 0;
+//		Connection con = dbSwitcherHelper.dbSwitcher("jjteach_", "jjteach_", "jjteach_");
+//		
+//		
+//		if (user.getIs_enabled() == 1){
+//			enabled =0;
+//		}
+//		else{
+//			enabled =1;
+//		}
+//		userDao.jdbcUpdateUser(con,"enabled",enabled, userId);
+//		
+//			
 		
 	}
 	

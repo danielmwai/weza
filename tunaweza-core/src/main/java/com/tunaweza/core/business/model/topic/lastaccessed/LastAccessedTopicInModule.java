@@ -23,8 +23,8 @@
  */
 
 package com.tunaweza.core.business.model.topic.lastaccessed;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.topic.Topic;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -32,6 +32,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -45,14 +46,15 @@ import javax.persistence.Version;
  */
 
 @Entity
-@Table(name = LastAccessedTopicInModule.TABLE_NAME)
-public class LastAccessedTopicInModule implements PersistentEntity
+@Table(name = "last_accessed_topic_in_module")
+public class LastAccessedTopicInModule implements Serializable 
 {
-	public static final String TABLE_NAME = "last_accessed_topic_in_module";
+    
+	public static final String TABLE_NAME = "";
 
 	@EmbeddedId
 	private LastAccessedTopicPK lastAccessedTopicPK;
-	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;

@@ -5,13 +5,14 @@
  */
 package com.tunaweza.core.business.model.course;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.status.Status;
 import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -22,9 +23,19 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = Course.TABLE_NAME)
-public class Course extends AbstractPersistentEntity implements
+public class Course  implements
 		Comparable<Course> {
+  @Id
+    @GeneratedValue
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	public static final String TABLE_NAME = "course_template";
 
 	private static final long serialVersionUID = 1L;

@@ -38,6 +38,7 @@ import org.apache.log4j.Logger;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -51,7 +52,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "roleDao")
 @Transactional
 public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
-
+@Autowired
+SessionFactory sessionFactory;
 	public Logger logger = Logger.getLogger(RoleDaoImpl.class);
 	
 	@Autowired
@@ -94,9 +96,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	@SuppressWarnings("unchecked")
         //public List<Role> getUserRoles(long uid)
 	public List<com.tunaweza.core.business.model.role.Role> getUserRoles(long uid) throws UserDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM User i "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM User i "
 				+ "WHERE i.id = " + uid);
 
 		if (query.list().size() == 0) {
@@ -112,9 +113,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	public List<Role> getUserRoles(String uname)
 			throws UserDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM User i "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM User i "
 				+ "WHERE i.username = '" + uname +"'");
 
 		if (query.list().size() == 0) {
@@ -132,9 +132,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	public RoleDao setUserRoles(long uid, List<Role> roles)
 			throws UserDoesNotExistException, RoleDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM User i "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM User i "
 				+ "WHERE i.id = " + uid);
 
 		if (query.list().size() == 0) {
@@ -159,9 +158,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	public RoleDao setUserRoles(String uname, List<Role> roles)
 			throws RoleDoesNotExistException, UserDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM User i "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM User i "
 				+ "WHERE i.username = '" + uname + "'");
 
 		if (query.list().size() == 0) {
@@ -197,9 +195,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	@Override
 	public RoleDao removeRole(int roleid) throws RoleDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery("SELECT * FROM roles r "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM roles r "
 				+ "WHERE r.id = " + roleid);
 
 		if (query.list().size() == 0) {
@@ -226,9 +223,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 
 	@Override
 	public Role getRole(int roleid) throws RoleDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.id = " + roleid);
 
 		if (query.list().size() == 0) {
@@ -243,9 +239,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	@Override
 	public Role getRole(String rname) throws RoleDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createQuery("SELECT i FROM " + getDomainClass().getName()
 						+ " i WHERE i.roleName = '" + rname + "'");
 
@@ -263,11 +258,10 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	public List<Role> getRoleNotInCloudLevel()
 			throws RoleDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 		String roleadmin = "ROLE_CLOUDADMIN";
 		String rolecloud = "ROLE_SUPERCLOUDADMIN";
 		
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.roleName != '"
 				+ roleadmin + "' and i.roleName != '"+ rolecloud + "'");
 
@@ -287,9 +281,8 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 		if (!wired)
 			return getRole(roleid);
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.id = " + roleid);
 
 		if (query.list().size() == 0) {
@@ -309,14 +302,13 @@ public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 	@Override
 	public int getBiggestNumber() {
 
-		Session session = (Session) getEntityManager().getDelegate();
 		
-		Query queryCount = session.createSQLQuery("SELECT COUNT(*) FROM roles");
+		Query queryCount = sessionFactory.getCurrentSession().createSQLQuery("SELECT COUNT(*) FROM roles");
 		Integer max = 0;
 		java.math.BigInteger count = (java.math.BigInteger)queryCount.list().get(0);
 		if(count.intValue() > 0)
 		{
-			Query query = session.createSQLQuery("SELECT max(number) FROM roles");
+			Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT max(number) FROM roles");
 			max = (Integer) query.list().get(0);
 		}
 		return max.intValue();

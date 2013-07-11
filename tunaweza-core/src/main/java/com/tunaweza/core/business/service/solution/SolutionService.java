@@ -31,7 +31,7 @@ import com.tunaweza.core.business.model.exercise.transaction.ExerciseTransaction
 import com.tunaweza.core.business.model.mentor.Mentor;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.User;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import com.tunaweza.core.business.service.exercise.GradeExerciseBean;
 import java.util.List;
 

@@ -42,7 +42,7 @@ import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.topic.TopicBean;
 import com.tunaweza.core.business.model.topic.TopicText;
 import com.tunaweza.core.business.model.user.User;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import com.tunaweza.core.business.service.module.ModuleService;
 import com.tunaweza.core.business.service.solution.SolutionService;
 import com.tunaweza.core.business.service.user.UserCastService;
@@ -427,7 +427,7 @@ public class TopicServiceImpl implements TopicService {
 			CommonsMultipartFile multipartFile = addTopicBean.getAttachedfile();
 			File file = new File();
 			if (!multipartFile.isEmpty()) {
-				file.setFile(convertFileToBytes(multipartFile));
+//				file.setFile(convertFileToBytes(multipartFile));
 				file.setContentType(multipartFile.getContentType());
 				file.setFileName(multipartFile.getOriginalFilename());
 				fileDao.saveFile(file);
@@ -533,7 +533,7 @@ public class TopicServiceImpl implements TopicService {
 						.getAttachedfile();
 				File file = new File();
 				if (multipartFile != null) {
-					file.setFile(convertFileToBytes(multipartFile));
+					//file.setFile(convertFileToBytes(multipartFile));
 					file.setContentType(multipartFile.getContentType());
 					file.setFileName(multipartFile.getOriginalFilename());
 					if (topic.getFile() != null) {

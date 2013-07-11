@@ -25,6 +25,7 @@
 package com.tunaweza.core.business.dao.exercise;
 
 import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseNotFoundException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.module.Module;
@@ -46,7 +47,7 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 	 * @throws StudentExerciseExistsException
 	 */
 	public StudentExercise findStudentExerciseById(Long id) 
-			throws StudentExerciseExistsException;
+			throws StudentExerciseNotFoundException;
 	
 	/**
 	 * 
@@ -55,7 +56,7 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 	 * @throws StudentExerciseExistsException
 	 */
 	public List<StudentExercise> getAllStudentExerciseByStudent(User user) 
-			throws StudentExerciseExistsException;
+			throws StudentExerciseNotFoundException;
 	
 	/**
 	 * 
@@ -63,7 +64,7 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 	 * @throws StudentExerciseExistsException
 	 */
 	public List<StudentExercise> getAllStudentExercise() 
-			throws StudentExerciseExistsException;
+			throws StudentExerciseNotFoundException;
 	
 	/**
 	 * 
@@ -72,7 +73,7 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 	 * @throws StudentExerciseExistsException
 	 */
 	public List<StudentExercise> findStudentExerciseByTopic(Topic topic) 
-			throws StudentExerciseExistsException;
+			throws StudentExerciseNotFoundException;
 	
 	/**
 	 * 
@@ -90,7 +91,7 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 	 * 
 	 */
 	public void updateStudentExercise(StudentExercise studentExercise) 
-			throws StudentExerciseExistsException;
+			throws StudentExerciseNotFoundException;
 	
 	/**
 	 * 
@@ -112,6 +113,6 @@ public interface StudentExerciseDao extends GenericDao<StudentExercise>
 				Topic exercise);
 	
 	public List<List> getAllStudentExerciseByModule(User user, Module module)
-			throws StudentExerciseExistsException;
+			throws StudentExerciseNotFoundException;
 	
 }

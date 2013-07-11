@@ -11,7 +11,6 @@ package com.tunaweza.core.business.model.answer;
  */
 
 import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.question.Question;
 import java.util.List;
 
@@ -19,6 +18,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -26,8 +27,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = Answer.TABLE_NAME)
-public class Answer extends AbstractPersistentEntity implements
+public class Answer  implements
 		Comparable<Answer> {
+    @Id
+    @GeneratedValue
+    private Long id;
 	private static final long serialVersionUID = 1L;
 
 	public static final String TABLE_NAME = "answers";
@@ -103,5 +107,13 @@ public class Answer extends AbstractPersistentEntity implements
 		}
 		return 0;
 	}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

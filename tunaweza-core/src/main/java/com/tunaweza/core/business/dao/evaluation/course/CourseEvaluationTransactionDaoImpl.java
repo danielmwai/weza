@@ -22,14 +22,15 @@
  * THE SOFTWARE.
  */
 
-package com.tunaweza.core.business.Dao.evaluation.course;
+package com.tunaweza.core.business.dao.evaluation.course;
 
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.evaluation.CourseEvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
 import java.util.List;
 import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +44,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class CourseEvaluationTransactionDaoImpl extends
 		GenericDaoImpl<CourseEvaluationTransaction> implements CourseEvaluationTransactionDao {
 
-	
+	@Autowired
+     SessionFactory sessionFactory;
+
 	@Override
 	public List<CourseEvaluationTransaction> getCourseEvaluationTransactions() {
 		return findAll();
@@ -66,8 +69,8 @@ public class CourseEvaluationTransactionDaoImpl extends
 			StudentEvaluation studentEvaluation) 
 	{
 		List<CourseEvaluationTransaction> courseEvaluationTransactionList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.studentEvaluation.id = "
 				+studentEvaluation.getId()+" ORDER BY i.transanctionDate Desc");
@@ -84,8 +87,8 @@ public class CourseEvaluationTransactionDaoImpl extends
 			StudentEvaluation studentEvaluation) 
 	{
 		CourseEvaluationTransaction courseEvaluationTransaction = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.studentEvaluation.id = "
 				+studentEvaluation.getId()
@@ -98,21 +101,6 @@ public class CourseEvaluationTransactionDaoImpl extends
 		return courseEvaluationTransaction;
 	}
 
-/**    @Override
-    public CourseEvaluationTransaction saveCourseEvaluationTransaction(CourseEvaluationTransaction courseEvaluationTransaction) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<CourseEvaluationTransaction> getCourseEvaluationTransactionByStudentEvaluation(StudentEvaluation studentEvaluation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CourseEvaluationTransaction getLastUserCourseEvaluationTransaction(StudentEvaluation studentEvaluation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-	**/
 	
 	
 }

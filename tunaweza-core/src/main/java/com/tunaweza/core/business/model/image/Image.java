@@ -24,7 +24,6 @@
 
 package com.tunaweza.core.business.model.image;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +32,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Lob;
 import java.sql.Blob;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -41,8 +42,18 @@ import java.sql.Blob;
 
 @Entity
 @Table(name = Image.TABLE_NAME)
-public class Image extends AbstractPersistentEntity
-{
+public class Image 
+{  @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 	public static final String TABLE_NAME = "image";
 	private static final long serialVersionUID = 1L;

@@ -35,7 +35,8 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -46,7 +47,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "moduleDao")
 @Transactional
 public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
-
+@Autowired
+SessionFactory sessionFactory;
 	/* (non-Javadoc)
 	 * @see com.jjpeople.jjteach.Dao.module.ModuleDao#addModule(com.jjpeople.jjteach.orm.entities.module.Module)
 	 */
@@ -131,9 +133,8 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	@Override
 	public Module findModuleByName(String name)
 			throws ModuleDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.name = '"
 				+ name + "'");
 
@@ -167,9 +168,8 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 
 	@Override
 	public int count() {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query queryCount = session.createSQLQuery("SELECT COUNT(*) FROM module");
+		Query queryCount = sessionFactory.getCurrentSession().createSQLQuery("SELECT COUNT(*) FROM module");
 
 		java.math.BigInteger count = (java.math.BigInteger) queryCount.list()
 				.get(0);
@@ -178,9 +178,8 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 
 	@Override
 	public List<Module> getPaginatedModulesList(int startIndex, int pageSize) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM module")
 				.addEntity(Module.class);
 		query.setFirstResult(startIndex);
@@ -195,9 +194,8 @@ public class ModuleDaoImpl  extends GenericDaoImpl<Module> implements ModuleDao{
 	public Module findModuleByIdNoSession(long moduleId, String companyDbName)
 			throws ModuleDoesNotExistException {
 		
-		Session session = (Session) getEntityManager().getDelegate();
 		
-		Query query = session.createSQLQuery("SELECT * FROM " + companyDbName + ".module"
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + companyDbName + ".module"
 				+ " WHERE id = " + moduleId).addEntity(Module.class);
 		
 		return query.list().size() > 0 ? (Module) query.list().get(0) : null;

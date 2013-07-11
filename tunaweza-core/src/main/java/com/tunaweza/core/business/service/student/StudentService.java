@@ -210,7 +210,7 @@ public interface StudentService {
 	 * @param student
 	 */
 	public void enableStudentModules(Student student,
-			List<Course> courseTemplateList);
+			List<Course> courseList);
 	
 	/**
 	 * 

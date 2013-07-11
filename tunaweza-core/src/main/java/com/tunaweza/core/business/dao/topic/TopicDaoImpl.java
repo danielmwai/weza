@@ -34,14 +34,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+@Repository
+@Transactional
 public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
-
+@Autowired
+SessionFactory sessionFactory;
 	
         @Override
 	public Topic findTopicById(long tid)  {
@@ -60,9 +67,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@Override
 	public Topic findTopicByName(String name)  {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.name = '" + name
 				+ "'");
 
@@ -130,9 +136,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 		long level = topic.getLevel();
 		long moduleId = topic.getModule().getId();
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM topics t WHERE t.level = " + level
 						+ " AND t.id_module = " + moduleId).addEntity(
 				Topic.class);
@@ -143,7 +148,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 		saveOrUpdate(topic);
 
-		Query query1 = session.createSQLQuery(
+		Query query1 = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM topics t WHERE t.level = " + level
 						+ " AND t.id_module = " + moduleId).addEntity(
 				Topic.class);
@@ -171,9 +176,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Topic> getAllTopicsByModule(Long moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName()
 				+ " i WHERE i.module.id = ? ORDER BY i.id ASC");
 		query.setLong(0, moduleId);
@@ -191,15 +195,14 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	@Override
 	public int getMaxLevel() {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query queryCount = session
+		Query queryCount = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT COUNT(*) FROM topics");
 		java.math.BigInteger max = BigInteger.valueOf(0);
 		java.math.BigInteger count = (java.math.BigInteger) queryCount.list()
 				.get(0);
 		if (count.intValue() > 0) {
-			Query query = session
+			Query query = sessionFactory.getCurrentSession()
 					.createSQLQuery("SELECT MAX(level) FROM topics");
 			max = (java.math.BigInteger) query.list().get(0);
 		}
@@ -210,9 +213,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Topic> findAllTopicsByModule(long id) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM topics t WHERE t.id_module = " + id
 						+ " ORDER BY t.id ASC").addEntity(Topic.class);
 
@@ -227,9 +229,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Topic> findAllParentTopicsByModule(long id) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM topics t WHERE t.id_module = " + id
 						+ " AND t.parent_id = 0 ORDER BY t.id ASC").addEntity(
 				Topic.class);
@@ -253,9 +254,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@SuppressWarnings("unchecked")
 	public List<Topic> getAllTopicsDirectChildOfModule(Long moduleId) {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createQuery("SELECT i FROM "
 						+ getDomainClass().getName()
 						+ " i WHERE i.parentId = 0 AND i.enabled = 1 AND i.module.id = '"
@@ -283,9 +283,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@SuppressWarnings("unchecked")
 	public List<Topic> getAllChildrenTopicsOfTopic(Long topicId) {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName()
 				+ " i WHERE i.enabled = 1 AND i.parentId =  '" + topicId
 				+ "' ORDER BY i.level ASC");
@@ -312,9 +311,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@SuppressWarnings("unchecked")
 	public List<Topic> getAllChildrenTopicsOfTopic(Long moduleId, Long topicId) {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM topics t" + " WHERE t.id_module = " + moduleId
 						+ " AND t.parent_id =  '" + topicId
 						+ "' ORDER BY t.level ASC").addEntity(Topic.class);
@@ -332,16 +330,15 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	@Override
 	public int getMaxLevelByModule(long id) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query queryCount = session
+		Query queryCount = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT COUNT(*) FROM topics t "
 						+ "WHERE t.id_module=" + id);
 		java.math.BigInteger max = BigInteger.valueOf(0);
 		java.math.BigInteger count = (java.math.BigInteger) queryCount.list()
 				.get(0);
 		if (count.intValue() > 0) {
-			Query query = session
+			Query query = sessionFactory.getCurrentSession()
 					.createSQLQuery("SELECT MAX(level) FROM topics t "
 							+ "WHERE t.id_module=" + id);
 			max = (java.math.BigInteger) query.list().get(0);
@@ -362,9 +359,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 		currentTopic.setLevel(getMaxLevel() + 1);
 		saveOrUpdate(currentTopic);
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM topics t WHERE t.id_module = " + moduleId
 						+ " ORDER BY t.level ASC").addEntity(Topic.class);
 		List<Topic> topics = new ArrayList<Topic>();
@@ -401,9 +397,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 		currentTopic.setLevel(getMaxLevel() + 1);
 		saveOrUpdate(currentTopic);
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM topics t WHERE t.id_module = " + moduleId
 						+ " ORDER BY t.level ASC").addEntity(Topic.class);
 		List<Topic> topics = new ArrayList<Topic>();
@@ -425,12 +420,11 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	@Override
 	public List<Double> getPercentageVariables(long moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
 		java.math.BigInteger countTopics = BigInteger.valueOf(0);
 		java.math.BigInteger countExercises = BigInteger.valueOf(0);
 
-		Query queryTopics = session
+		Query queryTopics = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT COUNT(*) FROM topics t WHERE"
 						+ " t.id_module=? AND t.is_exercise=? AND t.enabled=?");
 		queryTopics.setLong(0, moduleId);
@@ -438,7 +432,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 		queryTopics.setBoolean(2, true);
 		countTopics = (java.math.BigInteger) queryTopics.list().get(0);
 
-		Query queryExercises = session
+		Query queryExercises = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT COUNT(*) FROM topics t WHERE"
 						+ " t.id_module=? AND t.is_exercise=? AND t.enabled=?");
 		queryExercises.setLong(0, moduleId);
@@ -463,7 +457,6 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@SuppressWarnings("unchecked")
 	public List<Topic> getPaginatedTopicsList(int startIndex, int pageSize,
 			long moduleId, String searchString) {
-		Session session = (Session) getEntityManager().getDelegate();
 		String sql = null;
 		if (!searchString.isEmpty()) {
 			sql = "SELECT * FROM topics t WHERE t.id_module = " + moduleId
@@ -473,7 +466,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 			sql = "SELECT * FROM topics t WHERE t.id_module = " + moduleId
 					+ " ORDER BY t.id ASC";
 		}
-		Query query = session.createSQLQuery(sql).addEntity(Topic.class);
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Topic.class);
 		query.setFirstResult(startIndex);
 		query.setMaxResults(pageSize);
 		return query.list();
@@ -481,18 +474,16 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	@Override
 	public BigInteger getNumberOfEnabledTopics(long moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery("SELECT count(*) FROM topics t "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT count(*) FROM topics t "
 				+ "WHERE t.id_module = " + moduleId + " AND t.enabled=1");
 		return (java.math.BigInteger) query.list().get(0);
 	}
 
 	@Override
 	public int getNumberOfAllowedQuestions(long topicId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery("SELECT t.eval_questions_limit "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT t.eval_questions_limit "
 				+ "FROM topics t WHERE t.id = " + topicId);
 		return (Integer) query.list().get(0);
 
@@ -500,9 +491,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	@Override
 	public int getNumberOfTopicsByModule(long moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT COUNT(*) FROM topics t WHERE t.id_module = ?");
 
 		query.setLong(0, moduleId);
@@ -512,9 +502,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	@Override
 	public List<Topic> getAllExercisesByModule(Long moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createQuery("SELECT i FROM "
 						+ getDomainClass().getName()
 						+ " i WHERE i.module.id = ? AND is_exercise =? ORDER BY i.id ASC");
@@ -542,7 +531,6 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Topic> findTopicByNameAndModuleId(String name, Long moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 		/*
 		 * String queryStr = "SELECT i FROM " + getDomainClass().getName() +
 		 * " WHERE i.module.id=? AND i.name LIKE '%?%' ORDER BY i.id ASC";
@@ -556,7 +544,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 			sql = "SELECT * FROM topics t WHERE t.id_module=?  ORDER BY t.id ASC";
 		}
 		System.out.println("QUERY::::::::::::::::::::>>>" + sql);
-		Query query = session.createSQLQuery(sql).addEntity(Topic.class);
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Topic.class);
 		query.setLong(0, moduleId);
 		// query.setString(1, name);
 		return query.list().size() > 0 ? (List<Topic>) query.list() : null;
@@ -565,7 +553,6 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 
 	@Override
 	public int getNumberOfTopicByNameAndModule(String name, Long moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 		/*
 		 * String queryStr = "SELECT i FROM " + getDomainClass().getName() +
 		 * " WHERE i.module.id=? AND i.name LIKE '% ? %' ORDER BY i.id ASC";
@@ -579,7 +566,7 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 		} else {
 			sql = "SELECT * FROM topics t WHERE t.id_module=? ORDER BY t.id ASC";
 		}
-		Query query = session.createSQLQuery(sql).addEntity(Topic.class);
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Topic.class);
 		query.setLong(0, moduleId);
 
 		// query.setString(1, name);
@@ -591,9 +578,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	
 	@Override
 	public BigInteger getNumberOfEnabledTopicsNoSession(long moduleId, String companyDbName) {
-		Session session = (Session) getEntityManager().getDelegate();
 		
-		Query query = session.createSQLQuery("SELECT count(*) FROM " + companyDbName + ".topics t "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT count(*) FROM " + companyDbName + ".topics t "
 				+ "WHERE t.id_module = " + moduleId + " AND t.enabled=1");
 		return (java.math.BigInteger) query.list().get(0);
 	}
@@ -601,9 +587,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Topic> getAllTopicsByModuleNoSession(String companyDbName, String moduleId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery("SELECT * FROM " + companyDbName
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + companyDbName
 				+ ".topics i WHERE i.id_module = ? ORDER BY i.id ASC").addEntity(Topic.class);
 		query.setString(0, moduleId);
 
@@ -620,9 +605,8 @@ public class TopicDaoImpl extends GenericDaoImpl<Topic> implements TopicDao {
 	
 	@Override
 	public String getTopicTextById(String companyDbName, String topicId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery("SELECT text FROM " + companyDbName
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT text FROM " + companyDbName
 				+ ".topic_text i WHERE i.id_topic = ?");
 		query.setString(0, topicId);
 		if (query.list().size() > 0) {

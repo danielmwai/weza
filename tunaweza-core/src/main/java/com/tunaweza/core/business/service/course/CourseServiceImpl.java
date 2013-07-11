@@ -32,12 +32,14 @@ import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+@Service
 public class CourseServiceImpl implements CourseService {
 
     @Autowired

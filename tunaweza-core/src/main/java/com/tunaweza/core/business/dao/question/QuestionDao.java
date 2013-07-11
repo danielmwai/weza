@@ -102,7 +102,7 @@ public interface QuestionDao extends GenericDao<Question> {
 	 * @param evaluationTemplate
 	 * @return
 	 */
-	public List<Question> getAllQuestionsByTemplate(Long evaluationTemplateId);
+	public List<Question> getAllQuestionsBy(Long evaluationTemplateId);
 
 	/**
 	 * 
@@ -173,7 +173,7 @@ public interface QuestionDao extends GenericDao<Question> {
 	 * @param searchString
 	 * @return
 	 */
-	public List<Question> getPaginatedQuestionsByTemplateAndText(long evaluationTemplateId, int startIndex,
+	public List<Question> getPaginatedQuestionsByAndText(long evaluationTemplateId, int startIndex,
 			int pageSize, String searchString);
 	/**
 	 * 
@@ -181,7 +181,7 @@ public interface QuestionDao extends GenericDao<Question> {
 	 * @param text
 	 * @return
 	 */
-	public int getNumberOfQuestionsByTemplateAndText(long evaluationTemplateId,String text);
+	public int getNumberOfQuestionsByAndText(long evaluationTemplateId,String text);
 	public List<Question> getQuestionsByTopicAndText(long topicId,String text);
 
 }

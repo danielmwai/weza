@@ -24,7 +24,6 @@
 
 package com.tunaweza.core.business.model.evaluation;
 import com.tunaweza.core.business.model.course.Course;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.student.Student;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +32,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -47,8 +48,18 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name=StudentCourseEvaluation.TABLE_NAME)
-public class StudentCourseEvaluation extends AbstractPersistentEntity implements Comparable<StudentCourseEvaluation>{
+public class StudentCourseEvaluation  implements Comparable<StudentCourseEvaluation>{
+   @Id
+    @GeneratedValue
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	public static final String TABLE_NAME = "student_course_test";
 	private static final long serialVersionUID = 1L;
 	

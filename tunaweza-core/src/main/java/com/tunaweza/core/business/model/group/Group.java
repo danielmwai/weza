@@ -24,13 +24,14 @@
 
 package com.tunaweza.core.business.model.group;
 import com.tunaweza.core.business.model.course.EmbeddableCourse;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 /**
@@ -40,8 +41,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = Group.TABLE_NAME)
-public class Group extends AbstractPersistentEntity implements
+public class Group implements
 Comparable<Group>{
+     @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
 	public static final String TABLE_NAME = "company_group";
 

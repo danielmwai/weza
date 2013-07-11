@@ -144,6 +144,15 @@ public interface StudentEvaluationService {
 	public StudentEvaluation getLastStudentEvaluationNoSession(long evaluationId,
 			long studentId, String companyDbName) throws StudentEvaluationDoesNotExistException;
 	
-	public StudentCourseEvaluation getLastStudentCourseEvaluationNoSession(long evaluationId,long studentId, String companyDbName) throws StudentCourseEvaluationDoesNotExistException;
+	/***
+         * 
+         * @param evaluationId
+         * @param studentId
+         * @param companyDbName
+         * @return
+         * @throws StudentCourseEvaluationDoesNotExistException 
+         * belongs to course
+         */
+        //public StudentCourseEvaluation getLastStudentCourseEvaluationNoSession(long evaluationId,long studentId, String companyDbName) throws StudentCourseEvaluationDoesNotExistException;
 
 }

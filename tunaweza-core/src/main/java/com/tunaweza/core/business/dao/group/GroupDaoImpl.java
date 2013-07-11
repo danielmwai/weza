@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -48,14 +50,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class GroupDaoImpl extends GenericDaoImpl <Group> 
 implements GroupDao{
-	
+	@Autowired
+        SessionFactory sessionFactory;
 
 		@Override
 		public Group findGroupById(long gid) 
 				throws GroupDoesNotExistsException{
-				Session session = (Session) getEntityManager().getDelegate();
 			
-			Query query = session.createQuery("SELECT i FROM "
+			
+			Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 					+ getDomainClass().getName()
 					+" i WHERE i.id = "+ gid);
 			
@@ -69,9 +72,8 @@ implements GroupDao{
 		@Override
 		public Group findGroupByName(String groupname)
 		        throws GroupDoesNotExistsException{
-			Session session = (Session) getEntityManager().getDelegate();
 			
-			Query query = session.createQuery("SELECT i FROM "
+			Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 					+ getDomainClass().getName()
 					+" i WHERE i.name = '"+ groupname +"'");
 			
@@ -153,8 +155,7 @@ implements GroupDao{
 		
 		@Override
 		public Integer getCount(){
-			Session session = (Session) getEntityManager().getDelegate();
-			Query query = session.createSQLQuery("SELECT COUNT(*) FROM group");
+			Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT COUNT(*) FROM group");
 			Integer count = query.list().size(); 
 			return count;
 		}
@@ -164,8 +165,7 @@ implements GroupDao{
 		public List<User> getUsersInGroup(Long groupId) 
 		{
 			Group group = null;
-			Session session = (Session) getEntityManager().getDelegate();
-			Query query = session.createQuery("SELECT i FROM " +getDomainClass().getName()+
+			Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM " +getDomainClass().getName()+
 					" i WHERE i.id = "+ groupId);
 			
 			if(query.list().size()>0){
@@ -179,7 +179,7 @@ implements GroupDao{
 			
 			for(EmbeddableUser embeddUser : embeddedUserList )
 			{
-				Query moduleQuery=session.createSQLQuery("SELECT * FROM users " +
+				Query moduleQuery=sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM users " +
 						"WHERE id ="+embeddUser.getUserId()).addEntity(User.class);
 				User users = (User)moduleQuery.list().get(0);
 				user.add(users);
@@ -201,8 +201,7 @@ implements GroupDao{
 		public List<Course> getCoursesInGroup(Long groupId) 
 		{
 			Group group = null;
-			Session session = (Session) getEntityManager().getDelegate();
-			Query query = session.createQuery("SELECT i FROM " +getDomainClass().getName()+
+			Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM " +getDomainClass().getName()+
 					" i WHERE i.id = "+ groupId);
 			
 			if(query.list().size()>0){
@@ -216,7 +215,7 @@ implements GroupDao{
 			
 			for(EmbeddableCourse embeddCourses : embeddedCoursesList )
 			{
-				Query courseQuery=session.createSQLQuery("SELECT * FROM course_template " +
+				Query courseQuery=sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM course_template " +
 						"WHERE id ="+embeddCourses.getCourseId()).addEntity(Course.class);
 				Course courseTemplates = (Course)courseQuery.list().get(0);
 				courses.add(courseTemplates);

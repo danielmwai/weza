@@ -24,11 +24,12 @@
 
 package com.tunaweza.core.business.model.exercise;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.topic.Topic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -41,8 +42,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name=OverrideStudentExercise.TABLE_NAME)
-public class OverrideStudentExercise extends AbstractPersistentEntity 
-{
+public class OverrideStudentExercise 
+{  @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
 	public static final String TABLE_NAME = "override_student_exercise";
 	

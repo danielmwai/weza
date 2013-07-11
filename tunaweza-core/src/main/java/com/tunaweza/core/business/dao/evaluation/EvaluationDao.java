@@ -40,6 +40,7 @@ public interface EvaluationDao extends GenericDao<Evaluation> {
 	 * 
 	 * @param uid
 	 * @return
+     * @throws com.tunaweza.core.business.dao.exceptions.evaluation.EvaluationDoesNotExistException
 	 * @throws EvaluationTemplateDoesNotExistException
 	 */
 	public Evaluation findEvaluationById(long uid)
@@ -58,7 +59,7 @@ public interface EvaluationDao extends GenericDao<Evaluation> {
 	 * 
 	 * @param evaluation
 	 * @return
-	 * @throws EvaluationTemplateDoesNotExistException
+	 * @throws EvaluationDoesNotExistException
 	 */
 	public Evaluation findEvaluation(
 			Evaluation evaluation)
@@ -66,8 +67,9 @@ public interface EvaluationDao extends GenericDao<Evaluation> {
 
 	/**
 	 * 
-	 * @param evaluationTemplate
+	 * @param evaluation
 	 * @return
+     * @throws com.tunaweza.core.business.dao.exceptions.evaluation.EvaluationDoesNotExistException
 	 * @throws EvaluationTemplateExistsException
 	 */
 	public Evaluation addEvaluation(
@@ -78,7 +80,7 @@ public interface EvaluationDao extends GenericDao<Evaluation> {
 	 * 
 	 * @return
 	 */
-	public List<Evaluation> getAllEvaluation();
+	public List<Evaluation> getAllEvaluations();
 
 	/**
 	 * 

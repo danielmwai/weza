@@ -9,122 +9,56 @@ import com.tunaweza.core.business.dao.exceptions.mentor.MentorExistsException;
 import com.tunaweza.core.business.dao.exceptions.mentor.MentorNotFoundException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
 import com.tunaweza.core.business.model.mentor.Mentor;
-import com.tunaweza.core.business.model.topic.Topic;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.mentor.MentorTemplate;
+import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 
 /**
  *
  * @author Daniel Mwai
  */
-public interface MentorDao extends GenericDao<Mentor> 
-{
-	/**
-	 * 
-	 * @param uid
-	 * @return <code>Mentor</code>
-	 * @throws MentorNotFoundException
-	 */
-	public Mentor findMentorById(long id) 
-			throws MentorNotFoundException;
-	
-	/**
-	 * 
-	 * @param name
-	 * @return <code>Mentor</code>
-	 * @throws MentorNotFoundException
-	 */
-	public Mentor findMentorByName(String name) 
-			throws MentorNotFoundException;
+public interface MentorDao extends  GenericDao<Mentor> {
 
-	/**
-	 * 
-	 * @param Mentor
-	 * @return <code>Mentor</code>
-	 * @throws MentorNotFoundException
-	 */
-	public Mentor findMentor(Mentor mentor) 
-			throws MentorNotFoundException;
-
-	/**
-	 * 
-	 * @return
-	 */
-	public List<Mentor> getAllMentor();
-
-	/**
-	 * 
-	 * @param Mentor
-	 */
-	public Mentor saveMentor(Mentor mentor) 
-			throws MentorExistsException;
-	
-	/**
-	 * 
-	 * @param Mentor, module
-	 */
-	public void saveExercisesToMentor(Mentor mentor,List<Topic> exercises);
-	
+		/**
+		 * returns a list of all mentors
+		 * @return all the mentors
+		 */
+		public List<Mentor> getAllMentors();
 		
-	/**
-	 * 
-	 * @param MentorId
-	 * @return 
-	 */
-	public List<Mentor> getAllMentorsByMentor(long MentorId);	
-	
-	/**
-	 * 
-	 * @param MentorId
-	 * @return 
-	 */
-	public List<Topic> getExercisesInMentor(long MentorId);
-	
-	/**
-	 * 
-	 * @param MentorId
-	 * @return 
-	 */
-	public List<Topic> getActiveExercisesInMentor(long mentorId);
-
-	/**
-	 * 
-	 * @param Mentor
-	 */
-	public void updateMentor(Mentor mentor);
-	
-	/**
-	 * 
-	 * @param MentorId
-	 * @return
-	 */
-	public int countExerciseTransactions(long moduleId, long mentorId);
-	
-	/**
-	 * 
-	 * @param MentorId
-	 * @return
-	 */
-	public List<ExerciseTransaction> getExerciseTransactions(
-			long moduleId, long mentorId);
-	
-	/**
-	 * 
-	 * @param startIndex
-	 * @param pageSize
-	 * @param moduleId
-	 * @param mentorId
-	 * @return
-	 */
-	public List<ExerciseTransaction> getPaginatedExerciseTransactionsList(int startIndex, int pageSize, long moduleId, long mentorId);
-	
-	/**
-	 * 
-	 * @param mentorId
-	 * @param moduleId
-	 * @return
-	 */
-	public int numberOfExercisesByMentor(long mentorId, long moduleId);
-
-
+		/**
+		 * returns a single Mentor
+		 * @param mentorId
+		 * @return a mentor
+		 * @throws MentorDoesNotExistException
+		 */
+		public Mentor getMentorById(Long mentorId) throws MentorNotFoundException;
+		
+		/**
+		 * saves or updates a mentor
+		 * @param mentor
+		 * @return a mentor
+		 */
+		public Mentor saveMentor(Mentor mentor) throws MentorExistsException;
+		
+		/**
+		 * returns a single Mentor
+		 * @param user
+		 * @return
+		 */
+		public Mentor getMentorByUser(User user) throws MentorNotFoundException;
+		
+		/**
+		 * 
+		 * @param mentorId
+		 * @return
+		 */
+		public List<MentorTemplate> getMentorTemplatesByMentor(long mentorId);
+		
+		/**
+		 * 
+		 * @param mentor
+		 * @param mentorTemplates
+		 */
+		public void saveMentorTemplatesToMentor(Mentor mentor,
+				List<MentorTemplate> mentorTemplates);
 }

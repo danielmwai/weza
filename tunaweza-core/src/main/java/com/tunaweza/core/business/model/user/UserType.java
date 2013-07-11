@@ -23,9 +23,10 @@
  */
 
 package com.tunaweza.core.business.model.user;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 /**
  * @version $Revision: 1.1.1.1 $
@@ -34,7 +35,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = UserType.TABLE_NAME)
-public class UserType extends AbstractPersistentEntity {
+public class UserType  {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
 	public static final String TABLE_NAME = "user_type";
 	private static final long serialVersionUID = 1L;
 

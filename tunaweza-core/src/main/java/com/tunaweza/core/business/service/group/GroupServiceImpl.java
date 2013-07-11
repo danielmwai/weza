@@ -46,13 +46,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("groupService")
 @Transactional
-public class GroupServiceImpl extends Constants implements GroupService{
-@Autowired
+public class GroupServiceImpl /*extends Constants*/ implements GroupService{
+        @Autowired
 	private GroupDao groupDAO;
-
-    public GroupServiceImpl(Class<?> clazz) {
-        super(clazz);
-    }
+        
+  
+//    public GroupServiceImpl(Class<?> clazz) {
+//        super(clazz);
+//    }
 	
 	@Override
 	public Group addGroup(Group group) throws GroupExistsException {

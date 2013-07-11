@@ -28,7 +28,8 @@ import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.payment.PaymentDetails;
 
 import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -40,7 +41,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class PaymentDaoImpl extends GenericDaoImpl<PaymentDetails> implements
 		PaymentDao {
-
+@Autowired
+SessionFactory sessionFactory;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -51,7 +53,6 @@ public class PaymentDaoImpl extends GenericDaoImpl<PaymentDetails> implements
 	@Override
 	public void savePaymentDetails(PaymentDetails paymentDetails) {
 		saveOrUpdate(paymentDetails);
-		flush();
 	}
 
 	/*
@@ -65,9 +66,8 @@ public class PaymentDaoImpl extends GenericDaoImpl<PaymentDetails> implements
 	public String getTransactionId(PaymentDetails paymentDetails) {
 		
 		
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.transaction_id = '" + paymentDetails.getTransactionId()
 				+ "'");
 

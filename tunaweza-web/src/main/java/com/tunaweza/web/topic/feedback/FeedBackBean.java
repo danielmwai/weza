@@ -23,7 +23,7 @@
  */
 package com.tunaweza.web.topic.feedback;
 
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import java.util.List;
 
 /**

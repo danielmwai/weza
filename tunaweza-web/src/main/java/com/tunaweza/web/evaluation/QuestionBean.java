@@ -257,7 +257,7 @@ public class QuestionBean implements Views {
 				question.setText(addQuestionBean.getText().trim());
 				question.setLevel(Long.valueOf(addQuestionBean.getLevel()));
 				try{
-				question.setEvaluationTemplate(evaluationService
+				question.setEvaluation(evaluationService
 						.findEvaluationById(Long
 								.valueOf(addQuestionBean
 										.getEvaluationTemplateId())));

@@ -31,7 +31,8 @@ import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule;
 import com.tunaweza.core.business.model.user.User;
 import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +47,8 @@ public class LastAccessedTopicDaoImpl extends
 		GenericDaoImpl<LastAccessedTopicInModule> implements
 		LastAccessedTopicDao
 {
+    @Autowired
+    SessionFactory sessionFactory;
 
 	/*
 	 * (non-Javadoc)
@@ -85,9 +88,8 @@ public class LastAccessedTopicDaoImpl extends
 	{
 		LastAccessedTopicInModule lastAccessedTopicInModule = null;
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName()
 				+ " i WHERE i.lastAccessedTopicPK.user.id = " + user.getId()
 				+ " AND i.lastAccessedTopicPK.module.id = " + module.getId());

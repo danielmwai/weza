@@ -23,10 +23,11 @@
  */
 
 package com.tunaweza.core.business.model.exercise;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseNotFoundException;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.topic.Topic;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -34,6 +35,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -47,10 +50,25 @@ import javax.persistence.TemporalType;
  * @author Daniel mwai
  */
 @Entity
-@Table(name = StudentExercise.TABLE_NAME)
-public class StudentExercise extends AbstractPersistentEntity {
+@Table(name = "student_exercise")
+public class StudentExercise   {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public boolean isIsComplete() {
+        return isComplete;
+    }
+
+    public void setIsComplete(boolean isComplete) {
+        this.isComplete = isComplete;
+    }
 	
-	public static final String TABLE_NAME= "student_exercise";
+	
 	private static final long serialVersionUID = 1L;   	
 
 	@Column(name = "closed_date")
@@ -199,5 +217,13 @@ public class StudentExercise extends AbstractPersistentEntity {
 	public void setMentorGrading(Long mentorGrading) {
 		this.mentorGrading = mentorGrading;
 	}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
 

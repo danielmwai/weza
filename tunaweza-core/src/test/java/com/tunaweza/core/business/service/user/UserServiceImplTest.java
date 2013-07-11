@@ -1069,5 +1069,20 @@ public class UserServiceImplTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of isEnabledAndHasCourse method, of class UserServiceImpl.
+     */
+    @Test
+    public void testIsEnabledAndHasCourse() {
+        System.out.println("isEnabledAndHasCourse");
+        User user = null;
+        UserServiceImpl instance = new UserServiceImpl();
+        boolean expResult = false;
+        boolean result = instance.isEnabledAndHasCourse(user);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

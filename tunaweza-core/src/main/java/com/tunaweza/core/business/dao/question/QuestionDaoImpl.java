@@ -26,14 +26,14 @@ package com.tunaweza.core.business.dao.question;
 import com.tunaweza.core.business.dao.exceptions.question.QuestionDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.question.QuestionExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.question.Question;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @version $Revision: 1.1.1.1 $
@@ -42,6 +42,8 @@ import org.springframework.orm.hibernate3.HibernateCallback;
  */
 public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
         QuestionDao {
+@Autowired
+SessionFactory sessionFactory;
 
     @Override
     public Question findQuestionById(long uid)
@@ -59,9 +61,8 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     public Question findQuestionByText(String text)
             throws QuestionDoesNotExistException {
 
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName() + " i WHERE i.text = '" + text
                 + "'");
 
@@ -124,9 +125,8 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
 
     
     public List<Question> getAllQuestionsBy(Long evaluationTemplateId) {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName()
                 + " i WHERE i.evaluationTemplate.id = '" + evaluationTemplateId
                 + "' ORDER BY i.id ASC");
@@ -144,9 +144,8 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     @Override
     public Question findQuestionByTextAndEvaluation(String text,
             String evaluationId) throws QuestionDoesNotExistException {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName()
                 + " i WHERE i.text = ? AND i.evaluationTemplate.id = ?");
 
@@ -168,9 +167,8 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     @SuppressWarnings("unchecked")
     @Override
     public List<Question> getQuestionsByTopic(long topicId) {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName() + " i WHERE i.topic.id = '"
                 + topicId + "' ORDER BY i.id ASC");
 
@@ -183,7 +181,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     }
 
     public int getNumberOfQuestionsByTopic(long topicId, String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
 
@@ -192,7 +189,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
         } else {
             sql = "SELECT COUNT(*) FROM questions q WHERE q.associatedTopic_id = ?";
         }
-        Query query = session.createSQLQuery(sql);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
 
         query.setLong(0, topicId);
 
@@ -204,7 +201,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     @SuppressWarnings("unchecked")
     public List<Question> getPaginatedQuestionsByTopic(int startIndex,
             int pageSize, long topicId, String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
             sql = "SELECT * FROM questions q WHERE q.associatedTopic_id = ?"
@@ -213,7 +209,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
             sql = "SELECT * FROM questions q WHERE q.associatedTopic_id = ?"
                     + " ORDER BY q.id ASC";
         }
-        Query query = session.createSQLQuery(sql).addEntity(Question.class);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Question.class);
 
         /*
          * Query query = session.createQuery("SELECT i FROM " +
@@ -238,7 +234,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     @SuppressWarnings("unchecked")
     public List<Question> getQuestionsNotAssociatedWithTopic(
             Long templateId, String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ?"
@@ -249,7 +244,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
                     + " AND associatedTopic_id IS NULL";
         }
         System.out.println("QQQUEEEEEEEERY>>>>>>>>>>>>>>>>>>" + sql);
-        Query query = session.createSQLQuery(sql).addEntity(Question.class);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Question.class);
 
         query.setLong(0, templateId);
 
@@ -259,7 +254,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     @SuppressWarnings("unchecked")
     public List<Question> getPaginatedQuestionsInNotAssociatedWithTopic(
             int startIndex, int pageSize, Long templateId, String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ?"
@@ -271,7 +265,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
 
         }
 
-        Query query = session.createSQLQuery(sql).addEntity(Question.class);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Question.class);
 
         query.setLong(0, templateId);
 
@@ -283,7 +277,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
 
     public int getNoOfQuestionsInTemplateNotAssociatedWithTopic(
             Long templateId, String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
             sql = "SELECT COUNT(*) FROM questions q WHERE q.evaluationTemplate_id = ?"
@@ -293,7 +286,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
             sql = "SELECT COUNT(*) FROM questions q WHERE q.evaluationTemplate_id = ?"
                     + " AND associatedTopic_id IS NULL";
         }
-        Query query = session.createSQLQuery(sql);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
 
         query.setLong(0, templateId);
 
@@ -313,7 +306,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     public List<Question> getPaginatedQuestionsByAndText(
             long evaluationTemplateId, int startIndex, int pageSize,
             String searchString) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (searchString != null) {
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ?"
@@ -323,7 +315,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ? ORDER BY q.id ASC";
 
         }
-        Query query = session.createSQLQuery(sql).addEntity(Question.class);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Question.class);
         query.setLong(0, evaluationTemplateId);
         query.setFirstResult(startIndex);
         query.setMaxResults(pageSize);
@@ -341,7 +333,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     @Override
     public List<Question> getQuestionsByAndText(
             long evaluationTemplateId, String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ?"
@@ -350,7 +341,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ? ORDER BY q.id ASC";
 
         }
-        Query query = session.createSQLQuery(sql).addEntity(Question.class);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Question.class);
         query.setLong(0, evaluationTemplateId);
         return (List<Question>) query.list();
     }
@@ -358,7 +349,6 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
     
     public int getNumberOfQuestionsByAndText(long evaluationTemplateId,
             String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ?"
@@ -367,7 +357,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
             sql = "SELECT * FROM questions q WHERE q.evaluationTemplate_id = ? ORDER BY q.id ASC";
 
         }
-        Query query = session.createSQLQuery(sql).addEntity(Question.class);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Question.class);
         query.setLong(0, evaluationTemplateId);
 
         return query.list().size();
@@ -376,14 +366,13 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
 
     @Override
     public List<Question> getQuestionsByTopicAndText(long topicId, String text) {
-        Session session = (Session) getEntityManager().getDelegate();
         String sql = null;
         if (text != null) {
             sql = "SELECT * FROM questions q WHERE q.associatedTopic_id=?  AND  q.text LIKE '%" + text + "%' ORDER BY q.id ASC";
         } else {
             sql = "SELECT * FROM questions q WHERE q.associatedTopic_id=? ORDER BY q.id ASC";
         }
-        Query query = session.createSQLQuery(sql).addEntity(Question.class);
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Question.class);
         query.setLong(0, topicId);
         List<Question> questions = new ArrayList<Question>();
 
@@ -393,10 +382,7 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
         return questions;
     }
 
-    @Override
-    public List<Question> getAllQuestionsByTemplate(Long evaluationTemplateId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     @Override
     public List<Question> getQuestionsInNotAssociatedWithTopic(Long templateId, String text) {
@@ -408,13 +394,5 @@ public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public List<Question> getPaginatedQuestionsByTemplateAndText(long evaluationTemplateId, int startIndex, int pageSize, String searchString) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public int getNumberOfQuestionsByTemplateAndText(long evaluationTemplateId, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

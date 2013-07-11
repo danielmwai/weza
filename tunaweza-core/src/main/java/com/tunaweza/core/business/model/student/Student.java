@@ -29,7 +29,6 @@ import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
 import com.tunaweza.core.business.model.exercise.OverrideStudentExercise;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.User;
 import java.util.Date;
@@ -41,6 +40,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -57,9 +57,19 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = Student.TABLE_NAME)
-public class Student extends AbstractPersistentEntity {
+@Table(name = "student")
+public class Student  {
+ @Id
+    @GeneratedValue
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	public static final String TABLE_NAME = "student";
 	private static final long serialVersionUID = 1L;
 
@@ -114,11 +124,12 @@ public class Student extends AbstractPersistentEntity {
 	@JoinTable(name = "student_completed_topics", joinColumns = @JoinColumn(name = "student"), inverseJoinColumns = @JoinColumn(name = "topic"))
 	private List<Topic> completedTopics;
 
-	// @OneToOne
-	// @JoinTable(name = "last_accessed_topic",
-	// joinColumns = { @JoinColumn(name = "user_id", referencedColumnName =
-	// "id") }, inverseJoinColumns = { @JoinColumn(name =
-	// "last_accessed_topic_id", referencedColumnName = "id") })
+//	 @OneToOne
+//	 @JoinTable(name = "last_accessed_topic",
+//	 joinColumns = { @JoinColumn(name = "user_id", referencedColumnName =
+//	 "id") }, inverseJoinColumns = { @JoinColumn(name =
+//	 "last_accessed_topic_id", referencedColumnName = "id") })
+    @OneToOne(mappedBy = "student")
 	private Topic topic;
 
 	public User getUser() {

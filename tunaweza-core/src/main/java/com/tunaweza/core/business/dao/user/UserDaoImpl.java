@@ -49,21 +49,33 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+//extends GenericDaoImpl<User>
+@Repository(value = "userDao")
+@Transactional
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 		Settings {
+    @Autowired
+    SessionFactory sessionFactory;
 
 	public Logger logger = Logger.getLogger(UserDaoImpl.class);
 
 	@Override
 	public User findUserById(long uid) throws UserDoesNotExistException {
-		User user = (User) findById(uid);
+            
+           User user= (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.idEq(uid)).uniqueResult();
+		//User user = (User) findById(uid);
 		if (user == null) {
 			throw new UserDoesNotExistException("User with ID : " + uid
 					+ " does not exist");
@@ -118,12 +130,11 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	public User findUser(User u) throws UserDoesNotExistException {
 		return findUserById(u.getId());
 	}
-
+ 
 	@Override
 	public User findUser(String username) throws UserDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.username = '"
 				+ username + "'");
 
@@ -140,11 +151,12 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	}
 	
 	
+	
+	
 	@Override
 	public User findUserById(String userId) throws UserDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.id = '"
 				+ userId + "'");
 
@@ -186,9 +198,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	@Override
 	public User findUserByEmail(String email) throws UserDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.email = '" + email
 				+ "'");
 
@@ -208,9 +219,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<User> findUsersByRole(String roleName)
 			throws UserDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createQuery("SELECT i FROM Role i WHERE i.roleName = '"
 						+ roleName + "'");
 
@@ -226,9 +236,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<User> findUsersByRoleCompanyId(String roleName, long companyId)
 			throws UserDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u LEFT JOIN  authorities a ON u.username=a.username "
 						+ "WHERE a.authority='" + roleName
 						+ "' AND u.id_company = ? "
@@ -242,9 +251,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<User> findUsersByRole(long roleid)
 			throws UserDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM Role i WHERE i.id = "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM Role i WHERE i.id = "
 				+ roleid);
 
 		if (query.list().size() == 0) {
@@ -300,9 +308,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<Role> getUserRoles(long uid) throws UserDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.id = " + uid);
 
 		if (query.list().size() == 0) {
@@ -317,8 +324,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	public String getUserRole(User user) {
 		String role = "";
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT authority FROM authorities WHERE username='" + user.getEmail() + "'").addEntity(
 				User.class);
 
@@ -341,9 +347,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	public List<User> findUsersByRole(Role role)
 			throws UserDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM Role i "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM Role i "
 				+ "WHERE i.number = " + role.getNumber());
 
 		if (query.list().size() == 0) {
@@ -408,9 +413,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 			throws UserDoesNotExistException, RoleDoesNotExistException,
 			RoleExistsException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.username = '"
 				+ uname + "'");
 		User user = null;
@@ -421,7 +425,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 					+ " does not exist");
 		}
 
-		Query query1 = session.createSQLQuery(
+		Query query1 = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM roles r WHERE r.role_name = '" + rname + "'")
 				.addEntity(Role.class);
 
@@ -444,9 +448,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	public void removeRole(String uname, String rname)
 			throws UserDoesNotExistException, RoleDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.username = '"
 				+ uname + "'");
 		User user = null;
@@ -457,7 +460,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 					+ " does not exist");
 		}
 
-		Query query1 = session.createSQLQuery(
+		Query query1 = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM roles r WHERE r.role_name = '" + rname + "'")
 				.addEntity(Role.class);
 
@@ -482,9 +485,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	public void changePassword(long uid, String newp)
 			throws NoSuchAlgorithmException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u WHERE u.id = " + uid).addEntity(
 				User.class);
 		User user = null;
@@ -527,9 +529,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 		if (enabled) {
 			userenabled = 1;
 		}
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u WHERE u.enabled = " + userenabled)
 				.addEntity(User.class);
 
@@ -546,9 +547,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 		if (enabled) {
 			userenabled = 1;
 		}
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u WHERE u.enabled = " + userenabled
 						+ " AND u.id_company = " + companyid).addEntity(
 				User.class);
@@ -559,9 +559,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<User> getUsers(String firstName, String lastName, long companyId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u "
 								+ "WHERE u.first_name LIKE '%"
@@ -577,9 +576,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	public List<User> getUsers(String firstName, String lastName, String role,
 			long companyId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u LEFT JOIN  authorities a ON u.username=a.username "
 								+ "WHERE a.authority='"
@@ -599,9 +597,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<User> getUsersByFirstName(String firstName, long companyId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u "
 								+ "WHERE u.first_name LIKE '%"
@@ -616,9 +613,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings({ "unchecked", "null" })
 	public List<User> getUsersByFirstNameAndRole(String firstName, String role,
 			long companyId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u LEFT JOIN  authorities a ON u.username=a.username "
 								+ "WHERE a.authority='"
@@ -635,9 +631,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<User> getUsersByLastName(String lastName, long companyId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u "
 								+ "WHERE u.last_name LIKE '%"
@@ -652,9 +647,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<User> getUsersByLastNameAndRole(String lastName, String role,
 			long companyId) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u LEFT JOIN  authorities a ON u.username=a.username "
 								+ "WHERE a.authority='"
@@ -671,9 +665,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<User> getPaginatedUsersList(int startIndex, int pageSize) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u ORDER BY u.id DESC").addEntity(
 				User.class);
 		query.setFirstResult(startIndex);
@@ -685,9 +678,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<User> getPaginatedUsersList(int startIndex, int pageSize,
 			String role) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u LEFT JOIN  authorities a ON u.username="
 						+ "a.username WHERE a.authority=? ORDER BY u.id DESC")
 				.addEntity(User.class);
@@ -700,8 +692,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	public List<User> getAllStudents() {
 
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u LEFT JOIN  authorities a ON u.username=a.username WHERE a.authority='ROLE_STUDENT'")
 				.addEntity(User.class);
@@ -726,9 +717,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	@Override
 	public String findUserAuthority(String username) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery("SELECT a.authority "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT a.authority "
 				+ "FROM authorities a WHERE a.username = '" + username + "'");
 
 		String authority = (String) query.list().get(0);
@@ -738,9 +728,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	@Override
 	public int count() {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query queryCount = session.createSQLQuery("SELECT COUNT(*) FROM users");
+		Query queryCount = sessionFactory.getCurrentSession().createSQLQuery("SELECT COUNT(*) FROM users");
 
 		java.math.BigInteger count = (java.math.BigInteger) queryCount.list()
 				.get(0);
@@ -749,9 +738,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	@Override
 	public int count(String role) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query queryCount = session
+		Query queryCount = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT COUNT(*) FROM users u LEFT JOIN authorities "
 						+ "a ON u.username=a.username WHERE a.authority='"
 						+ role + "'");
@@ -764,8 +752,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@Override
 	public int getNewRegistrationNumber() {
 		int count = 0;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query queryCount = session
+		Query queryCount = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT MAX(registration_no) FROM student");
 		if (queryCount.list().get(0) != null) {
 			/*
@@ -780,8 +767,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll(String role) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery(
 						"SELECT * FROM users u LEFT JOIN  authorities a ON u.username="
 								+ "a.username WHERE a.authority = ? ORDER BY u.id DESC")
@@ -793,8 +779,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findUsersByRole_CompanyId(String role, long company_id) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u LEFT JOIN  authorities a "
 						+ "ON u.username=a.username WHERE a.authority = ? "
 						+ "AND u.id_company = ? ORDER BY u.id DESC").addEntity(
@@ -808,9 +793,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<User> getPaginatedUsersByRole_CompanyId(int startIndex,
 			int pageSize, String role, long company_id) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u LEFT JOIN  authorities a "
 						+ "ON u.username=a.username WHERE a.authority = ? "
 						+ "AND u.id_company = ? ORDER BY u.id DESC").addEntity(
@@ -826,9 +810,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	@SuppressWarnings("unchecked")
 	public List<User> getPaginatedUsersByRole(int startIndex, int pageSize,
 			String role) {
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u LEFT JOIN  authorities a "
 						+ "ON u.username=a.username WHERE a.authority = ? "
 						+ " ORDER BY u.id DESC").addEntity(User.class);
@@ -839,8 +822,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	}
 
 	public void deletePreviousUsername(String oldUsername, String role) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"DELETE FROM authorities WHERE username = ? AND authority = ?")
 				.addEntity(User.class);
 		query.setString(0, oldUsername);
@@ -850,8 +832,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 
 	@Override
 	public User getSuperUser(String username, String firstName, String lastName) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createSQLQuery(
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"SELECT * FROM users u WHERE u.username=? "
 						+ " AND u.first_name=? AND u.last_name=?").addEntity(
 				User.class);
@@ -869,9 +850,8 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	public List<User> findUsersByLocation(long locationId)
 			throws UserDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.location = '"
 				+ locationId + "'");
 
@@ -880,6 +860,6 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao,
 	
 	public void print(){
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>In the user Dao impl");
-	}
+        }
 
 }

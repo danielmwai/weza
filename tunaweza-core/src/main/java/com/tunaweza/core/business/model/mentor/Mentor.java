@@ -9,153 +9,90 @@ package com.tunaweza.core.business.model.mentor;
  *
  * @author Daniel Mwai
  */
-import com.tunaweza.core.business.model.module.Module;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
-import com.tunaweza.core.business.model.topic.Topic;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
+
+
 @Entity
 @Table(name = Mentor.TABLE_NAME)
-public class Mentor extends AbstractPersistentEntity implements
-		Comparable<Mentor> {
-
-	public static final String TABLE_NAME = "mentor_template";
+public class Mentor  {
+    @Id
+    private Long id;
+	
+	public static final String TABLE_NAME = "mentor";
 	private static final long serialVersionUID = 1L;
 
-	@Column(columnDefinition = "varchar(255) default 'Mentor Template Description'")
-	private String description;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_user", unique=true)
+	private User user;
 
-	@Column(columnDefinition = "varchar(255) default 'Mentor Template Name'")
-	private String name;
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "Mentors")
-	private List<Mentor> mentors;
+	@OneToMany(mappedBy = "mentor",fetch = FetchType.LAZY)
+	private List<ExerciseTransaction> exerciseTransactions;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "exercise_Mentor", joinColumns = @JoinColumn(name = "Mentor"), inverseJoinColumns = @JoinColumn(name = "exercise"))
-	private List<Topic> exercises;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_module")
-	private Module module;
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
+	@JoinTable(name = "mentortemplate_mentor", joinColumns = @JoinColumn(name = "mentor"), inverseJoinColumns = @JoinColumn(name = "mentortemplate"))
+	private List<MentorTemplate> mentorTemplates;
+	
+	public User getUser() {
+		return user;
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * @param jJTeachUser
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	/**
-	 * @param mentors
-	 *            the mentors to set
+	 * @return the exerciseTransactions
 	 */
-	public void setMentors(List<Mentor> mentors) {
-		this.mentors = mentors;
+	public List<ExerciseTransaction> getExerciseTransactions() {
+		return exerciseTransactions;
 	}
 
 	/**
-	 * @return the mentors
-	 * 
+	 * @param exerciseTransactions
 	 */
-	public List<Mentor> getMentors() {
-		return mentors;
+	public void setExerciseTransactions(
+			List<ExerciseTransaction> exerciseTransactions) {
+		this.exerciseTransactions = exerciseTransactions;
 	}
 
 	/**
-	 * @return the exercises
+	 * @return the mentorTemplates
 	 */
-
-	public List<Topic> getExercises() {
-		return exercises;
+	public List<MentorTemplate> getMentorTemplates() {
+		return mentorTemplates;
 	}
 
 	/**
-	 * 
-	 * @param exercises
-	 *            the exercises to set
+	 * @param mentorTemplates the mentorTemplates to set
 	 */
-
-	public void setExercises(List<Topic> exercises) {
-		this.exercises = exercises;
+	public void setMentorTemplates(List<MentorTemplate> mentorTemplates) {
+		this.mentorTemplates = mentorTemplates;
 	}
 
-	/**
-	 * 
-	 * @param exercise
-	 *            the exercise to add
-	 */
+    public Long getId() {
+        return id;
+    }
 
-	public void addExercise(Topic exercise) {
-		this.exercises.add(exercise);
-	}
-
-	/**
-	 * 
-	 * @param exercise
-	 *            the exercise to remove
-	 */
-
-	public void removeExercise(Topic exercise) {
-		this.exercises.remove(exercise);
-	}
-
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @return the module
-	 */
-	public Module getModule() {
-		return module;
-	}
-
-	/**
-	 * @param module
-	 *            the module to set
-	 */
-	public void setModule(Module module) {
-		this.module = module;
-	}
-
-	@Override
-	public int compareTo(Mentor Mentor) {
-		if (Mentor.getId() > getId()) {
-			return -1;
-
-		} else if (Mentor.getId() < getId()) {
-			return 1;
-		}
-		return 0;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

@@ -27,12 +27,12 @@ package com.tunaweza.core.business.dao.topic.text;
 import com.tunaweza.core.business.dao.exceptions.topic.TopicTextDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.topic.TopicTextExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import com.tunaweza.core.business.model.topic.TopicText;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,7 +44,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "topicTextTextTextDao")
 @Transactional
 public class TopicTextDaoImpl extends GenericDaoImpl<TopicText> implements TopicTextDao{
-
+@Autowired
+SessionFactory sessionFactory;
 
 	@Override
 	public TopicText findTopicTextById(long tid) throws TopicTextDoesNotExistException {
@@ -58,9 +59,8 @@ public class TopicTextDaoImpl extends GenericDaoImpl<TopicText> implements Topic
 	@Override
 	public TopicText findTopicTextByTopicId(long topicId) throws TopicTextDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.topic.id = "
 				+ topicId + "");
 

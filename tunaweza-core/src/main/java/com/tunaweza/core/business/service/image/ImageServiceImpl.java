@@ -29,6 +29,7 @@ import com.tunaweza.core.business.model.image.Image;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -37,8 +38,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+@Service
 @Transactional
-@Repository("imageService")
 public class ImageServiceImpl implements ImageService{
 
 	@Autowired

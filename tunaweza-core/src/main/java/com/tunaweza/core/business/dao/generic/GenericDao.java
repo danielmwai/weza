@@ -5,15 +5,13 @@
  */
 package com.tunaweza.core.business.dao.generic;
 
-import com.tunaweza.core.business.model.persistence.PersistentEntity;
 import java.util.List;
-import org.springframework.orm.hibernate3.HibernateCallback;
 /**
  *
  * @author Daniel Mwai
  * @param <E>
  */
-public interface GenericDao< E extends PersistentEntity > {
+public interface GenericDao< E  > {
 
     E findById(final Long id);
 
@@ -46,7 +44,6 @@ public interface GenericDao< E extends PersistentEntity > {
 	 * flush changes to ALL persistent objects not just not just those of this
 	 * particular entity. 
 	 */
-    void flush();
 
     void clear();
     
@@ -60,8 +57,8 @@ public interface GenericDao< E extends PersistentEntity > {
      * @param callback HibernateCallback
      * @return Object returned by passed HibernateCallback
      */
-    @SuppressWarnings( "unchecked" )
-    Object execute(HibernateCallback callback);
+//    @SuppressWarnings( "unchecked" )
+//    Object execute(HibernateCallback callback);
     
     /**
      * Used to execute a callback action in the context of the Hibernate Session
@@ -74,7 +71,6 @@ public interface GenericDao< E extends PersistentEntity > {
      * @param callback HibernateCallback
      * @return List returned by passed HibernateCallback
      */
-    @SuppressWarnings("unchecked")
-    List executeFind(HibernateCallback callback);
+   
     
 }

@@ -25,12 +25,13 @@
 package com.tunaweza.core.business.model.evaluation;
 
 import com.tunaweza.core.business.model.answer.Answer;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.question.Question;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -44,8 +45,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = CourseEvaluationTransaction.TABLE_NAME)
-public class CourseEvaluationTransaction extends AbstractPersistentEntity {
-
+public class CourseEvaluationTransaction  {
+    @Id
+    @GeneratedValue
+    private Long id;
+       
+       
 	private static final long serialVersionUID = 1L;
 	public static final String TABLE_NAME = "course_evaluation_transaction";
 
@@ -84,6 +89,14 @@ public class CourseEvaluationTransaction extends AbstractPersistentEntity {
 	public void setStudentCourseEvaluation(StudentCourseEvaluation studentCourseEvaluation) {
 		this.studentCourseEvaluation = studentCourseEvaluation;
 	}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 
 }

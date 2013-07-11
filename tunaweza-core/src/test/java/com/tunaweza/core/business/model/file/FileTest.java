@@ -25,7 +25,7 @@ package com.tunaweza.core.business.model.file;
 
 import com.tunaweza.core.business.model.answer.GoodAnswer;
 import com.tunaweza.core.business.model.topic.Topic;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import java.sql.Blob;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -103,109 +103,109 @@ public class FileTest {
     /**
      * Test of setContentType method, of class File.
      */
-    @Test
-    public void testSetContentType() {
-        System.out.println("setContentType");
-        String contentType = "";
-        File instance = new File();
-        instance.setContentType(contentType);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getFile method, of class File.
-     */
-    @Test
-    public void testGetFile() {
-        System.out.println("getFile");
-        File instance = new File();
-        Blob expResult = null;
-        Blob result = instance.getFile();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setFile method, of class File.
-     */
-    @Test
-    public void testSetFile() {
-        System.out.println("setFile");
-        Blob file = null;
-        File instance = new File();
-        instance.setFile(file);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getExercise method, of class File.
-     */
-    @Test
-    public void testGetExercise() {
-        System.out.println("getExercise");
-        File instance = new File();
-        Topic expResult = null;
-        Topic result = instance.getExercise();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setExercise method, of class File.
-     */
-    @Test
-    public void testSetExercise() {
-        System.out.println("setExercise");
-        Topic exercise = null;
-        File instance = new File();
-        instance.setExercise(exercise);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getGoodAnswer method, of class File.
-     */
-    @Test
-    public void testGetGoodAnswer() {
-        System.out.println("getGoodAnswer");
-        File instance = new File();
-        GoodAnswer expResult = null;
-        GoodAnswer result = instance.getGoodAnswer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setGoodAnswer method, of class File.
-     */
-    @Test
-    public void testSetGoodAnswer() {
-        System.out.println("setGoodAnswer");
-        GoodAnswer goodAnswer = null;
-        File instance = new File();
-        instance.setGoodAnswer(goodAnswer);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setExerciseTransaction method, of class File.
-     */
-    @Test
-    public void testSetExerciseTransaction() {
-        System.out.println("setExerciseTransaction");
-        ExerciseTransaction exerciseTransaction = null;
-        File instance = new File();
-        instance.setExerciseTransaction(exerciseTransaction);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testSetContentType() {
+//        System.out.println("setContentType");
+//        String contentType = "";
+//        File instance = new File();
+//        instance.setContentType(contentType);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of getFile method, of class File.
+//     */
+//    @Test
+//    public void testGetFile() {
+//        System.out.println("getFile");
+//        File instance = new File();
+//        Blob expResult = null;
+//        Blob result = instance.getFile();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of setFile method, of class File.
+//     */
+//    @Test
+//    public void testSetFile() {
+//        System.out.println("setFile");
+//        Blob file = null;
+//        File instance = new File();
+//        instance.setFile(file);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of getExercise method, of class File.
+//     */
+//    @Test
+//    public void testGetExercise() {
+//        System.out.println("getExercise");
+//        File instance = new File();
+//        Topic expResult = null;
+//        Topic result = instance.getExercise();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of setExercise method, of class File.
+//     */
+//    @Test
+//    public void testSetExercise() {
+//        System.out.println("setExercise");
+//        Topic exercise = null;
+//        File instance = new File();
+//        instance.setExercise(exercise);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of getGoodAnswer method, of class File.
+//     */
+//    @Test
+//    public void testGetGoodAnswer() {
+//        System.out.println("getGoodAnswer");
+//        File instance = new File();
+//        GoodAnswer expResult = null;
+//        GoodAnswer result = instance.getGoodAnswer();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of setGoodAnswer method, of class File.
+//     */
+//    @Test
+//    public void testSetGoodAnswer() {
+//        System.out.println("setGoodAnswer");
+//        GoodAnswer goodAnswer = null;
+//        File instance = new File();
+//        instance.setGoodAnswer(goodAnswer);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    /**
+//     * Test of setExerciseTransaction method, of class File.
+//     */
+//    @Test
+//    public void testSetExerciseTransaction() {
+//        System.out.println("setExerciseTransaction");
+//        ExerciseTransaction exerciseTransaction = null;
+//        File instance = new File();
+//        instance.setExerciseTransaction(exerciseTransaction);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
     /**
      * Test of getExerciseTransaction method, of class File.

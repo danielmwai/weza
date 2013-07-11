@@ -21,18 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.tunaweza.core.business.model.user;
+
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.mentor.Mentor;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.student.Student;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -40,239 +43,234 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = User.TABLE_NAME)
-public class User extends AbstractPersistentEntity implements Comparable<User>
-{
-	private static final long serialVersionUID = 1L;
+public class User implements Comparable<User>, UserDetails {
 
-	public static final String TABLE_NAME = "users";
-	public static final String JOIN_ROLE = "username";
+    @Id
+    @GeneratedValue
+    private Long id;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name = "enabled")
-	private int enabled = 1;
+    public static final String TABLE_NAME = "users";
+    public static final String JOIN_ROLE = "username";
 
-	@Column(name = "username", nullable = false, unique = true,columnDefinition="varchar(255) default 'User 1'")
-	private String username;
+    @Column(name = "is_enabled")
+    private int is_enabled = 1;
 
-	@Column(name = "email", nullable = true, unique = true)
-	private String email;
+    public int getIs_enabled() {
+        return is_enabled;
+    }
 
-	@Column(name = "password", nullable = false, unique = false)
-	private String password;
+    public void setIs_enabled(int is_enabled) {
+        this.is_enabled = is_enabled;
+    }
+    @Column
+	private boolean enabled = true;
 
-	@Column(name = "superuser", unique = false,columnDefinition="boolean default false")
-	private boolean superuser = false;
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-	@Column(name = "first_name")
-	private String firstName;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	@Column(name = "last_name")
-	private String lastName;
+    @Column(name = "username", nullable = false, unique = true, columnDefinition = "varchar(255) default 'User 1'")
+    private String username;
 
-	@ManyToOne
-	@JoinColumn(name = "id_location")
-	private Location location;
+    @Column(name = "email", nullable = true, unique = true)
+    private String email;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP")
-	private Calendar creationDate;
+    @Column(name = "password", nullable = false, unique = false)
+    private String password;
+     @Column
+	private String salt;
+    @Column(name = "superuser", unique = false, columnDefinition = "boolean default false")
+    private boolean superuser = false;
 
-	/*
-	 * @ManyToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
-	 * CascadeType.MERGE }, fetch = FetchType.LAZY)
-	 * 
-	 * @JoinTable(name = "authorities", uniqueConstraints = {
-	 * 
-	 * @UniqueConstraint(columnNames = { User.JOIN_ROLE, Role.JOIN_USER }) })
-	 */
-	@ManyToMany
-	@JoinTable(name = "authorities", 
-	joinColumns = { @JoinColumn(name = "username", referencedColumnName = "username") }, inverseJoinColumns = { @JoinColumn(name = "authority", referencedColumnName = "role_name") })
-	private List<Role> roles;
-	
-	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	private Mentor mentor;
-	
-	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	private Student student;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+    @Column
+    private boolean accountNonExpired = true;
+
+    @Column
+    private boolean credentialsNonExpired = true;
+
+    @Column
+    private boolean accountNonLocked = true;
+    @ManyToOne
+    @JoinColumn(name = "id_location")
+    private Location location;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP")
+    private Calendar creationDate;
+
+    /*
+     * @ManyToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST,
+     * CascadeType.MERGE }, fetch = FetchType.LAZY)
+     * 
+     * @JoinTable(name = "authorities", uniqueConstraints = {
+     * 
+     * @UniqueConstraint(columnNames = { User.JOIN_ROLE, Role.JOIN_USER }) })
+     */
+    @ManyToMany
+    @JoinTable(name = "authorities",
+            joinColumns = {
+                @JoinColumn(name = "username", referencedColumnName = "username")}, inverseJoinColumns = {
+                @JoinColumn(name = "authority", referencedColumnName = "role_name")})
+    private List<Role> roles;
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Mentor mentor;
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Student student;
 //	
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "id_company")
 //	private Company userCompany;
-	
-	@ManyToMany
-	@Embedded
-	@JoinTable(name = "user_groups", 
-	joinColumns = { @JoinColumn(name = "userid", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "user_group", referencedColumnName = "id") })
-	List<Group> groups;
 
+    @ManyToMany
+    @Embedded
+    @JoinTable(name = "user_groups",
+            joinColumns = {
+                @JoinColumn(name = "userid", referencedColumnName = "id")}, inverseJoinColumns = {
+                @JoinColumn(name = "user_group", referencedColumnName = "id")})
+    List<Group> groups;
 
-	public String getPassword()
-	{
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password)
-	{
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	/***************************************************************************
-	 * getters & setters
-	 */
+    /**
+     * *************************************************************************
+     * getters & setters
+     */
+    public String getUsername() {
+        return username;
+    }
 
-	public String getUsername()
-	{
-		return username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
 
-	public Calendar getCreationDate()
-	{
-		return creationDate;
-	}
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	public void setCreationDate(Calendar creationDate)
-	{
-		this.creationDate = creationDate;
-	}
+    public List<Role> getRoles() {
+        return roles;
+    }
 
-	public List<Role> getRoles()
-	{
-		return roles;
-	}
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
-	public void setRoles(List<Role> roles)
-	{
-		this.roles = roles;
-	}
+    public boolean isSuperuser() {
+        return superuser;
+    }
 
-	public boolean isSuperuser()
-	{
-		return superuser;
-	}
+    public void setSuperuser(boolean superuser) {
+        this.superuser = superuser;
+    }
 
-	public void setSuperuser(boolean superuser)
-	{
-		this.superuser = superuser;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public int getEnabled()
-	{
-		return enabled;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setEnabled(int enabled)
-	{
-		this.enabled = enabled;
-	}
+    /**
+     * @return the firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getEmail()
-	{
-		return email;
-	}
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
+    /**
+     * @return the lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
 
-	/**
-	 * @return the firstName
-	 */
-	public String getFirstName()
-	{
-		return firstName;
-	}
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	/**
-	 * @param firstName
-	 *            the firstName to set
-	 */
-	public void setFirstName(String firstName)
-	{
-		this.firstName = firstName;
-	}
+    /**
+     * @return the location
+     */
+    public Location getLocation() {
+        return location;
+    }
 
-	/**
-	 * @return the lastName
-	 */
-	public String getLastName()
-	{
-		return lastName;
-	}
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-	/**
-	 * @param lastName
-	 *            the lastName to set
-	 */
-	public void setLastName(String lastName)
-	{
-		this.lastName = lastName;
-	}
+    /**
+     * @return the mentor
+     */
+    public Mentor getMentor() {
+        return mentor;
+    }
 
-	
+    /**
+     * @param mentor the mentor to set
+     */
+    public void setMentor(Mentor mentor) {
+        this.mentor = mentor;
+    }
 
-	/**
-	 * @return the location
-	 */
-	public Location getLocation()
-	{
-		return location;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    public int compareTo(User user) {
+        if (user.getId() > getId()) {
+            return -1;
 
-	/**
-	 * @param location
-	 *            the location to set
-	 */
-	public void setLocation(Location location)
-	{
-		this.location = location;
-	}
-	
-	/**
-	 * @return the mentor
-	 */
-	public Mentor getMentor() {
-		return mentor;
-	}
+        } else if (user.getId() < getId()) {
+            return 1;
+        }
+        return 0;
+    }
 
-	/**
-	 * @param mentor the mentor to set
-	 */
-	public void setMentor(Mentor mentor) {
-		this.mentor = mentor;
-	}
+    public Student getStudent() {
+        return student;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	public int compareTo(User user)
-	{
-		if (user.getId() > getId())
-		{
-			return -1;
-
-		}
-		else if (user.getId() < getId())
-		{
-			return 1;
-		}
-		return 0;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 //
 //	/**
 //	 * @return the userCompany
@@ -288,18 +286,68 @@ public class User extends AbstractPersistentEntity implements Comparable<User>
 //		this.userCompany = userCompany;
 //	}
 
-	/**
-	 * @return the groups
-	 */
-	public List<Group> getGroups() {
-		return groups;
-	}
+    /**
+     * @return the groups
+     */
+    public List<Group> getGroups() {
+        return groups;
+    }
 
-	/**
-	 * @param groups the groups to set
-	 */
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
-	}
+    /**
+     * @param groups the groups to set
+     */
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+   
+
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public Collection<GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>(
+                groups.size());
+        for (Group group : groups) {
+            auths.add((GrantedAuthority) group);
+        }
+        return auths;
+    }
 }

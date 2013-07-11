@@ -24,8 +24,7 @@
 
 package com.tunaweza.core.business.model.exercise.transaction;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import java.util.List;
 import javax.persistence.*;
 /**
@@ -37,8 +36,19 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = ExerciseTransactionType.TABLE_NAME)
-public class ExerciseTransactionType extends AbstractPersistentEntity 
+public class ExerciseTransactionType  
 {
+     @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
 	public static final String TABLE_NAME = "exercise_transaction_type";
 	

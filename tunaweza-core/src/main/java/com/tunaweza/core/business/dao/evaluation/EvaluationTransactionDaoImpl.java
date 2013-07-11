@@ -24,13 +24,13 @@
 
 package com.tunaweza.core.business.dao.evaluation;
 
-import com.tunaweza.core.business.Dao.evaluation.EvaluationTransactionDao;
+import com.tunaweza.core.business.dao.evaluation.EvaluationTransactionDao;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.evaluation.EvaluationTransaction;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
 import java.util.List;
 import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,10 +42,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository(value = "evaluationTransactionDao")
 @Transactional
 public class EvaluationTransactionDaoImpl extends
-		GenericDaoImpl<EvaluationTransaction> implements EvaluationTransactionDao {
+		      GenericDaoImpl<EvaluationTransaction> implements EvaluationTransactionDao {
 
 	
-	
+	SessionFactory sessionFactory;
 	
 	@Override
 	public List<EvaluationTransaction> getEvaluationTransactions() {
@@ -69,8 +69,8 @@ public class EvaluationTransactionDaoImpl extends
 			StudentEvaluation studentEvaluation) 
 	{
 		List<EvaluationTransaction> evaluationTransactionList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.studentEvaluation.id = "
 				+studentEvaluation.getId()+" ORDER BY i.transanctionDate Desc");
@@ -87,8 +87,8 @@ public class EvaluationTransactionDaoImpl extends
 			StudentEvaluation studentEvaluation) 
 	{
 		EvaluationTransaction evaluationTransaction = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.studentEvaluation.id = "
 				+studentEvaluation.getId()

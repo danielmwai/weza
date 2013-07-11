@@ -28,8 +28,8 @@ import com.tunaweza.core.business.model.exercise.OverrideStudentExercise;
 import com.tunaweza.core.business.model.exercise.StudentExercise;
 import com.tunaweza.core.business.model.file.File;
 import com.tunaweza.core.business.model.mentor.Mentor;
+import com.tunaweza.core.business.model.mentor.MentorTemplate;
 import com.tunaweza.core.business.model.module.Module;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.status.Status;
 import com.tunaweza.core.business.model.student.Student;
 import java.util.List;
@@ -38,6 +38,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -57,8 +59,21 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Entity
 @Table(name = Topic.TABLE_NAME)
 @JsonIgnoreProperties({ "module", "topicText", "user" })
-public class Topic extends AbstractPersistentEntity implements
+public class Topic  implements
 		Comparable<Topic> {
+    @OneToOne
+    private Student student;
+     @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
 
 	public static final String TABLE_NAME = "topics";
@@ -120,7 +135,8 @@ public class Topic extends AbstractPersistentEntity implements
 	private List<GoodAnswer> goodAnswers;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "exercises")
-	private List<Mentor> mentor;
+	private List<MentorTemplate> mentorTemplates;
+
 
 	/**
 	 * @return the file
@@ -289,19 +305,20 @@ public class Topic extends AbstractPersistentEntity implements
 	}
 
 	/**
-	 * @return the Mentors
+	 * @return the mentorTemplates
 	 */
-	public List<Mentor> getMentor() {
-		return mentor;
+	public List<MentorTemplate> getMentorTemplates() {
+		return mentorTemplates;
 	}
 
 	/**
-	 * @param mentor
-	 *            the mentor to set
+	 * @param mentorTemplates
+	 *            the mentorTemplates to set
 	 */
-	public void setMentor(List<Mentor> mentor) {
-		this.mentor = mentor;
+	public void setMentorTemplates(List<MentorTemplate> mentorTemplates) {
+		this.mentorTemplates = mentorTemplates;
 	}
+
 
 	/**
 	 * @return the evaluationQuestionsLimit

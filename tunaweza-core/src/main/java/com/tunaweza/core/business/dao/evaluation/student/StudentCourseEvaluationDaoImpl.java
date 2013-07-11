@@ -33,6 +33,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +48,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourseEvaluation>
 		implements StudentCourseEvaluationDao {
-
+@Autowired
+     SessionFactory sessionFactory;
 	@Override
 	public StudentCourseEvaluation findStudentCourseEvaluationById(Long id)
 			throws StudentCourseEvaluationDoesNotExistException {
@@ -62,8 +65,8 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	public List<StudentCourseEvaluation> getAllStudentCourseEvaluationByStudent(Student student)
 			throws StudentCourseEvaluationDoesNotExistException {
 		List<StudentCourseEvaluation> studentCourseEvaluationList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i " + "WHERE i.student.id='"
 				+ student.getId() + "'");
 		if (query.list().size() > 0) {
@@ -78,8 +81,7 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	public List<StudentCourseEvaluation> getAllStudentCourseEvaluationByStudent(Student student,int startIndex,int pagesize)
 			throws StudentCourseEvaluationDoesNotExistException {
 		List<StudentCourseEvaluation> studentCourseEvaluationList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i " + "WHERE i.student.id='"
 				+ student.getId() + "'");
 		query.setFirstResult(startIndex);
@@ -114,8 +116,7 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	@Override
 	public List<StudentCourseEvaluation> getStudentCourseEvaluation(
 			long evaluationId, long studentId) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? "
 				+ " AND i.courseTemplate.id = ?");
 		query.setLong(0, studentId);
@@ -126,8 +127,7 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	@Override
 	public StudentCourseEvaluation getFirstStudentCourseEvaluation(
 			long evaluationId, long studentId) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? AND i.temporary=0"
 				+ " AND i.courseTemplate.id = ?" +
 				"ORDER BY i.dateTaken ASC");
@@ -139,9 +139,8 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	@Override
 	public StudentCourseEvaluation getLastStudentCourseEvaluation(
 			long evaluationId, long studentId) throws StudentCourseEvaluationDoesNotExistException{
-		Session session = (Session) getEntityManager().getDelegate();
 		StudentCourseEvaluation studentCourseEvaluation = null;
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? AND i.temporary=0"
 				+ " AND i.courseTemplate.id = ?" +
 				"ORDER BY i.dateTaken DESC");
@@ -156,9 +155,8 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	@Override
 	public StudentCourseEvaluation getTemporaryStudentCourseEvaluation(
 			long evaluationId, long studentId) throws StudentCourseEvaluationDoesNotExistException{
-		Session session = (Session) getEntityManager().getDelegate();
 		StudentCourseEvaluation studentCourseEvaluation = null;
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? "
 				+ " AND i.courseTemplate.id = ? AND i.temporary=1" +
 				"ORDER BY i.dateTaken DESC");
@@ -173,8 +171,7 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	@Override
 	public int countStudentCourseEvaluations(long studentId)
 	{
-		Session session =(Session) getEntityManager().getDelegate();
-		Query query = session.createSQLQuery("SELECT COUNT(DISTINCT courseTemplate_id) FROM student_course_test WHERE student_id= ?");
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT COUNT(DISTINCT courseTemplate_id) FROM student_course_test WHERE student_id= ?");
 		query.setLong(0,studentId);
 		java.math.BigInteger count = (java.math.BigInteger) query.list()
 				.get(0);
@@ -189,10 +186,9 @@ public class StudentCourseEvaluationDaoImpl extends GenericDaoImpl<StudentCourse
 	@Override
 	public StudentCourseEvaluation getLastStudentCourseEvaluationNoSession(
 			long evaluationId, long studentId, String companyDbName) throws StudentCourseEvaluationDoesNotExistException{
-		Session session = (Session) getEntityManager().getDelegate();
 		StudentCourseEvaluation studentCourseEvaluation = null;
 		
-		Query query = session.createSQLQuery("SELECT * FROM "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM "
 				+ companyDbName + ".student_test i WHERE i.student_id= ? AND i.temporary=0"
 				+ " AND i.courseTemplate_id = ?" +
 				"ORDER BY i.date_taken DESC");

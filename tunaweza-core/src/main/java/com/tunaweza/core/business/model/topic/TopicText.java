@@ -24,10 +24,11 @@
 
 package com.tunaweza.core.business.model.topic;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -40,7 +41,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = TopicText.TABLE_NAME)
-public class TopicText extends AbstractPersistentEntity {
+public class TopicText  {
+    @Id
+    @GeneratedValue
+    private Long id;
 	private static final long serialVersionUID = 1L;
 
 	public static final String TABLE_NAME = "topic_text";
@@ -67,5 +71,13 @@ public class TopicText extends AbstractPersistentEntity {
 	public void setTopic(Topic topic) {
 		this.topic = topic;
 	}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	
 }

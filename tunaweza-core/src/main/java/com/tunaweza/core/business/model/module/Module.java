@@ -24,8 +24,7 @@
 
 package com.tunaweza.core.business.model.module;
 import com.tunaweza.core.business.model.evaluation.Evaluation;
-import com.tunaweza.core.business.model.mentor.Mentor;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
+import com.tunaweza.core.business.model.mentor.MentorTemplate;
 import com.tunaweza.core.business.model.status.Status;
 import com.tunaweza.core.business.model.topic.Topic;
 import java.util.List;
@@ -35,6 +34,8 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -47,11 +48,21 @@ import javax.persistence.Transient;
  * @author Daniel mwai
  */
 @Entity
-@Table(name = Module.TABLE_NAME)
-public class Module extends AbstractPersistentEntity implements
+@Table(name = "module")
+public class Module  implements
 		Comparable<Module> {
+     @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
-	public static final String TABLE_NAME = "module";
 
 	@Column(name = "enabled")
 	private int enabled = 1;
@@ -78,10 +89,10 @@ public class Module extends AbstractPersistentEntity implements
 	List<Topic> topics;
 
 	@OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
-	List<Mentor> Mentors;
+	List<MentorTemplate> mentorTemplates;
 
 	@OneToOne(mappedBy = "module")
-	private Evaluation evaluationTemplate;
+	private Evaluation evaluation;
 
 	//Store the IDs for the prerequisite modules
 	@ElementCollection
@@ -186,26 +197,27 @@ public class Module extends AbstractPersistentEntity implements
 	}
 
 	/**
-	 * @return the Mentors
+	 * @return the mentorTemplates
 	 */
-	public List<Mentor> getMentors() {
-		return Mentors;
+	public List<MentorTemplate> getMentorTemplates() {
+		return mentorTemplates;
 	}
 
 	/**
-	 * @param Mentors
-	 *            the Mentors to set
+	 * @param mentorTemplates
+	 *            the mentorTemplates to set
 	 */
-	public void setMentors(List<Mentor> Mentors) {
-		this.Mentors = Mentors;
+	public void setMentorTemplates(List<MentorTemplate> mentorTemplates) {
+		this.mentorTemplates = mentorTemplates;
 	}
+
 
 	public Evaluation getEvaluation() {
-		return evaluationTemplate;
+		return evaluation;
 	}
 
-	public void setEvaluation(Evaluation evaluationTemplate) {
-		this.evaluationTemplate = evaluationTemplate;
+	public void setEvaluation(Evaluation evaluation) {
+		this.evaluation = evaluation;
 	}
 
 	@Override

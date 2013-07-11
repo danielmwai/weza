@@ -11,9 +11,8 @@ package com.tunaweza.core.business.model.file;
  */
 
 import com.tunaweza.core.business.model.answer.GoodAnswer;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.topic.Topic;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,11 +21,23 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Lob;
 import java.sql.Blob;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 @Table(name = File.TABLE_NAME)
-public class File extends AbstractPersistentEntity
-{
+public class File 
+{  @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 	public static final String TABLE_NAME = "file";
 	private static final long serialVersionUID = 1L;
@@ -38,6 +49,7 @@ public class File extends AbstractPersistentEntity
 	@Basic(fetch = FetchType.LAZY)
 	@Column(name = "file", length = 16777215)
 	private Blob file;
+
 	
 	@Column(name="content_type")
 	private String contentType;

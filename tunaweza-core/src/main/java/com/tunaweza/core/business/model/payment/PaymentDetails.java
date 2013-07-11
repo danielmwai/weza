@@ -24,10 +24,11 @@
 
 package com.tunaweza.core.business.model.payment;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,11 +39,20 @@ import javax.persistence.TemporalType;
  * @author Daniel mwai
  */
 @Entity
-@Table(name = PaymentDetails.TABLE_NAME)
-public class PaymentDetails extends AbstractPersistentEntity {
+@Table(name = "payment_details")
+public class PaymentDetails  {
+ @Id
+    @GeneratedValue
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
-	public static final String TABLE_NAME = "payment_details";
 	
 	@Column(name = "transaction_id", unique = true)
 	private String transactionId;

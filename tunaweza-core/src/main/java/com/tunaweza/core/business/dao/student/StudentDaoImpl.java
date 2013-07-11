@@ -38,7 +38,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +54,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class StudentDaoImpl extends GenericDaoImpl<Student> implements
         StudentDao {
-
+@Autowired
+SessionFactory sessionFactory;
     public Logger logger = Logger.getLogger(StudentDaoImpl.class);
 
     @Override
@@ -78,9 +81,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     public Student getStudentById(Long studentId)
             throws StudentDoesNotExistException {
 
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName() + " i WHERE i.id = " + studentId);
 
         if (query.list().size() == 0) {
@@ -95,9 +97,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     public Student getStudentByIdNoSession(String studentId, String companyDbName)
             throws StudentDoesNotExistException {
 
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createSQLQuery("SELECT * FROM " + companyDbName + ".student"
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + companyDbName + ".student"
                 + " WHERE id = " + studentId).addEntity(Student.class);
 
         if (query.list().size() == 0) {
@@ -111,9 +112,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     @Override
     public List<Student> getAllStudentModule(Long studentId)
             throws StudentDoesNotExistException {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName() + " i WHERE i.id = " + studentId);
         if (query.list().size() == 0) {
             throw new StudentDoesNotExistException("Student with id "
@@ -126,9 +126,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     @Override
     public Student getStudentByUser(User user)
             throws StudentDoesNotExistException {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName() + " i WHERE i.id.user = "
                 + user.getId());
 
@@ -143,14 +142,13 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     @Override
     public Student getStudentByUserNoSession(User user, String dbName, String companyId)
             throws StudentDoesNotExistException {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query myQuery = session.createSQLQuery("SELECT * FROM " + dbName + ".users"
+        Query myQuery = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + dbName + ".users"
                 + " WHERE username = '" + user.getUsername() + "'").addEntity(User.class);
 
         User myUser = (User) myQuery.list().get(0);
 
-        Query query = session.createSQLQuery("SELECT * FROM " + dbName + ".student"
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + dbName + ".student"
                 + " WHERE id_user = " + myUser.getId()).addEntity(Student.class);
 
         if (query.list().size() == 0) {
@@ -164,9 +162,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     @Override
     public Long getStudentIdByUserId(Long userId)
             throws StudentDoesNotExistException {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT id FROM student WHERE id_user = " + userId);
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT id FROM student WHERE id_user = " + userId);
 
         if (query.list().size() == 0) {
             throw new StudentDoesNotExistException("Student does not exist");
@@ -179,9 +176,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     @Override
     public int countStudentPendingExercises(long moduleId, long studentId) {
         int count = 0;
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session
+        Query query = sessionFactory.getCurrentSession()
                 .createSQLQuery("SELECT COUNT(*) FROM "
                 + "(SELECT * FROM exercise_transaction WHERE id IN "
                 + "(SELECT MAX(id) FROM exercise_transaction GROUP BY exercise_id)) et"
@@ -340,9 +336,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
 
     @Override
     public BigInteger getCourseIdOfModule(Long moduleId, Long studentId) {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session
+        Query query = sessionFactory.getCurrentSession()
                 .createSQLQuery("SELECT course FROM course_modules cm"
                 + " JOIN student_template st ON cm.course = st.courseTemplate"
                 + " WHERE cm.module=? AND st.student=? ORDER BY cm.level ASC");
@@ -359,12 +354,11 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
     @Override
     public List<Double> getCompletedTopicsAndExercises(long moduleId,
             long userId) {
-        Session session = (Session) getEntityManager().getDelegate();
 
         java.math.BigInteger countCompletedTopics = BigInteger.valueOf(0);
         java.math.BigInteger countCompletedExercises = BigInteger.valueOf(0);
 
-        Query queryCompletedExercises = session
+        Query queryCompletedExercises = sessionFactory.getCurrentSession()
                 .createSQLQuery("SELECT COUNT(*) FROM student_exercise WHERE is_complete = 1 "
                 + "AND user_id =? AND topic_id IN (SELECT id FROM topics WHERE id_module=?)");
         queryCompletedExercises.setLong(0, userId);
@@ -372,7 +366,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
         countCompletedExercises = (java.math.BigInteger) queryCompletedExercises
                 .list().get(0);
 
-        Query queryCompletedTopics = session
+        Query queryCompletedTopics = sessionFactory.getCurrentSession()
                 .createSQLQuery("SELECT COUNT(*) FROM student_completed_topics "
                 + "WHERE student = ? AND topic IN (SELECT id FROM topics WHERE id_module= ?)");
         queryCompletedTopics.setLong(0, userId);
@@ -417,9 +411,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
 
     @Override
     public Date getLastLoginDate(Student student) {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createQuery("SELECT i FROM "
+        Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
                 + getDomainClass().getName() + " i WHERE i.id = "
                 + student.getId());
 
@@ -428,9 +421,8 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements
 
     /////////////////////////
     public List<BigInteger> getStudentCourseList(Long studentId, String companyDbName) {
-        Session session = (Session) getEntityManager().getDelegate();
 
-        Query query = session.createSQLQuery("SELECT courseTemplate FROM " + companyDbName + ".student_template"
+        Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT courseTemplate FROM " + companyDbName + ".student_template"
                 + " WHERE student = " + studentId);
 
         return (query.list().size() > 0) ? (List<BigInteger>) query.list() : null;

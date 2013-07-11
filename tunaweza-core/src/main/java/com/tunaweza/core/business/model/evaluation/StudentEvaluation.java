@@ -24,7 +24,6 @@
 
 package com.tunaweza.core.business.model.evaluation;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.student.Student;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +31,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -47,8 +48,18 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name=StudentEvaluation.TABLE_NAME)
-public class StudentEvaluation extends AbstractPersistentEntity{
+public class StudentEvaluation {
+   @Id
+    @GeneratedValue
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	public static final String TABLE_NAME = "student_test";
 	private static final long serialVersionUID = 1L;
 	

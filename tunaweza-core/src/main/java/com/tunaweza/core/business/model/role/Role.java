@@ -24,12 +24,13 @@
 
 package com.tunaweza.core.business.model.role;
 
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 /**
@@ -39,9 +40,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = Role.TABLE_NAME)
-public class Role extends AbstractPersistentEntity implements
+public class Role  implements
 Comparable<Role> {
+ @Id
+    @GeneratedValue
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
 
 	public static final String TABLE_NAME = "roles";

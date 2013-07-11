@@ -24,7 +24,6 @@
 
 package com.tunaweza.core.business.model.evaluation;
 import com.tunaweza.core.business.model.module.Module;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.question.Question;
 import java.util.List;
 
@@ -32,6 +31,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -42,11 +43,20 @@ import javax.persistence.Table;
  * @author Daniel mwai
  */
 @Entity
-@Table(name = Evaluation.TABLE_NAME)
-public class Evaluation extends AbstractPersistentEntity implements
+@Table(name = "evaluation")
+public class Evaluation  implements
 		Comparable<Evaluation> {
+  @Id
+    @GeneratedValue
+    private Long id;
 
-	public static final String TABLE_NAME = "evaluation_template";
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "name", nullable = false, unique = true)
@@ -67,14 +77,14 @@ public class Evaluation extends AbstractPersistentEntity implements
 	@Column(name = "duration")
 	private double duration = 15;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy="evaluationTemplate")
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy="evaluation")
 	private List<Question> questions;
 
 	@OneToOne
 	@JoinColumn(name = "module_id")
 	private Module module;
 
-	@OneToMany(mappedBy = "evaluationTemplate", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "evaluation", fetch = FetchType.LAZY)
 	private List<StudentEvaluation> studentEvaluations;
 	
 

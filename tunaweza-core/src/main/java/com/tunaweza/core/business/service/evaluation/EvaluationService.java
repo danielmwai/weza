@@ -46,7 +46,9 @@ public interface EvaluationService {
 
 	/**
 	 * 
+     * @param evaluation
 	 * @param id
+     * @return 
 	 * @throws EvaluationDoesNotExistException
 	 */
 	public Evaluation findEvaluation(
@@ -66,7 +68,7 @@ public interface EvaluationService {
 	 * @param evaluation
 	 * @throws EvaluationDoesNotExistException
 	 */
-	public Evaluation findEvaluationeByName(String name)
+	public Evaluation findEvaluationByName(String name)
 			throws EvaluationDoesNotExistException;
 
 	/**
@@ -74,7 +76,7 @@ public interface EvaluationService {
 	 * @return <code>EvaluationTemplate</code> list
 	 * 
 	 */
-	public List<Evaluation> listAllEvaluation();
+	public List<Evaluation> listAllEvaluations();
 
 	/**
 	 * 

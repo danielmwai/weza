@@ -36,6 +36,8 @@ import java.math.BigInteger;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,7 +50,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
 		implements  StudentEvaluationDao {
-
+@Autowired
+SessionFactory sessionFactory;
 	@Override
 	public StudentEvaluation findStudentEvaluationById(Long id)
 			throws StudentEvaluationDoesNotExistException {
@@ -64,8 +67,7 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
 	public List<StudentEvaluation> getAllStudentEvaluationByStudent(Student student)
 			throws StudentEvaluationDoesNotExistException {
 		List<StudentEvaluation> studentEvaluationList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i " + "WHERE i.student.id='"
 				+ student.getId() + "'");
 		if (query.list().size() > 0) {
@@ -97,8 +99,7 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
 	@Override
 	public List<StudentEvaluation> getStudentEvaluation(long evaluationId,
 			long studentId) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? "
 				+ " AND i.evaluationTemplate.id = ?");
 		query.setLong(0, studentId);
@@ -110,8 +111,7 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
 	@Override
 	public StudentEvaluation getFirstStudentEvaluation(long evaluationId,
 			long studentId) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? "
 				+ " AND i.evaluationTemplate.id = ? AND i.temporary=0" +
 				"ORDER BY i.dateTaken ASC");
@@ -123,9 +123,8 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
 	@Override
 	public StudentEvaluation getLastStudentEvaluation(long evaluationId,
 			long studentId) throws StudentEvaluationDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 		StudentEvaluation studentEvaluation = null;
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? "
 				+ " AND i.evaluationTemplate.id = ? AND i.temporary=0" +
 				"ORDER BY i.dateTaken DESC");
@@ -140,9 +139,8 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
 	@Override
 	public StudentEvaluation getTemporaryStudentEvaluation(long evaluationId,
 			long studentId) throws StudentEvaluationDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 		StudentEvaluation studentEvaluation = null;
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? "
 				+ " AND i.evaluationTemplate.id = ? AND i.temporary=1" +
 				"ORDER BY i.dateTaken DESC");
@@ -162,8 +160,7 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
     @SuppressWarnings("unchecked")
 	@Override
 	public List<StudentEvaluation> getStudentEvaluation(long studentId) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? ");
 		query.setLong(0, studentId);
 		return query.list();
@@ -173,8 +170,7 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
     @SuppressWarnings("unchecked")
 	@Override
 	public List<StudentEvaluation> getStudentEvaluation(long studentId,int startIndex) {
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.student.id= ? ");
         query.setLong(0, studentId);
 		query.setFirstResult(startIndex);
@@ -185,8 +181,7 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
     
     public int countStudentEvaluations(long studentId)
     {
-    	Session session = (Session) getEntityManager().getDelegate();
-    	Query query = session.createSQLQuery("SELECT COUNT(DISTINCT evaluationTemplate_id) FROM student_test WHERE student_id = ?");
+    	Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT COUNT(DISTINCT evaluationTemplate_id) FROM student_test WHERE student_id = ?");
     	query.setLong(0,studentId);
     	BigInteger count = (BigInteger)query.list().get(0);
     	return count.intValue();
@@ -195,10 +190,9 @@ public class StudentEvaluationDaoImpl extends GenericDaoImpl<StudentEvaluation>
     @Override
 	public StudentEvaluation getLastStudentEvaluationNoSession(long evaluationId,
 			long studentId, String companyDbName) throws StudentEvaluationDoesNotExistException {
-		Session session = (Session) getEntityManager().getDelegate();
 		StudentEvaluation studentEvaluation = null;
 		
-		Query query = session.createSQLQuery("SELECT * FROM "
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM "
 				+ companyDbName + ".student_test i WHERE i.student_id= ? "
 				+ " AND i.evaluationTemplate_id = ? AND i.temporary=0" +
 				"ORDER BY i.date_taken DESC").addEntity(StudentEvaluation.class);

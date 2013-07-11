@@ -38,6 +38,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 /**
@@ -50,6 +52,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CourseDaoImpl extends GenericDaoImpl<Course>
 		implements  CourseDao {
+@Autowired
+SessionFactory sessionFactory ; 
 
 	@Override
 	public Course findCourseById(long uid)
@@ -65,8 +69,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 	public Course findCourseByName(String name)
 			throws CourseNotFoundException 
 	{
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE i.name='"+name+"'");
 		
 		Course course = null;
@@ -118,8 +121,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 	public List<User> getAllUsersByCourse(Long courseId) 
 	{
 		List<User> users = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("FROM User u " +
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM User u " +
 				"WHERE u.student.courseTemplate.id = "+ courseId + " " +
 				"ORDER BY u.student.courseTemplate.id ASC");
 		
@@ -147,8 +149,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 	public List<Module> getModulesInCourse(Long courseId) 
 	{
 		Course course = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM " +getDomainClass().getName()+
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM " +getDomainClass().getName()+
 				" i WHERE i.id = "+ courseId);
 		
 		if(query.list().size()>0){
@@ -159,7 +160,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		if(embeddedModuleList!=null){
 		for(EmbeddableModule embeddModule : embeddedModuleList )
 		{
-			Query moduleQuery=session.createSQLQuery("SELECT * FROM module " +
+			Query moduleQuery=sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM module " +
 					"WHERE id ="+embeddModule.getModuleId()).addEntity(Module.class);
 			Module module = (Module)moduleQuery.list().get(0);
 			modules.add(module);
@@ -171,8 +172,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 	@Override
 	public List<Module> getActiveModulesInCourse(Long courseId) {
 		Course course = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM " +getDomainClass().getName()+
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM " +getDomainClass().getName()+
 				" i WHERE i.id = "+ courseId);
 		
 		if(query.list().size()>0){
@@ -183,7 +183,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		
 		for(EmbeddableModule embeddModule : embeddedModuleList )
 		{
-			Query moduleQuery=session.createSQLQuery("SELECT * FROM module m " +
+			Query moduleQuery=sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM module m " +
 					"WHERE m.id = "+embeddModule.getModuleId()+" AND m.enabled = 1")
 					.addEntity(Module.class);
 			Module module = (Module)moduleQuery.list().get(0);
@@ -198,9 +198,8 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 	public List<Module> getModulesInCourseNoSession(Long courseId, String companyDbName) 
 	{
 		Course course = null;
-		Session session = (Session) getEntityManager().getDelegate();
 		
-		Query query = session.createSQLQuery("SELECT * FROM " + companyDbName + ".course_template"
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + companyDbName + ".course_template"
 				+ " WHERE id = " + courseId).addEntity(Course.class);
 		
 		if(query.list().size()>0){
@@ -211,7 +210,7 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		if(embeddedModuleList!=null){
 		for(EmbeddableModule embeddModule : embeddedModuleList )
 		{
-			Query moduleQuery=session.createSQLQuery("SELECT * FROM " + companyDbName + ".module " +
+			Query moduleQuery=sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + companyDbName + ".module " +
 					"WHERE id ="+embeddModule.getModuleId()).addEntity(Module.class);
 			Module module = (Module)moduleQuery.list().get(0);
 			modules.add(module);
@@ -225,11 +224,10 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		
 		List<Course> cts=new ArrayList<Course>();
 		
-		Session session = (Session) getEntityManager().getDelegate();
 		System.out.println(">>>>>>>>>>>>01");
 		for(BigInteger ctId : ctIds) {
 			System.out.println(">>>>>>>>>>>>02");
-			Query query = session.createSQLQuery("SELECT * FROM " + companyDbName +
+			Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + companyDbName +
 					".course_template i WHERE i.id = " + ctId).addEntity(Course.class);
 			System.out.println(">>>>>>>>>>>>03");
 			Course ct = (Course)query.list().get(0);
@@ -245,14 +243,13 @@ public class CourseDaoImpl extends GenericDaoImpl<Course>
 		List<BigInteger> moduleIds=new ArrayList<BigInteger>();
 		List<Module> modules=new ArrayList<Module>();
 		
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createSQLQuery("SELECT module FROM " + companyDbName +
+		Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT module FROM " + companyDbName +
 				".course_modules i WHERE i.course = "+ courseTemplateId);
 		
 		if(query.list().size()>0){
 			moduleIds = (List<BigInteger>)query.list();
 			for(BigInteger moduleId : moduleIds) {
-				query = session.createSQLQuery("SELECT * FROM " + companyDbName +
+				query = sessionFactory.getCurrentSession().createSQLQuery("SELECT * FROM " + companyDbName +
 					".module i WHERE i.id = "+ moduleId).addEntity(Module.class);
 				if(query.list().size() > 0) {
 					Module module = (Module)query.list().get(0);

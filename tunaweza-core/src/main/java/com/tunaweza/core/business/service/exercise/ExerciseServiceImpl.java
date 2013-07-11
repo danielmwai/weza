@@ -28,6 +28,7 @@ package com.tunaweza.core.business.service.exercise;
 
 import com.tunaweza.core.business.dao.exceptions.module.ModuleDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseExistsException;
+import com.tunaweza.core.business.dao.exceptions.student.StudentExerciseNotFoundException;
 import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.exercise.StudentExerciseDao;
 import com.tunaweza.core.business.dao.module.ModuleDao;
@@ -40,6 +41,8 @@ import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.topic.TopicService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,8 +79,18 @@ public class ExerciseServiceImpl implements ExerciseService {
 		
 		User user = userDao.findUserById(Long.valueOf(userId));
 		Module module = moduleDao.findModuleById(Long.valueOf(moduleId));
-		List<StudentExercise> studentExerciseList = studentExerciseDao.getAllStudentExerciseByModule(user, module).get(0);
-		List<Topic> topics = studentExerciseDao.getAllStudentExerciseByModule(user, module).get(1);
+		List<StudentExercise> studentExerciseList = null;
+            try {
+                studentExerciseList = studentExerciseDao.getAllStudentExerciseByModule(user, module).get(0);
+            } catch (StudentExerciseNotFoundException ex) {
+                Logger.getLogger(ExerciseServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+		List<Topic> topics = null;
+            try {
+                topics = studentExerciseDao.getAllStudentExerciseByModule(user, module).get(1);
+            } catch (StudentExerciseNotFoundException ex) {
+                Logger.getLogger(ExerciseServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		List<Topic> attemptedTopics = new ArrayList<Topic>();
 		List<ExerciseBean> exerciseBeanList = new ArrayList<ExerciseBean>();
 		if(studentExerciseList!=null)

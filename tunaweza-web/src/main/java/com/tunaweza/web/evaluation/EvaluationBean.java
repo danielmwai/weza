@@ -62,7 +62,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class EvaluationBean implements Views {
 
 	@Autowired
-	private EvaluationService evaluationService;
+	public EvaluationService evaluationService;
 
 	@Autowired
 	private ModuleService moduleService;
@@ -94,7 +94,7 @@ public class EvaluationBean implements Views {
 		List<Module> remoduleList = new ArrayList<Module>();
 
 		List<Evaluation> list = evaluationService
-				.listAllEvaluation();
+				.listAllEvaluations();
 
 		if (list != null) {
 

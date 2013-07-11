@@ -21,13 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.tunaweza.core.business.service.mail;
 
 import com.tunaweza.core.business.model.user.User;
+import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -37,81 +38,96 @@ import org.springframework.stereotype.Service;
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
-
 @Service("mailService")
 public class MailServiceImpl implements MailService {
-	public static Logger logger = Logger.getLogger(MailServiceImpl.class);
-	
-	@Autowired
-	private JavaMailSenderImpl mailSender;
+
+    public static Logger logger = Logger.getLogger(MailServiceImpl.class);
+
+    @Autowired
+    private JavaMailSenderImpl mailSender;
+    private SimpleMailMessage simpleMailMessage;
+
+    public JavaMailSenderImpl getMailSender() {
+        return mailSender;
+    }
+
+    @Autowired
+    public void setMailSender(JavaMailSenderImpl mailSender) {
+        this.mailSender = mailSender;
+    }
+
+    public SimpleMailMessage getSimpleMailMessage() {
+        return simpleMailMessage;
+    }
+
+    public void setSimpleMailMessage(SimpleMailMessage simpleMailMessage) {
+        this.simpleMailMessage = simpleMailMessage;
+    }
 
 //	@Override
-	public void sendMail(User recipient, String password)
- {
-		MimeMessage message = mailSender.createMimeMessage();
+    public void sendMail(User recipient, String password) {
+        MimeMessage message = mailSender.createMimeMessage();
 
-		MimeMessageHelper helper;
-		try {
-			helper = new MimeMessageHelper(message, true);
-		helper.setFrom("JJPeople <noreply@jjpeople.com>");
-		helper.setTo(recipient.getEmail());
-		helper.setSubject("Test subject");
-		helper.setText(String.format("Testing", recipient
-				.getFirstName(), recipient.getLastName(), recipient
-				.getUsername(), password));
-		mailSender.send(message);
-		} catch (Exception ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-		}
-	}
-	
-	@Override
-	public void sendMail(String message, String email) {
-		
-		logger.info("Inside the sendMail function \n");
-		MimeMessage emailMessage = mailSender.createMimeMessage();
-		try{
+        MimeMessageHelper helper;
+        try {
+            helper = new MimeMessageHelper(message, true);
+            helper.setFrom("JJPeople <noreply@jjpeople.com>");
+            helper.setTo(recipient.getEmail());
+            helper.setSubject("Test subject");
+            helper.setText(String.format("Testing", recipient
+                    .getFirstName(), recipient.getLastName(), recipient
+                    .getUsername(), password));
+            mailSender.send(message);
+        } catch (Exception ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
+    }
 
-		logger.info("emailMessage created \n");
-		MimeMessageHelper helper = new MimeMessageHelper(emailMessage, true);
-		
-		logger.info("helper set \n");
-		helper.setFrom("JJPeople <noreply@jjpeople.com>");
-		helper.setTo(email);
-		helper.setSubject("JJPeople: JJTeach Account Details");
-		helper.setText(message, true);
-		
-		logger.info("Actual sending of email");
-	
-		mailSender.send(emailMessage);
-			logger.info("Mail sent");
-		} catch (Exception ex) {
-			logger.info("Oops!Mail Not Sent");
-			logger.info(ex);
-		}
+    @Override
+    public void sendMail(String message, String email) {
 
-	}
-	
-	@Override
-	public void sendDisablingMail(String message, String email)throws Exception 
-	{
-		MimeMessage emailMessage = mailSender.createMimeMessage();
+        logger.info("Inside the sendMail function \n");
+        MimeMessage emailMessage = mailSender.createMimeMessage();
+        try {
 
-		MimeMessageHelper helper = new MimeMessageHelper(emailMessage, true);
+            logger.info("emailMessage created \n");
+            MimeMessageHelper helper = new MimeMessageHelper(emailMessage, true);
 
-		helper.setFrom("JJPeople <noreply@jjpeople.com>");
-		helper.setTo(email);
-		helper.setSubject("JJPeople: JJPeople Training");
-		helper.setText(message, true);
-		try {
-			mailSender.send(emailMessage);
-			logger.info("Mail Sent");
-		} catch (Exception ex) {
-			logger.info("Oops!Mail Not Sent");
-			logger.info(ex);
-		}
+            logger.info("helper set \n");
+            helper.setFrom("JJPeople <noreply@jjpeople.com>");
+            helper.setTo(email);
+            helper.setSubject("JJPeople: JJTeach Account Details");
+            helper.setText(message, true);
 
-	}
+            logger.info("Actual sending of email");
+
+            mailSender.send(emailMessage);
+            logger.info("Mail sent");
+        } catch (Exception ex) {
+            logger.info("Oops!Mail Not Sent");
+            logger.info(ex);
+        }
+
+    }
+
+    @Override
+    public void sendDisablingMail(String message, String email) throws Exception {
+        MimeMessage emailMessage = mailSender.createMimeMessage();
+
+        MimeMessageHelper helper = new MimeMessageHelper(emailMessage, true);
+
+        helper.setFrom("JJPeople <noreply@jjpeople.com>");
+        helper.setTo(email);
+        helper.setSubject("JJPeople: JJPeople Training");
+        helper.setText(message, true);
+        try {
+            mailSender.send(emailMessage);
+            logger.info("Mail Sent");
+        } catch (Exception ex) {
+            logger.info("Oops!Mail Not Sent");
+            logger.info(ex);
+        }
+
+    }
 }
-

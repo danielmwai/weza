@@ -32,6 +32,8 @@ import com.tunaweza.core.business.model.user.Location;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,7 +46,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 		LocationDao {
-
+@Autowired
+SessionFactory sessionFactory;
 	@Override
 	public Location findLocationById(long lid)
 			throws LocationDoesNotExistException {
@@ -60,9 +63,8 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	public Location findLocationByName(String name)
 			throws LocationDoesNotExistException {
 
-		Session session = (Session) getEntityManager().getDelegate();
 
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+ getDomainClass().getName() + " i WHERE i.locationName = '"
 				+ name + "'");
 
@@ -139,8 +141,7 @@ public class LocationDaoImpl extends GenericDaoImpl<Location> implements
 	@Override
 	public Integer getBiggestNumber() {
 
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session
+		Query query = sessionFactory.getCurrentSession()
 				.createSQLQuery("SELECT location_code FROM location");
 		Integer i = new Integer((query.list().size()) + 1);
 

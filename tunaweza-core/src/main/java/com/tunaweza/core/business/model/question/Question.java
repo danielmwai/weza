@@ -21,21 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.tunaweza.core.business.model.question;
+
 import com.tunaweza.core.business.model.answer.Answer;
 import com.tunaweza.core.business.model.evaluation.Evaluation;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.topic.Topic;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
@@ -43,85 +45,95 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = Question.TABLE_NAME)
-public class Question extends AbstractPersistentEntity implements
-		Comparable<Question> {
-	private static final long serialVersionUID = 1L;
+@Table(name = "question")
+public class Question implements
+        Comparable<Question> {
 
-	public static final String TABLE_NAME = "questions";
+    @Id
+    @GeneratedValue
+    private Long id;
+    private static final long serialVersionUID = 1L;
 
-	@Column(name = "level")
-	private long level;
 
-	@Column(name = "text", nullable = false, length = 1000000000)
-	private String text;
+    @Column(name = "level")
+    private long level;
 
-	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-	private List<Answer> answers;
+    @Column(name = "text", nullable = false, length = 1000000000)
+    private String text;
 
-	@ManyToOne
-	@JoinColumn(name="associatedTopic_id", nullable=true)
-	private Topic topic;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    private List<Answer> answers;
 
-	@ManyToOne()
-	@JoinColumn(name = "evaluationTemplate_id")
-	private Evaluation evaluation;
+    @ManyToOne
+    @JoinColumn(name = "associatedTopic_id", nullable = true)
+    private Topic topic;
 
-	// Getters and Setters
+    @ManyToOne()
+    @JoinColumn(name = "evaluationTemplate_id")
+    private Evaluation evaluation;
 
-	public long getLevel() {
-		return level;
-	}
+    // Getters and Setters
+    public long getLevel() {
+        return level;
+    }
 
-	public void setLevel(long level) {
-		this.level = level;
-	}
+    public void setLevel(long level) {
+        this.level = level;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public List<Answer> getAnswers() {
-		return answers;
-	}
+    public List<Answer> getAnswers() {
+        return answers;
+    }
 
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
-	}
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
 
-	public Evaluation getEvaluation() {
-		return evaluation;
-	}
+    public Evaluation getEvaluation() {
+        return evaluation;
+    }
 
-	public void setEvaluationTemplate(Evaluation evaluation) {
-		this.evaluation = evaluation;
-	}
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
+    }
 
-	public Topic getTopic() {
-		return topic;
-	}
+    public Topic getTopic() {
+        return topic;
+    }
 
-	public void setTopic(Topic topic) {
-		this.topic = topic;
-	}
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	public int compareTo(Question question) {
-		if (question.getId() > getId()) {
-			return -1;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    public int compareTo(Question question) {
+        if (question.getId() > getId()) {
+            return -1;
 
-		} else if (question.getId() < getId()) {
-			return 1;
-		}
-		return 0;
-	}
+        } else if (question.getId() < getId()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

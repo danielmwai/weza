@@ -12,7 +12,7 @@
         <java-version>1.7</java-version>
         <jackson-version>1.8.1</jackson-version>
         <springframework-version>3.2.2.RELEASE</springframework-version>
-        <springsecurity-version>3.1.3.RELEASE</springsecurity-version>
+        <springsecurity-version>3.1.4.RELEASE</springsecurity-version>
         <webflow-version>2.3.2.RELEASE</webflow-version>
         <org.aspectj-version>1.6.11</org.aspectj-version>
         <slf4j-version>1.7.5</slf4j-version>
@@ -24,6 +24,16 @@
             <groupId>com.tunaweza</groupId>
             <artifactId>tunaweza-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>asm</artifactId>
+                    <groupId>asm</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-asm</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         
         <!-- Add dependency for net.sf.dynamicreports.report -->
@@ -109,6 +119,14 @@
             <artifactId>spring-security-config</artifactId>
             <version>${springsecurity-version}</version>
         </dependency>
+        <!-- utils -->
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>14.0.1</version>
+            <type>jar</type>
+        </dependency>
         <!-- JSON -->
         <dependency>
             <groupId>org.codehaus.jettison</groupId>
@@ -136,10 +154,26 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
-            <scope>runtime</scope>
+            <version>1.2.17</version>
+            <type>jar</type>
         </dependency>
-
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <version>2.1</version>
+        </dependency>
+<!-- <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.7.3</version>
+        </dependency>
+            
+       
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.7.3</version>
+        </dependency>-->
         <!-- Database, JPA -->
         <dependency>
             <groupId>org.hsqldb</groupId>
@@ -152,26 +186,41 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.2.0.Final</version>
         </dependency>
-
-        <!-- Servlet -->
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.12.1.GA</version>
+        </dependency>
+        <!-- Servlet API and JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
+            <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
 
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+       <!--due to this error 
+      org.apache.catalina.LifecycleException:
+        Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tunaweza-web]]   
+       hope Tomcat stop error        !-->
+       <dependency>
+	<groupId>commons-logging</groupId>
+	<artifactId>commons-logging</artifactId>
+	<version>1.1.3</version>
+</dependency>
+            
 		
 
         <!-- JSR 303 with Hibernate Validator -->
@@ -214,17 +263,12 @@
             <artifactId>javassist</artifactId>
             <version>3.18.0-GA</version>
         </dependency>
+       
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${springframework-version}</version>
-            <scope>test</scope>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>7.0.41</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -277,9 +321,16 @@
         </repository>
     </repositories>
     <build>
-         <defaultGoal>clean install</defaultGoal>
+        <defaultGoal>clean install</defaultGoal>
+        <finalName>tunaweza</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
-<!--            <plugin>
+            <!--            <plugin>
                 <groupId>org.bsc.maven</groupId>
                 <artifactId>maven-processor-plugin</artifactId>
                 <version>
@@ -325,13 +376,13 @@
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjrt</artifactId>
                         <version>1.7.3</version>
-<!--                        <version>${slf4j-version}</version>-->
+                        <!--                        <version>${slf4j-version}</version>-->
                     </dependency>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjtools</artifactId>
                         <version>1.7.3</version>
-<!--                        <version>${org.aspectj-version}</version>-->
+                        <!--                        <version>${org.aspectj-version}</version>-->
                     </dependency>
                 </dependencies>
                 <executions>

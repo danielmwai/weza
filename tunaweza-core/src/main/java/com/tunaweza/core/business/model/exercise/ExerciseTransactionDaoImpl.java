@@ -24,14 +24,15 @@
 
 package com.tunaweza.core.business.model.exercise;
 
-import com.tunaweza.core.business.Dao.exercise.transaction.ExerciseTransactionTypeDao;
+import com.tunaweza.core.business.dao.exercise.transaction.ExerciseTransactionTypeDao;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
 import com.tunaweza.core.business.model.exercise.transaction.ExerciseTransactionType;
 import com.tunaweza.core.business.model.mentor.Mentor;
-import com.tunaweza.core.business.service.exercise.ExerciseTransaction;
+import com.tunaweza.core.business.model.exercise.ExerciseTransaction;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +46,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ExerciseTransactionDaoImpl extends
 		GenericDaoImpl<ExerciseTransaction> implements ExerciseTransactionDao {
+@Autowired
+SessionFactory sessionFactory;
 
 
 
@@ -62,6 +65,7 @@ public class ExerciseTransactionDaoImpl extends
 		return findById(id);
 	}
 
+        @Override
 		public void saveExerciseTransaction(ExerciseTransaction exerciseTransaction) 
 	{
 		saveOrUpdate(exerciseTransaction);
@@ -72,8 +76,7 @@ public class ExerciseTransactionDaoImpl extends
 			Mentor mentor) 
 	{
 		List<ExerciseTransaction> exerciseTransactionList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE i.mentor.id = "+mentor.getId());
 		
 		if(query.list().size() > 0){
@@ -89,8 +92,7 @@ public class ExerciseTransactionDaoImpl extends
 			ExerciseTransactionType exerciseTransactionType) 
 	{
 		List<ExerciseTransaction> exerciseTransactionList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.exerciseTransactionType.id = "
 				+exerciseTransactionType.getId());
@@ -108,8 +110,7 @@ public class ExerciseTransactionDaoImpl extends
 			StudentExercise studentExercise) 
 	{
 		List<ExerciseTransaction> exerciseTransactionList = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.studentExercise.id = "
 				+studentExercise.getId()+" ORDER BY i.transanctionDate Desc");
@@ -126,8 +127,7 @@ public class ExerciseTransactionDaoImpl extends
 			StudentExercise studentExercise) 
 	{
 		ExerciseTransaction exerciseTransaction = null;
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.studentExercise.id = "
 				+studentExercise.getId()
@@ -148,8 +148,7 @@ public class ExerciseTransactionDaoImpl extends
 		ExerciseTransaction exerciseTransaction = null;
 		ExerciseTransactionType exerciseTransactionType = exerciseTransactionTypeDAO.getExerciseTransactionTypeByName(transactionType);
 		
-		Session session = (Session) getEntityManager().getDelegate();
-		Query query = session.createQuery("SELECT i FROM "
+		Query query = sessionFactory.getCurrentSession().createQuery("SELECT i FROM "
 				+getDomainClass().getName()+" i WHERE " +
 				"i.studentExercise.id = "
 				+studentExercise.getId()

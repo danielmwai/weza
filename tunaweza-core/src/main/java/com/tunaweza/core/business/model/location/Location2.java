@@ -23,13 +23,14 @@
  */
 
 package com.tunaweza.core.business.model.location;
-import com.tunaweza.core.business.model.persistence.AbstractPersistentEntity;
 import com.tunaweza.core.business.model.user.User;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 /**
@@ -40,9 +41,19 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = Location2.TABLE_NAME)
-public class Location2  extends AbstractPersistentEntity implements
+public class Location2  implements
 Comparable<Location2>{
-	
+	 @Id
+    @GeneratedValue
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 	public static final String TABLE_NAME="location";
 	private static final long serialVersionUID = 1L;
 	
