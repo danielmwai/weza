@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd"
+	default-lazy-init="true">
+
+
+	<http auto-config="true">
+
+		<intercept-url pattern="/index.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/home.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/install.*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/install/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/forums/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/templates/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+
+
+		<intercept-url pattern="/verifypayment.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/login.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/company/register.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/forgotpassword.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/resendpass.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/root/login.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/tools/super/adminset" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/report/customreport.htm"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/rest/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/module/administer/test.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+		<intercept-url pattern="/jjteachDemo.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/contactcompany.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/freetrial.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+
+
+		<intercept-url pattern="/**"
+			access="ROLE_STUDENT,ROLE_ADMIN,ROLE_MENTOR,ROLE_ROOT,ROLE_EVALUATOR,ROLE_CLOUDADMIN,ROLE_SUPERCLOUDADMIN" />
+
+		<form-login login-page="/home.htm" default-target-url="/home/index.htm"
+			always-use-default-target="true" authentication-failure-url="/home.htm?authfailed=true" />
+		<logout invalidate-session="true" logout-success-url="/login.htm"
+			logout-url="/j_spring_security_logout" />
+
+
+
+	</http>
+
+	<!--<beans:bean id="ss_dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<beans:property name="driverClassName" value="${jdbc.driverClassName}" /> 
+		<beans:property name="url" value="${jdbc.url}" /> <beans:property name="username" 
+		value="${jdbc.username}" /> <beans:property name="password" value="${jdbc.password}" 
+		/> </beans:bean> -->
+
+	<beans:bean id="ss_dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<beans:property name="driverClass" value="${jdbc.driverClassName}" />
+		<beans:property name="jdbcUrl" value="${jdbc.url}" />
+		<beans:property name="user" value="${jdbc.username}" />
+		<beans:property name="password" value="${jdbc.password}" />
+		<beans:property name="maxPoolSize" value="${hibernate.c3p0.maxPoolSize}" />
+		<beans:property name="maxStatements" value="${hibernate.c3p0.max_statement}" />
+		<beans:property name="minPoolSize" value="${hibernate.c3p0.minPoolSize}" />
+	</beans:bean>
+
+	<!--<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
+		<beans:property name="entityManagerFactory" ref="entityManagerFactory" /> 
+		<beans:property name="dataSource" ref="ss_dataSource" /> </beans:bean> --><!-- ================================================================================ 
+		EntityManagerFactory ================================================================================ --><!-- <beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+		<beans:property name="dataSource" ref="ss_dataSource" /> <beans:property 
+		name="jpaVendorAdapter"> <beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> 
+		<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect"/> 
+		<property name="showSql" value="false"/> </beans:bean> </beans:property> 
+		<beans:property name="persistenceUnitName" value="jjteach_db_manager" /> 
+		</beans:bean> -->
+	<beans:bean id="daoAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="passwordEncoder" ref="passwordEncoder" />
+	</beans:bean>
+
+	<beans:bean id="authenticationManager"
+		class="org.springframework.security.authentication.ProviderManager">
+		<beans:property name="providers">
+			<beans:list>
+				<beans:ref local="daoAuthenticationProvider" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.MessageDigestPasswordEncoder">
+
+		<beans:constructor-arg value="MD5" />
+
+	</beans:bean>
+
+	<authentication-manager>
+
+		<authentication-provider>
+			<password-encoder ref="passwordEncoder" />
+			<jdbc-user-service data-source-ref="ss_dataSource" />
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

@@ -1,0 +1,159 @@
+/**---------------form elements-----------------**/
+.forminput {
+	width: 200px;
+	height: 2.0em;
+}
+
+.forgotforminput {
+	width: 180px;
+	height: 1.8em;
+}
+
+.formlabel {
+	height: 1.8em;
+	width: 180px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 16px;
+}
+
+.ui-dialog-titlebar {
+	background: #CC6600;
+}
+
+/*
+.ui-widget-content{
+	background:none;
+	color:white;
+}
+*/
+.ui-widget-header {
+	border: none;
+}
+
+.ui-widget-overlay {
+	opacity: 0.6;
+	background: black;
+}
+
+.forminput {
+	height: 15px;
+	width: 200px;
+}
+
+.forminputnumb {
+	width: 30px;
+	height: 14px;
+}
+
+.forminputcomm {
+	width: 396px;
+	height: 14px;
+}
+
+.selectinput {
+	height: 25px;
+	width: 175px;
+}
+
+.inptdiv {
+	width: 175px;
+	height: 20px;
+	border: 1px solid #8db9cf;
+}
+
+#errors {
+	color: red;
+	text-align: center;
+	font-size: 15px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+}
+
+.fieldShadow {
+	margin: 45px 20px 10px 45px;
+	width: 90%;
+}
+
+fieldset {
+	/* border-collapse: collapse; */
+	/* box-shadow: 1px 1px 3px grey; */
+	/* -moz-box-shadow: 1px 1px 3px grey; */
+	/* -webkit-box-shadow: 1px 1px 3px grey; */
+	/* -moz-border-radius: 5px 0; */
+	/* background: url("../images/common/back.png");
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#2F4F4F')",
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=315, Color='#2F4F4F')";
+	filter: progid : DXImageTransform.Microsoft.Shadow ( Strength = 4,
+		Direction = 135, Color = '#2F4F4F' ), progid :
+		DXImageTransform.Microsoft.Shadow ( Strength = 1, Direction = 315,
+		Color = '#2F4F4F' ); */
+	border: none;
+	/* background-attachment: fixed; */
+}
+
+.shadow { /* For IE 8 */
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#858585')";
+	/* For IE 5.5 - 7 */
+	filter: progid : DXImageTransform.Microsoft.Shadow ( Strength = 5,
+		Direction = 135, Color = '#858585' );
+}
+
+legend,.legend {
+	padding: 10px 0 5px 20px;
+	color: #ff9900;
+	font-size: 1.5em;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.logininput {
+	height: 25px;
+	width: 90%;
+	float: left;
+}
+
+.fieldModules {
+	margin: 45px 20px 10px 45px;
+	width: 90%;
+}
+
+.fieldModules ul li {
+	padding: 0 40px;
+	cursor: pointer;
+}
+
+.fieldModules li:hover {
+	background: url("../images/common/top_right.png");
+}
+
+.fieldModules ul li span {
+	padding-top: 5px;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.fieldModules fieldset {
+	padding: 10px 0 15px 0;
+}
+
+.fieldShadowMT {
+	margin: 10px 20px;
+	width: 95%;
+}
+
+.errors {
+    font: normal 10px arial;
+    padding: 3px;
+    margin: 3px;
+    background-color: #ffc;
+    border: 1px solid #c00;
+}
+
+.error {
+	color: red;
+	font-size: 12px;
+	font-style: italic;
+	padding-left: 15px;
+}

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Definitions for the common parts of the application -->
+	<definition name="jjteach.meta" template="/WEB-INF/jsp/layout/pieces/meta.jsp" />
+	<definition name="jjteach.header" template="/WEB-INF/jsp/layout/pieces/header.jsp" />
+	<definition name="jjteach.forgot" template="/WEB-INF/jsp/layout/pieces/forgot.jsp" />
+	<definition name="jjteach.menu" template="/WEB-INF/jsp/layout/pieces/menu.jsp" />
+	<definition name="jjteach.evamenu" template="/WEB-INF/jsp/layout/pieces/evamenu.jsp" />
+	<definition name="jjteach.content" template="/WEB-INF/jsp/layout/pieces/content.jsp" />
+	<definition name="jjteach.footer" template="/WEB-INF/jsp/layout/pieces/footer.jsp" />
+	<definition name="payment" template="/WEB-INF/jsp/error/payment.jsp" />
+
+	<definition name="jjteach.common.scripts"
+		template="/WEB-INF/jsp/layout/pieces/common_scripts.jsp" />
+	<definition name="jjteach.sort.scripts"
+		template="/WEB-INF/jsp/layout/pieces/sort_scripts.jsp" />
+	<definition name="jjteach.scripts" template="/WEB-INF/jsp/layout/pieces/scripts.jsp" />
+	<definition name="jjteach.top.nav" template="/WEB-INF/jsp/layout/pieces/top_nav.jsp" />
+	<definition name="jjteach.navigation" template="/WEB-INF/jsp/layout/pieces/nav.jsp" />
+	<definition name="jjteach.basic.header"
+		template="/WEB-INF/jsp/layout/pieces/basic/header.jsp" />
+	<definition name="jjteach.splash.header"
+		template="/WEB-INF/jsp/layout/splash/pieces/header.jsp" />
+	<definition name="jjteach.splash.top" template="/WEB-INF/jsp/layout/splash/pieces/top.jsp" />
+	<definition name="jjteach.splash.scripts"
+		template="/WEB-INF/jsp/layout/splash/pieces/scripts.jsp" />
+
+	<definition name="baseLayout" template="/WEB-INF/jsp/layout/layout.jsp">
+		<put-attribute name="title" value="Template" />
+		<put-attribute name="meta" value="jjteach.meta" />
+		<put-attribute name="header" value="jjteach.basic.header" />
+		<put-attribute name="common-scripts" value="jjteach.common.scripts" />
+		<put-attribute name="menu" value="jjteach.menu" />
+		<put-attribute name="top-nav" value="jjteach.top.nav" />
+		<put-attribute name="content" value="jjteach.content" />
+		<put-attribute name="footer" value="jjteach.footer" />
+		<put-attribute name="scripts" value="jjteach.splash.scripts" />
+		<put-attribute name="sort-scripts" value="jjteach.sort.scripts" />
+		<put-attribute name="navigation" value="jjteach.navigation" />
+		<put-attribute name="paymentAttribute" value="payment" />
+	</definition>
+
+
+	<definition name="splashLayout" template="/WEB-INF/jsp/layout/splash/layout.jsp">
+		<put-attribute name="footer" value="jjets.footer" />
+		<put-attribute name="title" value="JJTeach | Modules" />
+		<put-attribute name="header" value="jjteach.splash.header" />
+		<put-attribute name="meta" value="jjteach.meta" />
+		<put-attribute name="top" value="jjteach.splash.top" />
+		<put-attribute name="splash" value="jjteach.splash.scripts" />
+		<put-attribute name="common-scripts" value="jjteach.common.scripts" />
+		<put-attribute name="scripts" value="jjteach.splash.scripts" />
+	</definition>
+
+	<definition name="baseLayoutBasic" template="/WEB-INF/jsp/layout/basiclayout.jsp">
+		<put-attribute name="title" value="Template" />
+		<put-attribute name="meta" value="jjteach.meta" />
+		<put-attribute name="header" value="jjteach.header" />
+		<put-attribute name="common-scripts" value="jjteach.common.scripts" />
+		<put-attribute name="content" value="jjteach.content" />
+		<put-attribute name="footer" value="jjteach.footer" />
+		<put-attribute name="scripts" value="jjteach.scripts" />
+		<put-attribute name="sort-scripts" value="jjteach.sort.scripts" />
+		<put-attribute name="navigation" value="jjteach.navigation" />
+	</definition>
+
+	<definition name="forgotLayout" template="/WEB-INF/jsp/layout/forgotlayout.jsp">
+		<put-attribute name="title" value="Template" />
+		<put-attribute name="meta" value="jjteach.meta" />
+		<put-attribute name="header" value="jjteach.forgot" />
+		<put-attribute name="common-scripts" value="jjteach.common.scripts" />
+		<put-attribute name="content" value="jjteach.content" />
+		<put-attribute name="footer" value="jjteach.footer" />
+		<put-attribute name="scripts" value="jjteach.scripts" />
+		<put-attribute name="sort-scripts" value="jjteach.sort.scripts" />
+		<put-attribute name="navigation" value="jjteach.navigation" />
+	</definition>
+	<definition name="searchLayout" template="/WEB-INF/jsp/layout/searchlayout.jsp">
+		<put-attribute name="search_box" value="" />
+		<put-attribute name="search_results" value="" />
+	</definition>
+
+	<!-- Welcome page -->
+	<!-- <definition name="home" extends="baseLayoutBasic"> <put-attribute name="title" 
+		value="JJTEACH - JJPeople e-learning platform: Home" /> <put-attribute name="content" 
+		value="/WEB-INF/jsp/home/main.jsp" /> <put-attribute name="content-tree" 
+		value="" /> </definition> -->
+	<!-- New Welcome page -->
+	<definition name="home" template="/WEB-INF/jsp/home/homepage.jsp" />
+
+	<!-- Login page -->
+	<definition name="login" extends="baseLayoutBasic">
+		<put-attribute name="title"
+			value="JJTEACH - JJPeople e-learning platform: Login" />
+		<put-attribute name="content" value="/WEB-INF/jsp/home/login.jsp" />
+		<put-attribute name="content-tree" value="" />
+	</definition>
+
+	<!-- <definition name="dumppayment" extends="baseLayoutBasic"> <put-attribute 
+		name="title" value="JJTEACH - JJPeople e-learning platform: Payment" /> <put-attribute 
+		name="content" value="/WEB-INF/jsp/configuration/cloud/dumppayment.jsp" /> 
+		<put-attribute name="content-tree" value="" /> </definition> -->
+
+
+
+	<!-- Registration page -->
+	<!-- <definition name="register" extends="baseLayoutBasic"> <put-attribute 
+		name="title" value="JJTEACH - JJPeople e-learning platform: Register" /> 
+		<put-attribute name="content" value="/WEB-INF/jsp/configuration/company/register.jsp" 
+		/> <put-attribute name="content-tree" value="" /> </definition> -->
+
+	<!--New Registration page -->
+	<definition name="register" template="/WEB-INF/jsp/home/buynow.jsp" />
+
+	<definition name="forgotpassword" template="/WEB-INF/jsp/home/forgotpassword.jsp" />
+
+	<definition name="evaluatorHome" extends="baseLayout">
+		<put-attribute name="title"
+			value="JJTEACH - JJPeople e-learning platform" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/layout/pieces/evamenu.jsp" />
+		<put-attribute name="content" value="/WEB-INF/jsp/home/index.jsp" />
+		<put-attribute name="content-tree" value="" />
+	</definition>
+
+	<definition name="adminHome" extends="baseLayout">
+		<put-attribute name="title"
+			value="JJTEACH - JJPeople e-learning platform" />
+		<put-attribute name="content" value="/WEB-INF/jsp/home/index.jsp" />
+		<put-attribute name="content-tree"
+			value="/WEB-INF/jsp/configuration/admin/admin.jsp" />
+	</definition>
+
+	<!-- super cloud admin -->
+	<definition name="superCloudAdminHome" extends="baseLayout">
+		<put-attribute name="title"
+			value="JJTEACH - JJPeople e-learning platform" />
+		<put-attribute name="content" value="/WEB-INF/jsp/home/index.jsp" />
+		<put-attribute name="content-tree"
+			value="/WEB-INF/jsp/configuration/admin/supercloudadmin.jsp" />
+	</definition>
+
+	<!-- cloud admin -->
+	<definition name="cloudAdminHome" extends="baseLayout">
+		<put-attribute name="title"
+			value="JJTEACH - JJPeople e-learning platform" />
+		<put-attribute name="content" value="/WEB-INF/jsp/home/index.jsp" />
+		<put-attribute name="content-tree"
+			value="/WEB-INF/jsp/configuration/admin/cloudadmin.jsp" />
+	</definition>
+
+
+
+	<definition name="studentHome" extends="baseLayout">
+		<put-attribute name="title"
+			value="JJTEACH - JJPeople e-learning platform" />
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/configuration/student/list_modules.jsp" />
+		<put-attribute name="content-tree"
+			value="/WEB-INF/jsp/configuration/student/student.jsp" />
+	</definition>
+
+	<definition name="mentorHome" extends="baseLayout">
+		<put-attribute name="title"
+			value="JJTEACH - JJPeople e-learning platform" />
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/configuration/mentor/listmentormodules.jsp" />
+		<put-attribute name="content-tree"
+			value="/WEB-INF/jsp/configuration/mentor/mentor.jsp" />
+	</definition>
+
+	<definition name="modulelist/by/student"
+		template="/WEB-INF/jsp/configuration/student/list_modules.jsp" />
+
+	<definition name="modulelist/by/mentor"
+		template="/WEB-INF/jsp/configuration/mentor/list_modules.jsp" />
+
+	<definition name="addrole"
+		template="/WEB-INF/jsp/configuration/role/addrole.jsp" />
+
+	<definition name="listroles" template="/WEB-INF/jsp/configuration/role/list.jsp" />
+
+	<definition name="editrole"
+		template="/WEB-INF/jsp/configuration/role/editrole.jsp" />
+
+	<definition name="addlocation"
+		template="/WEB-INF/jsp/configuration/location/addlocation.jsp" />
+
+	<definition name="listlocations"
+		template="/WEB-INF/jsp/configuration/location/list.jsp" />
+
+	<definition name="editlocation"
+		template="/WEB-INF/jsp/configuration/location/editlocation.jsp" />
+
+	<definition name="addgroup"
+		template="/WEB-INF/jsp/configuration/group/addgroup.jsp" />
+
+	<definition name="listgroups" template="/WEB-INF/jsp/configuration/group/list.jsp" />
+
+	<definition name="editgroup"
+		template="/WEB-INF/jsp/configuration/group/editgroup.jsp" />
+
+	<definition name="addusertogroup"
+		template="/WEB-INF/jsp/configuration/group/addusertogroup.jsp" />
+
+	<definition name="assigngroupct"
+		template="/WEB-INF/jsp/configuration/group/assigngroupct.jsp" />
+
+	<definition name="groupctlistboxes"
+		template="/WEB-INF/jsp/configuration/group/listboxes.jsp" />
+
+	<definition name="adduser"
+		template="/WEB-INF/jsp/configuration/users/adduser.jsp" />
+
+	<definition name="edituser"
+		template="/WEB-INF/jsp/configuration/users/edituser.jsp" />
+
+	<definition name="listusers"
+		template="/WEB-INF/jsp/configuration/users/listusers.jsp" />
+
+	<definition name="edittopic"
+		template="/WEB-INF/jsp/configuration/topic/edittopic.jsp" />
+
+
+	<definition name="listmodules"
+		template="/WEB-INF/jsp/configuration/module/listmodules.jsp" />
+
+	<definition name="editmodule"
+		template="/WEB-INF/jsp/configuration/module/editmodule.jsp" />
+
+
+	<definition name="addmodule"
+		template="/WEB-INF/jsp/configuration/module/addmodule.jsp" />
+
+	<definition name="assignstudentct"
+		template="/WEB-INF/jsp/configuration/coursetemplate/studentct.jsp" />
+
+	<definition name="studentcoursetemplateform"
+		template="/WEB-INF/jsp/configuration/coursetemplate/studentcoursetemplate.jsp" />
+
+	<definition name="newcompanyregistration"
+		template="/WEB-INF/jsp/configuration/company/register.jsp" />
+
+	<definition name="assignctmodules"
+		template="/WEB-INF/jsp/configuration/coursetemplate/assignctmodule.jsp" />
+
+	<definition name="addcoursetemplate"
+		template="/WEB-INF/jsp/configuration/coursetemplate/addcoursetemplate.jsp" />
+
+	<definition name="listcoursetemplates"
+		template="/WEB-INF/jsp/configuration/coursetemplate/listcoursetemplate.jsp" />
+
+	<definition name="editcoursetemplate"
+		template="/WEB-INF/jsp/configuration/coursetemplate/editcoursetemplate.jsp" />
+	<definition name="ctlistboxes"
+		template="/WEB-INF/jsp/configuration/coursetemplate/listboxes.jsp" />
+
+	<definition name="ctinfo"
+		template="/WEB-INF/jsp/configuration/coursetemplate/ctinfo.jsp" />
+
+	<definition name="profile"
+		template="/WEB-INF/jsp/configuration/users/profile.jsp" />
+
+	<definition name="editpassword"
+		template="/WEB-INF/jsp/configuration/users/editpassword.jsp" />
+
+	<definition name="search"
+		template="/WEB-INF/jsp/configuration/users/searchuser.jsp" />
+
+
+
+	<definition name="editemail"
+		template="/WEB-INF/jsp/configuration/users/editemail.jsp" />
+
+	<definition name="viewtopictext"
+		template="/WEB-INF/jsp/configuration/topictext/view.jsp" />
+
+	<definition name="addtopic"
+		template="/WEB-INF/jsp/configuration/topic/addtopic.jsp" />
+
+	<definition name="addtopicreply"
+		template="/WEB-INF/jsp/configuration/topic/add_topic_reply.jsp" />
+
+	<definition name="list" template="/WEB-INF/jsp/configuration/topic/list.jsp" />
+
+	<definition name="topiclist" extends="searchLayout">
+		<put-attribute name="search_results"
+			value="/WEB-INF/jsp/configuration/topic/listtopics.jsp" />
+		<put-attribute name="search_box"
+			value="/WEB-INF/jsp/configuration/topic/listtopics_searchbox.jsp" />
+	</definition>
+	<definition name="listtopic"
+		template="/WEB-INF/jsp/configuration/topic/listtopics.jsp" />
+	<definition name="postsolution"
+		template="/WEB-INF/jsp/configuration/student/post_solution.jsp" />
+
+	<definition name="replacesolution"
+		template="/WEB-INF/jsp/configuration/student/replace_solution.jsp" />
+
+	<definition name="resubmitsolution"
+		template="/WEB-INF/jsp/configuration/student/resubmit_solution.jsp" />
+
+	<definition name="postsolutionreply"
+		template="/WEB-INF/jsp/configuration/student/post_solution_reply.jsp" />
+
+	<definition name="readfeedback"
+		template="/WEB-INF/jsp/configuration/student/readfeedback.jsp" />
+
+
+	<definition name="addmentortemplate"
+		template="/WEB-INF/jsp/configuration/mentor/addmentortemplate.jsp" />
+
+	<definition name="listevaluationtemplates"
+		template="/WEB-INF/jsp/configuration/evaluation/listevaluationtemplate.jsp" />
+
+	<definition name="addevaluationtemplate"
+		template="/WEB-INF/jsp/configuration/evaluation/addevaluationtemplate.jsp" />
+
+	<definition name="editevaluationtemplate"
+		template="/WEB-INF/jsp/configuration/evaluation/editevaluationtemplate.jsp" />
+
+	<definition name="listmentortemplates"
+		template="/WEB-INF/jsp/configuration/mentor/listmentortemplates.jsp" />
+
+	<definition name="editmentortemplate"
+		template="/WEB-INF/jsp/configuration/mentor/editmentortemplate.jsp" />
+
+	<definition name="assignmtexercise"
+		template="/WEB-INF/jsp/configuration/mentor/assignexercisemt.jsp" />
+
+	<definition name="mtlistboxes"
+		template="/WEB-INF/jsp/configuration/mentor/listboxesexercises.jsp" />
+
+	<definition name="listmentormodules"
+		template="/WEB-INF/jsp/configuration/mentor/listmentormodules.jsp" />
+
+	<definition name="assignmentormt"
+		template="/WEB-INF/jsp/configuration/mentor/assignmentormt.jsp" />
+
+	<definition name="mentorlistboxes"
+		template="/WEB-INF/jsp/configuration/mentor/listboxesmentor.jsp" />
+
+	<definition name="viewfeedback"
+		template="/WEB-INF/jsp/configuration/mentor/readfeedback.jsp" />
+
+	<definition name="gradeexercise"
+		template="/WEB-INF/jsp/configuration/mentor/grade_exercise.jsp" />
+
+	<definition name="gradeexercisereply"
+		template="/WEB-INF/jsp/configuration/mentor/grade_exercise_reply.jsp" />
+
+	<definition name="mentortemplateprofile"
+		template="/WEB-INF/jsp/configuration/mentor/mentortemplateprofile.jsp" />
+
+	<definition name="mttabbedlistboxes"
+		template="/WEB-INF/jsp/configuration/mentor/listboxesexercisetabbed.jsp" />
+
+	<definition name="userinfo"
+		template="/WEB-INF/jsp/configuration/users/userinfo.jsp" />
+
+	<definition name="studentinfo"
+		template="/WEB-INF/jsp/configuration/student/studentinfo.jsp" />
+
+	<definition name="listtransactions"
+		template="/WEB-INF/jsp/configuration/mentor/list_transactions.jsp" />
+
+	<definition name="mtabbedlistboxes"
+		template="/WEB-INF/jsp/configuration/mentor/listboxesmentortabbed.jsp" />
+
+	<definition name="moduleinfo"
+		template="/WEB-INF/jsp/configuration/module/moduleinfo.jsp" />
+
+	<definition name="mentorstatistics"
+		template="/WEB-INF/jsp/configuration/mentor/statistics_list.jsp" />
+
+	<definition name="listmentors"
+		template="/WEB-INF/jsp/configuration/mentor/list_mentors.jsp" />
+	<definition name="course_evaluation_stats"
+		template="/WEB-INF/jsp/configuration/student/course_evaluation_stats.jsp" />
+	<definition name="evaluation_stats"
+		template="/WEB-INF/jsp/configuration/student/evaluation_stats.jsp" />
+	<definition name="module_evaluation_stats"
+		template="/WEB-INF/jsp/configuration/student/module_evaluation_stats.jsp" />
+
+	<!-- list exercises -->
+	<definition name="list/exercises/by/module"
+		template="/WEB-INF/jsp/configuration/student/list_exercises.jsp" />
+
+	<!--TinyMce plugins -->
+
+	<definition name="image" template="/js/tiny_mce/plugins/advimage/image.jsp" />
+
+	<definition name="imageuploadreply"
+		template="/WEB-INF/jsp/configuration/images/upload_image_reply.jsp" />
+
+	<definition name="internallinks"
+		template="/js/tiny_mce/plugins/internallinks/dialog.jsp" />
+
+	<definition name="advlink/link" template="/js/tiny_mce/plugins/advlink/link.jsp" />
+
+	<definition name="anchor" template="/js/tiny_mce/themes/advanced/link.jsp" />
+	
+	<definition name="media/media" template="/js/tiny_mce/plugins/media/media.jsp" />
+
+	<!-- Evaluation -->
+
+	<definition name="module/start"
+		template="/WEB-INF/jsp/configuration/evaluation/startmoduletest.jsp" />
+
+	<definition name="course/start"
+		template="/WEB-INF/jsp/configuration/evaluation/startcoursetest.jsp" />
+
+	<definition name="module/new"
+		template="/WEB-INF/jsp/configuration/evaluation/testquestions.jsp" />
+	
+	<definition name="wsevaluation"
+		template="/WEB-INF/jsp/configuration/evaluation/wsevaluation.jsp" />
+	
+	<definition name="get/module/new"
+		template="/WEB-INF/jsp/configuration/evaluation/wstestquestions.jsp" />
+
+	<definition name="course/new"
+		template="/WEB-INF/jsp/configuration/evaluation/coursetestquestions.jsp" />
+
+	<definition name="module/administer/test"
+		template="/WEB-INF/jsp/configuration/evaluation/testquestions.jsp" />
+	
+	<definition name="get/module/administer/test"
+		template="/WEB-INF/jsp/configuration/evaluation/wstestquestions.jsp" />
+
+	<definition name="course/administer/test"
+		template="/WEB-INF/jsp/configuration/evaluation/coursetestquestions.jsp" />
+
+	<definition name="module/results"
+		template="/WEB-INF/jsp/configuration/evaluation/moduletestresults.jsp" />
+	
+	<definition name="get/module/results"
+		template="/WEB-INF/jsp/configuration/evaluation/wsmoduletestresults.jsp" />
+
+	<definition name="course/results"
+		template="/WEB-INF/jsp/configuration/evaluation/coursetestresults.jsp" />
+
+	<definition name="addevaluationquestion"
+		template="/WEB-INF/jsp/configuration/evaluation/addevaluationquestion.jsp" />
+	<definition name="listquestions"
+		template="/WEB-INF/jsp/configuration/evaluation/listevaluationquestions.jsp" />
+	<definition name="questionslist" extends="searchLayout">
+		<put-attribute name="search_box"
+			value="/WEB-INF/jsp/configuration/evaluation/listevaluationquestions_searchbox.jsp" />
+		<put-attribute name="search_results"
+			value="/WEB-INF/jsp/configuration/evaluation/listevaluationquestions.jsp" />
+	</definition>
+
+	<definition name="listquestions/bytopic"
+		template="/WEB-INF/jsp/configuration/evaluation/listevaluationquestionsbytopic.jsp" />
+	<definition name="listquestions/pgntbytopic"
+		template="/WEB-INF/jsp/configuration/evaluation/listevaluationquestionsbytopic_searchresults.jsp"></definition>
+
+	<definition name="listquestions/unassociatedwithtopic"
+		template="/WEB-INF/jsp/configuration/evaluation/listquestionsunassociatedwithtopic.jsp" />
+	<definition name="listquestions/unassociatedsearchresults"
+		template="/WEB-INF/jsp/configuration/evaluation/unassociatedquestions_searchresults.jsp"></definition>
+
+	<definition name="listquestions/todissociatefromtopic"
+		template="/WEB-INF/jsp/configuration/evaluation/dissociatequestionfromtopic.jsp" />
+	<definition name="listquestions/pgnttodissociatefromtopic"
+		template="/WEB-INF/jsp/configuration/evaluation/dissociatequestionfromtopic_searchresults.jsp" />
+
+	<definition name="associatequestionwithtopic"
+		template="/WEB-INF/jsp/configuration/evaluation/associatequestionwithtopic.jsp" />
+
+	<definition name="editquestionform"
+		template="/WEB-INF/jsp/configuration/evaluation/editevaluationquestion.jsp" />
+
+	<definition name="editregister"
+		template="/WEB-INF/jsp/configuration/company/editcompany.jsp" />
+
+	<definition name="makepayment"
+		template="/WEB-INF/jsp/configuration/company/makepayment.jsp" />
+
+	<definition name="paymentplan"
+		template="/WEB-INF/jsp/configuration/company/paymentplan.jsp" />
+
+	<definition name="paymentsuccess"
+		template="/WEB-INF/jsp/configuration/company/paymentsuccess.jsp" />
+
+	<definition name="paymentfailure"
+		template="/WEB-INF/jsp/configuration/company/paymentfailure.jsp" />
+
+	<!-- company setting -->
+	<definition name="postcompanysetting"
+		template="/WEB-INF/jsp/configuration/admin/companySetting.jsp" />
+
+	<definition name="postcompanysettingreply"
+		template="/WEB-INF/jsp/configuration/admin/companySettingreply.jsp" />
+
+
+	<definition name="displaycompanysetting"
+		template="/WEB-INF/jsp/configuration/admin/displaycompanysetting.jsp" />
+
+	<definition name="editcompanysetting"
+		template="/WEB-INF/jsp/configuration/admin/editcompanysetting.jsp" />
+
+	<definition name="contacts"
+		template="/WEB-INF/jsp/configuration/admin/contact.jsp" />
+
+	<!-- // -->
+
+	<definition name="registererror"
+		template="/WEB-INF/jsp/configuration/company/register_company_reply.jsp" />
+
+	<definition name="registerreply"
+		template="/WEB-INF/jsp/configuration/company/registerreply.jsp" />
+	<definition name="registersuccess"
+		template="/WEB-INF/jsp/configuration/company/registersuccess.jsp" />
+
+	<!-- 404 Error -->
+	<definition name="secure/error" template="/WEB-INF/jsp/error/no-access.jsp" />
+	<definition name="secure/error/mentordisabled" template="/WEB-INF/jsp/error/mentor-disabled.jsp" />
+	<definition name="secure/error/studentblocked" template="/WEB-INF/jsp/error/student.jsp" />
+	<definition name="imagelogo"
+		template="/WEB-INF/jsp/configuration/images/display_image.jsp" />
+	<definition name="logo"
+		template="/WEB-INF/jsp/configuration/images/display_image.jsp" />
+	<definition name="displaycompanysetting"
+		template="/WEB-INF/jsp/configuration/admin/displaycompanysetting.jsp" />
+
+
+	<definition name="quiz" template="/WEB-INF/jsp/configuration/topic/quiz.jsp" />
+	<definition name="quizresults"
+		template="/WEB-INF/jsp/configuration/topic/quiz_results.jsp" />
+
+	<!-- Cloud Instance by Clevins -->
+	<definition name="createcloudinstance"
+		template="/WEB-INF/jsp/configuration/cloud/createcloudinstance.jsp" />
+	<definition name="listinstances"
+		template="/WEB-INF/jsp/configuration/cloud/listinstances.jsp" />
+
+	<definition name="addclouduser"
+		template="/WEB-INF/jsp/configuration/cloud/addclouduser.jsp" />
+
+	<definition name="listcloudusers"
+		template="/WEB-INF/jsp/configuration/cloud/listcloudusers.jsp" />
+
+	<definition name="customreport"
+		template="/WEB-INF/jsp/configuration/report/create_report.jsp" />
+
+	<definition name="report_table"
+		template="/WEB-INF/jsp/configuration/report/report_table.jsp" />
+
+	<definition name="report_list"
+		template="/WEB-INF/jsp/configuration/report/saved_reports.jsp" />
+	<definition name="sqlreport"
+		template="/WEB-INF/jsp/configuration/report/sqlreport.jsp" />
+	<definition name="downloadreport"
+		template="/WEB-INF/jsp/configuration/report/downloadreport.jsp" />
+	<definition name="join_table"
+		template="/WEB-INF/jsp/configuration/report/join_table.jsp" />
+
+	<!-- licensing -->
+	<definition name="addlicense"
+		template="/WEB-INF/jsp/configuration/cloud/addlicense.jsp" />
+
+	<definition name="listlicenses"
+		template="/WEB-INF/jsp/configuration/cloud/listlicenses.jsp" />
+
+	<definition name="listcompanyadmins"
+		template="/WEB-INF/jsp/configuration/cloud/listcompanyadmins.jsp" />
+
+	<definition name="changeadminpassword"
+		template="/WEB-INF/jsp/configuration/admin/changeadminpassword.jsp" />
+
+	<definition name="/promo_code/promocodeviews"
+		template="/WEB-INF/jsp/configuration/admin/promocode.jsp" />
+
+	<definition name="/promo_code/newpromocodesuccess"
+		template="/WEB-INF/jsp/configuration/admin/promocodesuccess.jsp" />
+
+	<definition name="/promo_code/editpromocodepage"
+		template="/WEB-INF/jsp/configuration/admin/editpromocode.jsp" />
+
+	<!-- messaging -->
+	<definition name="sendmessage"
+		template="/WEB-INF/jsp/configuration/student/sendmessage.jsp" />
+
+	<!-- new home pages -->
+
+	<definition name="contactcompany" template="/WEB-INF/jsp/home/contactus.jsp" />
+
+	<definition name="jjteachDemo" template="/WEB-INF/jsp/home/jjteachDemo.jsp" />
+
+	<definition name="freetrial" template="/WEB-INF/jsp/home/freetrial.jsp" />
+	
+	
+
+</tiles-definitions>

@@ -209,17 +209,26 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-            <scope>test</scope>
+            <type>jar</type>
         </dependency>
-       <!--due to this error 
-      org.apache.catalina.LifecycleException:
-        Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tunaweza-web]]   
-       hope Tomcat stop error        !-->
-       <dependency>
-	<groupId>commons-logging</groupId>
-	<artifactId>commons-logging</artifactId>
-	<version>1.1.3</version>
-</dependency>
+        <!--due to this error 
+       org.apache.catalina.LifecycleException:
+         Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/tunaweza-web]]   
+        hope Tomcat stop error        !-->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.3</version>
+        </dependency>
+        <!--  dependency for apache axis 
+             this is too old find a better webservice you can use axis2        
+        -->
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.4.1-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
             
 		
 
@@ -237,7 +246,29 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.1</version>
         </dependency>
-
+        <!--dependency for vcard ! got a few issues in the com.tunaweza.web.contoller.UserController methods like getGivenFamilyName not found
+          i will depreceate the package for the moment  
+        -->
+<!--        <dependency>
+            <groupId>net.sourceforge.cardme</groupId>
+            <artifactId>cardme</artifactId>
+            <version>0.4.0</version>
+        </dependency>-->
+         <dependency>
+            <groupId>net.sourceforge.cardme</groupId>
+            <artifactId>cardme</artifactId>
+            <version>0.3.6.03</version>
+             <type>jar</type>
+         </dependency>
+        <!-- dependency for apache httpcomponents contains classess for apache  http client-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.1.1</version>
+            <type>jar</type>
+        </dependency>
+            
+            
         <!-- Joda Time -->
         <dependency>
             <groupId>joda-time</groupId>
@@ -268,6 +299,18 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <version>7.0.41</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.2-alpha2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -318,6 +361,10 @@
             <name>PrimeFaces Maven Repository</name>  
             <url>http://repository.primefaces.org</url>  
             <layout>default</layout>  
+        </repository>
+        <repository>
+            <id>JBoss repository</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
         </repository>
     </repositories>
     <build>

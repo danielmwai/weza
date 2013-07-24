@@ -1,0 +1,77 @@
+/*
+	 CSS-Tricks Example - Feature Table
+	 by Chris Coyier
+	 http://css-tricks.com
+*/
+
+* { margin: 0; padding: 0; }
+html, body { min-height: 100%; }
+body { font: 13px "Lucida Grande", Helvetica, Arial, sans-serif;   background-image: -moz-linear-gradient(top, #eeeeee, #cccccc); background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc)); }
+
+article, aside, figure, footer, header, hgroup,
+menu, nav, section { display: block; }
+
+#page-wrap     { margin: 80px auto; width: 600px; padding: 10px; background: white;  }
+#feature-table {
+	width: 100%;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+#feature-table th { height: 120px; padding-bottom: 14px !important; vertical-align: bottom; }
+#header-basic { background: url(../images/header-15.png) no-repeat; }
+#header-plus { background: url(../images/header-35.png) no-repeat; }
+#header-premium { background: url(../images/header-99.png) no-repeat; }
+#header-pro { background: url(../images/header-150.png) no-repeat; }
+#feature-table th span { position: absolute; top: -9999px; left: -9999px; }
+
+#feature-table td,
+#feature-table th { width: 150px; padding: 8px 5px; text-align: center; border-left: 1px solid white; border-right: 1px solid white; }
+
+#feature-table .final-row td { padding: 24px 5px; }
+
+.basic   { background-color: #d5e4bc; background-color: hsla(85,  30%, 80%, 1); }
+.plus    { background-color: #c1dcb7; background-color: hsla(110, 30%, 80%, 1); }
+.premium { background-color: #bad6c8; background-color: hsla(150, 30%, 80%, 1); }
+.pro     { background-color: #bbd3dc; background-color: hsla(190, 30%, 80%, 1); }
+
+.odd .table-col-1 { background-color: #edf3e2; background-color: hsla(85,  30%, 94%, 1); }
+.odd .table-col-2 { background-color: #edf3e2; background-color: hsla(110, 30%, 94%, 1); }
+.odd .table-col-3 { background-color: #edf3e2; background-color: hsla(150, 30%, 94%, 1); }
+.odd .table-col-4 { background-color: #e2ecf0; background-color: hsla(190, 30%, 94%, 1); }
+
+.leftOfFeatured  { background-image: url(../images/shadow-left.png);  background-repeat: repeat-y; background-position: right center; }
+.rightOfFeatured { background-image: url(../images/shadow-right.png); background-repeat: repeat-y; background-position: left  center; }
+
+
+/* From http://css-tricks.com/examples/ButtonMaker/ */
+.button {
+   border-top: 1px solid #a695b3;
+   background: #64548f;
+   background: -webkit-gradient(linear, left top, left bottom, from(#836c94), to(#64548f));
+   background: -moz-linear-gradient(top, #836c94, #64548f);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+.button:hover {
+   border-top-color: #755a99;
+   background: #755a99;
+   color: #ffffff;
+}
+.button:active {
+   border-top-color: #4f3463;
+   background: #4f3463;
+   position: relative;
+   top: 1px;
+}

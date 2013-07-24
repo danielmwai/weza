@@ -26,6 +26,7 @@ package com.tunaweza.core.business.service.user;
 
 import com.tunaweza.core.business.dao.exceptions.email.EmailExistsException;
 import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.service.ServiceException;
 import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
 import com.tunaweza.core.business.model.course.EmbeddableCourse;
@@ -687,5 +688,5 @@ public interface UserService {
 	 */
 	void addUserToGroup(Group group, User user)
 			throws UserDoesNotExistException; 
-	
+//	List<User> listUser() throws ServiceException;
 }

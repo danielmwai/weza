@@ -1,62 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>Tunaweza</display-name>
-  <listener>
-    <listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
-  </listener>
-  <listener>
-    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-</listener>
-<!--<context-param>  
-    <param-name>primefaces.THEME</param-name>  
-    <param-value>le-frog</param-value>  
-</context-param>-->
-  <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>
-  </context-param>
-  <context-param>
-      <description>ensure response is bufferd untill end of form to avoid error cannot create error after session has expired</description>
-      <param-name>com.sun.faces.writeStateAtFormEnd</param-name>
-      <param-value>false</param-value>
-  </context-param>
-  <context-param>
-      <description>The size of response buffer before h:form</description>
-      <param-name>javax.faces.FACELETS_BUFFER_SIZE</param-name>
-      <param-value>65535</param-value>
-  </context-param>
-  <welcome-file-list>
-    <welcome-file>pages/home.xhtml</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.jsf</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.faces</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-      <servlet-name>Faces Servlet</servlet-name>
-      <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
-  <context-param>
-    <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
-    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-    <param-value>client</param-value>
-  </context-param>
-  <context-param>
-    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-    <param-value>resources.application</param-value>
-  </context-param>
-  <listener>
-    <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-  </listener>
+    <display-name>Tunaweza</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/root-context.xml
+           
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>SYSTEMDIRECTORY</param-name>
+        <param-value>/home/jjteach_new</param-value>
+    </context-param>
+    <!-- Enable Spring Security -->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <!-- Allow login pages with JSF which redirects to security check, therefore we have to add the forward entry here -->
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    
+    
+    <filter>
+        <filter-name>HibernateLongConversationFilter</filter-name>
+        <filter-class>com.tunaweza.jjteach.web.filter.HibernateLongConversationFilter
+        </filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>HibernateLongConversationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+
+    </filter-mapping>
+
+<!--    <filter-mapping>
+        <filter-name>clickstream-jforum</filter-name>
+        <url-pattern>*.page</url-pattern>
+    </filter-mapping>-->
+    <!--
+    <filter>
+            <filter-name>clickstream-jforum</filter-name>
+            <filter-class>net.jforum.util.legacy.clickstream.ClickstreamFilter
+            </filter-class>
+    </filter>-->
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/appServlet/dispatcher-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>JJTEACHADMIN</servlet-name>
+        <servlet-class>
+            com.tunaweza.web.servlet.superadmin.SuperAdmin
+        </servlet-class>
+    </servlet>
+<!--
+    <servlet>
+        <servlet-name>install</servlet-name>
+        <servlet-class>net.jforum.InstallServlet</servlet-class>
+
+        <init-param>
+            <param-name>development</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>-->
+    <!--
+    <servlet>
+            <servlet-name>jforum</servlet-name>
+            <servlet-class>net.jforum.JForum</servlet-class>
+            <init-param>
+                    <param-name>development</param-name>
+                    <param-value>true</param-value>
+            </init-param>
+    </servlet>-->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>
+            com.tunaweza.web.listener.InitListener
+        </listener-class>
+    </listener>
+    <!--
+    <listener>
+            <listener-class>net.jforum.ForumSessionListener</listener-class>
+    </listener>-->
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/spring/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>JJTEACHADMIN</servlet-name>
+        <url-pattern>/tools/super/adminset</url-pattern>
+    </servlet-mapping>
+<!--
+     Mapping 
+    <servlet-mapping>
+        <servlet-name>install</servlet-name>
+        <url-pattern>/install/install.page</url-pattern>
+    </servlet-mapping>-->
+    <!--
+    <servlet-mapping>
+        <servlet-name>jforum</servlet-name>
+        <url-pattern>*.page</url-pattern>
+    </servlet-mapping>-->
+    
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    
+    
+
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+
+
+    <welcome-file-list>
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
+
+
+
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errors/404.jsp</location>
+    </error-page>
+
 </web-app>

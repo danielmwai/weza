@@ -23,6 +23,7 @@
  */
 package com.tunaweza.core.business.model.user;
 
+import com.tunaweza.core.business.model.company.Company;
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.group.Group;
 import com.tunaweza.core.business.model.mentor.Mentor;
@@ -30,6 +31,7 @@ import com.tunaweza.core.business.model.student.Student;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -128,10 +130,10 @@ public class User implements Comparable<User>, UserDetails {
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Student student;
-//	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_company")
-//	private Company userCompany;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_company")
+	private Company userCompany;
 
     @ManyToMany
     @Embedded
@@ -140,7 +142,29 @@ public class User implements Comparable<User>, UserDetails {
                 @JoinColumn(name = "userid", referencedColumnName = "id")}, inverseJoinColumns = {
                 @JoinColumn(name = "user_group", referencedColumnName = "id")})
     List<Group> groups;
+   @Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "LAST_ACCESS")
+	private Date lastAccess;
 
+    public Date getLastAccess() {
+        return lastAccess;
+    }
+
+    public void setLastAccess(Date lastAccess) {
+        this.lastAccess = lastAccess;
+    }
+
+    public Date getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
+    }
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "LOGIN_ACCESS")
+	private Date loginTime;
     public String getPassword() {
         return password;
     }
@@ -271,20 +295,20 @@ public class User implements Comparable<User>, UserDetails {
     public void setStudent(Student student) {
         this.student = student;
     }
-//
-//	/**
-//	 * @return the userCompany
-//	 */
-//	public Company getUserCompany() {
-//		return userCompany;
-//	}
-//
-//	/**
-//	 * @param userCompany the userCompany to set
-//	 */
-//	public void setUserCompany(Company userCompany) {
-//		this.userCompany = userCompany;
-//	}
+
+	/**
+	 * @return the userCompany
+	 */
+	public Company getUserCompany() {
+		return userCompany;
+	}
+
+	/**
+	 * @param userCompany the userCompany to set
+	 */
+	public void setUserCompany(Company userCompany) {
+		this.userCompany = userCompany;
+	}
 
     /**
      * @return the groups

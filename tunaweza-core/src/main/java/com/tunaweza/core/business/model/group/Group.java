@@ -40,7 +40,7 @@ import javax.persistence.Table;
  * @author Daniel mwai
  */
 @Entity
-@Table(name = Group.TABLE_NAME)
+@Table(name = "tunaweza_group")
 public class Group implements
 Comparable<Group>{
      @Id
@@ -55,7 +55,6 @@ Comparable<Group>{
         this.id = id;
     }
 	private static final long serialVersionUID = 1L;
-	public static final String TABLE_NAME = "company_group";
 
 	@Column(name = "description")
 	private String description;

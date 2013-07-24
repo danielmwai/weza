@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+    
+    <!-- Hibernate session factory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop><!-- change to create later !-->
+                <prop key="hibernate.max_fetch_depth">3</prop>
+                <prop key="hibernate.c3p0.minPoolSize">5</prop>
+                <prop key="hibernate.c3p0.maxPoolSize">70</prop>
+                <prop key="hibernate.c3p0.timeout">300</prop>
+                <prop key ="hibernate.c3p0.max_statement">50</prop>
+                <prop key="hibernate.c3p0.testConnectionOnCheckout">false</prop>
+            </props>
+        </property>
+        <property name="packagesToScan" value="com.tunaweza.core.business.model"/>
+    	
+<!--        <property name="annotatedClasses">
+            <list>
+                <value>com.tunaweza.core.business.model.role.Role</value>
+                <value>com.tunaweza.core.business.model.user.User</value>
+                <value>com.tunaweza.core.business.model.status.Status</value>
+                <value>com.tunaweza.core.business.model.mentor.Mentor</value>
+                <value>com.tunaweza.core.business.model.payment.PaymentDetails</value>
+                <value>com.tunaweza.core.business.model.image.Image</value>
+                <value>com.tunaweza.core.business.model.file.File</value>
+                <value>com.tunaweza.core.business.model.exercise.StudentExercise</value>
+                <value>com.tunaweza.core.business.model.course.Course</value>
+                <value>com.tunaweza.core.business.model.evaluation.Evaluation</value>
+                <value>com.tunaweza.core.business.model.location.Location2</value>
+                <value>com.tunaweza.core.business.model.exercise.transaction.ExerciseTransactionType</value>
+                <value>com.tunaweza.core.business.model.group.Group</value>
+                <value>com.tunaweza.core.business.model.module.Module</value>
+                <value>com.tunaweza.core.business.model.question.Question</value>
+                <value>com.tunaweza.core.business.model.topic.TopicText</value>
+                <value>com.tunaweza.core.business.model.topic.Topic</value>
+                <value>com.tunaweza.core.business.model.topic.lastaccessed.LastAccessedTopicInModule</value>
+                <value>com.tunaweza.core.business.model.promotioncodes.Promocode</value>
+                <value>com.tunaweza.core.business.model.answer.Answer</value>
+                <value>com.tunaweza.core.business.model.message.Message</value>
+                <value>com.tunaweza.core.business.model.evaluation.CourseEvaluationTransaction</value>
+                <value>com.tunaweza.core.business.model.evaluation.EvaluationTransaction</value>
+                <value>com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation</value>
+                <value>com.tunaweza.core.business.model.evaluation.StudentEvaluation</value>
+                <value>com.tunaweza.core.business.model.evaluation.Evaluation</value>
+            </list>
+        </property>-->
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>  

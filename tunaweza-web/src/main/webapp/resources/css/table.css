@@ -1,0 +1,414 @@
+/**------------------Tables--------------------------**/
+	/**------list items table----**/
+#list {
+	margin: 45px 45px 20px;
+	-moz-border-radius: 5px;
+	box-shadow: 1px 1px 3px grey;
+	-moz-box-shadow: 1px 1px 3px grey;
+	-webkit-box-shadow: 1px 1px 3px grey;
+	background: #ffffff;
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#2F4F4F')";
+	filter: progid :   DXImageTransform.Microsoft.Shadow (   Strength =   3,
+		Direction =   135, Color =   '#2F4F4F' );
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 89%;
+	text-align: left;
+	border-left: medium ridge;
+}
+
+#list th {
+	background: none repeat scroll 0 0 #2A7585;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 15px 10px 10px;
+}
+
+#list tr {
+	border: 1px solid black;
+}
+
+#list tbody { /*background: #ffffff;*/
+	color: black;
+}
+
+#list td {
+	padding: 7px;
+	color: #669;
+	border-top: 1px dashed #fff;
+}
+
+#list tbody tr:hover td {
+	/* color: #339;
+	background: #d0dafd; */
+}
+
+/**------list topics table----**/
+#listtop {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 91%;
+	text-align: left;
+	margin: 0px 45px 0px 45px;
+	box-shadow: 1px 1px 3px grey;
+	-moz-box-shadow: 1px 1px 3px grey;
+	-webkit-box-shadow: 1px 1px 3px grey;
+	-moz-border-radius: 5px;
+}
+
+#listsubtop {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 100%;
+	text-align: left;
+	box-shadow: 1px 1px 3px grey;
+	-moz-box-shadow: 1px 1px 3px grey;
+	-webkit-box-shadow: 1px 1px 3px grey;
+	-moz-border-radius: 5px;
+}
+
+#listtop th {
+	background: none repeat scroll 0 0 #2A7585;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 15px 10px 10px;
+}
+
+#listsubtop th#prueb {
+	font-size: 14px;
+	font-weight: normal;
+	color: #000000;
+	height: 30px;
+	background: url("../images/common/parentTopic.png");
+}
+
+#listsubtop th#prueb2 {
+	background: none repeat scroll 0 0 #2A7585;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 15px 10px 10px;
+}
+
+#listsubtop tbody {
+	display: none;
+}
+
+#listtop tr {
+	border: 1px solid black;
+}
+
+#listtop tbody { /*background: #ffffff;*/
+	color: black;
+}
+
+#listtop td { /*padding: 7px;*/
+	color: #669;
+	border-top: 1px dashed #fff;
+}
+
+#listsubtop td {
+	color: #669;
+	border-top: 1px dashed #fff;
+}
+
+#listtop tbody tr:hover td {
+	color: #339;
+	background: #d0dafd;
+}
+
+/**-------Form input table-----**/
+#table-form-input,.table-form-input {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 90%;
+	text-align: left;
+}
+
+#table-form-input th,.table-form-input th {
+	font-size: 14px;
+	font-weight: normal;
+	padding: 12px 15px;
+	color: #000000;
+}
+
+#table-form-input .information td {
+	padding: 20px 0 4px 20px;
+}
+
+#table-form-input td,.table-form-input td {
+	/*padding: 4px 0 4px 10px;*/
+	color: #000000;
+	border-top: 1px solid #e8edff;
+}
+
+.oce-first {
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+#table-form-input tr:hover td {
+	color: #339;
+	background: #eff2ff;
+}
+
+.pagin {
+	background: #2A7585;
+}
+
+/*****************Profile table********************/
+#profile {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 90%;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+#profile th {
+	font-size: 14px;
+	font-weight: normal;
+	padding: 12px 15px;
+	color: #000000;
+}
+
+#profile td {
+	padding: 10px 15px;
+	color: #000000;
+	border-top: 1px solid #e8edff;
+}
+
+.oce-first {
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+#profile tr:hover td {
+	color: #339;
+	background: #eff2ff;
+}
+
+#profile1 {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 90%;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+#profile1 th {
+	font-size: 16px;
+	font-weight: normal;
+	padding: 12px 15px;
+	color: #000000;
+	text-align: center;
+}
+
+#profile1 td {
+	padding: 10px 15px;
+	color: #000000;
+}
+
+.oce-first {
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+#profile .rightSide {
+	margin-left: 10px;
+}
+
+/******************Forgot password********************/
+#forgot {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	text-align: center;
+	border-collapse: collapse;
+	box-shadow: 1px 1px 3px grey;
+	-moz-box-shadow: 1px 1px 3px grey;
+	-webkit-box-shadow: 1px 1px 3px grey;
+	-moz-border-radius: 5px;
+}
+
+#forgot td {
+	padding: 10px 15px;
+	color: #000000;
+	border-top: 1px solid #e8edff;
+}
+
+/***
+#forgot tr:hover td
+{
+	color: #339;
+	background: #eff2ff;
+
+}
+***/ /**-----------student feedback -----------------**/
+.feedback tr {
+	margin: 5px;
+}
+
+.displayComments,.question,.answer,.quiz {
+	clear: left;
+	width: 80%;
+	height: 220px;
+	/* border: 1px solid #CCCCCC;
+    border-top: 1px solid #E8EDFF; */
+	overflow: auto;
+	color: #000000;
+	padding: 4px 0 4px 10px;
+	box-shadow: 1px 1px 3px grey;
+	-moz-box-shadow: 1px 1px 3px grey;
+	-webkit-box-shadow: 1px 1px 3px grey;
+	-moz-border-radius: 5px 0;
+	background: #FFFFFF;
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#2F4F4F')",
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=315, Color='#2F4F4F')";
+	filter: progid :   DXImageTransform.Microsoft.Shadow (   Strength =   4,
+		Direction =   135, Color =   '#2F4F4F' ), progid : 
+		 DXImageTransform.Microsoft.Shadow (   Strength =   1, Direction =  
+		315, Color =   '#2F4F4F' );
+}
+
+.displayComments li,.displayComments ul,.displayComments ol {
+	margin: 0 15px;
+}
+
+#transactions {
+	width: 100%;
+}
+
+#transactions th {
+	background: none repeat scroll 0 0 #2A7585;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px 10px;
+}
+
+#transactions tr {
+	border: 1px solid black;
+}
+
+#transactions tbody { /*background: #ffffff;*/
+	color: black;
+}
+
+.table-form-input tr {
+	line-height: 1.5em;
+	padding: 5px 0;
+}
+
+#transactions td {
+	padding: 7px;
+	color: #669;
+	border-top: 1px dashed #fff;
+}
+
+#listM {
+	font-weight: bold;
+	margin-left: 30px;
+	padding: 4px;
+}
+
+#spanM {
+	color: red;
+	font-style: italic;
+	float: right;
+	font-weight: normal;
+	margin-right: 5px;
+}
+
+/******************Topic quiz********************/
+#topicQuiz {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	text-align: center;
+	border-collapse: collapse;
+	box-shadow: 1px 1px 3px grey;
+	-moz-box-shadow: 1px 1px 3px grey;
+	-webkit-box-shadow: 1px 1px 3px grey;
+	-moz-border-radius: 5px;
+	width:100%;
+	margin-top:15px;
+	margin-bottom:8px;
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#2F4F4F')";
+	filter: progid :   DXImageTransform.Microsoft.Shadow (   Strength =   3,
+		Direction =   135, Color =   '#2F4F4F' );
+}
+
+#topicQuiz td {
+	padding: 7px 15px 7px;
+	color: #000000;
+	border-top: 1px solid #e8edff;
+}
+
+
+.question,.answer,.quiz {
+	height: 120px;
+}
+
+.answer {
+	margin-top: 20px;
+}
+
+.quiz {
+	margin-left: 15px;
+	padding: 10px 0 10px;
+	text-align: left;
+	width: 95%;
+	background: none;
+	height:100%;
+	box-shadow: 0px 0px 3px grey;
+	-moz-box-shadow: 0px 0px 3px grey;
+	-webkit-box-shadow: 0px 0px 3px grey;
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#2F4F4F')";
+	filter: progid :   DXImageTransform.Microsoft.Shadow (   Strength =   3,
+		Direction =   135, Color =   '#2F4F4F' );	
+}
+
+.quiz div{
+	padding: 10px 8px 6px 20px;
+}
+
+.quiz div label {
+	display:block;
+	margin: -15px 0 3px 25px;
+}
+
+.correctQuiz {
+	color: green;
+	font-size: 10px;
+	font-style: italic;
+	padding-left: 15px;
+}
+
+.wrongQuiz {
+	color: red;
+	font-size: 10px;
+	font-style: italic;
+	padding-left: 15px;
+}
+
+.answer div {
+position: relative;
+}
+
+
+.answer div label {
+display: block;
+padding-left: 30px;
+position: absolute;
+top: -1px;
+}
+
+.answer div {
+margin: 20px 0px;
+}

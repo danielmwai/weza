@@ -1,0 +1,125 @@
+
+
+.header ol,ul {
+	list-style: none outside none;
+}
+
+.header ol {
+	list-style: decimal outside none;
+}
+
+.header ul {
+	list-style: none outside none;
+}
+
+
+
+.header ol li {
+	margin: 0pt 45px;
+}
+
+.header a:link,a:visited {
+	color: #1B5D83;
+	text-decoration: none;
+}
+
+.header a:hover,a:active {
+	color: #429093;
+}
+
+
+#header {
+	border-bottom: 5px solid #FFFFFF;
+	background-color: white;
+}
+
+.header #logo {
+	border: 0pt none;
+	display: block;
+	left: 20px;
+	position: absolute;
+	bottom: 10px;
+}
+
+
+
+.header #top_menu {
+	color:black;
+/* 	color: #AEAEAE; */
+	font-size: 11px;
+	font-weight: normal;
+	line-height: 1;
+	list-style: none outside none;
+	margin: 0pt;
+	padding: 0pt;
+	position: absolute;
+	right: 20px;
+	top: 5px;
+}
+
+.header #top_menu li {
+	background: none repeat scroll 0% 0% transparent;
+	float: left;
+	margin: 0pt;
+	padding: 7px 8px;
+}
+
+.header #top_menu li:last-child {
+	background:
+		url("../images/header/bg_menu_vr.png")
+		no-repeat scroll 0pt 7px transparent;
+	padding-right: 0pt;
+}
+
+.header #top_menu a:link,#top_menu a:visited {
+	color: #7299B1;
+}
+
+.header #top_menu #user_menu a:link,#top_menu #user_menu a:visited,#top_menu li:hover a
+	{
+	color: #151D22;
+}
+
+.header #top_menu #user_menu {
+	background: url("../images/header/bg_user_menu.png") no-repeat scroll right 5px #32444E;	
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 1px 1px 1px #232F36;
+	padding-right: 27px ! important;
+}
+
+.header #top_menu #user_menu:hover,#top_menu #user_menu:active {
+	background-color: #151D22;
+}
+
+.header #top_menu #user_menu_contents {
+	color: #FFFFFF;
+	display: none;
+	margin: 0pt;
+	padding: 7px 0pt 3px;
+}
+
+.header #top_menu #user_menu_contents li {
+	float: none;
+	list-style: none outside none;
+	margin: 6px 0pt 0pt;
+	padding: 0pt;
+}
+
+.header #top_menu #user_menu_contents li:last-child {
+	background: none repeat scroll 0% 0% transparent;
+}
+
+.header #top_menu #user_menu_contents li a:link,#top_menu #user_menu_contents li a:visited
+	{
+	color: #89AEAF;
+}
+
+.header #top_menu #user_menu_contents li a:hover,#top_menu #user_menu_contents li a:active
+	{
+	color: #FFFFFF;
+}
+
+.header #top_menu #user_menu:hover #user_menu_contents,#top_menu #user_menu:active #user_menu_contents
+	{
+	display: block;
+}

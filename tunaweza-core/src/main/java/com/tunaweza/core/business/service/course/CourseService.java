@@ -76,7 +76,7 @@ public interface CourseService {
 	 * @return <code>Course</code> list
 	 * 
 	 */
-	public List<Course> listAllCourse();
+	public List<Course> listAllCourses();
 	
 	
 	/**

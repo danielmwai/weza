@@ -24,6 +24,9 @@
 
 package com.tunaweza.core.business.service.reports;
 
+import com.tunaweza.core.business.service.reports.dynamicreports.ReportColumn;
+import com.tunaweza.core.business.service.reports.dynamicreports.ReportTableBean;
+import com.tunaweza.core.business.model.report.Report;
 import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;

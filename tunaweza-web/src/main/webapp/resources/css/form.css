@@ -1,0 +1,127 @@
+h3.subheading {
+	position: relative;
+	clear: both;
+}
+
+h3.subheading a {
+	position: absolute;
+	right: 0;
+}
+
+h3.subheading a.breadcrumb {
+	position: relative;
+	right: auto;
+}
+
+form.add_form,div#single_mail {
+	border: 2px solid #CCC;
+	float: right;
+	margin: 68px;
+	border-radius: 10px;
+	font-family: 'Lucida Grande', Arial, Helvetica, sans serif;
+	font-size: 12px;
+	color: #999;
+	width: 825px;
+	border-top-color: rgba(62, 166, 207, 0.988281);
+	border-right-color: rgba(62, 166, 207, 0.988281);
+	border-bottom-color: rgba(62, 166, 207, 0.988281);
+	border-left-color: rgba(62, 166, 207, 0.988281);
+	background-color: rgba(0, 0, 0, 0.117188);
+	margin:10px 179px 0px 0px;
+	padding: 30px;
+}
+
+.add_form button {
+	padding: 0px;
+	margin: 0px 0px 0px 325px;
+}
+
+form a {
+	margin: 51px;
+}
+
+form.add_form label {
+	margin-right: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+	font-family: \22Comic Sans MS\22, sans-serif;
+	color: rgba(41, 41, 41, 0.988281);
+}
+
+form.add_form label.title,form.add_form div.container p {
+	display: block;
+	padding-bottom: 3px;
+	color: rgba(59, 59, 59, 0.988281);
+	margin: 0px;
+}
+
+form.add_form div.container {
+	padding: 0 0 20px 45px;
+}
+
+form.add_form div.container.email {
+	background: transparent url("../images/common/email.png") 0 1px
+		no-repeat;
+}
+
+form.add_form div.container.country {
+	background: transparent url("../images/common/location.png") 0 1px
+		no-repeat;
+}
+
+form.add_form div.container.role {
+	background: transparent url("../images/common/roles.png") 0 1px
+		no-repeat;
+}
+
+form.add_form div.container.description {
+	background: transparent url("../images/common/pencil.png") 0 1px
+		no-repeat;
+}
+
+form.add_form div.container.module {
+	background: transparent url("../images/common/module.png") 0 1px
+		no-repeat;
+}
+
+form.add_form div.container.time {
+	background: transparent url("../images/common/time.png") 0 1px no-repeat;
+}
+
+form.add_form div.container.course {
+	background: transparent url("../images/common/course.png") 0 1px
+		no-repeat;
+}
+
+form.add_form div.container.factoring {
+	background: transparent url("../images/common/graph.png") 0 1px
+		no-repeat;
+}
+
+form.add_form div.container_inner {
+	border: 1px solid #CCC;
+	border-style: none none none solid;
+	border-left-width: 1px;
+	border-top-color: rgba(72, 122, 163, 0.988281);
+	border-right-color: rgba(72, 122, 163, 0.988281);
+	border-bottom-color: rgba(72, 122, 163, 0.988281);
+	border-left-color: rgba(72, 122, 163, 0.988281);
+	border-bottom-width: 1px;
+	padding: 0px 0px 0px 128px;
+	margin: 0px 0px 0px 103px;
+}
+
+.error{
+	/* font: normal 10px arial;
+	padding: 3px;
+	
+	background-color: #ffc;
+	border: 1px solid #c00; */
+	color:#c00;
+	margin-left: 15px;
+}
+
+fieldset{
+	padding:2%;
+}

@@ -29,9 +29,9 @@ import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistExce
 import com.tunaweza.core.business.dao.exceptions.student.StudentExistsException;
 import com.tunaweza.core.business.model.course.Course;
 import com.tunaweza.core.business.model.module.Module;
-import com.tunaweza.core.business.model.module.MonitorModuleBean;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
+import com.tunaweza.core.business.service.module.MonitorModuleBean;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;

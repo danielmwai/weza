@@ -76,7 +76,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> listAllCourse() {
+    public List<Course> listAllCourses() {
         return courseDao.findAll();
     }
 
@@ -114,8 +114,9 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course findCourseById(Long id) throws CourseNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	public Course findCourseById(Long id)
+			throws CourseNotFoundException {
+		return courseDao.findById(id);
+	}
 }
 

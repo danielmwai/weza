@@ -54,7 +54,7 @@ public class Report  {
 	private String reportTitle;
 
 	@Column(length = 1000000000, name = "report_query", nullable = false)
-	private String reportQuery;
+	public String reportQuery;
 
 	public String getReportTitle() {
 		return reportTitle;

@@ -21,30 +21,30 @@
 // * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // * THE SOFTWARE.
 // */
-//
-//package com.tunaweza.core.business.service.dbswitcher;
-//
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.SQLException;
-//import org.springframework.stereotype.Service;
-//
-///**
-// * @version $Revision: 1.1.1.1 $
-// * @since Build {3.0.0.SNAPSHOT} (06 2013)
-// * @author Daniel mwai
-// */
-//@Service("dbSwitcherHelper")
-//public class DbSwitcherHelperImpl implements DbSwitcherHelper{
-//
-//	public Connection dbSwitcher(String dbname,String username,String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-//		Connection conn = null;
-//		  String url = "jdbc:mysql://localhost:3306/";
-//		  String driver = "com.mysql.jdbc.Driver";
-//		  Class.forName(driver).newInstance();
-//		  conn = DriverManager.getConnection(url+dbname,username,password);
-//		return conn;
-//		
-//	}
-//}
-//
+
+package com.tunaweza.core.business.service.dbswitcher;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import org.springframework.stereotype.Service;
+
+/**
+ * @version $Revision: 1.1.1.1 $
+ * @since Build {3.0.0.SNAPSHOT} (06 2013)
+ * @author Daniel mwai
+ */
+@Service("dbSwitcherHelper")
+public class DbSwitcherHelperImpl implements DbSwitcherHelper{
+
+	public Connection dbSwitcher(String dbname,String username,String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+		Connection conn = null;
+		  String url = "jdbc:mysql://localhost:3306/";
+		  String driver = "com.mysql.jdbc.Driver";
+		  Class.forName(driver).newInstance();
+		  conn = DriverManager.getConnection(url+dbname,username,password);
+		return conn;
+		
+	}
+}
+

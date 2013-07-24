@@ -27,6 +27,7 @@ package com.tunaweza.core.business.service.user;
 
 import com.tunaweza.core.business.dao.exceptions.email.EmailExistsException;
 import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
+import com.tunaweza.core.business.dao.exceptions.service.ServiceException;
 import com.tunaweza.core.business.dao.exceptions.student.StudentDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.user.UserDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.user.UserExistsException;
@@ -945,4 +946,12 @@ public class UserServiceImpl implements UserService {
 	public User getSuperUser(String username, String firstName, String lastName){
 		return userDao.getSuperUser(username, firstName, lastName);
 	}
+//        @Override
+//	public List<User> listUser() throws ServiceException {
+//		try {
+//			return userDao.listUser();
+//		} catch (Exception e) {
+//			throw new ServiceException(e);
+//		}
+//	}
 }

@@ -26,7 +26,7 @@ package com.tunaweza.core.business.dao.promotioncodes;
 
 import com.tunaweza.core.business.dao.exceptions.promocode.PromocodeDoesNotExistException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
-import com.tunaweza.core.business.model.promotioncodes.Promocode;
+import com.tunaweza.core.business.model.promocodes.Promocode;
 import java.util.List;
 
 /**

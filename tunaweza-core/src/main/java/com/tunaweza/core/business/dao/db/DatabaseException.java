@@ -21,33 +21,33 @@
 // * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // * THE SOFTWARE.
 // */
-//
-//package com.tunaweza.core.business.dao.db;
-//
-///**
-// * @version $Revision: 1.1.1.1 $
-// * @since Build {3.0.0.SNAPSHOT} (06 2013)
-// * @author Daniel mwai
-// */
-//public class DatabaseException extends Exception
-//{
-//	public DatabaseException()
-//	{
-//		super();
-//	}
-//	
-//	public DatabaseException(String message)
-//	{
-//		super(message);
-//	}
-//	
-//	public DatabaseException(Throwable cause)
-//	{
-//		super(cause);
-//	}
-//	
-//	public DatabaseException(String message, Throwable cause)
-//	{
-//		super(message, cause);
-//	}
-//}
+
+package com.tunaweza.core.business.dao.db;
+
+/**
+ * @version $Revision: 1.1.1.1 $
+ * @since Build {3.0.0.SNAPSHOT} (06 2013)
+ * @author Daniel mwai
+ */
+public class DatabaseException extends Exception
+{
+	public DatabaseException()
+	{
+		super();
+	}
+	
+	public DatabaseException(String message)
+	{
+		super(message);
+	}
+	
+	public DatabaseException(Throwable cause)
+	{
+		super(cause);
+	}
+	
+	public DatabaseException(String message, Throwable cause)
+	{
+		super(message, cause);
+	}
+}

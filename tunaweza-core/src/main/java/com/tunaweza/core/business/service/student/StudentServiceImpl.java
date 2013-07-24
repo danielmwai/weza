@@ -43,7 +43,6 @@ import com.tunaweza.core.business.model.evaluation.Evaluation;
 import com.tunaweza.core.business.model.evaluation.StudentCourseEvaluation;
 import com.tunaweza.core.business.model.evaluation.StudentEvaluation;
 import com.tunaweza.core.business.model.module.Module;
-import com.tunaweza.core.business.model.module.MonitorModuleBean;
 import com.tunaweza.core.business.model.status.Status;
 import com.tunaweza.core.business.model.student.CompletedModule;
 import com.tunaweza.core.business.model.student.EnabledModule;
@@ -55,6 +54,7 @@ import com.tunaweza.core.business.service.evaluation.EvaluationService;
 import com.tunaweza.core.business.service.evaluation.student.StudentCourseEvaluationService;
 import com.tunaweza.core.business.service.evaluation.student.StudentEvaluationService;
 import com.tunaweza.core.business.service.module.ModuleService;
+import com.tunaweza.core.business.service.module.MonitorModuleBean;
 import com.tunaweza.core.business.service.topic.TopicService;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -399,7 +399,7 @@ public class StudentServiceImpl implements StudentService {
 						StudentCourseEvaluation studentCourseEvaluation = null;
 						MonitorCourseBean monitorCourseBean = new MonitorCourseBean();
 						monitorCourseBean
-								.setCourseName(course.getName());
+								.setCourseTemplateName(course.getName());
 						monitorCourseBean.setId(course.getId()
 								.toString());
 

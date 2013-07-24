@@ -22,16 +22,16 @@
 // * THE SOFTWARE.
 // */
 //
-//package com.tunaweza.core.business.service.dbswitcher;
-//
-//import java.sql.Connection;
-//import java.sql.SQLException;
-//
-///**
-// * @version $Revision: 1.1.1.1 $
-// * @since Build {3.0.0.SNAPSHOT} (06 2013)
-// * @author Daniel mwai
-// */
-//public interface DbSwitcherHelper {
-//public Connection dbSwitcher(String dbname,String username,String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException;
-//}
+package com.tunaweza.core.business.service.dbswitcher;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+/**
+ * @version $Revision: 1.1.1.1 $
+ * @since Build {3.0.0.SNAPSHOT} (06 2013)
+ * @author Daniel mwai
+ */
+public interface DbSwitcherHelper {
+public Connection dbSwitcher(String dbname,String username,String password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException;
+}
