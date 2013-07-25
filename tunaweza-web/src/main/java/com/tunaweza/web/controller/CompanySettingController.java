@@ -8,7 +8,7 @@ import com.tunaweza.core.business.dao.exceptions.company.CompanyDoesNotExistExce
 import com.tunaweza.core.business.dao.exceptions.company.settings.CompanySettingsExistsException;
 import com.tunaweza.core.business.model.company.Company;
 import com.tunaweza.core.business.service.company.CompanyService;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import com.tunaweza.core.business.service.company.settings.CompanySettingsService;
 import com.tunaweza.core.business.service.user.UserCastService;
 import com.tunaweza.core.business.utils.PropertiesUtil;

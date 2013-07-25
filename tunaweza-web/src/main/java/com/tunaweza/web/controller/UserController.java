@@ -59,7 +59,7 @@ import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.Location;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.company.CompanyService;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import com.tunaweza.core.business.service.course.CourseService;
 import com.tunaweza.core.business.service.dbswitcher.DbSwitcherHelperImpl;
 import com.tunaweza.core.business.service.evaluation.student.StudentEvaluationService;

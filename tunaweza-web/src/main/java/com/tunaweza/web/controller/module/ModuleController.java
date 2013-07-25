@@ -5,7 +5,7 @@ import com.tunaweza.core.business.model.company.Company;
 import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.User;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import com.tunaweza.core.business.service.module.ModuleService;
 import com.tunaweza.core.business.service.student.StudentService;
 import com.tunaweza.core.business.service.topic.TopicService;

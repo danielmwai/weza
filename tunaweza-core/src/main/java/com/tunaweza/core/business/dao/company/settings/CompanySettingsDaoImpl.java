@@ -8,7 +8,7 @@ package com.tunaweza.core.business.dao.company.settings;
 import com.tunaweza.core.business.dao.exceptions.company.settings.CompanySettingsDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.company.settings.CompanySettingsExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDaoImpl;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import java.util.List;
 import static org.h2.util.IOUtils.delete;
 import org.hibernate.Query;

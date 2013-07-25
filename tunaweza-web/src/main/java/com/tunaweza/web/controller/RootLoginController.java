@@ -28,8 +28,6 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApi;
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApiImpl;
 import com.tunaweza.core.business.dao.exceptions.role.RoleDoesNotExistException;
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.model.user.User;
@@ -94,14 +92,14 @@ public class RootLoginController implements Settings, Views {
 		this.entityManagerFactoryBean = wac.getBean(emfName,
 				LocalContainerEntityManagerFactoryBean.class);
 
-		DataSourceSwitcherApi dataSourceSwitcherApi = new DataSourceSwitcherApiImpl();
+//		DataSourceSwitcherApi dataSourceSwitcherApi = new DataSourceSwitcherApiImpl();
 		httpSession.invalidate();
-		DbConfigBean dbConfig = new DbConfigBean("localhost","jjteach_", "jjteach_","jjteach_");
-		 dataSourceSwitcherApi.newEntityManagerFactory(
-		  entityManagerFactoryBean,"jdbc:mysql://" + "localhost" +
-		  ":3306/" + "jjteach_", "jjteach_","jjteach_");
+//		DbConfigBean dbConfig = new DbConfigBean("localhost","jjteach_", "jjteach_","jjteach_");
+//		 dataSourceSwitcherApi.newEntityManagerFactory(
+//		  entityManagerFactoryBean,"jdbc:mysql://" + "localhost" +
+//		  ":3306/" + "jjteach_", "jjteach_","jjteach_");
 		  //httpSession.setAttribute("DBCONFIG", dbConfig);
-		  setSessionAttribDbConfig(req,dbConfig);
+//		  setSessionAttribDbConfig(req,dbConfig);
 		String username = req.getParameter("j_username");
 		String password = req.getParameter("j_password");
 

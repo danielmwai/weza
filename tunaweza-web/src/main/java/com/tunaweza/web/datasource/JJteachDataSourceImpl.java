@@ -1,8 +1,6 @@
 package com.tunaweza.web.datasource;
 
 
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApi;
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApiImpl;
 import static com.tunaweza.core.business.utils.SessionHelper.setSessionAttribDbConfig;
 import com.tunaweza.web.spring.configuration.user.bean.DbConfigBean;
 import javax.servlet.http.HttpServletRequest;
@@ -36,14 +34,7 @@ public class JJteachDataSourceImpl implements JJteachDataSource {
 	this.entityManagerFactoryBean = wac.getBean(emfName,
 			LocalContainerEntityManagerFactoryBean.class);
 
-	DataSourceSwitcherApi dataSourceSwitcherApi = new DataSourceSwitcherApiImpl();
-	httpSession.invalidate();
-	DbConfigBean dbConfig = new DbConfigBean("localhost","jjteach_", "jjteach_","jjteach_");
-	 dataSourceSwitcherApi.newEntityManagerFactory(
-	  entityManagerFactoryBean,"jdbc:mysql://" + "localhost" +
-	  ":3306/" + "jjteach_", "jjteach_","jjteach_");
-	  //httpSession.setAttribute("DBCONFIG", dbConfig);
-	  setSessionAttribDbConfig(req,dbConfig);
+	
 	}
 
 }

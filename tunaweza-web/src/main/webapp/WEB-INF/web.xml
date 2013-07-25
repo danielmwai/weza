@@ -25,34 +25,15 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
-    
-    
-    <filter>
-        <filter-name>HibernateLongConversationFilter</filter-name>
-        <filter-class>com.tunaweza.jjteach.web.filter.HibernateLongConversationFilter
-        </filter-class>
-    </filter>
+   
+
 
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <filter-mapping>
-        <filter-name>HibernateLongConversationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+    
 
-    </filter-mapping>
-
-<!--    <filter-mapping>
-        <filter-name>clickstream-jforum</filter-name>
-        <url-pattern>*.page</url-pattern>
-    </filter-mapping>-->
-    <!--
-    <filter>
-            <filter-name>clickstream-jforum</filter-name>
-            <filter-class>net.jforum.util.legacy.clickstream.ClickstreamFilter
-            </filter-class>
-    </filter>-->
 
     <listener>
         <listener-class>
@@ -78,25 +59,7 @@
             com.tunaweza.web.servlet.superadmin.SuperAdmin
         </servlet-class>
     </servlet>
-<!--
-    <servlet>
-        <servlet-name>install</servlet-name>
-        <servlet-class>net.jforum.InstallServlet</servlet-class>
 
-        <init-param>
-            <param-name>development</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </servlet>-->
-    <!--
-    <servlet>
-            <servlet-name>jforum</servlet-name>
-            <servlet-class>net.jforum.JForum</servlet-class>
-            <init-param>
-                    <param-name>development</param-name>
-                    <param-value>true</param-value>
-            </init-param>
-    </servlet>-->
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
@@ -108,10 +71,7 @@
             com.tunaweza.web.listener.InitListener
         </listener-class>
     </listener>
-    <!--
-    <listener>
-            <listener-class>net.jforum.ForumSessionListener</listener-class>
-    </listener>-->
+   
 
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
@@ -126,17 +86,7 @@
         <servlet-name>JJTEACHADMIN</servlet-name>
         <url-pattern>/tools/super/adminset</url-pattern>
     </servlet-mapping>
-<!--
-     Mapping 
-    <servlet-mapping>
-        <servlet-name>install</servlet-name>
-        <url-pattern>/install/install.page</url-pattern>
-    </servlet-mapping>-->
-    <!--
-    <servlet-mapping>
-        <servlet-name>jforum</servlet-name>
-        <url-pattern>*.page</url-pattern>
-    </servlet-mapping>-->
+
     
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>

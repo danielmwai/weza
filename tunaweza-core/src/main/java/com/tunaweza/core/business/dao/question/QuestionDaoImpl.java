@@ -34,12 +34,16 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @version $Revision: 1.1.1.1 $
  * @since Build {3.0.0.SNAPSHOT} (06 2013)
  * @author Daniel mwai
  */
+@Repository(value = "questionDao")
+@Transactional
 public class QuestionDaoImpl extends GenericDaoImpl<Question> implements
         QuestionDao {
 @Autowired
@@ -275,7 +279,7 @@ SessionFactory sessionFactory;
         return query.list();
     }
 
-    public int getNoOfQuestionsInTemplateNotAssociatedWithTopic(
+    public int getNoOfQuestionsInNotAssociatedWithTopic(
             Long templateId, String text) {
         String sql = null;
         if (text != null) {
@@ -382,17 +386,14 @@ SessionFactory sessionFactory;
         return questions;
     }
 
-    
-
     @Override
     public List<Question> getQuestionsInNotAssociatedWithTopic(Long templateId, String text) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public int getNoOfQuestionsInNotAssociatedWithTopic(Long templateId, String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+
+   
 
 
 }

@@ -13,7 +13,7 @@ import com.tunaweza.core.business.model.topic.ListTopicBean;
 import com.tunaweza.core.business.model.topic.Topic;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.company.CompanyService;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import com.tunaweza.core.business.service.file.FileService;
 import com.tunaweza.core.business.service.module.ModuleService;
 import com.tunaweza.core.business.service.topic.TopicService;

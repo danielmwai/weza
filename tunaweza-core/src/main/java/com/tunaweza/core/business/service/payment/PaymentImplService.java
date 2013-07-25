@@ -39,7 +39,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Daniel mwai
  */
 
-@Service("ipnService")
+@Service("paymentService")
 @Transactional
 public class PaymentImplService  implements PaymentService {
 	

@@ -36,14 +36,24 @@
             </exclusions>
         </dependency>
         
-        <!-- Add dependency for net.sf.dynamicreports.report -->
+        <!--  dependency for net.sf.dynamicreports.report -->
         <dependency>
             <groupId>net.sourceforge.dynamicreports</groupId>
             <artifactId>dynamicreports-core</artifactId>
             <version>3.0.0</version>
         </dependency>
-
-
+         <!-- dependency for tiles  --> 
+         <dependency>
+	<groupId>org.apache.tiles</groupId>
+	<artifactId>tiles-core</artifactId>
+	<version>3.0.1</version>
+        </dependency>
+         <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>3.0.1</version>
+       </dependency>
+            
         <!--spring -faces -->
         <dependency>
             <groupId>org.springframework.webflow</groupId>
@@ -249,17 +259,17 @@
         <!--dependency for vcard ! got a few issues in the com.tunaweza.web.contoller.UserController methods like getGivenFamilyName not found
           i will depreceate the package for the moment  
         -->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>net.sourceforge.cardme</groupId>
             <artifactId>cardme</artifactId>
             <version>0.4.0</version>
         </dependency>-->
-         <dependency>
+        <dependency>
             <groupId>net.sourceforge.cardme</groupId>
             <artifactId>cardme</artifactId>
             <version>0.3.6.03</version>
-             <type>jar</type>
-         </dependency>
+            <type>jar</type>
+        </dependency>
         <!-- dependency for apache httpcomponents contains classess for apache  http client-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

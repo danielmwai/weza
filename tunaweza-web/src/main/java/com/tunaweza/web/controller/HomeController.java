@@ -1,8 +1,6 @@
 package com.tunaweza.web.controller;
 
 
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApi;
-import com.tunaweza.core.business.dao.datasource.DataSourceSwitcherApiImpl;
 import com.tunaweza.core.business.dao.exceptions.company.CompanyDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.company.license.CompanyLicenseDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.mentor.MentorNotFoundException;
@@ -14,7 +12,7 @@ import com.tunaweza.core.business.model.module.Module;
 import com.tunaweza.core.business.model.student.Student;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.company.CompanyService;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import com.tunaweza.core.business.service.license.CompanyLicenseService;
 import com.tunaweza.core.business.service.mail.MailService;
 import com.tunaweza.core.business.service.mentor.MentorService;
@@ -244,7 +242,7 @@ public class HomeController extends Constants implements Settings, Views {
 			this.entityManagerFactoryBean = wac.getBean(emfName,
 					LocalContainerEntityManagerFactoryBean.class);
 
-			DataSourceSwitcherApi dataSourceSwitcherApi = new DataSourceSwitcherApiImpl();
+//			DataSourceSwitcherApi dataSourceSwitcherApi = new DataSourceSwitcherApiImpl();
 
 			LOGGER.info("BEFORE DATASOURCE SWITCH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
@@ -255,9 +253,9 @@ public class HomeController extends Constants implements Settings, Views {
 
 			DbConfigBean dbConfig = new DbConfigBean(host, dbname, username,
 					pass);
-			dataSourceSwitcherApi.newEntityManagerFactory(
-					entityManagerFactoryBean, "jdbc:mysql://" + host + ":3306/"
-							+ dbname, username, pass);
+//			dataSourceSwitcherApi.newEntityManagerFactory(
+//					entityManagerFactoryBean, "jdbc:mysql://" + host + ":3306/"
+//							+ dbname, username, pass);
 
 			// httpSession.setAttribute("DBCONFIG", dbConfig);
 			setSessionAttribDbConfig(request, dbConfig);

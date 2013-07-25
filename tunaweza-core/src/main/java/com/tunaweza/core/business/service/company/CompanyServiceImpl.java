@@ -8,7 +8,6 @@ package com.tunaweza.core.business.service.company;
 import com.sleepycat.je.DatabaseException;
 import com.tunaweza.core.business.dao.company.CompanyDao;
 import com.tunaweza.core.business.dao.company.licence.CompanyLicenseDao;
-import com.tunaweza.core.business.dao.db.DatabaseApi;
 import com.tunaweza.core.business.dao.exceptions.company.CompanyDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.company.CompanyExistsException;
 import com.tunaweza.core.business.dao.exceptions.company.license.CompanyLicenseDoesNotExistException;
@@ -57,8 +56,7 @@ public class CompanyServiceImpl extends Constants implements CompanyService {
 
 	@Autowired
 	private CompanyLicenseDao companyLicenseDao;
-	@Autowired
-	private DatabaseApi databaseApi;
+	
 
 	@Autowired
 	private RoleService roleService;
@@ -176,15 +174,7 @@ public class CompanyServiceImpl extends Constants implements CompanyService {
 		return companyDao.findCompanyByEmail(email);
 	}
 
-	@Override
-	public void createDabaseTables(String databaseUrl, String user,
-			String password) throws DatabaseException {
-            try {
-                databaseApi.populateDatabase(databaseUrl, user, password);
-            } catch (com.tunaweza.core.business.dao.db.DatabaseException ex) {
-                Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-	}
+	
 	/*jaymmmmoooooo  PROBLEM @Override
 	public void creatSuperUser(Company userCompany) throws JJCloudInstanceExistsException{
 		long id = userCompany.getId();
@@ -201,29 +191,9 @@ public class CompanyServiceImpl extends Constants implements CompanyService {
 		}
 	}*/
 
-	@Override
-	public void createDatabaseAndPopulate(Long db_id, String dbName,
-			String dbPassword, String host, String dbUsername)
-			throws Exception {
-		try {
-			databaseApi.createDatabaseUser(host, dbUsername, dbPassword);
-			databaseApi.grantAllPermissionsToDBUser(dbName, dbUsername, host);
-			databaseApi.createPopulateDatabase(dbName, dbUsername, dbPassword);
-			/*databaseApi.saveDatabaseSuperUser(db_id, name, dbUsername, dbPassword, email, dbName);*/
-		} catch (DatabaseException dbe) {
-			dbe.printStackTrace();
-		}
+	
 
-	}
-
-	@Override
-	public void dropDatabase(String database) throws DatabaseException {
-            try {
-                databaseApi.dropDatabase(database);
-            } catch (com.tunaweza.core.business.dao.db.DatabaseException ex) {
-                Logger.getLogger(CompanyServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-	}
+	
 
 	@Override
 	public void setFirstAndLastLogins(Company userCompany)

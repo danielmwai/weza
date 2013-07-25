@@ -8,7 +8,7 @@ package com.tunaweza.core.business.dao.company.settings;
 import com.tunaweza.core.business.dao.exceptions.company.settings.CompanySettingsDoesNotExistException;
 import com.tunaweza.core.business.dao.exceptions.company.settings.CompanySettingsExistsException;
 import com.tunaweza.core.business.dao.generic.GenericDao;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import java.util.List;
 
 /**

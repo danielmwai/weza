@@ -9,7 +9,7 @@ import com.tunaweza.core.business.model.licence.License;
 import com.tunaweza.core.business.model.user.Location;
 import com.tunaweza.core.business.model.user.User;
 import com.tunaweza.core.business.service.company.CompanyService;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import com.tunaweza.core.business.service.dbswitcher.DbSwitcherHelper;
 import com.tunaweza.core.business.service.ipn.IPNService;
 import com.tunaweza.core.business.service.location.LocationService;
@@ -118,9 +118,7 @@ public class CompanyController implements Views {
 	@Autowired
 	private LicenseDao licenseDao;
 
-	@Autowired
-	private DbSwitcherHelper dbSwitcherHelper;
-
+	
 	/**
 	 * Method to render the Company Registration Form
 	 */
@@ -313,8 +311,7 @@ public class CompanyController implements Views {
 				company.setFirstline(addCompanyBean.getFirstline());
 				company.setDbaseHost("localhost");
 				company.setDbPassword(companyService.generatePassword());
-				company.setDbaseName(genUserDBName(addCompanyBean.getEmail()));
-				company.setDbUserName(genUserDBName(addCompanyBean.getEmail()));
+				
 
 				String urlType = addCompanyBean.getUrlType();
 				String companyURL = "";
@@ -373,10 +370,7 @@ public class CompanyController implements Views {
 						addCompanyBean.getPassword(), chosenLocation,
 						addCompanyBean.getName(), company);
 				LOGGER.info("The cloud Instance is now creating the database>>>>>>>>>>>>>>>>>>>>>>>>>>:::::::2");
-				companyService.createDatabaseAndPopulate(
-						addCompanyBean.getId(), company.getDbaseName(),
-						company.getDbPassword(), company.getDbaseHost(),
-						company.getDbUserName());
+				
 
 				LOGGER.info("The cloud Instance has now created the database>>>>>>>>>>>>>>>>>>>>>>>>>>:::::::3");
 
@@ -697,62 +691,7 @@ public class CompanyController implements Views {
 
 	
 
-	@SuppressWarnings("unused")
-	public String genUserDBName(String companyEmail)
-			throws InstantiationException, IllegalAccessException,
-			ClassNotFoundException, SQLException {
-		// Company company = companyService.
-		Connection conn = dbSwitcherHelper.dbSwitcher("jjteach_", "jjteach_",
-				"jjteach_");
-		String dbname = null;
-		try {
-			Statement st1 = conn.createStatement();
-			ResultSet rs = st1
-					.executeQuery("SELECT database_name AS db FROM company_details where id = (SELECT MAX(id) FROM company_details)");
-
-			while (rs.next()) {
-				dbname = rs.getString("db");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		int atIndex = companyEmail.indexOf("@");
-		String gen1 = "";
-		if (atIndex < 3) {
-			gen1 = companyEmail.substring(0, atIndex);
-		} else {
-			gen1 = companyEmail.substring(0, 3);
-		}
-
-		if (gen1.length() < 3) {
-			int x = 3 - gen1.length();
-			for (int i = 0; i < x; i++) {
-				gen1 = gen1 + "0";
-			}
-
-		}
-		long suffix = 0;
-		if (dbname != null) {
-			String append = dbname.substring(3);
-
-			suffix = isLong(append) + 1;
-
-		} else {
-			suffix = 2;
-		}
-		return gen1 + suffix;
-	}
+	
 
 	/**
 	 * 

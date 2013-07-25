@@ -33,9 +33,7 @@ public interface CompanyService {
 	 * @param password
 	 * @throws DatabaseException
 	 */
-	public void createDabaseTables(String databaseUrl, String user,
-			String password) throws DatabaseException;
-
+	
 	/**
 	 * saves or updates a Company details
 	 * 
@@ -100,15 +98,13 @@ public interface CompanyService {
 //	 * @param dbUsername
 //	 * @throws JJCloudInstanceExistsException
 //	 */
-	public void createDatabaseAndPopulate(Long db_id, String dbName, String dbPassword,
-			String host, String dbUsername)
-			throws Exception;
+	
 	/**
 	 * 
 	 * @param database
 	 * @throws DatabaseException
 	 */
-	public void dropDatabase(String database) throws DatabaseException;
+	
 	
 	/**
 	 * Method to set the first time a company logged in, 

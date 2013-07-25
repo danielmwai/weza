@@ -27,7 +27,7 @@ import com.tunaweza.core.business.dao.exceptions.role.RoleExistsException;
 import com.tunaweza.core.business.model.company.Company;
 import com.tunaweza.core.business.model.role.Role;
 import com.tunaweza.core.business.service.company.CompanyService;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
+import com.tunaweza.core.business.model.company.CompanySettings;
 import com.tunaweza.core.business.service.role.RoleService;
 import com.tunaweza.core.business.service.user.UserCastService;
 import com.tunaweza.web.spring.configuration.role.bean.AddRoleBean;

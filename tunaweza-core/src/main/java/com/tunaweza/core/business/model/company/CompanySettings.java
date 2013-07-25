@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tunaweza.core.business.service.company.settings;
+package com.tunaweza.core.business.model.company;
 
 import com.tunaweza.core.business.model.company.Company;
 import java.sql.Blob;

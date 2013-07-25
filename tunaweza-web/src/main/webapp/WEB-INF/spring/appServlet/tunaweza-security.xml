@@ -57,7 +57,7 @@
 		<beans:property name="url" value="${jdbc.url}" /> <beans:property name="username" 
 		value="${jdbc.username}" /> <beans:property name="password" value="${jdbc.password}" 
 		/> </beans:bean> -->
-
+<!--
 	<beans:bean id="ss_dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<beans:property name="driverClass" value="${jdbc.driverClassName}" />
@@ -67,7 +67,7 @@
 		<beans:property name="maxPoolSize" value="${hibernate.c3p0.maxPoolSize}" />
 		<beans:property name="maxStatements" value="${hibernate.c3p0.max_statement}" />
 		<beans:property name="minPoolSize" value="${hibernate.c3p0.minPoolSize}" />
-	</beans:bean>
+	</beans:bean>-->
 
 	<!--<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
 		<beans:property name="entityManagerFactory" ref="entityManagerFactory" /> 
@@ -98,12 +98,12 @@
 		<beans:constructor-arg value="MD5" />
 
 	</beans:bean>
-
-	<authentication-manager>
+       <authentication-manager>
 
 		<authentication-provider>
 			<password-encoder ref="passwordEncoder" />
-			<jdbc-user-service data-source-ref="ss_dataSource" />
+			<jdbc-user-service data-source-ref="dataSource" />
 		</authentication-provider>
 	</authentication-manager>
+  
 </beans:beans>

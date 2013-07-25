@@ -7,7 +7,6 @@ package com.tunaweza.core.business.model.company;
 
 import com.tunaweza.core.business.model.licence.CompanyLicense;
 import com.tunaweza.core.business.model.user.User;
-import com.tunaweza.core.business.service.company.settings.CompanySettings;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
