@@ -28,7 +28,6 @@ import com.tunaweza.core.business.utils.CredentialsEncoder;
 import static com.tunaweza.core.business.utils.SessionHelper.evalCurrLoggedInAttribRole;
 import static com.tunaweza.core.business.utils.SessionHelper.evalSessionAttribRole;
 import static com.tunaweza.core.business.utils.SessionHelper.setSessionAttribDbConfig;
-import com.tunaweza.web.datasource.JJteachDataSource;
 import com.tunaweza.web.spring.configuration.user.bean.DbConfigBean;
 import com.tunaweza.web.spring.configuration.user.bean.ForgotPasswordBean;
 import com.tunaweza.web.views.Views;
@@ -60,7 +59,6 @@ import javax.validation.Validator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -111,12 +109,7 @@ public class HomeController extends Constants implements Settings, Views {
 	@Autowired
 	private CompanyLicenseService companyLicenseService;
 
-	@Autowired
-	private JJteachDataSource jjteachDataSource;
-
-	public final String ENTITY_MANAGER_FACTORY_NAME = "entityManagerFactoryName";
-
-	private LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
+	
 
 	FilterConfig config1 = null;
 
@@ -131,7 +124,7 @@ public class HomeController extends Constants implements Settings, Views {
 	 */
 	@RequestMapping(value = HOME, method = RequestMethod.GET)
 	public String home(HttpServletRequest req) {
-		jjteachDataSource.jjteachDatasource(req);
+		//jjteachDataSource.jjteachDatasource(req);
 		return HOME;
 	}
 
@@ -142,7 +135,7 @@ public class HomeController extends Constants implements Settings, Views {
 	 */
 	@RequestMapping(value = LOGIN, method = RequestMethod.GET)
 	public String login(HttpServletRequest req) {
-		jjteachDataSource.jjteachDatasource(req);
+		//jjteachDataSource.jjteachDatasource(req);
 		return LOGIN;
 	}
 
@@ -239,8 +232,8 @@ public class HomeController extends Constants implements Settings, Views {
 			WebApplicationContext wac = WebApplicationContextUtils
 					.getRequiredWebApplicationContext(httpSession
 							.getServletContext());
-			this.entityManagerFactoryBean = wac.getBean(emfName,
-					LocalContainerEntityManagerFactoryBean.class);
+//			this.entityManagerFactoryBean = wac.getBean(emfName,
+//					LocalContainerEntityManagerFactoryBean.class);
 
 //			DataSourceSwitcherApi dataSourceSwitcherApi = new DataSourceSwitcherApiImpl();
 
@@ -851,7 +844,7 @@ public class HomeController extends Constants implements Settings, Views {
 	@RequestMapping(method = RequestMethod.GET, value = CONTACT_COMPANY)
 	public String contactCompany(Model model, HttpServletRequest request) {
 
-		jjteachDataSource.jjteachDatasource(request);
+		//jjteachDataSource.jjteachDatasource(request);
 		return CONTACT_COMPANY;
 	}
 
@@ -865,7 +858,7 @@ public class HomeController extends Constants implements Settings, Views {
 	@RequestMapping(method = RequestMethod.GET, value = JJTEACH_DEMO)
 	public String jjteachDemo(Model model, HttpServletRequest request) {
 
-		jjteachDataSource.jjteachDatasource(request);
+		//jjteachDataSource.jjteachDatasource(request);
 		return JJTEACH_DEMO;
 	}
 

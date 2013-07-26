@@ -3,9 +3,6 @@ package com.tunaweza.web.spring.configuration.role.bean;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 
-/**
- * @author Timothy Tuti
- */
 public class EditRoleBean 
 {
 	@NotNull

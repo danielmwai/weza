@@ -52,7 +52,7 @@
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass">
 			<value>
-				org.springframework.web.servlet.view.tiles2.TilesView
+				org.springframework.web.servlet.view.tiles3.TilesView
 			</value>
 		</property>
 	</bean>
@@ -72,7 +72,7 @@
 
 
 	<bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/tiles-defs/main.xml</value>
